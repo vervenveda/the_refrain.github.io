@@ -823,7 +823,7 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="https://vervenveda.github.io/proresource_hub.github.io/" aria-label="ProReSources home">
+    <a class="brand" href="https://vervenveda.github.io/the_refrain.github.io/" aria-label="The Refrain home">
       <span class="brand-mark">TR</span>
       <span class="brand-copy">
         <strong>The Refrain</strong>
@@ -839,6 +839,7 @@
       <a href="#share">Share</a>
       <a href="#reflect">Reflect</a>
       <a href="#future">Future Studios</a>
+      <a href="https://vervenveda.github.io/proresource_hub.github.io/">ProReSources</a>
       <a href="https://vervenveda.github.io/">Verve N Veda</a>
     </nav>
   </div>
@@ -849,9 +850,9 @@
     <div>
       <div class="eyebrow">Professional Music · Sound · Learning · Community</div>
       <h1 id="pageTitle">The Refrain™<span>Where sound returns with purpose</span></h1>
-      <p class="hero-copy">A welcoming professional music hub for creating, recording, practicing, researching, publishing, sharing, teaching, and restoring through sound. The Refrain gathers music tools from ProReSources, Verve N Veda, Khaemenes Academy, ARSHIF, Bazaar Art, and the Aurora Sanctuary into one clear doorway.</p>
+      <p class="hero-copy">A welcoming professional music hub for creating, recording, practicing, researching, publishing, sharing, teaching, and restoring through sound. The Refrain now has its own public home while connecting to music tools that remain in ProReSources, Verve N Veda, Khaemenes Academy, ARSHIF, Bazaar Art, and the Aurora Sanctuary.</p>
       <div class="hero-actions">
-        <a class="button primary" href="Harmony's Haven Studio™ Multi-Track_index.html">Open Harmony’s Haven Studio</a>
+        <a class="button primary" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Open Harmony’s Haven Studio</a>
         <a class="button teal" href="#musicDirectory">Explore the Music Hub</a>
         <a class="button" href="https://vervenveda.github.io/Arshif.github.io/">Enter ARSHIF Music Knowledge</a>
       </div>
@@ -875,7 +876,7 @@
     <div>
       <div class="section-kicker">A connected creative home</div>
       <h2 id="refrainPurpose">Music does not live in only one room.</h2>
-      <p>The Refrain connects the studio to the archive, the classroom to the stage, the artist to the editor, and the finished work to the community. Active destinations open directly. Future professional tools are clearly marked as being under construction.</p>
+      <p>The Refrain connects the studio to the archive, the classroom to the stage, the artist to the editor, and the finished work to the community. Each tool can remain in its proper repository while this independent hub gives the complete music ecosystem one recognizable doorway.</p>
     </div>
     <div class="hub-count" aria-label="Hub status">
       <div class="count-card"><strong id="liveCount">0</strong><span>connected destinations</span></div>
@@ -921,7 +922,7 @@
     <h2>Creation, knowledge, community, and sanctuary—together.</h2>
     <p>The Refrain is not a single application. It is the professional music doorway that gives every sound-related project a recognizable home while allowing each studio, archive, classroom, and creative community to keep its own purpose.</p>
     <div class="hero-actions">
-      <a class="button primary" href="Harmony's Haven Studio™ Multi-Track_index.html">Begin in Harmony’s Haven</a>
+      <a class="button primary" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Begin in Harmony’s Haven</a>
       <a class="button" href="https://vervenveda.github.io/proresource_hub.github.io/">Return to ProReSources</a>
     </div>
   </section>
@@ -929,7 +930,7 @@
 
 <footer>
   <div class="footer-inner">
-    <div><strong>The Refrain™</strong><br>Professional Music & Sound Hub</div>
+    <div><strong>The Refrain™</strong><br>Independent Music & Sound Gateway</div>
     <div>Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl · All Rights Reserved 2026</div>
   </div>
 </footer>
@@ -947,10 +948,10 @@
       tone:"gold",
       icon:"♬",
       title:"Harmony’s Haven Studio™",
-      subtitle:"88-Key Multi-Track Music Studio",
+      subtitle:"88-Key Multi-Track Music Studio · Hosted at ProReSources",
       description:"Play a full piano keyboard, compare instruments, practice scales, record layered tracks, view notation, play arrangements, print staff work, and export project data.",
       features:["88-key playable keyboard","Multi-track recorder and mix playback","Scale practice and staff notation"],
-      href:"Harmony's Haven Studio™ Multi-Track_index.html",
+      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html",
       action:"Open Music Studio",
       status:"live"
     },
@@ -961,9 +962,9 @@
       tone:"teal",
       icon:"▶",
       title:"FleaPit™ Media Hub",
-      subtitle:"Music Video & Media Discovery",
+      subtitle:"Music Video & Media Discovery · Hosted at ProReSources",
       description:"Gather music videos, performances, public archives, lectures, and direct media into a private browser-based library.",
-      href:"FleaPit™_media_hub_Index.html",
+      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html",
       action:"Open Media Hub",
       status:"live"
     },
@@ -1013,9 +1014,9 @@
       tone:"rose",
       icon:"✦",
       title:"Bazaar Art Live",
-      subtitle:"333 Creative Community Feed",
+      subtitle:"333 Creative Community Feed · Hosted at ProReSources",
       description:"Share music, studio notes, events, reels, collaborations, and creative announcements with an optional community feed.",
-      href:"Bazaar Art Live 333 Social Feed_index.html",
+      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feed_index.html",
       action:"Open Bazaar Art Live",
       status:"live"
     },
