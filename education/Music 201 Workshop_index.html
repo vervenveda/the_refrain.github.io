@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Refrain Music Theory 201 Workshop — an advanced, offline course in harmony, analysis, voice leading, chromaticism, form, and composition.">
+<title>The Refrain™ Music Theory 201 Workshop</title>
+<style>
+:root{
+  --bg:#09101d;--bg2:#111b2d;--panel:#121e31;--panel2:#17253a;--paper:#fffaf0;
+  --ink:#f7f3ea;--muted:#bdc8d8;--line:#2d405c;--gold:#e8c774;--gold2:#f6dfa4;
+  --cyan:#8fd8e8;--green:#9ee4bc;--red:#ff9e9e;--shadow:0 22px 55px rgba(0,0,0,.28);
+  --radius:20px;--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+[data-theme="light"]{
+  --bg:#eee9df;--bg2:#faf6ee;--panel:#fffdf8;--panel2:#f5eee3;--paper:#fff;
+  --ink:#202738;--muted:#5b6678;--line:#d2c6b4;--gold:#8b661d;--gold2:#a4771f;
+  --cyan:#176e81;--green:#286c46;--red:#9b3737;--shadow:0 20px 44px rgba(50,40,25,.13);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100%;font-family:var(--font);font-size:18px;line-height:1.55;color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(143,216,232,.13),transparent 34rem),
+    radial-gradient(circle at 92% 12%,rgba(232,199,116,.13),transparent 30rem),
+    linear-gradient(180deg,var(--bg),var(--bg2));}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.skip{position:fixed;left:12px;top:-60px;z-index:1000;background:var(--paper);color:#111;padding:10px 14px;border-radius:10px}
+.skip:focus{top:12px}
+.shell{width:min(1500px,100%);margin:auto;padding:0 18px 50px}
+.site-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--line)}
+.header-inner{width:min(1500px,100%);margin:auto;padding:12px 18px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;min-width:260px}
+.brand-mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);
+ background:radial-gradient(circle,rgba(232,199,116,.28),transparent 68%);font-size:24px}
+.brand strong{display:block;font-size:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold2)}
+.brand span{display:block;font-size:13px;color:var(--muted)}
+.nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;flex:1}
+.nav button,.icon-btn,.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:10px 15px;font-weight:700}
+.nav button:hover,.nav button.active,.icon-btn:hover,.btn:hover{border-color:var(--gold);background:var(--panel2)}
+.header-tools{display:flex;gap:8px}
+.icon-btn{width:45px;height:45px;padding:0;display:grid;place-items:center}
+.hero{margin:28px 0 22px;min-height:520px;border:1px solid var(--line);border-radius:30px;overflow:hidden;position:relative;
+ display:grid;grid-template-columns:1.08fr .92fr;background:
+ linear-gradient(135deg,color-mix(in srgb,var(--panel) 94%,transparent),color-mix(in srgb,var(--bg2) 92%,transparent));box-shadow:var(--shadow)}
+.hero:before{content:"";position:absolute;inset:0;background:
+ linear-gradient(90deg,transparent 49.8%,rgba(232,199,116,.15) 50%,transparent 50.2%),
+ repeating-linear-gradient(0deg,transparent 0 38px,rgba(143,216,232,.05) 39px 40px);pointer-events:none}
+.hero-copy{padding:clamp(36px,6vw,78px);position:relative;z-index:1;align-self:center}
+.eyebrow{color:var(--gold2);font-size:14px;text-transform:uppercase;letter-spacing:.16em;font-weight:800}
+h1{font-size:clamp(42px,6vw,79px);line-height:1.02;margin:14px 0 18px;letter-spacing:-.045em}
+.lede{font-size:clamp(20px,2.1vw,27px);color:var(--muted);max-width:58ch}
+.hero-actions,.row{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+.hero-actions{margin-top:28px}
+.btn{border-radius:13px;padding:12px 18px}
+.btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1d2430;border-color:transparent}
+.btn.good{border-color:var(--green);color:var(--green)}
+.btn.danger{border-color:var(--red);color:var(--red)}
+.btn.small{padding:8px 11px;font-size:15px}
+.hero-art{position:relative;display:grid;place-items:center;padding:38px;z-index:1}
+.orbit{width:min(430px,85%);aspect-ratio:1;border:1px solid rgba(232,199,116,.6);border-radius:50%;position:relative;
+ box-shadow:0 0 0 34px rgba(232,199,116,.035),0 0 0 78px rgba(143,216,232,.025)}
+.orbit:before,.orbit:after{content:"";position:absolute;inset:15%;border:1px solid rgba(143,216,232,.45);border-radius:50%}
+.orbit:after{inset:33%;border-color:rgba(232,199,116,.55)}
+.orbit-center{position:absolute;inset:39%;border-radius:50%;display:grid;place-items:center;background:var(--panel2);border:1px solid var(--gold);font-size:28px}
+.orbit-note{position:absolute;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);font-weight:800;color:var(--gold2)}
+.orbit-note:nth-child(2){left:43%;top:-24px}.orbit-note:nth-child(3){right:0;top:20%}.orbit-note:nth-child(4){right:4%;bottom:14%}
+.orbit-note:nth-child(5){left:43%;bottom:-24px}.orbit-note:nth-child(6){left:0;bottom:18%}.orbit-note:nth-child(7){left:-20px;top:22%}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.stat,.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.stat{padding:18px}.stat strong{font-size:31px;color:var(--gold2);display:block}.stat span{color:var(--muted);font-size:15px}
+.section{margin:34px 0}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:15px}
+.section-head h2{font-size:clamp(30px,4vw,48px);margin:0}.section-head p{margin:0;color:var(--muted);max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{padding:22px}.card h3{margin:0 0 8px;font-size:23px}.card p{color:var(--muted)}
+.card-number{font-size:13px;color:var(--gold2);text-transform:uppercase;letter-spacing:.12em;font-weight:800}
+.path-card{min-height:215px;display:flex;flex-direction:column}.path-card .btn{margin-top:auto;align-self:flex-start}
+.workspace{display:grid;grid-template-columns:310px minmax(0,1fr);gap:16px;margin-top:24px;align-items:start}
+.sidebar{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
+.panel{padding:18px}.panel h2,.panel h3{margin-top:0}
+.module-list{display:grid;gap:8px}
+.module-link{width:100%;text-align:left;border:1px solid var(--line);background:var(--panel2);color:var(--ink);padding:12px;border-radius:13px}
+.module-link small{display:block;color:var(--muted);margin-top:3px}.module-link.active{border-color:var(--gold)}
+.module-link.done:after{content:"✓";float:right;color:var(--green);font-weight:900}
+.progress-track{height:12px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green))}
+.content-panel{min-width:0}
+.page-title{margin:0;font-size:clamp(35px,4.5vw,58px);line-height:1.08}.page-sub{color:var(--muted);font-size:20px}
+.meta-row{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:var(--panel2);font-size:15px}
+.chip.gold{border-color:var(--gold);color:var(--gold2)}.chip.good{border-color:var(--green);color:var(--green)}
+.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lesson-card{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:18px}
+.lesson-card h3{margin-top:0;color:var(--gold2)}.lesson-card p,.lesson-card li{color:var(--muted)}
+.objective-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.clean-list{margin:8px 0;padding-left:21px}.clean-list li{margin:7px 0}
+.vocab{display:flex;gap:8px;flex-wrap:wrap}.vocab span{border:1px dashed var(--line);border-radius:10px;padding:6px 10px;color:var(--cyan)}
+textarea,input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--ink);padding:11px 12px}
+textarea{min-height:130px;resize:vertical}
+.quiz-q{padding:16px;border:1px solid var(--line);border-radius:15px;background:var(--panel2);margin:12px 0}
+.quiz-q legend{font-weight:800;padding:0 5px}.choice{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:10px;margin:6px 0}
+.choice:hover{background:color-mix(in srgb,var(--panel) 75%,transparent)}.choice input{width:auto;margin-top:5px}
+.explain{margin-top:10px;padding:10px;border-left:3px solid var(--cyan);color:var(--muted)}
+.tool-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tool-tabs button{border:1px solid var(--line);background:var(--panel2);color:var(--ink);padding:9px 12px;border-radius:11px}
+.tool-tabs button.active{border-color:var(--gold);color:var(--gold2)}
+.tool-stage{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:18px;min-height:370px}
+.control-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px;align-items:end}
+.result-box{margin-top:16px;padding:18px;border-radius:15px;background:var(--panel2);border:1px solid var(--line)}
+.note-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.note-pill{min-width:52px;text-align:center;padding:9px;border-radius:12px;border:1px solid var(--gold);color:var(--gold2);font-weight:800}
+.piano-roll{display:flex;gap:3px;align-items:end;overflow:auto;padding:12px;background:#05070b;border-radius:15px;margin-top:14px}
+.mini-key{width:44px;height:110px;background:#fff;color:#111;border-radius:0 0 7px 7px;display:grid;place-items:end center;padding-bottom:8px;font-size:12px;border:1px solid #aaa}
+.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:650px}.data-table th,.data-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+.data-table th{color:var(--gold2)}
+.dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.big-number{font-size:42px;color:var(--gold2);font-weight:900}
+.certificate{background:#fffaf0;color:#1f2734;border:10px double #aa7f28;padding:42px;text-align:center;max-width:900px;margin:20px auto;display:none}
+.certificate h2{font-size:48px;margin:8px}.certificate .name{font-size:36px;border-bottom:1px solid #333;padding:8px;margin:24px}
+.toast{position:fixed;right:18px;bottom:18px;z-index:1000;background:#111827;color:#fff;border:1px solid #4b5563;padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}
+.toast.show{opacity:1;transform:none}
+footer{margin-top:40px;border-top:1px solid var(--line);padding:24px 0;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:1050px){.hero{grid-template-columns:1fr}.hero-art{min-height:420px}.workspace{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.lesson-grid,.grid{grid-template-columns:1fr 1fr}.control-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){body{font-size:17px}.header-inner{align-items:flex-start;flex-wrap:wrap}.brand{min-width:0;flex:1}.nav{order:3;width:100%;justify-content:flex-start;overflow:auto;flex-wrap:nowrap;padding-bottom:4px}.nav button{white-space:nowrap}.hero-copy{padding:32px 24px}.hero-art{min-height:330px;padding:24px}.orbit{width:270px}.stats,.dashboard,.objective-grid,.lesson-grid,.grid,.control-grid{grid-template-columns:1fr}.shell{padding-inline:11px}.card,.panel{padding:16px}.section-head{display:block}.section-head p{margin-top:8px}}
+@media print{
+  body{background:#fff;color:#111}.site-header,.no-print,footer,.sidebar{display:none!important}.shell{padding:0}.panel,.card{box-shadow:none;border-color:#aaa;background:#fff;color:#111}.workspace{display:block}.certificate{display:block!important;page-break-inside:avoid}.certificate.not-eligible{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#mainContent">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand"><div class="brand-mark">𝄞</div><div><strong>The Refrain™</strong><span>Music Theory 201 Workshop</span></div></div>
+    <nav class="nav no-print" aria-label="Workshop navigation">
+      <button data-view="home" class="active">Home</button>
+      <button data-view="curriculum">Curriculum</button>
+      <button data-view="toolkit">Theory Toolkit</button>
+      <button data-view="final">Final Assessment</button>
+      <button data-view="progress">Progress</button>
+    </nav>
+    <div class="header-tools no-print"><button id="themeBtn" class="icon-btn" aria-label="Toggle appearance" title="Toggle appearance">◐</button></div>
+  </div>
+</header>
+
+<main id="mainContent" class="shell"></main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<input id="importFile" type="file" accept="application/json" hidden>
+
+<footer class="shell">
+  <span>The Refrain™ · Advanced music learning, locally owned.</span>
+  <span>No accounts · No analytics · No external libraries · Browser-local saving</span>
+</footer>
+
+<script>
+"use strict";
+const MODULES=[{"id": "circle-keys", "number": 1, "phase": "Foundation Map", "title": "Circle of Fifths, Key Signatures & Key Fluency", "essential": "How can one visual map explain key signatures, related keys, scale construction, and harmonic movement?", "objectives": ["Read the Circle of Fifths clockwise and counterclockwise.", "Identify every major key signature and its relative minor.", "Build major and natural-minor scales from interval patterns.", "Use tonic, dominant, and subdominant relationships to orient a key."], "vocab": ["tonic", "dominant", "subdominant", "key signature", "relative key", "parallel key", "enharmonic", "scale degree"], "lessons": [{"title": "The circle as a map", "body": "The Circle of Fifths arranges pitch centers by perfect fifth. Moving clockwise adds one sharp; moving counterclockwise adds one flat. Neighboring keys share six of seven scale tones, which is why they sound closely related.", "points": ["Clockwise: C, G, D, A, E, B, F♯, C♯.", "Counterclockwise: C, F, B♭, E♭, A♭, D♭, G♭, C♭.", "The order of sharps is F–C–G–D–A–E–B; flats reverse it."]}, {"title": "Major, minor, and key families", "body": "Each major key shares its signature with a relative minor beginning on scale degree six. Parallel major and minor share a tonic but use different signatures. These relationships support modulation, borrowing, and analysis.", "points": ["C major and A minor are relatives.", "C major and C minor are parallels.", "Relative minor is three semitones below the major tonic."]}, {"title": "Practical key fluency", "body": "Key fluency means more than naming signatures. It means quickly spelling a scale, locating I–IV–V, predicting common chords, and hearing where home is.", "points": ["Write the scale before building chords.", "Sing scale degrees 1–2–3–4–5–6–7–1.", "Practice one sharp-side and one flat-side key each day."]}], "activities": ["Create a handwritten Circle of Fifths from memory.", "Build I, IV, V, and vi in four contrasting keys.", "Compare one relative-key pair and one parallel-key pair.", "Use the toolkit to generate and hear six scales."], "lab": "keys", "quiz": [["tf", "Moving clockwise around the Circle of Fifths adds sharps.", true, "Each clockwise step adds one sharp in major keys."], ["mc", "Which is the relative minor of E♭ major?", ["C minor", "F minor", "G minor", "B♭ minor"], 0, "E♭ major and C minor share three flats."], ["mc", "What is the order of sharps?", ["B E A D G C F", "F C G D A E B", "C D E F G A B", "G A B C D E F"], 1, "The standard order is F–C–G–D–A–E–B."], ["mc", "Which pair is parallel?", ["C major and A minor", "D major and B minor", "F major and F minor", "G major and E minor"], 2, "Parallel keys share the same tonic."], ["tf", "Closely related keys usually differ by only one accidental.", true, "Adjacent keys on the Circle of Fifths differ by one accidental."], ["mc", "In a major key, the dominant is scale degree…", ["2", "4", "5", "7"], 2, "Scale degree 5 is the dominant."]]}, {"id": "intervals", "number": 2, "phase": "Pitch Structure", "title": "Intervals: Number, Quality, Inversion & Ear Recognition", "essential": "How do interval size and quality describe musical distance and predict melodic or harmonic behavior?", "objectives": ["Name simple and compound intervals accurately.", "Calculate interval quality with semitones and key context.", "Invert intervals and explain complementary qualities.", "Recognize common intervals by sight and sound."], "vocab": ["generic interval", "specific interval", "perfect family", "major/minor family", "augmented", "diminished", "compound interval", "inversion"], "lessons": [{"title": "Number before quality", "body": "Count letter names inclusively to find interval number. C to E is a third because C–D–E contains three letters. Staff geometry gives a quick estimate before exact calculation.", "points": ["Line-to-line and space-to-space intervals are odd-numbered.", "Line-to-space intervals are even-numbered.", "Compound intervals extend beyond an octave."]}, {"title": "Quality and semitone maps", "body": "Unisons, fourths, fifths, and octaves belong to the perfect family. Seconds, thirds, sixths, and sevenths belong to the major/minor family. Augmented intervals are one semitone wider; diminished intervals are one semitone narrower.", "points": ["M3 = 4 semitones; m3 = 3.", "P5 = 7 semitones; tritone = 6.", "M7 = 11 semitones; m7 = 10."]}, {"title": "Inversion and hearing", "body": "When one note moves by an octave, interval numbers add to nine. Major becomes minor, augmented becomes diminished, and perfect remains perfect. Hearing practice connects theory with musical expectation.", "points": ["M3 inverts to m6.", "P4 inverts to P5.", "m2 inverts to M7."]}], "activities": ["Label twelve written intervals by number and quality.", "Invert every interval from m2 through P8.", "Create an interval reference melody list without relying on it exclusively.", "Complete three rounds of the interval trainer."], "lab": "intervals", "quiz": [["mc", "How many semitones are in a perfect fifth?", ["5", "6", "7", "8"], 2, "A perfect fifth spans seven semitones."], ["tf", "A major third inverts to a minor sixth.", true, "Inverted numbers add to nine and major changes to minor."], ["mc", "C up to A is a…", ["Major sixth", "Minor sixth", "Perfect fifth", "Major seventh"], 0, "C–D–E–F–G–A is a sixth, and C to A is nine semitones."], ["mc", "Which belongs to the perfect family?", ["Third", "Sixth", "Seventh", "Fourth"], 3, "Unisons, fourths, fifths, and octaves are perfect-family intervals."], ["tf", "An augmented interval is one semitone wider than its major or perfect form.", true, "Augmentation expands the interval by one semitone."], ["mc", "A tritone spans…", ["4 semitones", "5 semitones", "6 semitones", "7 semitones"], 2, "A tritone is six semitones."]]}, {"id": "triads", "number": 3, "phase": "Chord Construction", "title": "Triads, Inversions & Chord Spelling", "essential": "How do stacked thirds create chord quality, and how do inversions shape bass motion and voice leading?", "objectives": ["Build major, minor, diminished, and augmented triads.", "Spell chords correctly with letter names and accidentals.", "Identify root position and inversions.", "Use inversions to create smoother bass lines."], "vocab": ["triad", "root", "third", "fifth", "root position", "first inversion", "second inversion", "figured bass"], "lessons": [{"title": "Stacking thirds", "body": "A triad contains a root, third, and fifth. Correct spelling uses alternating letter names even when enharmonic equivalents sound identical.", "points": ["C major is C–E–G, not C–F♭–G.", "Major = M3 + m3.", "Minor = m3 + M3."]}, {"title": "Four triad qualities", "body": "The distance from root to third and root to fifth determines quality. Diminished and augmented triads create stronger instability than major and minor.", "points": ["Major: 0–4–7.", "Minor: 0–3–7.", "Diminished: 0–3–6; augmented: 0–4–8."]}, {"title": "Inversions and bass", "body": "An inversion places a chord tone other than the root in the bass. The harmonic identity remains, but weight, contour, and voice-leading change.", "points": ["Root position: root in bass.", "First inversion: third in bass, figured as 6.", "Second inversion: fifth in bass, figured as 6/4."]}], "activities": ["Spell all diatonic triads in three major keys.", "Rewrite four root-position triads in both inversions.", "Design a four-chord bass line using inversions.", "Hear and compare all four triad qualities."], "lab": "chords", "quiz": [["mc", "Which formula creates a diminished triad?", ["0–3–6", "0–3–7", "0–4–7", "0–4–8"], 0, "A diminished triad contains a minor third and diminished fifth."], ["tf", "A first-inversion triad has its third in the bass.", true, "The third is the lowest sounding chord tone."], ["mc", "Which spelling correctly forms an F♯ major triad?", ["F♯–A–C♯", "F♯–A♯–C♯", "F♯–B♭–C♯", "F♯–A♯–D♭"], 1, "A correctly spelled F♯ major triad is F♯–A♯–C♯."], ["mc", "An augmented triad contains…", ["a major third and perfect fifth", "a minor third and diminished fifth", "a major third and augmented fifth", "two perfect fourths"], 2, "Its formula is 0–4–8."], ["tf", "Chord inversion changes chord identity completely.", false, "It changes bass position, not the chord root or quality."], ["mc", "Second inversion is commonly represented by…", ["5/3", "6", "6/4", "4/2"], 2, "A second-inversion triad is 6/4."]]}, {"id": "seventh-chords", "number": 4, "phase": "Chord Color", "title": "Seventh Chords, Inversions & Tendency Tones", "essential": "How does adding a seventh change chord color, function, and voice-leading responsibility?", "objectives": ["Build five common seventh-chord qualities.", "Identify seventh chords in root position and inversion.", "Resolve chordal sevenths and leading tones correctly.", "Connect chord symbols, figured bass, and Roman numerals."], "vocab": ["dominant seventh", "major seventh", "minor seventh", "half-diminished", "fully diminished", "chordal seventh", "tendency tone", "resolution"], "lessons": [{"title": "Adding the seventh", "body": "A seventh chord adds another third above a triad. The new note creates color and often carries a strong resolution tendency.", "points": ["Major seventh: 0–4–7–11.", "Dominant seventh: 0–4–7–10.", "Minor seventh: 0–3–7–10."]}, {"title": "Diminished seventh families", "body": "Half-diminished seventh combines a diminished triad with a minor seventh. Fully diminished seventh stacks minor thirds symmetrically.", "points": ["Half-diminished: 0–3–6–10.", "Fully diminished: 0–3–6–9.", "Symmetry allows several enharmonic interpretations."]}, {"title": "Tendency tones and inversions", "body": "In tonal style, the chordal seventh usually resolves downward by step while the leading tone resolves upward to tonic. Inversions affect bass and figured-bass labels.", "points": ["Root position seventh chord: 7.", "First inversion: 6/5.", "Second: 4/3; third: 4/2."]}], "activities": ["Build all diatonic seventh chords in one major key.", "Resolve V7–I in four voices on paper.", "Compare dominant seventh and major seventh sonorities.", "Identify inversions from bass notes."], "lab": "sevenths", "quiz": [["mc", "Which formula is a dominant seventh chord?", ["0–4–7–10", "0–4–7–11", "0–3–7–10", "0–3–6–10"], 0, "Dominant seventh combines a major triad with a minor seventh."], ["tf", "The chordal seventh usually resolves downward by step in common-practice voice leading.", true, "Downward stepwise resolution is the normal tendency."], ["mc", "Which figured bass indicates third inversion?", ["7", "6/5", "4/3", "4/2"], 3, "Third inversion places the seventh in the bass and is labeled 4/2."], ["mc", "A half-diminished seventh chord is…", ["0–3–6–9", "0–3–6–10", "0–4–7–10", "0–3–7–10"], 1, "Half-diminished uses diminished triad plus minor seventh."], ["tf", "A fully diminished seventh chord is symmetrical.", true, "It consists of stacked minor thirds."], ["mc", "In V7–I, the leading tone normally resolves…", ["down a third", "up to tonic", "down to scale degree 5", "by leap to scale degree 3"], 1, "Scale degree 7 rises to scale degree 1."]]}, {"id": "diatonic-harmony", "number": 5, "phase": "Functional Language", "title": "Diatonic Harmony, Roman Numerals & Minor-Key Variants", "essential": "How do scale degrees become chords, and how does Roman-numeral analysis reveal harmonic role?", "objectives": ["Construct diatonic triads and seventh chords in major.", "Analyze chords with Roman numerals and inversions.", "Distinguish natural, harmonic, and melodic minor resources.", "Spell raised leading-tone chords correctly in minor."], "vocab": ["diatonic", "Roman numeral", "scale degree", "harmonic minor", "melodic minor", "leading-tone chord", "quality", "figured bass"], "lessons": [{"title": "Diatonic chords in major", "body": "Building thirds only from a major scale yields a predictable quality pattern. Roman numerals identify both scale degree and chord quality.", "points": ["Triads: I–ii–iii–IV–V–vi–vii°.", "Sevenths: I7–ii7–iii7–IV7–V7–vi7–viiø7, with quality understood.", "Uppercase is major; lowercase is minor."]}, {"title": "Minor is variable", "body": "Minor-key harmony draws from natural, harmonic, and melodic minor. Raising scale degree seven creates a leading tone and strengthens dominant function.", "points": ["Natural minor has minor v and major VII.", "Harmonic minor creates major V and diminished vii°.", "Raised sixth may support smoother melodic motion."]}, {"title": "Analysis workflow", "body": "First determine key, then spell each chord, locate its root, identify quality and inversion, and finally assign a Roman numeral.", "points": ["Do not identify a chord only by its bass note.", "Account for non-chord tones before labeling.", "Use accidentals as clues to minor-key function."]}], "activities": ["Write diatonic triads in D major and B♭ major.", "Write natural and harmonic minor scales for A and E minor.", "Analyze eight chords with inversion figures.", "Build V7 and vii°7 in three minor keys."], "lab": "roman", "quiz": [["mc", "What is the major-key triad quality pattern?", ["M–m–m–M–M–m–dim", "M–M–m–m–M–m–dim", "m–dim–M–m–m–M–M", "M–m–M–m–M–m–M"], 0, "Major-key triads follow M–m–m–M–M–m–dim."], ["tf", "Harmonic minor raises scale degree seven.", true, "The raised seventh creates a leading tone."], ["mc", "In C major, ii6 is…", ["D minor with F in bass", "D major with F♯ in bass", "F major with A in bass", "B diminished with D in bass"], 0, "ii is D minor; first inversion places F in the bass."], ["mc", "Which Roman numeral is the leading-tone triad in major?", ["vi", "VII", "vii°", "V"], 2, "The seventh-degree triad is diminished."], ["tf", "Roman numerals are relative to the current key.", true, "The same chord name can serve different functions in different keys."], ["mc", "Why is V often major in a minor key?", ["Scale degree 2 is lowered", "Scale degree 6 is raised", "Scale degree 7 is raised", "The tonic is changed"], 2, "Raising scale degree 7 produces a major dominant triad."]]}, {"id": "function-cadence", "number": 6, "phase": "Harmonic Direction", "title": "Harmonic Function, Phrase Models & Cadences", "essential": "How do tonic, predominant, and dominant functions create musical direction and closure?", "objectives": ["Classify chords by tonic, predominant, and dominant function.", "Recognize common phrase models.", "Distinguish authentic, half, plagal, and deceptive cadences.", "Evaluate cadence strength using soprano and bass motion."], "vocab": ["tonic function", "predominant", "dominant", "phrase model", "cadence", "PAC", "IAC", "half cadence", "deceptive cadence"], "lessons": [{"title": "Function as motion", "body": "Functional harmony organizes chords by their relationship to tonic. Tonic provides stability, predominant moves away, and dominant creates the strongest return pressure.", "points": ["Tonic family: I, sometimes vi and iii.", "Predominant family: ii and IV.", "Dominant family: V and vii°."]}, {"title": "Phrase models", "body": "Many tonal phrases follow T–PD–D–T. Expansion, substitution, and prolongation make the surface varied while the functional skeleton remains.", "points": ["I–IV–V–I is a direct model.", "I–vi–ii6–V7–I expands tonic and predominant.", "Bass and melody help clarify function."]}, {"title": "Cadential punctuation", "body": "Cadences mark varying degrees of closure. A perfect authentic cadence requires root-position V–I and tonic in the soprano at the final chord.", "points": ["PAC: strongest authentic closure.", "IAC: authentic but one PAC condition is absent.", "HC ends on V; deceptive moves V to vi."]}], "activities": ["Label function beneath a twelve-chord progression.", "Rewrite one progression using functional substitutes.", "Identify cadences in four familiar songs or hymns.", "Compose two contrasting eight-measure phrase endings."], "lab": "cadences", "quiz": [["mc", "Which chord most typically has predominant function?", ["I", "ii", "V", "vii°"], 1, "ii commonly prepares dominant."], ["tf", "A half cadence ends on dominant.", true, "It creates an open, unfinished effect."], ["mc", "Which progression is a deceptive cadence in major?", ["V–I", "IV–I", "V–vi", "ii–V"], 2, "V moves unexpectedly to vi."], ["mc", "A perfect authentic cadence requires the final soprano note to be…", ["scale degree 1", "scale degree 2", "scale degree 3", "scale degree 5"], 0, "Tonic must appear in the soprano of the final I chord."], ["tf", "Functional labels describe harmonic behavior, not merely chord names.", true, "They explain stability, preparation, and tension."], ["mc", "Which best represents a complete functional arc?", ["D–D–D", "T–PD–D–T", "PD–T–PD", "T–T–T"], 1, "Tonic moves through preparation and dominant back to tonic."]]}, {"id": "progressions-voiceleading", "number": 7, "phase": "Connection & Flow", "title": "Chord Progressions, Voice Leading & Four-Part Principles", "essential": "How can chords connect smoothly while preserving independence, clarity, and harmonic purpose?", "objectives": ["Apply common-tone and stepwise voice-leading principles.", "Recognize and avoid parallel perfect intervals in strict style.", "Write soprano, alto, tenor, and bass within practical ranges.", "Use inversions to improve bass and upper-voice motion."], "vocab": ["voice leading", "common tone", "contrary motion", "oblique motion", "parallel fifth", "parallel octave", "doubling", "spacing", "range"], "lessons": [{"title": "Smooth connection", "body": "Good voice leading balances chord identity with melodic independence. Keep common tones when useful and move remaining voices to the nearest available chord tones.", "points": ["Prefer stepwise motion in upper voices.", "Contrary and oblique motion preserve independence.", "Avoid unnecessary leaps and voice crossing."]}, {"title": "Classical restrictions as listening tools", "body": "Parallel fifths and octaves weaken the independence of voices in common-practice style. These are stylistic guidelines rather than universal prohibitions.", "points": ["Check outer voices first.", "Resolve tendency tones carefully.", "Double stable chord tones more often than tendency tones."]}, {"title": "Progression vocabulary", "body": "Recurring patterns provide efficient harmonic grammar across classical, jazz, gospel, folk, and popular styles.", "points": ["ii–V–I emphasizes predominant–dominant–tonic.", "I–V–vi–IV is a common pop cycle.", "Circle progressions descend by fifth or ascend by fourth."]}], "activities": ["Voice-lead I–IV–V–I in four parts.", "Correct a progression containing parallel fifths.", "Arrange I–V–vi–IV with three different bass lines.", "Compare root-position and inversion-rich versions."], "lab": "progressions", "quiz": [["tf", "Keeping common tones can produce smoother voice leading.", true, "It reduces unnecessary motion."], ["mc", "Which motion type has one voice remain while another moves?", ["Parallel", "Similar", "Contrary", "Oblique"], 3, "Oblique motion holds one voice steady."], ["mc", "Which progression strongly models predominant–dominant–tonic?", ["I–vi–iii", "ii–V–I", "V–IV–I", "I–iii–vi"], 1, "ii–V–I is a central functional progression."], ["tf", "Parallel fifths are prohibited in every musical style.", false, "They are restricted in certain contrapuntal and common-practice styles, not universally."], ["mc", "Which chord tone is often avoided as a doubled tone?", ["root", "stable fifth", "leading tone", "tonic"], 2, "The leading tone has a strong resolution tendency."], ["mc", "Which motion best helps avoid parallels?", ["Contrary motion", "Exact parallel motion", "Voice crossing", "All voices leaping together"], 0, "Contrary motion preserves independence."]]}, {"id": "nonchord-tones", "number": 8, "phase": "Melodic Decoration", "title": "Non-Chord Tones, Suspension Chains & Melodic Dissonance", "essential": "How can a note outside the harmony create expressive motion without destroying harmonic clarity?", "objectives": ["Classify common non-chord tones by approach and resolution.", "Distinguish accented and unaccented dissonance.", "Prepare and resolve suspensions correctly.", "Use non-chord tones intentionally in melodic writing."], "vocab": ["passing tone", "neighbor tone", "suspension", "retardation", "appoggiatura", "escape tone", "anticipation", "pedal point"], "lessons": [{"title": "Approach–dissonance–resolution", "body": "Non-chord tones are understood by context: what happens before, during, and after the dissonant note. Their metric placement also affects intensity.", "points": ["Passing tones fill a third by step.", "Neighbor tones leave and return to the same chord tone.", "Anticipations arrive early at a tone of the next chord."]}, {"title": "Accented dissonances", "body": "Suspensions and appoggiaturas place dissonance on a metrically strong position. Their controlled resolution creates expressive tension.", "points": ["Suspension: prepared, held, resolved down.", "Retardation often resolves upward.", "Appoggiatura usually leaps in and resolves by step."]}, {"title": "Compositional use", "body": "Melodic decoration should clarify phrase direction rather than create random complexity. Begin from a harmonic skeleton, then add motion.", "points": ["Preserve important chord tones at structural points.", "Use dissonance to intensify arrival or departure.", "Analyze bass pedal points separately from upper harmony."]}], "activities": ["Classify twelve non-chord-tone examples.", "Write 4–3 and 7–6 suspensions over a cadence.", "Decorate a chord-tone melody with passing and neighbor tones.", "Remove decorations to reveal a harmonic skeleton."], "lab": "nonchord", "quiz": [["mc", "A passing tone usually connects two chord tones by…", ["repetition", "stepwise motion", "a seventh leap", "chromatic sequence only"], 1, "Passing tones move stepwise between chord tones."], ["tf", "A suspension is prepared as a consonance before becoming dissonant.", true, "Preparation is part of the classic suspension pattern."], ["mc", "Which non-chord tone typically leaps in and resolves by step?", ["Appoggiatura", "Passing tone", "Anticipation", "Pedal point"], 0, "An appoggiatura usually leaps to an accented dissonance."], ["mc", "A neighbor tone…", ["moves between two different chord tones", "leaves a chord tone and returns", "always resolves by leap", "must be chromatic"], 1, "It decorates one stable pitch."], ["tf", "All non-chord tones are mistakes.", false, "They are fundamental expressive devices."], ["mc", "A note arriving early from the next chord is called…", ["retardation", "escape tone", "anticipation", "suspension"], 2, "An anticipation precedes its supporting harmony."]]}, {"id": "modes-mixture", "number": 9, "phase": "Color Systems", "title": "Modes, Modal Harmony & Borrowed Chords", "essential": "How do altered scale degrees and parallel-mode borrowing create distinctive harmonic color?", "objectives": ["Construct all seven diatonic modes.", "Identify characteristic scale degrees.", "Distinguish modal harmony from functional major/minor harmony.", "Use modal mixture and borrowed chords in analysis and composition."], "vocab": ["mode", "final", "characteristic tone", "Dorian", "Phrygian", "Lydian", "Mixolydian", "modal mixture", "borrowed chord"], "lessons": [{"title": "Modes as tonal palettes", "body": "Each mode has a characteristic interval pattern and expressive center. Comparing a mode to parallel major or minor makes its distinctive tones easier to hear.", "points": ["Dorian: minor with natural 6.", "Lydian: major with raised 4.", "Mixolydian: major with lowered 7."]}, {"title": "Modal harmonic behavior", "body": "Modal pieces may avoid leading-tone dominant pressure. Drones, repeated modal centers, and characteristic chords reinforce the mode.", "points": ["Mixolydian often emphasizes ♭VII.", "Dorian often highlights major IV.", "Phrygian emphasizes ♭II and lowered 2."]}, {"title": "Borrowing from parallel modes", "body": "Modal mixture imports chords from a parallel mode while retaining the original tonic. In major, iv, ♭VI, and ♭VII are common borrowed colors.", "points": ["C major can borrow F minor from C minor.", "Borrowing does not automatically establish a new key.", "Spelling should reflect scale-degree function."]}], "activities": ["Write Dorian, Lydian, and Mixolydian scales on three tonics.", "Compose a four-chord modal vamp.", "Transform a major progression with borrowed iv or ♭VI.", "Analyze whether a passage is modal, borrowed, or modulating."], "lab": "modes", "quiz": [["mc", "Dorian is commonly described as minor with…", ["lowered 2", "natural 6", "raised 4", "lowered 5"], 1, "The natural sixth distinguishes Dorian from natural minor."], ["tf", "Mixolydian has a lowered seventh compared with major.", true, "Its ♭7 weakens leading-tone pull."], ["mc", "Which is a common borrowed chord in a major key?", ["iv", "♯I", "VII♯", "viii"], 0, "Minor iv is frequently borrowed from parallel minor."], ["mc", "Lydian’s characteristic alteration is…", ["♭2", "♯4", "♭6", "♭7"], 1, "Raised scale degree 4 defines Lydian color."], ["tf", "Using one borrowed chord always causes a modulation.", false, "Modal mixture can color the original key without changing tonic."], ["mc", "In C major, borrowed ♭VI is…", ["A major", "A♭ major", "F minor", "B♭ major"], 1, "Lowered scale degree 6 is A♭, producing A♭ major."]]}, {"id": "secondary-tonicization", "number": 10, "phase": "Expanded Tonality", "title": "Secondary Dominants, Leading-Tone Chords & Tonicization", "essential": "How can harmony temporarily intensify a diatonic chord without establishing a permanent new key?", "objectives": ["Construct and label secondary dominants.", "Construct secondary leading-tone chords.", "Distinguish tonicization from modulation.", "Resolve applied chords with correct tendency-tone motion."], "vocab": ["secondary dominant", "applied chord", "tonicization", "target chord", "V/V", "vii°/V", "chromatic harmony", "tendency tone"], "lessons": [{"title": "Dominant of something else", "body": "A secondary dominant temporarily treats a diatonic chord as a local tonic. Build the target chord first, then build its major triad or dominant seventh a perfect fifth above.", "points": ["In C major, V/V is D or D7 resolving to G.", "V/ii is A or A7 resolving to D minor.", "Applied dominants usually introduce chromatic notes."]}, {"title": "Applied leading-tone chords", "body": "A diminished chord one semitone below a target can act as vii° of that target. This provides a compact alternative to a secondary dominant.", "points": ["In C major, vii°/V is F♯–A–C.", "Resolve the applied leading tone upward.", "Label the target after the slash."]}, {"title": "Tonicization versus modulation", "body": "Tonicization briefly emphasizes a chord; modulation establishes a new key through duration, thematic support, and cadential confirmation.", "points": ["One applied dominant does not necessarily modulate.", "A cadence in the new key strengthens modulation.", "Context determines the analysis."]}], "activities": ["Build V/V, V/ii, and V/vi in four keys.", "Build vii°/V in three keys.", "Analyze chromatic accidentals in a short progression.", "Compose a diatonic phrase with two tonicizations."], "lab": "secondary", "quiz": [["mc", "In C major, V/V is…", ["A7", "D7", "E7", "F7"], 1, "D7 is dominant of G, the dominant of C."], ["tf", "A secondary dominant usually resolves to its target chord.", true, "The slash notation names that target."], ["mc", "In C major, vii°/V begins on…", ["F", "F♯", "G", "A♭"], 1, "F♯ is the leading tone to G."], ["mc", "What does the slash in V/ii indicate?", ["inversion", "meter", "the tonicized target", "voice crossing"], 2, "It reads 'dominant of ii.'"], ["tf", "Every tonicization is a full modulation.", false, "Tonicization may be only momentary."], ["mc", "Which most strongly confirms modulation?", ["one accidental", "a cadence in the new key", "a repeated note", "a rest"], 1, "Cadential confirmation stabilizes the new tonic."]]}, {"id": "modulation-form", "number": 11, "phase": "Large-Scale Design", "title": "Modulation, Pivot Chords, Form & Analytical Listening", "essential": "How do composers move between key centers and use those moves to articulate musical form?", "objectives": ["Identify closely related keys and common chords.", "Plan pivot-chord modulations.", "Recognize direct, common-tone, and sequential modulation.", "Connect harmonic events to phrase and formal boundaries."], "vocab": ["modulation", "pivot chord", "common chord", "direct modulation", "common-tone modulation", "sequence", "binary form", "ternary form", "phrase group"], "lessons": [{"title": "Pivot-chord modulation", "body": "A pivot chord functions naturally in both the old and new key. Reinterpretation becomes convincing when the progression continues toward the new dominant and cadence.", "points": ["Choose closely related keys first.", "Label the pivot in both keys.", "Confirm the new key with dominant–tonic motion."]}, {"title": "Other modulation strategies", "body": "Direct modulation changes key without a shared pivot. Common-tone modulation preserves one pitch between distant harmonies. Sequences can carry patterns through several tonal regions.", "points": ["Direct modulation can be dramatic.", "Common-tone links can sound seamless.", "Sequential motion may weaken a single tonic temporarily."]}, {"title": "Harmony and form", "body": "Key areas, cadences, textures, and thematic returns help define form. Analysis should integrate harmony with phrase structure rather than list chords without purpose.", "points": ["Binary form often moves away and returns.", "Ternary form contrasts a middle section with returning A.", "A bridge may introduce a new tonal region."]}], "activities": ["Plan a pivot modulation from C major to G major.", "Plan a relative-key modulation.", "Map key areas and cadences in a favorite piece.", "Label a short piece as binary, ternary, or verse–chorus."], "lab": "modulation", "quiz": [["tf", "A pivot chord belongs meaningfully to both the old and new keys.", true, "Its dual function enables reinterpretation."], ["mc", "Which event best confirms a new key?", ["a single chromatic note", "a cadence in the new key", "a repeated rhythm", "a dynamic change"], 1, "Cadential dominant–tonic motion confirms the new center."], ["mc", "A direct modulation uses…", ["a required shared chord", "no necessary pivot chord", "only diminished chords", "the same key signature throughout"], 1, "It shifts directly without common-chord preparation."], ["tf", "Form can be clarified by key areas and cadences.", true, "Harmonic structure helps articulate sections."], ["mc", "Ternary form is usually represented as…", ["A–B", "A–B–A", "A–A", "A–B–C–D"], 1, "Ternary form returns to A after contrast."], ["mc", "A closely related key typically differs by…", ["one accidental", "six accidentals", "an octave", "a time signature"], 0, "Adjacent Circle-of-Fifths keys differ by one accidental."]]}, {"id": "capstone", "number": 12, "phase": "Synthesis", "title": "Capstone: Compose, Analyze & Present a Complete Harmonic Study", "essential": "How can theory become an intentional creative process rather than a collection of isolated rules?", "objectives": ["Design a coherent progression with functional direction.", "Use one advanced chromatic or modal technique intentionally.", "Create a clear formal plan and cadence strategy.", "Write a complete Roman-numeral and reflective analysis."], "vocab": ["harmonic plan", "formal plan", "motif", "phrase", "cadential goal", "tonicization", "modal mixture", "revision", "analysis"], "lessons": [{"title": "Design before detail", "body": "Choose a key, meter, length, formal outline, and cadence plan before adding decoration. A strong framework makes experimentation easier.", "points": ["Define tonic and ending cadence.", "Choose a 4-, 8-, or 16-measure scope.", "Plan where tension increases and releases."]}, {"title": "Add controlled color", "body": "Select one advanced technique because it serves the piece: borrowed chord, secondary dominant, modulation, modal center, suspension chain, or sequence.", "points": ["Name the target and intended effect.", "Resolve tendency tones deliberately.", "Avoid adding complexity without structural purpose."]}, {"title": "Analyze and revise", "body": "A capstone analysis should explain key, form, Roman numerals, inversions, cadences, non-chord tones, and expressive choices. Revision checks both theory and musical result.", "points": ["Listen before and after each revision.", "Separate errors from stylistic choices.", "Document what changed and why."]}], "activities": ["Create an 8–16 measure harmonic study.", "Include one borrowed or applied chord.", "Add at least two intentional non-chord tones.", "Complete the built-in capstone plan and final assessment."], "lab": "capstone", "quiz": [["mc", "Which is the strongest starting point for a capstone?", ["Randomly adding advanced chords", "A clear key, form, and cadence plan", "Avoiding tonic", "Changing meter every measure"], 1, "A coherent framework supports intentional choices."], ["tf", "An advanced technique should serve a musical purpose.", true, "Complexity is most effective when structurally or expressively motivated."], ["mc", "Which belongs in a complete analysis?", ["Only chord names", "Only the title", "Key, Roman numerals, cadences, form, and expressive choices", "Only tempo"], 2, "A complete analysis integrates several musical dimensions."], ["mc", "A useful revision process includes…", ["never listening", "changing everything at once", "comparing versions and documenting choices", "removing all dissonance"], 2, "Comparison and reflection make revision intentional."], ["tf", "A stylistic choice and a theory error are always the same thing.", false, "Context and intent distinguish stylistic practice from accidental inconsistency."], ["mc", "Which demonstrates synthesis?", ["Naming one scale", "Using harmony, voice leading, form, and analysis together", "Memorizing one acronym", "Playing only tonic"], 1, "Synthesis integrates multiple theory skills."]]}];
+const FINAL=[{"module": 1, "type": "tf", "prompt": "Moving clockwise around the Circle of Fifths adds sharps.", "options": ["True", "False"], "answer": true, "explain": "Each clockwise step adds one sharp in major keys."}, {"module": 1, "type": "mc", "prompt": "Which is the relative minor of E♭ major?", "options": ["C minor", "F minor", "G minor", "B♭ minor"], "answer": 0, "explain": "E♭ major and C minor share three flats."}, {"module": 2, "type": "mc", "prompt": "How many semitones are in a perfect fifth?", "options": ["5", "6", "7", "8"], "answer": 2, "explain": "A perfect fifth spans seven semitones."}, {"module": 2, "type": "tf", "prompt": "A major third inverts to a minor sixth.", "options": ["True", "False"], "answer": true, "explain": "Inverted numbers add to nine and major changes to minor."}, {"module": 3, "type": "mc", "prompt": "Which formula creates a diminished triad?", "options": ["0–3–6", "0–3–7", "0–4–7", "0–4–8"], "answer": 0, "explain": "A diminished triad contains a minor third and diminished fifth."}, {"module": 3, "type": "tf", "prompt": "A first-inversion triad has its third in the bass.", "options": ["True", "False"], "answer": true, "explain": "The third is the lowest sounding chord tone."}, {"module": 4, "type": "mc", "prompt": "Which formula is a dominant seventh chord?", "options": ["0–4–7–10", "0–4–7–11", "0–3–7–10", "0–3–6–10"], "answer": 0, "explain": "Dominant seventh combines a major triad with a minor seventh."}, {"module": 4, "type": "tf", "prompt": "The chordal seventh usually resolves downward by step in common-practice voice leading.", "options": ["True", "False"], "answer": true, "explain": "Downward stepwise resolution is the normal tendency."}, {"module": 5, "type": "mc", "prompt": "What is the major-key triad quality pattern?", "options": ["M–m–m–M–M–m–dim", "M–M–m–m–M–m–dim", "m–dim–M–m–m–M–M", "M–m–M–m–M–m–M"], "answer": 0, "explain": "Major-key triads follow M–m–m–M–M–m–dim."}, {"module": 5, "type": "tf", "prompt": "Harmonic minor raises scale degree seven.", "options": ["True", "False"], "answer": true, "explain": "The raised seventh creates a leading tone."}, {"module": 6, "type": "mc", "prompt": "Which chord most typically has predominant function?", "options": ["I", "ii", "V", "vii°"], "answer": 1, "explain": "ii commonly prepares dominant."}, {"module": 6, "type": "tf", "prompt": "A half cadence ends on dominant.", "options": ["True", "False"], "answer": true, "explain": "It creates an open, unfinished effect."}, {"module": 7, "type": "tf", "prompt": "Keeping common tones can produce smoother voice leading.", "options": ["True", "False"], "answer": true, "explain": "It reduces unnecessary motion."}, {"module": 7, "type": "mc", "prompt": "Which motion type has one voice remain while another moves?", "options": ["Parallel", "Similar", "Contrary", "Oblique"], "answer": 3, "explain": "Oblique motion holds one voice steady."}, {"module": 8, "type": "mc", "prompt": "A passing tone usually connects two chord tones by…", "options": ["repetition", "stepwise motion", "a seventh leap", "chromatic sequence only"], "answer": 1, "explain": "Passing tones move stepwise between chord tones."}, {"module": 8, "type": "tf", "prompt": "A suspension is prepared as a consonance before becoming dissonant.", "options": ["True", "False"], "answer": true, "explain": "Preparation is part of the classic suspension pattern."}, {"module": 9, "type": "mc", "prompt": "Dorian is commonly described as minor with…", "options": ["lowered 2", "natural 6", "raised 4", "lowered 5"], "answer": 1, "explain": "The natural sixth distinguishes Dorian from natural minor."}, {"module": 9, "type": "tf", "prompt": "Mixolydian has a lowered seventh compared with major.", "options": ["True", "False"], "answer": true, "explain": "Its ♭7 weakens leading-tone pull."}, {"module": 10, "type": "mc", "prompt": "In C major, V/V is…", "options": ["A7", "D7", "E7", "F7"], "answer": 1, "explain": "D7 is dominant of G, the dominant of C."}, {"module": 10, "type": "tf", "prompt": "A secondary dominant usually resolves to its target chord.", "options": ["True", "False"], "answer": true, "explain": "The slash notation names that target."}, {"module": 11, "type": "tf", "prompt": "A pivot chord belongs meaningfully to both the old and new keys.", "options": ["True", "False"], "answer": true, "explain": "Its dual function enables reinterpretation."}, {"module": 11, "type": "mc", "prompt": "Which event best confirms a new key?", "options": ["a single chromatic note", "a cadence in the new key", "a repeated rhythm", "a dynamic change"], "answer": 1, "explain": "Cadential dominant–tonic motion confirms the new center."}, {"module": 12, "type": "mc", "prompt": "Which is the strongest starting point for a capstone?", "options": ["Randomly adding advanced chords", "A clear key, form, and cadence plan", "Avoiding tonic", "Changing meter every measure"], "answer": 1, "explain": "A coherent framework supports intentional choices."}, {"module": 12, "type": "tf", "prompt": "An advanced technique should serve a musical purpose.", "options": ["True", "False"], "answer": true, "explain": "Complexity is most effective when structurally or expressively motivated."}];
+const STORE_KEY="the_refrain_music_theory_201_workshop_v2";
+const PASS=80;
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const escapeHtml=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const today=()=>new Date().toISOString().slice(0,10);
+function defaultState(){return{
+  view:"home",currentModule:0,completed:{},scores:{},answers:{},notes:{},practice:{},streak:0,lastPractice:"",
+  finalAnswers:{},finalScore:null,finalAttempts:0,learnerName:"",theme:"dark",labStats:{attempts:0,correct:0},
+  capstone:{title:"",key:"C major",meter:"4/4",form:"A–B–A",progression:"I–vi–IV–V–I",color:"Borrowed iv",analysis:""},
+  toolkitTab:"keys"
+}}
+function loadState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORE_KEY)||"null");
+    return Object.assign(defaultState(),saved||{});
+  }catch{return defaultState()}
+}
+let state=loadState();
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(state))}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),2300)}
+function setView(v){state.view=v;save();render();window.scrollTo({top:0,behavior:"smooth"})}
+function completedCount(){return MODULES.filter(m=>state.completed[m.id]).length}
+function avgScore(){const vals=Object.values(state.scores).filter(Number.isFinite);return vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):0}
+function totalPractice(days=9999){
+  const cutoff=new Date();cutoff.setDate(cutoff.getDate()-days+1);
+  return Object.entries(state.practice).reduce((sum,[d,v])=>sum+(new Date(d+"T00:00:00")>=cutoff?Number(v):0),0)
+}
+function updateStreak(){
+  const t=today();if(state.lastPractice===t)return;
+  const y=new Date();y.setDate(y.getDate()-1);const ys=y.toISOString().slice(0,10);
+  state.streak=state.lastPractice===ys?(state.streak||0)+1:1;state.lastPractice=t
+}
+function navSync(){
+  $$(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
+  document.documentElement.dataset.theme=state.theme;
+}
+function render(){
+  navSync();
+  const main=$("#mainContent");
+  if(state.view==="home")renderHome(main);
+  else if(state.view==="curriculum")renderCurriculum(main);
+  else if(state.view==="module")renderModule(main,state.currentModule);
+  else if(state.view==="toolkit")renderToolkit(main,state.toolkitTab);
+  else if(state.view==="final")renderFinal(main);
+  else renderProgress(main)
+}
+function progressBar(){
+  const pct=Math.round(completedCount()/MODULES.length*100);
+  return `<div class="progress-track" aria-label="${pct}% complete"><div class="progress-fill" style="width:${pct}%"></div></div>`
+}
+function renderHome(root){
+ root.innerHTML=`
+ <section class="hero">
+  <div class="hero-copy">
+   <div class="eyebrow">Advanced harmony · analysis · composition</div>
+   <h1>Music Theory<br>201 Workshop</h1>
+   <p class="lede">A complete twelve-module studio for learners ready to move beyond basic notation into chord construction, function, voice leading, chromatic harmony, modulation, form, and original composition.</p>
+   <div class="hero-actions no-print">
+    <button class="btn primary" id="startCourse">Begin or Continue</button>
+    <button class="btn" id="openToolkit">Open Theory Toolkit</button>
+    <button class="btn" id="seeCurriculum">View Curriculum</button>
+   </div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="orbit"><div class="orbit-center">I</div><div class="orbit-note">G</div><div class="orbit-note">D</div><div class="orbit-note">A</div><div class="orbit-note">F</div><div class="orbit-note">B♭</div><div class="orbit-note">E♭</div></div></div>
+ </section>
+ <section class="stats" aria-label="Workshop scope">
+  <div class="stat"><strong>12</strong><span>advanced modules</span></div>
+  <div class="stat"><strong>72</strong><span>module questions</span></div>
+  <div class="stat"><strong>24</strong><span>final questions</span></div>
+  <div class="stat"><strong>11</strong><span>interactive theory labs</span></div>
+ </section>
+ <section class="section">
+  <div class="section-head"><div><div class="eyebrow">A complete learning path</div><h2>From key fluency to a finished harmonic study</h2></div><p>Each module combines clear instruction, vocabulary, guided analysis, practical assignments, an interactive lab, personal notes, and a six-question assessment.</p></div>
+  <div class="grid">
+   <article class="card path-card"><div class="card-number">Phase I · Foundations</div><h3>Pitch and chord structure</h3><p>Circle of Fifths, interval quality, triads, seventh chords, inversions, and accurate spelling.</p><button class="btn small" data-module="0">Open Module 1</button></article>
+   <article class="card path-card"><div class="card-number">Phase II · Tonal grammar</div><h3>Function and voice leading</h3><p>Roman numerals, minor-key harmony, cadences, progression design, four-part connection, and non-chord tones.</p><button class="btn small" data-module="4">Open Module 5</button></article>
+   <article class="card path-card"><div class="card-number">Phase III · Expansion</div><h3>Color, modulation, and form</h3><p>Modes, mixture, tonicization, modulation, analysis, and an original capstone study.</p><button class="btn small" data-module="8">Open Module 9</button></article>
+  </div>
+ </section>
+ <section class="section">
+  <div class="section-head"><div><div class="eyebrow">Your private record</div><h2>${completedCount()} of 12 modules complete</h2></div><p>Average module score: <strong>${avgScore()}%</strong> · Study time: <strong>${totalPractice()} minutes</strong> · Streak: <strong>${state.streak||0} days</strong></p></div>
+  ${progressBar()}
+ </section>`;
+ $("#startCourse").onclick=()=>openModule(firstIncomplete());
+ $("#openToolkit").onclick=()=>setView("toolkit");
+ $("#seeCurriculum").onclick=()=>setView("curriculum");
+ $$("[data-module]",root).forEach(b=>b.onclick=()=>openModule(Number(b.dataset.module)));
+}
+function firstIncomplete(){const i=MODULES.findIndex(m=>!state.completed[m.id]);return i<0?0:i}
+function openModule(i){state.currentModule=clamp(i,0,MODULES.length-1);state.view="module";save();render();window.scrollTo({top:0})}
+function curriculumSidebar(active=-1){
+ return `<aside class="panel sidebar no-print">
+  <h2>Course Map</h2><p style="color:var(--muted)">Pass each module quiz with ${PASS}% to record completion.</p>
+  ${progressBar()}<p><strong>${completedCount()}/12 complete</strong></p>
+  <div class="module-list">${MODULES.map((m,i)=>`<button class="module-link ${i===active?"active":""} ${state.completed[m.id]?"done":""}" data-open-module="${i}"><strong>${m.number}. ${escapeHtml(m.title)}</strong><small>${escapeHtml(m.phase)} · ${state.scores[m.id]??"—"}%</small></button>`).join("")}</div>
+ </aside>`
+}
+function wireSidebar(root){$$("[data-open-module]",root).forEach(b=>b.onclick=()=>openModule(Number(b.dataset.openModule)))}
+function renderCurriculum(root){
+ root.innerHTML=`<div class="workspace">${curriculumSidebar()}
+ <section class="content-panel">
+  <div class="eyebrow">Twelve-module curriculum</div><h1 class="page-title">Advanced Music Theory Path</h1>
+  <p class="page-sub">A sequenced workshop from fluent key reading through chromatic harmony, modulation, form, and an original capstone.</p>
+  <div class="grid">${MODULES.map((m,i)=>`<article class="card path-card"><div class="card-number">Module ${m.number} · ${escapeHtml(m.phase)}</div><h3>${escapeHtml(m.title)}</h3><p>${escapeHtml(m.essential)}</p><div class="meta-row"><span class="chip">${m.objectives.length} objectives</span><span class="chip">${m.quiz.length} questions</span>${state.completed[m.id]?'<span class="chip good">Complete</span>':""}</div><button class="btn small" data-open-module="${i}">Open Module</button></article>`).join("")}</div>
+ </section></div>`;
+ wireSidebar(root)
+}
+function renderModule(root,index){
+ const m=MODULES[index],score=state.scores[m.id];
+ root.innerHTML=`<div class="workspace">${curriculumSidebar(index)}
+ <section class="content-panel">
+  <div class="eyebrow">Module ${m.number} · ${escapeHtml(m.phase)}</div>
+  <h1 class="page-title">${escapeHtml(m.title)}</h1>
+  <p class="page-sub"><strong>Essential question:</strong> ${escapeHtml(m.essential)}</p>
+  <div class="meta-row"><span class="chip gold">${state.completed[m.id]?"✓ Completed":"In progress"}</span><span class="chip">Latest score: ${score??"—"}%</span><span class="chip">${m.quiz.length} assessment questions</span></div>
+
+  <div class="objective-grid">
+   <article class="card"><h2>Learning Objectives</h2><ul class="clean-list">${m.objectives.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul></article>
+   <article class="card"><h2>Core Vocabulary</h2><div class="vocab">${m.vocab.map(x=>`<span>${escapeHtml(x)}</span>`).join("")}</div></article>
+  </div>
+
+  <section class="section"><div class="section-head"><div><div class="eyebrow">Guided instruction</div><h2>Three-part lesson</h2></div></div>
+   <div class="lesson-grid">${m.lessons.map((l,n)=>`<article class="lesson-card"><div class="card-number">Lesson ${n+1}</div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.body)}</p><ul class="clean-list">${l.points.map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul></article>`).join("")}</div>
+  </section>
+
+  <div class="objective-grid">
+   <article class="card"><h2>Workshop Assignments</h2><ol class="clean-list">${m.activities.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ol><button class="btn primary no-print" id="relatedLab">Open Related Lab</button></article>
+   <article class="card"><h2>Module Notes</h2><textarea id="moduleNotes" placeholder="Analysis observations, chord spellings, questions, or composition ideas…">${escapeHtml(state.notes[m.id]||"")}</textarea><button class="btn good no-print" id="saveNotes" style="margin-top:10px">Save Notes</button></article>
+  </div>
+
+  <section class="card" id="quizArea"><div class="section-head"><div><div class="eyebrow">Module assessment</div><h2>Six-question mastery quiz</h2></div><p>Earn ${PASS}% or higher to complete this module. Explanations appear after submission.</p></div>
+   <form id="moduleQuiz">${renderQuizQuestions(m.quiz,m.id)}</form>
+   <div class="row no-print"><button class="btn primary" id="gradeModule">Submit Quiz</button><button class="btn" id="clearModule">Clear Answers</button></div>
+   <div id="moduleResult" aria-live="polite">${score!=null?`<p class="chip ${score>=PASS?"good":"gold"}">Latest score: ${score}%</p>`:""}</div>
+  </section>
+
+  <div class="row no-print" style="justify-content:space-between;margin-top:18px"><button class="btn" id="prevModule" ${index===0?"disabled":""}>← Previous</button><button class="btn primary" id="nextModule">${index===MODULES.length-1?"Go to Final":"Next Module →"}</button></div>
+ </section></div>`;
+ wireSidebar(root);
+ $("#saveNotes").onclick=()=>{state.notes[m.id]=$("#moduleNotes").value;save();toast("Module notes saved")};
+ $("#relatedLab").onclick=()=>{state.toolkitTab=m.lab;setView("toolkit")};
+ $("#gradeModule").onclick=e=>{e.preventDefault();gradeModule(m)};
+ $("#clearModule").onclick=e=>{e.preventDefault();delete state.answers[m.id];save();renderModule(root,index)};
+ $("#prevModule").onclick=()=>openModule(index-1);
+ $("#nextModule").onclick=()=>index===MODULES.length-1?setView("final"):openModule(index+1);
+}
+function renderQuizQuestions(quiz,key){
+ const saved=state.answers[key]||{};
+ return quiz.map((q,i)=>{
+  const type=q[0],prompt=q[1],correct=q[2],explain=q[type==="tf"?3:4];
+  const options=type==="tf"?["True","False"]:q[2];
+  const answerVal=type==="tf"?(correct?"true":"false"):String(q[3]);
+  const submitted=state.scores[key]!=null;
+  return `<fieldset class="quiz-q"><legend>${i+1}. ${escapeHtml(prompt)}</legend>${options.map((o,oi)=>{
+    const v=type==="tf"?String(o==="True"):String(oi);return `<label class="choice"><input type="radio" name="q${i}" value="${v}" ${String(saved[i])===v?"checked":""}><span>${escapeHtml(o)}</span></label>`
+  }).join("")}${submitted?`<div class="explain"><strong>Answer:</strong> ${type==="tf"?(correct?"True":"False"):escapeHtml(options[q[3]])}. ${escapeHtml(explain)}</div>`:""}</fieldset>`
+ }).join("")
+}
+function gradeModule(m){
+ const form=$("#moduleQuiz"),answers={};let correct=0;
+ m.quiz.forEach((q,i)=>{
+  const picked=form.elements[`q${i}`]?.value;
+  answers[i]=picked??"";
+  const expected=q[0]==="tf"?String(q[2]):String(q[3]);
+  if(picked===expected)correct++
+ });
+ const score=Math.round(correct/m.quiz.length*100);
+ state.answers[m.id]=answers;state.scores[m.id]=score;state.completed[m.id]=score>=PASS;save();
+ toast(score>=PASS?`Module complete: ${score}%`:`Score ${score}%. Review and retake.`);
+ render()
+}
+function renderToolkit(root,tab="keys"){
+ state.toolkitTab=tab;save();
+ const tabs=[
+ ["keys","Keys & Scales"],["intervals","Intervals"],["chords","Triads"],["sevenths","Seventh Chords"],["roman","Roman Numerals"],
+ ["progressions","Progressions"],["cadences","Cadences"],["nonchord","Non-Chord Tones"],["modes","Modes"],["secondary","Chromatic Harmony"],["modulation","Modulation"],["capstone","Capstone"]
+ ];
+ root.innerHTML=`<section class="section"><div class="section-head"><div><div class="eyebrow">Interactive laboratory</div><h1 class="page-title">Theory Toolkit</h1></div><p>Generate, hear, compare, analyze, and save theory work without leaving the workshop.</p></div>
+ <div class="tool-tabs no-print">${tabs.map(t=>`<button data-tool="${t[0]}" class="${tab===t[0]?"active":""}">${t[1]}</button>`).join("")}</div>
+ <div id="toolStage" class="tool-stage"></div></section>`;
+ $$("[data-tool]",root).forEach(b=>b.onclick=()=>renderToolkit(root,b.dataset.tool));
+ renderToolStage(tab)
+}
+const PC_SHARP=["C","C♯","D","D♯","E","F","F♯","G","G♯","A","A♯","B"];
+const PC_FLAT=["C","D♭","D","E♭","E","F","G♭","G","A♭","A","B♭","B"];
+const SCALE_MAP={major:[0,2,4,5,7,9,11],naturalMinor:[0,2,3,5,7,8,10],harmonicMinor:[0,2,3,5,7,8,11],melodicMinor:[0,2,3,5,7,9,11],
+ ionian:[0,2,4,5,7,9,11],dorian:[0,2,3,5,7,9,10],phrygian:[0,1,3,5,7,8,10],lydian:[0,2,4,6,7,9,11],mixolydian:[0,2,4,5,7,9,10],aeolian:[0,2,3,5,7,8,10],locrian:[0,1,3,5,6,8,10]};
+const CHORD_MAP={maj:[0,4,7],min:[0,3,7],dim:[0,3,6],aug:[0,4,8],dom7:[0,4,7,10],maj7:[0,4,7,11],min7:[0,3,7,10],halfdim7:[0,3,6,10],dim7:[0,3,6,9]};
+const INTERVAL_NAMES=["P1","m2","M2","m3","M3","P4","Tritone","P5","m6","M6","m7","M7","P8"];
+let audioCtx=null,activeNodes=[];
+function ensureAudio(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")audioCtx.resume()}
+function hz(midi){return 440*Math.pow(2,(midi-69)/12)}
+function tone(pc,when=0,dur=.55,oct=4){
+ ensureAudio();const t=audioCtx.currentTime+when,o=audioCtx.createOscillator(),g=audioCtx.createGain();
+ o.type="triangle";o.frequency.value=hz(12*(oct+1)+pc);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.11,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+dur+.04);activeNodes.push(o)
+}
+function playPcs(pcs,block=false){stopAudio();pcs.forEach((pc,i)=>tone(pc,block?0:i*.18,.55,4+(i&&pc<pcs[0]?1:0)))}
+function stopAudio(){activeNodes.forEach(n=>{try{n.stop()}catch{}});activeNodes=[]}
+function pcName(pc,flats=false){return (flats?PC_FLAT:PC_SHARP)[((pc%12)+12)%12]}
+function rootOptions(sel=0){return PC_SHARP.map((n,i)=>`<option value="${i}" ${i===sel?"selected":""}>${n}</option>`).join("")}
+function renderToolStage(tab){
+ const stage=$("#toolStage");if(!stage)return;
+ if(tab==="keys")toolKeys(stage);
+ else if(tab==="intervals")toolIntervals(stage);
+ else if(tab==="chords")toolChords(stage,false);
+ else if(tab==="sevenths")toolChords(stage,true);
+ else if(tab==="roman")toolRoman(stage);
+ else if(tab==="progressions")toolProgressions(stage);
+ else if(tab==="cadences")toolCadences(stage);
+ else if(tab==="nonchord")toolNonChord(stage);
+ else if(tab==="modes")toolModes(stage);
+ else if(tab==="secondary")toolSecondary(stage);
+ else if(tab==="modulation")toolModulation(stage);
+ else toolCapstone(stage)
+}
+function toolKeys(stage){
+ stage.innerHTML=`<h2>Key & Scale Laboratory</h2><p class="page-sub">Construct, spell, and hear major and minor scales. Switch enharmonic display to compare notation choices.</p>
+ <div class="control-grid"><label>Root<select id="root">${rootOptions()}</select></label><label>Scale<select id="scale"><option value="major">Major</option><option value="naturalMinor">Natural minor</option><option value="harmonicMinor">Harmonic minor</option><option value="melodicMinor">Melodic minor ascending</option></select></label><label>Spelling<select id="spelling"><option value="sharp">Prefer sharps</option><option value="flat">Prefer flats</option></select></label><button class="btn primary" id="build">Build Scale</button></div>
+ <div id="result" class="result-box"></div>`;
+ const build=()=>{const r=+$("#root").value,s=$("#scale").value,f=$("#spelling").value==="flat",pcs=SCALE_MAP[s].map(x=>(r+x)%12);$("#result").innerHTML=`<h3>${pcName(r,f)} ${$("#scale").selectedOptions[0].text}</h3><div class="note-row">${pcs.map(x=>`<span class="note-pill">${pcName(x,f)}</span>`).join("")}</div><div class="row no-print" style="margin-top:15px"><button class="btn" id="hear">Hear Scale</button><button class="btn" id="stop">Stop</button></div>`;$("#hear").onclick=()=>playPcs(pcs);$("#stop").onclick=stopAudio};
+ $("#build").onclick=build;build()
+}
+function toolIntervals(stage){
+ const trainer=()=>{const a=Math.floor(Math.random()*12),sem=1+Math.floor(Math.random()*12),b=(a+sem)%12;stage.dataset.correct=String(sem);$("#trainerPrompt").innerHTML=`From <strong>${pcName(a)}</strong> up to <strong>${pcName(b)}</strong>`;$("#trainerFeedback").textContent="";$("#hearTrainer").onclick=()=>{tone(a);setTimeout(()=>tone(b),500)}};
+ stage.innerHTML=`<h2>Interval Calculator & Trainer</h2><div class="control-grid"><label>Starting pitch<select id="intRoot">${rootOptions()}</select></label><label>Semitones<select id="semis">${INTERVAL_NAMES.map((n,i)=>`<option value="${i}">${i}: ${n}</option>`).join("")}</select></label><button class="btn primary" id="calc">Calculate</button><button class="btn" id="hearInt">Hear</button></div><div id="intResult" class="result-box"></div>
+ <div class="result-box"><h3>Recognition Trainer</h3><p id="trainerPrompt"></p><div class="row">${[1,2,3,4,5,6,7,8,9,10,11,12].map(i=>`<button class="btn small" data-int="${i}">${INTERVAL_NAMES[i]}</button>`).join("")}</div><div class="row" style="margin-top:12px"><button class="btn" id="hearTrainer">Hear</button><button class="btn" id="newTrainer">New</button></div><p id="trainerFeedback" aria-live="polite"></p></div>`;
+ const calc=()=>{const r=+$("#intRoot").value,s=+$("#semis").value,b=(r+s)%12;$("#intResult").innerHTML=`<strong>${pcName(r)} → ${pcName(b)}</strong> = ${s} semitones · ${INTERVAL_NAMES[s]}`;$("#hearInt").onclick=()=>{tone(r);setTimeout(()=>tone(b),500)}};
+ $("#calc").onclick=calc;calc();trainer();$("#newTrainer").onclick=trainer;
+ $$("[data-int]",stage).forEach(b=>b.onclick=()=>{const ok=+b.dataset.int===+stage.dataset.correct;state.labStats.attempts++;if(ok)state.labStats.correct++;save();$("#trainerFeedback").textContent=ok?"Correct.":"Review: "+INTERVAL_NAMES[+stage.dataset.correct];$("#trainerFeedback").style.color=ok?"var(--green)":"var(--gold2)"})
+}
+function toolChords(stage,sevenths){
+ const entries=Object.entries(CHORD_MAP).filter(([,v])=>sevenths?v.length===4:v.length===3);
+ stage.innerHTML=`<h2>${sevenths?"Seventh-Chord":"Triad"} Builder</h2><div class="control-grid"><label>Root<select id="chRoot">${rootOptions()}</select></label><label>Quality<select id="quality">${entries.map(([k])=>`<option value="${k}">${k}</option>`).join("")}</select></label><label>Spelling<select id="chSpell"><option value="sharp">Sharps</option><option value="flat">Flats</option></select></label><button class="btn primary" id="buildChord">Build Chord</button></div><div id="chordResult" class="result-box"></div>`;
+ const build=()=>{const r=+$("#chRoot").value,q=$("#quality").value,f=$("#chSpell").value==="flat",pcs=CHORD_MAP[q].map(x=>(r+x)%12);$("#chordResult").innerHTML=`<h3>${pcName(r,f)} ${q}</h3><div class="note-row">${pcs.map(x=>`<span class="note-pill">${pcName(x,f)}</span>`).join("")}</div><p>Semitone formula: ${CHORD_MAP[q].join("–")}</p><div class="row no-print"><button class="btn" id="arp">Arpeggiate</button><button class="btn" id="block">Block Chord</button><button class="btn" id="stop">Stop</button></div>`;$("#arp").onclick=()=>playPcs(pcs);$("#block").onclick=()=>playPcs(pcs,true);$("#stop").onclick=stopAudio};
+ $("#buildChord").onclick=build;build()
+}
+function triadsForKey(root,minor=false){
+ const scale=SCALE_MAP[minor?"naturalMinor":"major"].map(x=>(root+x)%12);
+ const qs=minor?["min","dim","maj","min","min","maj","maj"]:["maj","min","min","maj","maj","min","dim"];
+ const romans=minor?["i","ii°","III","iv","v","VI","VII"]:["I","ii","iii","IV","V","vi","vii°"];
+ return scale.map((r,i)=>({roman:romans[i],root:r,q:qs[i],pcs:CHORD_MAP[qs[i]].map(x=>(r+x)%12)}))
+}
+function toolRoman(stage){
+ stage.innerHTML=`<h2>Roman-Numeral Harmony Table</h2><div class="control-grid"><label>Tonic<select id="rnRoot">${rootOptions()}</select></label><label>Mode<select id="rnMode"><option value="major">Major</option><option value="minor">Natural minor</option></select></label><button class="btn primary" id="makeRoman">Build Harmony</button><button class="btn" id="stop">Stop Audio</button></div><div id="romanResult" class="result-box table-wrap"></div>`;
+ const build=()=>{const r=+$("#rnRoot").value,min=$("#rnMode").value==="minor",rows=triadsForKey(r,min);$("#romanResult").innerHTML=`<table class="data-table"><thead><tr><th>Degree</th><th>Chord</th><th>Tones</th><th>Hear</th></tr></thead><tbody>${rows.map((x,i)=>`<tr><td>${x.roman}</td><td>${pcName(x.root)} ${x.q}</td><td>${x.pcs.map(pcName).join(" – ")}</td><td><button class="btn small" data-play-rn="${i}">Play</button></td></tr>`).join("")}</tbody></table>`;$$("[data-play-rn]",stage).forEach(b=>b.onclick=()=>playPcs(rows[+b.dataset.playRn].pcs,true))};
+ $("#makeRoman").onclick=build;$("#stop").onclick=stopAudio;build()
+}
+const PROGS={pop:["I","V","vi","IV"],turnaround:["I","vi","ii","V"],jazz:["ii","V","I"],classical:["I","IV","V","I"],deceptive:["I","IV","V","vi"],circle:["I","IV","vii°","iii","vi","ii","V","I"]};
+function toolProgressions(stage){
+ stage.innerHTML=`<h2>Progression Generator & Player</h2><div class="control-grid"><label>Key<select id="progRoot">${rootOptions()}</select></label><label>Pattern<select id="progType">${Object.keys(PROGS).map(k=>`<option value="${k}">${k}</option>`).join("")}</select></label><button class="btn primary" id="makeProg">Generate</button><button class="btn" id="stop">Stop</button></div><div id="progResult" class="result-box"></div>`;
+ const build=()=>{const r=+$("#progRoot").value,p=PROGS[$("#progType").value],rows=triadsForKey(r,false),map=Object.fromEntries(rows.map(x=>[x.roman,x]));const chords=p.map(x=>map[x]);$("#progResult").innerHTML=`<div class="note-row">${chords.map(c=>`<span class="note-pill">${c.roman}<br><small>${pcName(c.root)} ${c.q}</small></span>`).join("")}</div><div class="row no-print" style="margin-top:14px"><button class="btn" id="playProg">Play Progression</button></div>`;$("#playProg").onclick=()=>{stopAudio();chords.forEach((c,i)=>setTimeout(()=>playPcs(c.pcs,true),i*850))}};
+ $("#makeProg").onclick=build;$("#stop").onclick=stopAudio;build()
+}
+const CADENCES=[{name:"Authentic",prog:["V","I"],desc:"Dominant resolves to tonic."},{name:"Half",prog:["ii","V"],desc:"The phrase ends on dominant."},{name:"Plagal",prog:["IV","I"],desc:"Subdominant resolves to tonic."},{name:"Deceptive",prog:["V","vi"],desc:"Dominant diverts to submediant."}];
+function toolCadences(stage){
+ let current;
+ stage.innerHTML=`<h2>Cadence Recognition Lab</h2><p>Hear a two-chord ending, then identify its cadence type.</p><div class="row"><button class="btn primary" id="newCad">New Cadence</button><button class="btn" id="hearCad">Hear Again</button></div><div class="row" style="margin-top:14px">${CADENCES.map((c,i)=>`<button class="btn" data-cad="${i}">${c.name}</button>`).join("")}</div><div id="cadFeedback" class="result-box" aria-live="polite">Choose “New Cadence” to begin.</div>`;
+ const next=()=>{current=Math.floor(Math.random()*CADENCES.length);$("#cadFeedback").textContent="Listen and identify the cadence.";playCad()};
+ const playCad=()=>{if(current==null)return;const rows=triadsForKey(0,false),map=Object.fromEntries(rows.map(x=>[x.roman,x]));CADENCES[current].prog.forEach((rn,i)=>setTimeout(()=>playPcs(map[rn].pcs,true),i*950))};
+ $("#newCad").onclick=next;$("#hearCad").onclick=playCad;$$("[data-cad]",stage).forEach(b=>b.onclick=()=>{if(current==null)return;const ok=+b.dataset.cad===current;state.labStats.attempts++;if(ok)state.labStats.correct++;save();$("#cadFeedback").innerHTML=`<strong>${ok?"Correct":"Not quite"}: ${CADENCES[current].name}</strong><br>${CADENCES[current].desc}`});next()
+}
+const NCT=[
+ {prompt:"C–D–E over a sustained C major chord; D is between two chord tones by step.",answer:"Passing tone"},
+ {prompt:"E–F–E over C major; F leaves E and returns.",answer:"Neighbor tone"},
+ {prompt:"F is held from an F chord into C major, then resolves to E.",answer:"Suspension"},
+ {prompt:"A melody leaps to F on a strong beat over C major, then resolves down to E.",answer:"Appoggiatura"},
+ {prompt:"The melody sounds G before the harmony changes to G major.",answer:"Anticipation"},
+ {prompt:"A dissonant upper note moves by step, then leaps away in the opposite direction.",answer:"Escape tone"}
+];
+function toolNonChord(stage){
+ let q;
+ const opts=[...new Set(NCT.map(x=>x.answer))];
+ stage.innerHTML=`<h2>Non-Chord Tone Classifier</h2><div id="nctPrompt" class="result-box"></div><div class="row" style="margin-top:14px">${opts.map(o=>`<button class="btn small" data-nct="${o}">${o}</button>`).join("")}</div><div class="row" style="margin-top:12px"><button class="btn primary" id="newNct">New Example</button></div><p id="nctFeedback" aria-live="polite"></p>`;
+ const next=()=>{q=NCT[Math.floor(Math.random()*NCT.length)];$("#nctPrompt").textContent=q.prompt;$("#nctFeedback").textContent=""};
+ $("#newNct").onclick=next;$$("[data-nct]",stage).forEach(b=>b.onclick=()=>{const ok=b.dataset.nct===q.answer;state.labStats.attempts++;if(ok)state.labStats.correct++;save();$("#nctFeedback").textContent=ok?"Correct.":`Answer: ${q.answer}.`;$("#nctFeedback").style.color=ok?"var(--green)":"var(--gold2)"});next()
+}
+function toolModes(stage){
+ const modes=["ionian","dorian","phrygian","lydian","mixolydian","aeolian","locrian"];
+ stage.innerHTML=`<h2>Modal Color Laboratory</h2><div class="control-grid"><label>Final / tonic<select id="modeRoot">${rootOptions()}</select></label><label>Mode<select id="modeName">${modes.map(m=>`<option>${m}</option>`).join("")}</select></label><button class="btn primary" id="makeMode">Build Mode</button><button class="btn" id="stop">Stop</button></div><div id="modeResult" class="result-box"></div>`;
+ const build=()=>{const r=+$("#modeRoot").value,m=$("#modeName").value,pcs=SCALE_MAP[m].map(x=>(r+x)%12);$("#modeResult").innerHTML=`<h3>${pcName(r)} ${m}</h3><div class="note-row">${pcs.map(x=>`<span class="note-pill">${pcName(x)}</span>`).join("")}</div><div class="row no-print" style="margin-top:12px"><button class="btn" id="hearMode">Hear Mode</button></div>`;$("#hearMode").onclick=()=>playPcs(pcs)};
+ $("#makeMode").onclick=build;$("#stop").onclick=stopAudio;build()
+}
+function toolSecondary(stage){
+ stage.innerHTML=`<h2>Borrowed Chords & Secondary Dominants</h2><div class="control-grid"><label>Major key<select id="secRoot">${rootOptions()}</select></label><label>Target<select id="target"><option value="1">ii</option><option value="3">IV</option><option value="4">V</option><option value="5">vi</option></select></label><button class="btn primary" id="buildSec">Generate Applied Chord</button><button class="btn" id="stop">Stop</button></div><div id="secResult" class="result-box"></div>`;
+ const build=()=>{const root=+$("#secRoot").value,target=+$("#target").value,rows=triadsForKey(root,false),t=rows[target],domRoot=(t.root+7)%12,domPcs=CHORD_MAP.dom7.map(x=>(domRoot+x)%12),ivRoot=(root+5)%12,ivPcs=CHORD_MAP.min.map(x=>(ivRoot+x)%12),bviRoot=(root+8)%12;
+ $("#secResult").innerHTML=`<h3>In ${pcName(root)} major</h3><p><strong>V/${t.roman}:</strong> ${pcName(domRoot)}7 (${domPcs.map(pcName).join("–")}) → ${pcName(t.root)} ${t.q}</p><p><strong>Borrowed iv:</strong> ${pcName(ivRoot)} minor (${ivPcs.map(pcName).join("–")})</p><p><strong>Borrowed ♭VI:</strong> ${pcName(bviRoot)} major</p><div class="row no-print"><button class="btn" id="hearSec">Hear V/x → x</button><button class="btn" id="hearBorrowed">Hear I → iv → I</button></div>`;
+ $("#hearSec").onclick=()=>{playPcs(domPcs,true);setTimeout(()=>playPcs(t.pcs,true),900)};$("#hearBorrowed").onclick=()=>{const tonic=rows[0].pcs;playPcs(tonic,true);setTimeout(()=>playPcs(ivPcs,true),850);setTimeout(()=>playPcs(tonic,true),1700)}};
+ $("#buildSec").onclick=build;$("#stop").onclick=stopAudio;build()
+}
+function commonTriads(a,b){
+ const A=triadsForKey(a,false),B=triadsForKey(b,false),key=x=>[...x.pcs].sort((m,n)=>m-n).join("-");
+ const mapB=new Map(B.map(x=>[key(x),x]));return A.filter(x=>mapB.has(key(x))).map(x=>({old:x,new:mapB.get(key(x))}))
+}
+function toolModulation(stage){
+ stage.innerHTML=`<h2>Pivot-Chord Modulation Planner</h2><div class="control-grid"><label>Old key<select id="oldKey">${rootOptions(0)}</select></label><label>New key<select id="newKey">${rootOptions(7)}</select></label><button class="btn primary" id="planMod">Find Common Chords</button><button class="btn" id="stop">Stop</button></div><div id="modResult" class="result-box"></div>`;
+ const build=()=>{const a=+$("#oldKey").value,b=+$("#newKey").value,common=commonTriads(a,b);$("#modResult").innerHTML=`<h3>${pcName(a)} major → ${pcName(b)} major</h3>${common.length?`<table class="data-table"><thead><tr><th>Chord</th><th>Old-key role</th><th>New-key role</th></tr></thead><tbody>${common.map(x=>`<tr><td>${pcName(x.old.root)} ${x.old.q}</td><td>${x.old.roman}</td><td>${x.new.roman}</td></tr>`).join("")}</tbody></table>`:"<p>No common diatonic triads found. Consider direct or common-tone modulation.</p>"}<p><strong>Plan:</strong> establish old key → approach a shared chord → reinterpret it in new key → confirm with V–I in the new key.</p>`};
+ $("#planMod").onclick=build;$("#stop").onclick=stopAudio;build()
+}
+function toolCapstone(stage){
+ const c=state.capstone;
+ stage.innerHTML=`<h2>Capstone Composition Planner</h2><p class="page-sub">Design and preserve the harmonic framework for an 8–16 measure study.</p>
+ <div class="objective-grid"><label>Title<input id="capTitle" value="${escapeHtml(c.title)}"></label><label>Key<input id="capKey" value="${escapeHtml(c.key)}"></label><label>Meter<input id="capMeter" value="${escapeHtml(c.meter)}"></label><label>Form<input id="capForm" value="${escapeHtml(c.form)}"></label></div>
+ <label style="display:block;margin-top:12px">Progression<input id="capProg" value="${escapeHtml(c.progression)}"></label>
+ <label style="display:block;margin-top:12px">Advanced color or technique<input id="capColor" value="${escapeHtml(c.color)}"></label>
+ <label style="display:block;margin-top:12px">Roman-numeral analysis and reflection<textarea id="capAnalysis">${escapeHtml(c.analysis)}</textarea></label>
+ <div class="row no-print" style="margin-top:12px"><button class="btn primary" id="saveCap">Save Capstone Plan</button><button class="btn" id="printCap">Print Plan</button></div>`;
+ $("#saveCap").onclick=()=>{state.capstone={title:$("#capTitle").value,key:$("#capKey").value,meter:$("#capMeter").value,form:$("#capForm").value,progression:$("#capProg").value,color:$("#capColor").value,analysis:$("#capAnalysis").value};save();toast("Capstone plan saved")};
+ $("#printCap").onclick=()=>window.print()
+}
+function renderFinal(root){
+ const score=state.finalScore;
+ root.innerHTML=`<section class="section"><div class="section-head"><div><div class="eyebrow">Cumulative mastery</div><h1 class="page-title">Music Theory 201 Final Assessment</h1></div><p>Twenty-four questions sample every module. A score of ${PASS}% or higher, plus all modules complete, unlocks the certificate.</p></div>
+ <div class="stats"><div class="stat"><strong>${completedCount()}/12</strong><span>modules complete</span></div><div class="stat"><strong>${score??"—"}%</strong><span>best final score</span></div><div class="stat"><strong>${state.finalAttempts||0}</strong><span>attempts</span></div><div class="stat"><strong>${PASS}%</strong><span>passing score</span></div></div>
+ <form id="finalForm">${FINAL.map((q,i)=>{const opts=q.type==="tf"?["True","False"]:q.options;return `<fieldset class="quiz-q"><legend>${i+1}. <span class="card-number">Module ${q.module}</span><br>${escapeHtml(q.prompt)}</legend>${opts.map((o,oi)=>{const v=q.type==="tf"?String(o==="True"):String(oi);return `<label class="choice"><input type="radio" name="f${i}" value="${v}" ${String(state.finalAnswers[i])===v?"checked":""}><span>${escapeHtml(o)}</span></label>`}).join("")}${score!=null?`<div class="explain">${escapeHtml(q.explain)}</div>`:""}</fieldset>`}).join("")}</form>
+ <div class="row no-print"><button class="btn primary" id="submitFinal">Submit Final</button><button class="btn" id="clearFinal">Clear Final Answers</button></div><div id="finalResult" aria-live="polite"></div></section>`;
+ $("#submitFinal").onclick=e=>{e.preventDefault();const form=$("#finalForm"),ans={};let correct=0;FINAL.forEach((q,i)=>{const v=form.elements[`f${i}`]?.value??"";ans[i]=v;const expected=q.type==="tf"?String(q.answer):String(q.answer);if(v===expected)correct++});const s=Math.round(correct/FINAL.length*100);state.finalAnswers=ans;state.finalScore=Math.max(state.finalScore||0,s);state.finalAttempts=(state.finalAttempts||0)+1;save();toast(`Final score: ${s}%`);render()};
+ $("#clearFinal").onclick=e=>{e.preventDefault();state.finalAnswers={};save();renderFinal(root)}
+}
+function renderProgress(root){
+ const pct=Math.round(completedCount()/MODULES.length*100),eligible=completedCount()===MODULES.length&&(state.finalScore||0)>=PASS;
+ root.innerHTML=`<section class="section"><div class="section-head"><div><div class="eyebrow">Private learner record</div><h1 class="page-title">Progress & Workshop Records</h1></div><p>All records are stored only in this browser unless you export a private backup.</p></div>
+ <div class="dashboard"><article class="card"><div class="card-number">Course completion</div><div class="big-number">${pct}%</div>${progressBar()}</article><article class="card"><div class="card-number">Assessment average</div><div class="big-number">${avgScore()}%</div><p>Final: ${state.finalScore??"—"}%</p></article><article class="card"><div class="card-number">Study practice</div><div class="big-number">${totalPractice(7)}</div><p>minutes in 7 days · ${state.streak||0}-day streak</p></article></div>
+
+ <div class="objective-grid" style="margin-top:14px">
+  <article class="card"><h2>Learner & Practice</h2><label>Learner name<input id="learnerName" value="${escapeHtml(state.learnerName)}" placeholder="Name for progress record and certificate"></label><div class="row" style="margin-top:12px"><input id="practiceMinutes" type="number" min="1" max="600" placeholder="Minutes studied today" style="max-width:240px"><button class="btn good no-print" id="logPractice">Log Minutes</button></div><p>Today: ${state.practice[today()]||0} min · 30 days: ${totalPractice(30)} min · All time: ${totalPractice()} min</p></article>
+  <article class="card"><h2>Private Project Controls</h2><div class="row no-print"><button class="btn" id="exportData">Export Backup</button><button class="btn" id="importData">Import Backup</button><button class="btn" id="printRecord">Print Record</button><button class="btn danger" id="resetData">Reset Workshop</button></div><p>Export creates a readable JSON file containing progress, notes, assessment scores, practice records, and the capstone plan.</p></article>
+ </div>
+ <section class="card"><h2>Module Record</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Module</th><th>Phase</th><th>Score</th><th>Status</th></tr></thead><tbody>${MODULES.map(m=>`<tr><td>${m.number}. ${escapeHtml(m.title)}</td><td>${escapeHtml(m.phase)}</td><td>${state.scores[m.id]??"—"}%</td><td>${state.completed[m.id]?"Complete":"In progress"}</td></tr>`).join("")}</tbody></table></div></section>
+ <section class="card"><h2>Completion Certificate</h2><p>${eligible?"All requirements are complete. Print the certificate below.":"Complete all twelve modules and earn at least 80% on the final assessment to unlock the certificate."}</p><button class="btn primary no-print" id="certificateBtn" ${eligible?"":"disabled"}>Print Certificate</button></section>
+ <section id="certificate" class="certificate ${eligible?"":"not-eligible"}"><div>The Refrain™</div><h2>Certificate of Completion</h2><p>This certifies that</p><div class="name">${escapeHtml(state.learnerName||"Learner")}</div><p>has completed the <strong>Music Theory 201 Workshop</strong>, including advanced harmony, voice leading, chromaticism, analysis, and composition.</p><p>Final assessment: ${state.finalScore??"—"}% · Date: ${new Date().toLocaleDateString()}</p></section>
+ </section>`;
+ $("#learnerName").onchange=()=>{state.learnerName=$("#learnerName").value;save()};
+ $("#logPractice").onclick=()=>{const v=clamp(Number($("#practiceMinutes").value||0),0,600);if(!v)return toast("Enter practice minutes");state.practice[today()]=Number(state.practice[today()]||0)+v;updateStreak();save();toast("Practice logged");render()};
+ $("#exportData").onclick=exportData;$("#importData").onclick=()=>$("#importFile").click();$("#printRecord").onclick=()=>window.print();$("#resetData").onclick=resetData;$("#certificateBtn").onclick=()=>{state.learnerName=$("#learnerName").value;save();$("#certificate").style.display="block";window.print()}
+}
+function exportData(){
+ const payload={type:"TheRefrainMusicTheory201",version:2,exportedAt:new Date().toISOString(),state};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="the-refrain-music-theory-201-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),600)
+}
+function resetData(){if(!confirm("Reset all Music Theory 201 progress, notes, practice records, and capstone work on this device?"))return;localStorage.removeItem(STORE_KEY);state=defaultState();save();render();toast("Workshop reset")}
+$$(".nav button").forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$("#themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save();render()};
+$("#importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(obj.type!=="TheRefrainMusicTheory201"||!obj.state)throw new Error();state=Object.assign(defaultState(),obj.state);save();render();toast("Backup restored")}catch{toast("That file is not a valid workshop backup")}e.target.value=""};
+render();
+</script>
+</body>
+</html>
