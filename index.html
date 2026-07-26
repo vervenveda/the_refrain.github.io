@@ -3,38 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="The Refrain™ — the Verve N Veda music and sound gateway connecting composition, recording, young creators, Music 101 and 201, research, publishing, performance, and reflection.">
-  <meta name="theme-color" content="#101426">
-  <meta name="color-scheme" content="dark light">
-  <title>The Refrain™ — Music, Composition & Learning Hall</title>
-<style>
+  <meta name="description" content="The Refrain™ — the Verve N Veda music gateway for composition, recording, study, research, young creators, publishing, practice, and performance.">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>The Refrain™ — Music Across Verve N Veda</title>
+  <style>
     :root{
-      --font-display:"Gaspacho","Cormorant Garamond",Georgia,serif;
-      --font-brand:"Cinzel","Aboreto",Georgia,serif;
-      --font-ui:"Brandon Grotesque","Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
-      --font-title:"Weber Hand","Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
-
-      --night:#0c1020;
-      --night-2:#151b32;
-      --night-3:#1e2745;
-      --paper:#f8f4ea;
-      --paper-2:#eee6d7;
-      --ink:#f7f4ed;
-      --muted:#b7b8c4;
-      --faint:#83889e;
-      --gold:#d5b56f;
-      --gold-2:#f0d898;
-      --teal:#79c8bf;
-      --violet:#9d8dd8;
-      --rose:#c785a4;
-      --line:rgba(232,213,168,.18);
-      --line-soft:rgba(255,255,255,.09);
-      --panel:rgba(22,28,50,.84);
-      --panel-2:rgba(29,37,66,.86);
-      --shadow:0 22px 70px rgba(0,0,0,.32);
-      --radius:20px;
-      --max:1240px;
-      --base-size:17px;
+      --paper:#f4f0e7;
+      --paper-bright:#fbf9f4;
+      --white:#ffffff;
+      --ink:#121713;
+      --ink-soft:#525c55;
+      --midnight:#142238;
+      --midnight-deep:#0d1828;
+      --burgundy:#6d2f3d;
+      --walnut:#5a4636;
+      --gold:#b48b45;
+      --gold-pale:#e7d7b6;
+      --sage:#728276;
+      --line:rgba(18,23,19,.14);
+      --line-strong:rgba(18,23,19,.25);
+      --shadow:0 18px 50px rgba(27,34,29,.09);
+      --shadow-small:0 8px 24px rgba(27,34,29,.07);
+      --max:1220px;
+      --display:"Gaspacho","Cormorant Garamond",Baskerville,Georgia,serif;
+      --ceremonial:"Cinzel","Aboreto","Times New Roman",serif;
+      --sans:"Brandon Grotesque","Montserrat","Avenir Next",Avenir,Arial,sans-serif;
     }
 
     *{box-sizing:border-box}
@@ -42,1117 +35,1159 @@
     body{
       margin:0;
       min-height:100vh;
+      overflow-x:hidden;
       color:var(--ink);
       background:
-        radial-gradient(circle at 12% -4%,rgba(213,181,111,.18),transparent 33rem),
-        radial-gradient(circle at 92% 7%,rgba(121,200,191,.13),transparent 31rem),
-        radial-gradient(circle at 52% 100%,rgba(157,141,216,.10),transparent 40rem),
-        linear-gradient(145deg,var(--night),#090d19 72%);
-      font-family:var(--font-ui);
-      font-size:var(--base-size);
-      font-synthesis:none;
-      letter-spacing:.004em;
+        linear-gradient(rgba(244,240,231,.96),rgba(244,240,231,.98)),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 28px,
+          rgba(20,34,56,.035) 29px,
+          transparent 30px
+        ),
+        var(--paper);
+      font-family:var(--sans);
+      line-height:1.65;
     }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.26;
-      background:
-        linear-gradient(transparent 95%,rgba(240,216,152,.18) 96%,transparent 97%);
-      background-size:100% 28px;
-      mask-image:linear-gradient(to bottom,#000,transparent 78%);
-    }
-
-    a{color:inherit;text-decoration:none}
+    body.menu-open{overflow:hidden}
+    a{color:inherit}
     button,input{font:inherit}
-    button{cursor:pointer}
-    [hidden]{display:none!important}
-    :focus-visible{outline:3px solid rgba(121,200,191,.72);outline-offset:3px}
+    button{color:inherit}
+    ::selection{background:var(--gold-pale);color:var(--ink)}
+    :focus-visible{outline:3px solid rgba(180,139,69,.58);outline-offset:3px}
 
     .skip-link{
       position:fixed;
+      top:12px;
       left:12px;
-      top:-80px;
-      z-index:1000;
-      background:var(--paper);
-      color:#15182a;
+      z-index:3000;
+      transform:translateY(-160%);
       padding:10px 14px;
-      border-radius:9px;
+      border-radius:4px;
+      color:#fff;
+      background:var(--ink);
+      transition:transform .18s ease;
     }
-    .skip-link:focus{top:12px}
+    .skip-link:focus{transform:translateY(0)}
 
-    .topbar{
+    .site-header{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:1200;
       border-bottom:1px solid var(--line);
-      background:rgba(10,14,27,.86);
+      background:rgba(244,240,231,.94);
       backdrop-filter:blur(18px);
     }
-
-    .topbar-inner{
-      width:min(var(--max),calc(100% - 32px));
-      min-height:68px;
-      margin:auto;
+    .header-inner{
+      width:min(calc(100% - 32px),var(--max));
+      min-height:78px;
+      margin:0 auto;
       display:flex;
       align-items:center;
+      justify-content:space-between;
       gap:18px;
     }
-
     .brand{
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      gap:11px;
+      gap:13px;
       min-width:0;
+      color:var(--ink);
+      text-decoration:none;
     }
-
     .brand-mark{
-      width:42px;
-      height:42px;
-      border:1px solid rgba(240,216,152,.48);
-      border-radius:13px;
+      width:44px;
+      height:44px;
+      flex:0 0 44px;
       display:grid;
       place-items:center;
-      background:
-        radial-gradient(circle at 34% 26%,rgba(255,255,255,.14),transparent 35%),
-        linear-gradient(145deg,rgba(213,181,111,.20),rgba(121,200,191,.10));
-      color:var(--gold-2);
-      font-family:var(--font-brand);
-      font-size:.84rem;
-      font-weight:600;
-      letter-spacing:.08em;
+      color:#fff;
+      background:var(--midnight);
+      border:1px solid var(--midnight);
+      border-radius:3px;
+      font-family:var(--ceremonial);
+      font-size:.72rem;
+      letter-spacing:.11em;
+      transition:transform .18s ease,background .18s ease;
     }
-
-    .brand-copy strong{
-      display:block;
-      font-family:var(--font-brand);
-      font-size:.90rem;
-      font-weight:600;
-      letter-spacing:.13em;
+    .brand:hover .brand-mark{transform:translateY(-2px);background:var(--burgundy)}
+    .brand-copy{display:grid;line-height:1.05}
+    .brand-name{
+      font-family:var(--ceremonial);
+      font-size:clamp(.92rem,1.7vw,1.12rem);
+      font-weight:500;
+      letter-spacing:.11em;
       text-transform:uppercase;
     }
-
-    .brand-copy span{
-      display:block;
-      margin-top:2px;
-      color:var(--muted);
-      font-size:.91rem;
+    .brand-sub{
+      margin-top:5px;
+      color:var(--ink-soft);
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
     }
-
-    .topnav{
-      margin-left:auto;
-      display:flex;
+    .header-actions{display:flex;align-items:center;gap:10px}
+    .header-link{
+      display:inline-flex;
       align-items:center;
-      gap:5px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      min-height:42px;
+      padding:9px 13px;
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
-
-    .topnav a,.menu-button{
-      border:1px solid transparent;
-      border-radius:8px;
-      padding:8px 10px;
+    .header-link:hover{color:var(--ink)}
+    .menu-button{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      border:1px solid var(--line-strong);
+      border-radius:3px;
       background:transparent;
-      color:#d8dbea;
-      font-size:.80rem;
-      font-weight:600;
     }
-
-    .topnav a:hover,.menu-button:hover{
-      border-color:var(--line);
-      background:rgba(255,255,255,.045);
+    .menu-button:hover{background:var(--white)}
+    .menu-lines,.menu-lines::before,.menu-lines::after{
+      content:"";
+      display:block;
+      width:19px;
+      height:1.5px;
+      border-radius:99px;
+      background:var(--ink);
+      transition:transform .18s ease,opacity .18s ease;
     }
-
-    .menu-button{display:none}
+    .menu-lines{position:relative}
+    .menu-lines::before,.menu-lines::after{position:absolute;left:0}
+    .menu-lines::before{top:-6px}
+    .menu-lines::after{top:6px}
+    .menu-button[aria-expanded="true"] .menu-lines{background:transparent}
+    .menu-button[aria-expanded="true"] .menu-lines::before{transform:translateY(6px) rotate(45deg)}
+    .menu-button[aria-expanded="true"] .menu-lines::after{transform:translateY(-6px) rotate(-45deg)}
 
     .hero{
-      position:relative;
-      overflow:hidden;
-      border-bottom:1px solid var(--line);
-    }
-
-    .hero-inner{
-      width:min(var(--max),calc(100% - 32px));
-      min-height:590px;
-      margin:auto;
-      padding:72px 0 76px;
+      min-height:74svh;
       display:grid;
-      grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);
-      gap:58px;
       align-items:center;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(rgba(251,249,244,.97),rgba(251,249,244,.98)),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 31px,
+          rgba(20,34,56,.05) 32px,
+          transparent 33px
+        );
     }
-
-    .eyebrow,.section-kicker{
-      color:var(--gold-2);
-      font-family:var(--font-brand);
-      font-size:.87rem;
+    .hero-inner{
+      width:min(calc(100% - 36px),var(--max));
+      margin:0 auto;
+      padding:clamp(82px,11vw,138px) 0 clamp(70px,9vw,110px);
+      display:grid;
+      grid-template-columns:1fr;
+      gap:34px;
+      align-items:center;
+      justify-items:center;
+      text-align:center;
+    }
+    .eyebrow,.kicker{
+      margin:0;
+      color:var(--gold);
+      font-family:var(--ceremonial);
+      font-size:.7rem;
       font-weight:600;
       letter-spacing:.22em;
       text-transform:uppercase;
     }
-
-    h1,h2,h3{
-      font-family:var(--font-display);
-      font-weight:600;
-    }
-
-    h1{
-      margin:13px 0 18px;
-      font-family:var(--font-title);
-      font-size:clamp(3.5rem,8vw,7.4rem);
-      font-weight:700;
+    .hero-title{
+      margin:20px 0 0;
+      color:var(--midnight-deep);
+      font-family:var(--display);
+      font-size:clamp(3.4rem,9.1vw,8.5rem);
+      font-weight:500;
       line-height:.88;
-      letter-spacing:.005em;
-      text-transform:none;
+      letter-spacing:.02em;
+      white-space:nowrap;
     }
-
-    h1 span{
-      display:block;
-      margin-top:14px;
-      color:var(--gold-2);
-      font-family:var(--font-brand);
-      font-size:.17em;
-      line-height:1.4;
-      letter-spacing:.19em;
-      text-transform:uppercase;
+    .hero-aside{
+      width:min(100%,800px);
+      padding:24px 0 0;
+      border-top:1px solid var(--line-strong);
+      text-align:center;
     }
-
     .hero-copy{
-      max-width:720px;
-      margin:0;
-      color:#d0d4e2;
-      font-size:clamp(.98rem,1.7vw,1.14rem);
-      line-height:1.78;
+      margin:24px 0 0;
+      color:var(--ink-soft);
+      font-family:var(--display);
+      font-size:clamp(1.3rem,2vw,1.72rem);
+      line-height:1.45;
+      letter-spacing:.01em;
     }
-
     .hero-actions{
       display:flex;
-      gap:9px;
       flex-wrap:wrap;
-      margin-top:27px;
+      justify-content:center;
+      gap:10px;
+      margin-top:30px;
     }
-
     .button{
-      min-height:44px;
-      border:1px solid var(--line);
-      border-radius:9px;
-      padding:10px 15px;
+      min-height:48px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      gap:10px;
+      padding:11px 17px;
+      border:1px solid transparent;
+      border-radius:3px;
+      text-decoration:none;
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition:transform .17s ease,background .17s ease,border-color .17s ease,box-shadow .17s ease;
+    }
+    .button:hover{transform:translateY(-2px)}
+    .button-primary{color:#fff;background:var(--midnight);box-shadow:var(--shadow-small)}
+    .button-primary:hover{background:var(--burgundy)}
+    .button-secondary{color:var(--ink);background:transparent;border-color:var(--line-strong)}
+    .button-secondary:hover{background:var(--white);border-color:var(--ink)}
+
+    .path-strip{
+      border-bottom:1px solid var(--line);
+      background:var(--paper);
+    }
+    .path-strip-inner{
+      width:min(calc(100% - 32px),var(--max));
+      margin:0 auto;
+      display:flex;
+      justify-content:center;
       gap:8px;
-      background:rgba(255,255,255,.055);
-      color:var(--ink);
-      font-size:.84rem;
-      font-weight:650;
-      transition:transform .16s ease,background .16s ease,border-color .16s ease;
+      flex-wrap:wrap;
+      padding:18px 0;
     }
-
-    .button:hover{
-      transform:translateY(-2px);
-      border-color:rgba(240,216,152,.50);
-      background:rgba(255,255,255,.08);
-    }
-
-    .button.primary{
-      border:0;
-      color:#17140d;
-      background:linear-gradient(135deg,var(--gold-2),#c79b4b);
-      box-shadow:0 13px 34px rgba(0,0,0,.25);
-    }
-
-    .button.teal{
-      border:0;
-      color:#071716;
-      background:linear-gradient(135deg,#9be0d7,#5eaca5);
-    }
-
-    .button.disabled{
-      cursor:default;
-      opacity:.7;
-      color:var(--muted);
-      background:rgba(255,255,255,.035);
-    }
-
-    .button.disabled:hover{transform:none}
-
-    .sound-orbit{
-      position:relative;
-      min-height:410px;
-      display:grid;
-      place-items:center;
-    }
-
-    .record{
-      position:relative;
-      z-index:3;
-      width:238px;
-      height:238px;
-      border-radius:50%;
-      border:1px solid rgba(240,216,152,.58);
-      display:grid;
-      place-items:center;
-      background:
-        repeating-radial-gradient(circle,rgba(255,255,255,.035) 0 2px,transparent 3px 9px),
-        radial-gradient(circle at 38% 28%,#2f385c,#0b0e19 64%);
-      box-shadow:
-        0 0 0 12px rgba(213,181,111,.03),
-        0 35px 90px rgba(0,0,0,.5),
-        inset 0 0 45px rgba(213,181,111,.12);
-    }
-
-    .record-core{
-      width:94px;
-      height:94px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(145deg,var(--gold),var(--teal));
-      color:#101426;
-      font-family:var(--font-brand);
+    .path-strip a{
+      padding:8px 11px;
+      color:var(--ink-soft);
+      text-decoration:none;
       font-size:.7rem;
       font-weight:700;
-      letter-spacing:.11em;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .path-strip a:hover{color:var(--burgundy)}
+
+    .section{padding:clamp(70px,9vw,118px) 18px}
+    .section-inner{width:min(100%,var(--max));margin:0 auto}
+    .section-heading{
+      display:block;
+      max-width:900px;
+      margin:0 auto 38px;
       text-align:center;
-      line-height:1.5;
-      box-shadow:0 12px 34px rgba(0,0,0,.36);
+    }
+    .section h2{
+      margin:12px auto 0;
+      max-width:760px;
+      font-family:var(--display);
+      font-size:clamp(2.9rem,6vw,5.7rem);
+      font-weight:500;
+      line-height:.9;
+      letter-spacing:.01em;
+    }
+    .section-intro{
+      margin:20px auto 0;
+      max-width:710px;
+      color:var(--ink-soft);
+      font-size:clamp(.98rem,1.5vw,1.08rem);
     }
 
-    .orbit-ring{
-      position:absolute;
-      border:1px solid rgba(240,216,152,.20);
-      border-radius:50%;
-    }
-
-    .orbit-ring.one{width:370px;height:370px}
-    .orbit-ring.two{width:305px;height:305px;border-color:rgba(121,200,191,.18)}
-    .orbit-ring.three{width:465px;height:465px;border-style:dashed;opacity:.68}
-
-    .orbit-label{
-      position:absolute;
-      z-index:4;
-      width:155px;
-      padding:11px 12px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:rgba(14,19,36,.86);
-      box-shadow:0 12px 34px rgba(0,0,0,.24);
-      backdrop-filter:blur(12px);
-    }
-
-    .orbit-label strong{
-      display:block;
-      font-family:var(--font-display);
-      font-size:1rem;
-      font-weight:600;
-    }
-
-    .orbit-label span{
-      display:block;
-      margin-top:3px;
-      color:var(--muted);
-      font-size:.87rem;
-      line-height:1.45;
-    }
-
-    .orbit-label.a{left:0;top:38px}
-    .orbit-label.b{right:-2px;top:92px}
-    .orbit-label.c{left:18px;bottom:40px}
-    .orbit-label.d{right:10px;bottom:34px}
-
-    main{
-      width:min(var(--max),calc(100% - 32px));
-      margin:auto;
-      padding:64px 0 82px;
-    }
-
-    .intro-band{
+    .worlds{background:var(--paper)}
+    .world-grid{
       display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:22px;
-      align-items:center;
-      margin-bottom:52px;
-      padding:22px 24px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:
-        radial-gradient(circle at 100% 0%,rgba(121,200,191,.09),transparent 24rem),
-        var(--panel);
-      box-shadow:var(--shadow);
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
     }
-
-    .intro-band h2{
-      margin:5px 0 7px;
-      font-size:clamp(1.9rem,4vw,2.7rem);
+    .world-card{
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      padding:24px;
+      color:var(--ink);
+      background:rgba(255,255,255,.58);
+      border:1px solid var(--line);
+      border-top:4px solid var(--gold);
+      text-decoration:none;
+      box-shadow:var(--shadow-small);
+      transition:transform .17s ease,border-color .17s ease,box-shadow .17s ease;
+    }
+    .world-card:nth-child(2){border-top-color:var(--midnight)}
+    .world-card:nth-child(3){border-top-color:var(--burgundy)}
+    .world-card:nth-child(4){border-top-color:var(--walnut)}
+    .world-card:nth-child(5){border-top-color:var(--sage)}
+    .world-card:nth-child(6){border-top-color:var(--gold)}
+    .world-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .world-icon{font-size:1.7rem}
+    .world-card h3{
+      margin:24px 0 9px;
+      font-family:var(--display);
+      font-size:2rem;
+      font-weight:600;
       line-height:1;
     }
+    .world-card p{margin:0;color:var(--ink-soft);font-size:.88rem}
+    .world-arrow{margin-top:auto;padding-top:24px;color:var(--gold);font-weight:700}
 
-    .intro-band p{
-      max-width:760px;
-      margin:0;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.7;
+    .featured-section{
+      border-block:1px solid var(--line);
+      background:var(--paper-bright);
     }
-
-    .hub-count{
+    .featured-groups{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:7px;
-      min-width:190px;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
     }
-
-    .count-card{
-      border:1px solid var(--line-soft);
-      border-radius:11px;
-      padding:11px;
-      background:rgba(255,255,255,.035);
+    .gateway-group{
+      padding:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.62);
+      box-shadow:var(--shadow-small);
     }
-
-    .count-card strong{
-      display:block;
-      font-family:var(--font-display);
-      font-size:1.45rem;
+    .gateway-group.primary{grid-column:1/-1;border-top:4px solid var(--midnight)}
+    .gateway-group.learn{border-top:4px solid var(--gold)}
+    .gateway-group.young{border-top:4px solid var(--burgundy)}
+    .gateway-group.share{border-top:4px solid var(--walnut)}
+    .gateway-group.restore{border-top:4px solid var(--sage)}
+    .gateway-head{
+      display:flex;
+      align-items:start;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
     }
-
-    .count-card span{
-      color:var(--muted);
-      font-size:.86rem;
+    .gateway-label{
+      margin:0;
+      font-family:var(--ceremonial);
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.13em;
+      text-transform:uppercase;
     }
+    .gateway-note{margin:7px 0 0;color:var(--ink-soft);font-size:.84rem}
+    .gateway-links{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+    .gateway-group.primary .gateway-links{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .gateway-link{
+      min-height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:11px 14px;
+      color:#fff;
+      background:var(--midnight);
+      border:1px solid var(--midnight);
+      border-radius:2px;
+      text-decoration:none;
+      font-size:.73rem;
+      font-weight:700;
+      letter-spacing:.055em;
+      text-transform:uppercase;
+      transition:transform .16s ease,background .16s ease,border-color .16s ease;
+    }
+    .gateway-link:hover{transform:translateY(-2px);background:var(--burgundy);border-color:var(--burgundy)}
+    .gateway-link.priority{color:var(--ink);background:var(--gold-pale);border-color:var(--gold)}
+    .gateway-link.priority:hover{background:#d8bd85;border-color:#a57e39}
 
+    .directory-section{background:var(--paper)}
     .directory-tools{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
-      margin-bottom:18px;
+      gap:18px;
       flex-wrap:wrap;
+      margin-bottom:18px;
     }
-
-    .directory-tools h2{
-      margin:4px 0 0;
-      font-size:clamp(2.15rem,4.5vw,3.35rem);
-      line-height:.98;
+    .search-box{
+      position:relative;
+      flex:1 1 360px;
+      max-width:670px;
     }
-
-    .search{
-      width:min(390px,100%);
-      display:flex;
-      gap:7px;
-      padding:6px;
-      border:1px solid var(--line);
-      border-radius:11px;
-      background:var(--panel);
-    }
-
-    .search input{
-      min-width:0;
-      flex:1;
-      border:0;
-      outline:0;
-      padding:8px 10px;
-      background:transparent;
+    .search-box input{
+      width:100%;
+      min-height:50px;
+      padding:12px 16px 12px 44px;
       color:var(--ink);
-      font-size:.84rem;
+      background:#fff;
+      border:1px solid var(--line-strong);
+      border-radius:3px;
+      outline:none;
     }
-
-    .search button{
-      border:0;
-      border-radius:8px;
-      padding:8px 10px;
-      background:var(--night-3);
-      color:var(--muted);
-      font-size:.80rem;
-      font-weight:650;
+    .search-box::before{
+      content:"⌕";
+      position:absolute;
+      left:15px;
+      top:50%;
+      transform:translateY(-50%);
+      color:var(--ink-soft);
+      font-size:1.1rem;
     }
-
-    .category-tabs{
-      display:flex;
-      gap:6px;
-      margin-bottom:22px;
-      overflow:auto;
-      scrollbar-width:none;
-    }
-
-    .category-tabs::-webkit-scrollbar{display:none}
-
-    .category-tab{
-      flex:0 0 auto;
+    .search-box input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(180,139,69,.13)}
+    .result-count{margin:0;color:var(--ink-soft);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+    .category-strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+    .chip{
+      min-height:38px;
+      padding:7px 11px;
+      cursor:pointer;
+      color:var(--ink-soft);
+      background:transparent;
       border:1px solid var(--line);
-      border-radius:8px;
-      padding:8px 11px;
-      background:var(--panel);
-      color:var(--muted);
-      font-size:.91rem;
-      font-weight:600;
+      border-radius:2px;
+      font-size:.69rem;
+      font-weight:700;
+      letter-spacing:.07em;
+      text-transform:uppercase;
     }
-
-    .category-tab[aria-selected="true"]{
-      border-color:var(--gold);
-      background:var(--gold);
-      color:#17140c;
+    .chip:hover{border-color:var(--ink);color:var(--ink)}
+    .chip.active{color:#fff;background:var(--midnight);border-color:var(--midnight)}
+    .directory-groups{display:grid;gap:28px}
+    .directory-group{
+      scroll-margin-top:106px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
     }
-
-    .hub-section{
-      margin-top:42px;
+    .directory-group:first-child{padding-top:0;border-top:0}
+    .directory-group-heading{
+      display:grid;
+      grid-template-columns:minmax(210px,.45fr) minmax(280px,1fr);
+      gap:22px;
+      align-items:start;
+      margin-bottom:16px;
     }
-
-    .hub-section:first-of-type{margin-top:0}
-
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:24px;
-      margin-bottom:15px;
-    }
-
-    .section-head h2{
-      margin:5px 0 0;
-      font-size:clamp(1.8rem,3.5vw,2.55rem);
-      line-height:1;
-    }
-
-    .section-head p{
-      max-width:520px;
+    .directory-group h3{
       margin:0;
-      color:var(--muted);
-      font-size:.87rem;
-      line-height:1.62;
+      font-family:var(--ceremonial);
+      font-size:clamp(1rem,2vw,1.28rem);
+      font-weight:500;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
-
-    .card-grid{
+    .directory-group-heading p{margin:0;color:var(--ink-soft);font-size:.86rem}
+    .directory-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:13px;
+      gap:10px;
     }
-
-    .hub-card{
-      min-height:285px;
-      padding:20px;
-      border:1px solid var(--line);
-      border-radius:17px;
+    .directory-card{
+      min-height:126px;
       display:flex;
       flex-direction:column;
-      background:
-        radial-gradient(circle at 100% 100%,var(--glow,rgba(213,181,111,.08)),transparent 18rem),
-        var(--panel);
-      box-shadow:0 15px 42px rgba(0,0,0,.18);
-      transition:transform .17s ease,border-color .17s ease;
-    }
-
-    .hub-card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(240,216,152,.42);
-    }
-
-    .hub-card.featured{
-      grid-column:span 2;
-      min-height:325px;
-      background:
-        radial-gradient(circle at 90% 15%,rgba(213,181,111,.16),transparent 23rem),
-        linear-gradient(145deg,rgba(35,42,72,.96),rgba(17,22,41,.96));
-    }
-
-    .hub-card.teal-card{--glow:rgba(121,200,191,.12)}
-    .hub-card.violet-card{--glow:rgba(157,141,216,.12)}
-    .hub-card.rose-card{--glow:rgba(199,133,164,.10)}
-
-    .card-top{
-      display:flex;
-      align-items:flex-start;
       justify-content:space-between;
-      gap:12px;
-    }
-
-    .card-icon{
-      width:48px;
-      height:48px;
+      gap:16px;
+      padding:17px;
+      color:var(--ink);
+      background:#fff;
       border:1px solid var(--line);
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,.045);
-      color:var(--gold-2);
-      font-size:1.3rem;
+      border-radius:3px;
+      text-decoration:none;
+      transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
     }
-
-    .status{
-      border:1px solid var(--line);
-      border-radius:8px;
-      padding:6px 8px;
-      color:var(--muted);
-      background:rgba(255,255,255,.035);
-      font-family:var(--font-brand);
-      font-size:.68rem;
+    .directory-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:var(--shadow-small)}
+    .directory-card strong{
+      display:block;
+      font-family:var(--display);
+      font-size:1.45rem;
       font-weight:600;
-      letter-spacing:.11em;
-      text-transform:uppercase;
-    }
-
-    .status.live{
-      color:#9fe2d7;
-      border-color:rgba(121,200,191,.30);
-      background:rgba(121,200,191,.07);
-    }
-
-    .status.planned{
-      color:#e7ce90;
-      border-color:rgba(213,181,111,.28);
-      background:rgba(213,181,111,.07);
-    }
-
-    .hub-card h3{
-      margin:20px 0 5px;
-      font-size:1.62rem;
       line-height:1;
+      letter-spacing:.01em;
+    }
+    .directory-card span{display:block;margin-top:10px;color:var(--ink-soft);font-size:.8rem;line-height:1.45}
+    .card-arrow{align-self:flex-end;color:var(--gold);font-size:1rem}
+    .empty-state{
+      display:none;
+      padding:28px;
+      color:var(--ink-soft);
+      text-align:center;
+      background:#fff;
+      border:1px dashed var(--line-strong);
     }
 
-    .hub-card.featured h3{font-size:2.15rem}
-
-    .card-sub{
-      color:var(--gold-2);
-      font-family:var(--font-brand);
-      font-size:.70rem;
-      font-weight:600;
-      letter-spacing:.15em;
-      text-transform:uppercase;
+    .future-section{
+      border-top:1px solid var(--line);
+      background:var(--paper-bright);
     }
-
-    .hub-card p{
-      margin:14px 0 0;
-      color:var(--muted);
-      font-size:.86rem;
-      line-height:1.67;
-    }
-
-    .feature-list{
-      margin:15px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:7px;
-      color:#d8d9e2;
-      font-size:.80rem;
-      line-height:1.45;
-    }
-
-    .feature-list li{
-      display:flex;
-      gap:8px;
-    }
-
-    .feature-list li::before{
-      content:"♪";
-      color:var(--teal);
-    }
-
-    .card-actions{
-      display:flex;
-      gap:7px;
-      flex-wrap:wrap;
-      margin-top:auto;
-      padding-top:20px;
-    }
-
-    .planned-zone{
-      margin-top:52px;
-      padding:25px;
-      border:1px dashed rgba(240,216,152,.28);
-      border-radius:var(--radius);
-      background:rgba(255,255,255,.025);
-    }
-
-    .planned-grid{
+    .future-grid{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:9px;
-      margin-top:17px;
+      gap:10px;
+    }
+    .future-card{
+      min-height:150px;
+      padding:18px;
+      background:#fff;
+      border:1px solid var(--line);
+    }
+    .future-card h3{
+      margin:14px 0 7px;
+      font-family:var(--display);
+      font-size:1.45rem;
+      line-height:1;
+    }
+    .future-card p{margin:0;color:var(--ink-soft);font-size:.82rem}
+    .future-tag{
+      color:var(--gold);
+      font-family:var(--ceremonial);
+      font-size:.65rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
     }
 
-    .planned-item{
-      min-height:135px;
-      padding:14px;
-      border:1px solid var(--line-soft);
-      border-radius:12px;
-      background:rgba(255,255,255,.025);
+    .closing-section{background:var(--midnight-deep);color:#fff}
+    .closing-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:28px;
+      align-items:center;
+      justify-items:center;
+      text-align:center;
     }
+    .closing-section .kicker{color:var(--gold-pale)}
+    .closing-section h2{color:#fff}
+    .closing-copy{max-width:760px;margin:0 auto;color:rgba(255,255,255,.72)}
+    .closing-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+    .closing-section .button-primary{color:var(--ink);background:var(--gold-pale)}
+    .closing-section .button-primary:hover{background:#fff}
+    .closing-section .button-secondary{color:#fff;border-color:rgba(255,255,255,.38)}
+    .closing-section .button-secondary:hover{color:var(--ink);background:#fff;border-color:#fff}
 
-    .planned-item span{
-      color:var(--gold-2);
-      font-size:1rem;
+    .site-footer{padding:34px 18px;background:var(--ink);color:#fff}
+    .footer-inner{
+      width:min(100%,var(--max));
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
     }
-
-    .planned-item h3{
-      margin:11px 0 5px;
-      font-size:1.05rem;
-    }
-
-    .planned-item p{
+    .footer-brand{
       margin:0;
-      color:var(--muted);
-      font-size:.78rem;
+      font-family:var(--ceremonial);
+      font-size:.8rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .footer-meta{color:rgba(255,255,255,.62);font-size:.75rem;letter-spacing:.04em}
+
+    .drawer-overlay{
+      position:fixed;
+      inset:0;
+      z-index:1600;
+      visibility:hidden;
+      opacity:0;
+      background:rgba(8,12,10,.55);
+      backdrop-filter:blur(5px);
+      transition:opacity .2s ease,visibility .2s ease;
+    }
+    .drawer-overlay.open{visibility:visible;opacity:1}
+    .drawer{
+      position:absolute;
+      top:0;
+      right:0;
+      width:min(94vw,470px);
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      padding:22px;
+      background:var(--paper-bright);
+      box-shadow:-24px 0 70px rgba(0,0,0,.2);
+      transform:translateX(104%);
+      transition:transform .24s ease;
+    }
+    .drawer-overlay.open .drawer{transform:translateX(0)}
+    .drawer-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--line);
+    }
+    .drawer-title{
+      margin:0;
+      font-family:var(--ceremonial);
+      font-size:1.14rem;
+      font-weight:500;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    .close-button{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      background:transparent;
+      border:1px solid var(--line-strong);
+      border-radius:2px;
+    }
+    .drawer-search{
+      width:100%;
+      max-width:none;
+      flex:0 0 auto;
+      margin:16px 0 12px;
+    }
+    .drawer-search input{font-size:1rem}
+    .drawer-tabs{
+      flex:0 0 auto;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin:0 0 14px;
+    }
+    .drawer-tab{
+      min-height:34px;
+      padding:8px 11px;
+      cursor:pointer;
+      color:var(--ink-soft);
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:2px;
+      font-size:.72rem;
+      font-weight:750;
+      line-height:1.2;
+      letter-spacing:.065em;
+      text-transform:uppercase;
+    }
+    .drawer-tab:hover{color:var(--ink);border-color:var(--line-strong)}
+    .drawer-tab.active{color:#fff;background:var(--midnight);border-color:var(--midnight)}
+    .drawer-nav{
+      flex:1 1 auto;
+      min-height:0;
+      overflow:auto;
+      padding-right:6px;
+      overscroll-behavior:contain;
+    }
+    .nav-group{border-top:1px solid var(--line)}
+    .nav-heading{
+      position:sticky;
+      top:0;
+      z-index:2;
+      margin:0;
+      padding:12px 2px 8px;
+      color:var(--gold);
+      background:linear-gradient(180deg,var(--paper-bright),rgba(251,249,244,.93));
+      font-family:var(--ceremonial);
+      font-size:.72rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .drawer-nav a{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:center;
+      padding:13px 6px;
+      color:var(--ink);
+      border-bottom:1px solid rgba(18,23,19,.08);
+      text-decoration:none;
+      font-size:1rem;
+      line-height:1.35;
+    }
+    .drawer-nav a:hover{color:var(--gold)}
+    .drawer-nav small{color:var(--ink-soft);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+    .drawer-footer{
+      margin-top:auto;
+      padding-top:14px;
+      color:var(--ink-soft);
+      border-top:1px solid var(--line);
+      font-size:.8rem;
       line-height:1.5;
     }
 
-    .closing{
-      margin-top:52px;
-      padding:31px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      text-align:center;
-      background:
-        radial-gradient(circle at 50% 0%,rgba(213,181,111,.11),transparent 25rem),
-        var(--panel);
-      box-shadow:var(--shadow);
+    @media(max-width:980px){
+      .gateway-group.primary .gateway-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .future-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .world-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
-
-    .closing h2{
-      margin:7px 0 10px;
-      font-size:clamp(2rem,5vw,3.4rem);
+    @media(max-width:730px){
+      .header-inner{min-height:68px}
+      .header-link{display:none}
+      .hero{min-height:auto}
+      .hero-inner{padding-top:76px}
+      .hero-title{font-size:clamp(2.45rem,12.5vw,5.25rem)}
+      .featured-groups{grid-template-columns:1fr}
+      .gateway-group.primary{grid-column:auto}
+      .gateway-group.primary .gateway-links,.gateway-links{grid-template-columns:1fr}
+      .directory-group-heading{grid-template-columns:1fr}
+      .directory-grid{grid-template-columns:1fr}
+      .world-grid{grid-template-columns:1fr}
     }
-
-    .closing p{
-      max-width:760px;
-      margin:0 auto;
-      color:var(--muted);
-      font-size:.91rem;
-      line-height:1.72;
+    @media(max-width:470px){
+      .brand-sub{display:none}
+      .hero-title{white-space:normal}
+      .hero-actions .button,.closing-actions .button{width:100%}
+      .drawer{width:100%;padding:18px}
+      .gateway-group{padding:18px}
+      .future-grid{grid-template-columns:1fr}
     }
-
-    .closing .hero-actions{justify-content:center}
-
-    footer{
-      border-top:1px solid var(--line);
-      background:#080b15;
-    }
-
-    .footer-inner{
-      width:min(var(--max),calc(100% - 32px));
-      margin:auto;
-      padding:29px 0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:.91rem;
-      line-height:1.65;
-    }
-
-    .footer-inner strong{
-      color:var(--gold-2);
-      font-family:var(--font-brand);
-      font-size:.84rem;
-      font-weight:600;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-    }
-
-    .empty-state{
-      grid-column:1/-1;
-      padding:28px;
-      border:1px dashed var(--line);
-      border-radius:15px;
-      text-align:center;
-      color:var(--muted);
-    }
-
-
-    .theme-button{
-      border:1px solid var(--line);
-      border-radius:8px;
-      padding:8px 10px;
-      background:rgba(255,255,255,.045);
-      color:#d8dbea;
-      font-size:.80rem;
-      font-weight:650;
-    }
-
-    html[data-theme="light"]{
-      --night:#eef3f6;
-      --night-2:#e6edf2;
-      --night-3:#dce7ed;
-      --paper:#ffffff;
-      --paper-2:#edf2f5;
-      --ink:#172633;
-      --muted:#465b6a;
-      --faint:#667b88;
-      --gold:#9a6a1c;
-      --gold-2:#7d5412;
-      --teal:#167e76;
-      --violet:#6650a0;
-      --rose:#9d416e;
-      --line:rgba(34,74,96,.19);
-      --line-soft:rgba(34,74,96,.11);
-      --panel:rgba(255,255,255,.92);
-      --panel-2:rgba(238,244,247,.94);
-      --shadow:0 22px 60px rgba(46,67,82,.17);
-    }
-
-    html[data-theme="light"] body{
-      background:
-        radial-gradient(circle at 12% -4%,rgba(154,106,28,.10),transparent 33rem),
-        radial-gradient(circle at 92% 7%,rgba(22,126,118,.10),transparent 31rem),
-        radial-gradient(circle at 52% 100%,rgba(102,80,160,.08),transparent 40rem),
-        linear-gradient(145deg,#fafcfd,#edf3f6 72%);
-    }
-
-    html[data-theme="light"] body::before{opacity:.08}
-    html[data-theme="light"] .topbar{background:rgba(248,251,252,.92)}
-    html[data-theme="light"] .topnav a,
-    html[data-theme="light"] .menu-button,
-    html[data-theme="light"] .theme-button{color:var(--ink)}
-    html[data-theme="light"] .topnav{background:#f7fafb}
-    html[data-theme="light"] .hero-copy,
-    html[data-theme="light"] .feature-list{color:#344b5b}
-    html[data-theme="light"] .orbit-label{background:rgba(255,255,255,.91)}
-    html[data-theme="light"] .record{
-      background:
-        repeating-radial-gradient(circle,rgba(20,50,70,.05) 0 2px,transparent 3px 9px),
-        radial-gradient(circle at 38% 28%,#dce7ee,#9eb1bf 64%);
-    }
-    html[data-theme="light"] footer{background:#e8eff3}
-    html[data-theme="light"] .search input{color:var(--ink)}
-    html[data-theme="light"] .button{background:rgba(255,255,255,.72)}
-    html[data-theme="light"] .button.primary{color:#fff;background:linear-gradient(135deg,#9a6a1c,#bd8d35)}
-    html[data-theme="light"] .button.teal{color:#fff;background:linear-gradient(135deg,#167e76,#369b91)}
-
-    @media(max-width:1040px){
-      .hero-inner{
-        grid-template-columns:1fr;
-        text-align:center;
-        padding-top:60px;
-      }
-      .hero-copy{margin:auto}
-      .hero-actions{justify-content:center}
-      .sound-orbit{min-height:410px}
-      .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .hub-card.featured{grid-column:span 2}
-      .planned-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-
-    @media(max-width:760px){
-      .topbar-inner{min-height:62px}
-      .topnav{
-        position:absolute;
-        left:16px;
-        right:16px;
-        top:68px;
-        display:none;
-        padding:9px;
-        border:1px solid var(--line);
-        border-radius:12px;
-        background:#11172b;
-        box-shadow:var(--shadow);
-      }
-      .topnav.open{display:grid}
-      .topnav a{text-align:center}
-      .menu-button{display:inline-flex;margin-left:auto}
-      .hero-inner{min-height:auto;padding:50px 0 55px}
-      .sound-orbit{transform:scale(.86);margin:-30px 0}
-      .intro-band{grid-template-columns:1fr}
-      .hub-count{width:100%}
-      .card-grid{grid-template-columns:1fr}
-      .hub-card.featured{grid-column:auto}
-      .section-head{display:block}
-      .section-head p{margin-top:9px}
-    }
-
-    @media(max-width:520px){
-      .brand-copy span{display:none}
-      h1{font-size:3.55rem}
-      .sound-orbit{transform:scale(.72);margin:-58px -70px}
-      .directory-tools{align-items:flex-start}
-      .search{width:100%}
-      .planned-zone{padding:18px}
-      .planned-grid{grid-template-columns:1fr}
-      .closing{padding:24px 18px}
-      .footer-inner{align-items:flex-start;flex-direction:column}
-    }
-
     @media(prefers-reduced-motion:reduce){
-      *{scroll-behavior:auto!important;transition:none!important}
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
     }
   </style>
-<script>
-(function(){
-  try{
-    const saved=localStorage.getItem("the-refrain-theme-v1");
-    const theme=saved==="light"||saved==="dark" ? saved :
-      (window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    document.documentElement.dataset.theme=theme;
-  }catch{document.documentElement.dataset.theme="dark";}
-})();
-</script>
 </head>
 <body>
-<a class="skip-link" href="#musicDirectory">Skip to the music directory</a>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="https://vervenveda.github.io/the_refrain.github.io/" aria-label="The Refrain home">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="https://vervenveda.github.io/the_refrain.github.io/">
       <span class="brand-mark">TR</span>
       <span class="brand-copy">
-        <strong>The Refrain</strong>
-        <span>Music & sound across Verve N Veda</span>
+        <span class="brand-name">The Refrain</span>
+        <span class="brand-sub">Music across Verve N Veda</span>
       </span>
     </a>
 
-    <button class="theme-button" id="themeButton" type="button" aria-pressed="false">Light Theme</button>
-    <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="topNavigation">Menu</button>
-
-    <nav class="topnav" id="topNavigation" aria-label="Primary navigation">
-      <a href="#create">Create</a>
-      <a href="#learn">Learn</a>
-      <a href="#young">Young Creators</a>
-      <a href="#share">Share</a>
-      <a href="#reflect">Reflect</a>
-      <a href="#future">Future Studios</a>
-      <a href="https://vervenveda.github.io/proresource_hub.github.io/">ProReSources</a>
-      <a href="https://vervenveda.github.io/">Verve N Veda</a>
-    </nav>
+    <div class="header-actions">
+      <a class="header-link" href="#worlds">Music Worlds</a>
+      <a class="header-link" href="#directory">Directory</a>
+      <a class="header-link" href="#young">Young Creators</a>
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="drawer">
+        <span class="menu-lines" aria-hidden="true"></span>
+        <span class="sr-only" style="position:absolute;left:-9999px">Open menu</span>
+      </button>
+    </div>
   </div>
 </header>
 
-<section class="hero" aria-labelledby="pageTitle">
+<section class="hero">
   <div class="hero-inner">
-    <div>
-      <div class="eyebrow">Composition · Recording · Music Education · Research · Community</div>
-      <h1 id="pageTitle">The Refrain™<span>Where sound returns with purpose</span></h1>
-      <p class="hero-copy">A welcoming music home for composers, young creators, families, students, teachers, artists, performers, researchers, and working musicians. Create in the studios, study through Music 101 and Music 201, enter the ARSHIF Music Hall, prepare music writing through PROSE, and preserve each project across the Verve N Veda ecosystem.</p>
+    <p class="eyebrow">Composition · Recording · Learning · Research · Performance</p>
+    <h1 class="hero-title">The Refrain™</h1>
+    <div class="hero-aside">
+      <p class="hero-copy">A calm, connected music world for composing, learning, recording, researching, publishing, practicing, and sharing music across every age and experience level.</p>
       <div class="hero-actions">
-        <a class="button primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Open Pro Composition Studio</a>
-        <a class="button teal" href="#musicDirectory">Explore the Music Hub</a>
-        <a class="button" href="apps/ARSHIF_Music_Hall_Resources_Updated_index.html">Enter the ARSHIF Music Hall</a>
+        <a class="button button-primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Open Composition Studio</a>
+        <a class="button button-secondary" href="#directory">Browse Music Directory</a>
       </div>
-    </div>
-
-    <div class="sound-orbit" aria-label="The Refrain creative music constellation">
-      <div class="orbit-ring one"></div>
-      <div class="orbit-ring two"></div>
-      <div class="orbit-ring three"></div>
-      <div class="record"><div class="record-core">THE<br>REFRAIN</div></div>
-      <div class="orbit-label a"><strong>Compose</strong><span>Write, arrange, score, record, and develop original music.</span></div>
-      <div class="orbit-label b"><strong>Learn</strong><span>Music 101, Music 201, theory, history, and research.</span></div>
-      <div class="orbit-label c"><strong>Grow</strong><span>Young creators, classrooms, practice, and guided discovery.</span></div>
-      <div class="orbit-label d"><strong>Restore</strong><span>Reflection, sanctuary, and sound wellbeing.</span></div>
     </div>
   </div>
 </section>
 
-<main id="musicDirectory">
-  <section class="intro-band" aria-labelledby="refrainPurpose">
-    <div>
-      <div class="section-kicker">A connected creative home</div>
-      <h2 id="refrainPurpose">Music does not live in only one room.</h2>
-      <p>The Refrain connects composition studios to the archive, young creators to structured workshops, the classroom to the stage, the artist to the editor, and finished music to community presentation. Each application remains in its proper folder or repository while this landing page provides one dependable doorway.</p>
-    </div>
-    <div class="hub-count" aria-label="Hub status">
-      <div class="count-card"><strong id="liveCount">0</strong><span>connected destinations</span></div>
-      <div class="count-card"><strong id="plannedCount">0</strong><span>future studios</span></div>
-    </div>
-  </section>
-
-  <div class="directory-tools">
-    <div>
-      <div class="section-kicker">The complete directory</div>
-      <h2>Find your next creative room.</h2>
-    </div>
-    <div class="search">
-      <label class="sr-only" for="hubSearch" style="position:absolute;left:-9999px">Search the music hub</label>
-      <input id="hubSearch" type="search" placeholder="Search studios, learning, publishing…">
-      <button id="clearSearch" type="button">Clear</button>
-    </div>
+<nav class="path-strip" aria-label="Music paths">
+  <div class="path-strip-inner">
+    <a href="#compose">Compose</a>
+    <a href="#learn">Learn</a>
+    <a href="#produce">Produce</a>
+    <a href="#research">Research</a>
+    <a href="#young">Young Creators</a>
+    <a href="#share">Share</a>
+    <a href="#future">Future Studios</a>
   </div>
+</nav>
 
-  <div class="category-tabs" role="tablist" aria-label="Music hub categories">
-    <button class="category-tab" role="tab" aria-selected="true" data-category="all">All</button>
-    <button class="category-tab" role="tab" aria-selected="false" data-category="create">Create & Record</button>
-    <button class="category-tab" role="tab" aria-selected="false" data-category="learn">Learn & Research</button>
-    <button class="category-tab" role="tab" aria-selected="false" data-category="young">Young Creators</button>
-    <button class="category-tab" role="tab" aria-selected="false" data-category="share">Share & Publish</button>
-    <button class="category-tab" role="tab" aria-selected="false" data-category="reflect">Reflect & Restore</button>
-  </div>
-
-  <div id="directoryRoot"></div>
-
-  <section class="planned-zone" id="future" aria-labelledby="futureTitle">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Future construction</div>
-        <h2 id="futureTitle">The professional studios still to come.</h2>
+<main id="main">
+  <section class="section worlds" id="worlds">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="kicker">Choose a path</p>
+        <h2>Music worlds with room to breathe.</h2>
+        <p class="section-intro">Each doorway leads to a focused collection. The full directory remains available for visitors who already know what they need.</p>
       </div>
-      <p>These tools have reserved places in The Refrain so the music ecosystem can grow without crowding the active directory.</p>
+
+      <div class="world-grid">
+        <a class="world-card" href="#compose">
+          <span class="world-icon">🎼</span>
+          <h3>Compose</h3>
+          <p>Original music, arrangement, songwriting, notation, and creative development.</p>
+          <span class="world-arrow">Enter →</span>
+        </a>
+        <a class="world-card" href="#learn">
+          <span class="world-icon">📘</span>
+          <h3>Learn</h3>
+          <p>Music 101, Music 201, theory, listening, history, and guided study.</p>
+          <span class="world-arrow">Begin →</span>
+        </a>
+        <a class="world-card" href="#produce">
+          <span class="world-icon">🎚️</span>
+          <h3>Produce</h3>
+          <p>Recording, multi-track work, media reference, and future production tools.</p>
+          <span class="world-arrow">Open →</span>
+        </a>
+        <a class="world-card" href="#research">
+          <span class="world-icon">📚</span>
+          <h3>Research</h3>
+          <p>ARSHIF, evidence, sources, music history, and deep cultural inquiry.</p>
+          <span class="world-arrow">Explore →</span>
+        </a>
+        <a class="world-card" href="#young">
+          <span class="world-icon">🎹</span>
+          <h3>Young Creators</h3>
+          <p>Early composition, rhythm, melody, classroom pathways, and musical play.</p>
+          <span class="world-arrow">Create →</span>
+        </a>
+        <a class="world-card" href="#share">
+          <span class="world-icon">✍️</span>
+          <h3>Share</h3>
+          <p>Lyrics, bios, liner notes, portfolios, creative community, and publishing.</p>
+          <span class="world-arrow">Publish →</span>
+        </a>
+      </div>
     </div>
-    <div class="planned-grid" id="plannedGrid"></div>
   </section>
 
-  <section class="closing">
-    <div class="section-kicker">The refrain is what returns</div>
-    <h2>Creation, knowledge, community, and sanctuary—together.</h2>
-    <p>The Refrain is not a single application. It is the professional music doorway that gives every sound-related project a recognizable home while allowing each studio, archive, classroom, and creative community to keep its own purpose.</p>
-    <div class="hero-actions">
-      <a class="button primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Begin in the Composition Studio</a>
-      <a class="button" href="https://vervenveda.github.io/proresource_hub.github.io/">Return to ProReSources</a>
+  <section class="section featured-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="kicker">Featured gateways</p>
+        <h2>Start with the room you need.</h2>
+        <p class="section-intro">The most important destinations remain visible. Everything else is organized below.</p>
+      </div>
+
+      <div class="featured-groups">
+        <article class="gateway-group primary" id="compose">
+          <div class="gateway-head">
+            <div>
+              <p class="gateway-label">Compose & Produce</p>
+              <p class="gateway-note">Professional tools for music creation, arrangement, recording, and media work.</p>
+            </div>
+          </div>
+          <div class="gateway-links">
+            <a class="gateway-link priority" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html"><span>Pro Composition Studio</span><span>→</span></a>
+            <a class="gateway-link" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html"><span>Multi-Track Studio</span><span>→</span></a>
+            <a class="gateway-link" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html"><span>FleaPit Media Hub</span><span>→</span></a>
+          </div>
+        </article>
+
+        <article class="gateway-group learn" id="learn">
+          <div class="gateway-head">
+            <div>
+              <p class="gateway-label">Learn</p>
+              <p class="gateway-note">Structured music study from foundations through deeper exploration.</p>
+            </div>
+          </div>
+          <div class="gateway-links">
+            <a class="gateway-link" href="education/Music%20101%20Workshop_index.html"><span>Music 101</span><span>→</span></a>
+            <a class="gateway-link" href="education/Music%20201%20Workshop_index.html"><span>Music 201</span><span>→</span></a>
+          </div>
+        </article>
+
+        <article class="gateway-group young" id="young">
+          <div class="gateway-head">
+            <div>
+              <p class="gateway-label">Young Creators</p>
+              <p class="gateway-note">A gentle first doorway into rhythm, melody, instruments, and composition.</p>
+            </div>
+          </div>
+          <div class="gateway-links">
+            <a class="gateway-link" href="apps/Little_Composer_Studio_The_Refrain_index.html"><span>Little Composer Studio</span><span>→</span></a>
+            <a class="gateway-link" href="https://vervenveda.github.io/khaemenesacademy.github.io/"><span>Khaemenes Academy</span><span>→</span></a>
+          </div>
+        </article>
+
+        <article class="gateway-group share" id="share">
+          <div class="gateway-head">
+            <div>
+              <p class="gateway-label">Share & Publish</p>
+              <p class="gateway-note">Prepare music writing, portfolios, visual presentation, and community work.</p>
+            </div>
+          </div>
+          <div class="gateway-links">
+            <a class="gateway-link" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html"><span>PROSE Editorial Suite</span><span>→</span></a>
+            <a class="gateway-link" href="https://vervenveda.github.io/bazaarart.github.io/"><span>Bazaar Art</span><span>→</span></a>
+          </div>
+        </article>
+
+        <article class="gateway-group restore">
+          <div class="gateway-head">
+            <div>
+              <p class="gateway-label">Reflect & Restore</p>
+              <p class="gateway-note">Quiet spaces for intentional listening, creative renewal, and reflection.</p>
+            </div>
+          </div>
+          <div class="gateway-links">
+            <a class="gateway-link" href="https://vervenveda.github.io/aurora.github.io/"><span>Aurora Sanctuary</span><span>→</span></a>
+            <a class="gateway-link" href="https://vervenveda.github.io/"><span>Verve N Veda</span><span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section directory-section" id="directory">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="kicker">Complete music directory</p>
+        <h2>Find the resource you need.</h2>
+        <p class="section-intro">Search by task, course, studio, tool, or topic.</p>
+      </div>
+
+      <div class="directory-tools">
+        <label class="search-box">
+          <span style="position:absolute;left:-9999px">Search the directory</span>
+          <input id="directorySearch" type="search" placeholder="Search music resources…">
+        </label>
+        <p class="result-count" id="resultCount">16 destinations</p>
+      </div>
+
+      <div class="category-strip" aria-label="Directory filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="compose">Compose</button>
+        <button class="chip" data-filter="learn">Learn</button>
+        <button class="chip" data-filter="research">Research</button>
+        <button class="chip" data-filter="young">Young Creators</button>
+        <button class="chip" data-filter="share">Share</button>
+        <button class="chip" data-filter="restore">Restore</button>
+      </div>
+
+      <div class="directory-groups" id="directoryGroups"></div>
+      <div class="empty-state" id="emptyState">No music resources match that search.</div>
+    </div>
+  </section>
+
+  <section class="section future-section" id="future">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="kicker">Future construction</p>
+        <h2>More rooms are waiting to be built.</h2>
+        <p class="section-intro">These future studios have reserved places in The Refrain without crowding the active directory.</p>
+      </div>
+
+      <div class="future-grid">
+        <article class="future-card"><span class="future-tag">Learning</span><h3>Ear Training Lab</h3><p>Pitch, intervals, rhythm, melodic memory, and listening practice.</p></article>
+        <article class="future-card"><span class="future-tag">Practice</span><h3>Instrument Journal</h3><p>Repertoire, goals, tempo, teacher notes, and progress reflection.</p></article>
+        <article class="future-card"><span class="future-tag">Performance</span><h3>Performance Hall</h3><p>Setlists, recitals, stage notes, choir, band, and orchestra planning.</p></article>
+        <article class="future-card"><span class="future-tag">Publishing</span><h3>Press Kit Builder</h3><p>Biographies, recordings, reviews, credits, links, and booking materials.</p></article>
+        <article class="future-card"><span class="future-tag">Instruments</span><h3>Instrument Explorer</h3><p>Strings, keyboards, brass, woodwinds, percussion, voice, and world instruments.</p></article>
+        <article class="future-card"><span class="future-tag">History</span><h3>Composer Library</h3><p>Composers, traditions, movements, and music from around the world.</p></article>
+        <article class="future-card"><span class="future-tag">Timeline</span><h3>Music Through Time</h3><p>Ancient, medieval, renaissance, baroque, classical, jazz, film, and modern music.</p></article>
+        <article class="future-card"><span class="future-tag">Community</span><h3>VENUS™</h3><p>A future musician network for profiles, gigs, collaboration, events, and opportunity.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section closing-section">
+    <div class="section-inner closing-grid">
+      <div>
+        <p class="kicker">The refrain is what returns</p>
+        <h2>Music is one of humanity’s oldest ways of remembering.</h2>
+        <p class="closing-copy">The Refrain brings creation, learning, research, performance, publishing, and reflection into one calm musical world—without asking visitors to sort through clutter before they can begin.</p>
+        <div class="closing-actions">
+          <a class="button button-primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Begin Composing</a>
+          <a class="button button-secondary" href="https://vervenveda.github.io/">Return to Verve N Veda</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="footer-inner">
-    <div><strong>The Refrain™</strong><br>Music, Composition & Learning Gateway</div>
-    <div>Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl · All Rights Reserved 2026</div>
+    <p class="footer-brand">The Refrain™</p>
+    <div class="footer-meta">Music · Learning · Research · Community · Verve N Veda</div>
   </div>
 </footer>
+
+<div class="drawer-overlay" id="drawerOverlay">
+  <aside class="drawer" id="drawer" aria-label="Verve N Veda Network">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Explore the Network</h2>
+      <button class="close-button" id="closeDrawer" aria-label="Close menu">×</button>
+    </div>
+
+    <label class="search-box drawer-search">
+      <span style="position:absolute;left:-9999px">Search network links</span>
+      <input id="drawerSearch" type="search" placeholder="Search repositories…">
+    </label>
+
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-drawer-filter="all">All</button>
+      <button class="drawer-tab" data-drawer-filter="learning">Learning</button>
+      <button class="drawer-tab" data-drawer-filter="creative">Creative</button>
+      <button class="drawer-tab" data-drawer-filter="research">Research</button>
+      <button class="drawer-tab" data-drawer-filter="civic">Civic</button>
+    </div>
+
+    <nav class="drawer-nav" id="drawerNav">
+      <div class="nav-group" data-category="learning">
+        <p class="nav-heading">Learning</p>
+        <a href="https://vervenveda.github.io/khaemenesacademy.github.io/"><span>Khaemenes Academy</span><small>Education</small></a>
+        <a href="https://vervenveda.github.io/arcade.github.io/"><span>Arcade</span><small>Learning Through Play</small></a>
+      </div>
+
+      <div class="nav-group" data-category="creative">
+        <p class="nav-heading">Creative</p>
+        <a href="https://vervenveda.github.io/the_refrain.github.io/"><span>The Refrain</span><small>Music</small></a>
+        <a href="https://vervenveda.github.io/bazaarart.github.io/"><span>Bazaar Art</span><small>Creative Community</small></a>
+        <a href="https://vervenveda.github.io/myartgallery.github.io/"><span>My Art Gallery</span><small>Portfolio</small></a>
+        <a href="https://vervenveda.github.io/proresource_hub.github.io/"><span>ProReSources</span><small>Professional Tools</small></a>
+      </div>
+
+      <div class="nav-group" data-category="research">
+        <p class="nav-heading">Research & Reference</p>
+        <a href="https://vervenveda.github.io/Arshif.github.io/"><span>ARSHIF Archives</span><small>Research Halls</small></a>
+        <a href="https://vervenveda.github.io/theverifier.github.io/"><span>The Verifier</span><small>Information Literacy</small></a>
+        <a href="https://vervenveda.github.io/solanar.github.io/"><span>Solanar</span><small>Earth & Sky</small></a>
+      </div>
+
+      <div class="nav-group" data-category="civic">
+        <p class="nav-heading">Civic & Community</p>
+        <a href="https://vervenveda.github.io/onenationforall.github.io/"><span>One Nation For All</span><small>Civic Learning</small></a>
+        <a href="https://vervenveda.github.io/river_to_road.github.io/"><span>River to Road</span><small>Stewardship</small></a>
+        <a href="https://vervenveda.github.io/aurora.github.io/"><span>Aurora Sanctuary</span><small>Reflection</small></a>
+        <a href="https://vervenveda.github.io/"><span>Verve N Veda</span><small>Main Gateway</small></a>
+      </div>
+    </nav>
+
+    <div class="drawer-footer">All major repositories are gathered here so The Refrain can remain calm, focused, and easy to navigate.</div>
+  </aside>
+</div>
 
 <script>
 (()=>{
   "use strict";
 
-  const destinations = [{"id":"composition-pro","category":"create","section":"Create & Record","featured":true,"tone":"gold","icon":"♬","title":"Harmony’s Haven Pro Composition Studio","subtitle":"Advanced Composition · Arrangement · Creative Development","description":"Develop original pieces through a dedicated composition environment for themes, sections, instrumentation, arrangement decisions, and professional musical planning.","features":["Composition-centered project workspace","Arrangement and structural development","Direct home inside The Refrain repository"],"href":"apps/Harmonys_Haven_Pro_Composition_Studio_index.html","action":"Open Pro Composition Studio","status":"live"},{"id":"harmony-multitrack","category":"create","section":"Create & Record","tone":"teal","icon":"♫","title":"Harmony’s Haven Studio™ Multi-Track","subtitle":"88-Key Multi-Track Studio · Hosted at ProReSources","description":"Play a full keyboard, compare instruments, practice scales, record layered tracks, review notation, mix playback, and export project data.","features":["88-key playable keyboard","Layered recording and playback","Scale practice and staff notation"],"href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html","action":"Open Multi-Track Studio","status":"live"},{"id":"fleapit","category":"create","section":"Create & Record","tone":"violet","icon":"▶","title":"FleaPit™ Media Hub","subtitle":"Performance Video · Reference Media · Discovery","description":"Gather performances, public archives, music videos, lectures, interviews, and reference media into a focused browser-based collection.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html","action":"Open Media Hub","status":"live"},{"id":"arshif-music","category":"learn","section":"Learn & Research","featured":true,"tone":"violet","icon":"⌘","title":"ARSHIF Music Hall of Resources","subtitle":"Music History · Theory · Instruments · Research","description":"Enter the dedicated ARSHIF music resource hall for composers, cultures, instruments, musical forms, historical context, reference pathways, and deeper source-based study.","features":["Dedicated music-research directory","Historical and cultural context","Connected resource and study pathways"],"href":"apps/ARSHIF_Music_Hall_Resources_Updated_index.html","action":"Open the Music Hall","status":"live"},{"id":"music-101","category":"learn","section":"Learn & Research","tone":"teal","icon":"101","title":"Music 101 Workshop","subtitle":"Foundations of Music","description":"A structured introductory workshop covering notation, rhythm, pitch, the staff, scales, chords, listening, musical vocabulary, and foundational quizzes.","href":"education/Music%20101%20Workshop_index.html","action":"Begin Music 101","status":"live"},{"id":"music-201","category":"learn","section":"Learn & Research","tone":"gold","icon":"201","title":"Music 201 Workshop","subtitle":"Intermediate Music Study","description":"Continue into stronger theory, form, harmony, composition, analysis, listening, creative exercises, and intermediate knowledge checks.","href":"education/Music%20201%20Workshop_index.html","action":"Begin Music 201","status":"live"},{"id":"evidence","category":"learn","section":"Learn & Research","tone":"violet","icon":"ECS","title":"Evidence & Citation Studio","subtitle":"Music Research · Sources · Provenance","description":"Organize music-history claims, scholarly sources, quotations, evidence relationships, provenance hashes, citation drafts, and research exports.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Evidence_Citation_Studio/index.html","action":"Open Research Studio","status":"live"},{"id":"plera","category":"learn","section":"Learn & Research","tone":"teal","icon":"⌕","title":"PLERA™ Search Gate","subtitle":"Transparent Multi-Provider Research","description":"Prepare visible music-research queries, choose providers and source lanes, and move deliberately into public research resources.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PLERA%E2%84%A2%20Search%20Gate_index.html","action":"Open Search Gate","status":"live"},{"id":"little-composer","category":"young","section":"Young Creators","featured":true,"tone":"rose","icon":"♪","title":"Little Composer Studio","subtitle":"The Refrain for Young Music Makers","description":"A welcoming creative studio where children can explore melody, rhythm, instruments, patterns, imagination, and early composition through guided musical play.","features":["Child-friendly composition activities","Creative listening and pattern discovery","A direct pathway into Music 101"],"href":"apps/Little_Composer_Studio_The_Refrain_index.html","action":"Open Little Composer","status":"live"},{"id":"academy","category":"young","section":"Young Creators","tone":"teal","icon":"◇","title":"Khaemenes Academy","subtitle":"Music Learning Across Ages","description":"Connect young musicians to age-appropriate creative practice, classroom projects, broader academic work, and future Academy music courses.","href":"https://vervenveda.github.io/khaemenesacademy.github.io/","action":"Open the Academy","status":"live"},{"id":"prose","category":"share","section":"Share & Publish","featured":true,"tone":"violet","icon":"¶","title":"PROSE™ Editorial Suite","subtitle":"Lyrics · Artist Bios · Liner Notes · Proposals","description":"Write and refine lyrics, biographies, liner notes, press releases, program notes, grant applications, teaching materials, and publication-ready music writing.","features":["Long-form and short-form music writing","Versioning and editorial tools","Professional exports and preservation"],"href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html","action":"Open PROSE","status":"live"},{"id":"bazaar-live","category":"share","section":"Share & Publish","tone":"rose","icon":"✦","title":"Bazaar Art Live","subtitle":"333 Creative Community Feed","description":"Share studio notes, music events, rehearsal updates, performances, collaborations, creative announcements, and community posts.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feedindex.html","action":"Open Bazaar Art Live","status":"live"},{"id":"bazaar-art","category":"share","section":"Share & Publish","tone":"gold","icon":"▧","title":"Bazaar Art","subtitle":"Creative Community & Opportunity Hub","description":"Connect music to the broader Bazaar Art ecosystem of artists, portfolios, opportunities, public work, creative business, and interdisciplinary projects.","href":"https://vervenveda.github.io/bazaarart.github.io/","action":"Open Bazaar Art","status":"live"},{"id":"gallery","category":"share","section":"Share & Publish","tone":"teal","icon":"▣","title":"My Art Gallery","subtitle":"Visual Identity & Creative Presentation","description":"Present album artwork, performance photography, interdisciplinary projects, visual identity, and creative portfolio materials.","href":"https://vervenveda.github.io/myartgallery.github.io/","action":"Open Gallery","status":"live"},{"id":"aurora","category":"reflect","section":"Reflect & Restore","tone":"teal","icon":"◌","title":"The Aurora Sanctuary","subtitle":"Reflection · Renewal · Creative Quiet","description":"A restorative space for intentional listening, quiet practice, reflection, creative renewal, and returning to music with clarity.","href":"https://vervenveda.github.io/aurora.github.io/","action":"Enter the Sanctuary","status":"live"},{"id":"verve","category":"reflect","section":"Reflect & Restore","tone":"gold","icon":"V","title":"Verve N Veda","subtitle":"The Public Gateway","description":"Return to the wider Verve N Veda environment for connected learning, research, civic, health, creative, and professional resources.","href":"https://vervenveda.github.io/","action":"Open Verve N Veda","status":"live"}];
+  const resources = [
+    {title:"Harmony’s Haven Pro Composition Studio",category:"compose",group:"Compose & Produce",description:"Develop themes, structure, instrumentation, and original music.",href:"apps/Harmonys_Haven_Pro_Composition_Studio_index.html"},
+    {title:"Harmony’s Haven Studio™ Multi-Track",category:"compose",group:"Compose & Produce",description:"Play, record, layer, review, and export multi-track music projects.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html"},
+    {title:"FleaPit™ Media Hub",category:"compose",group:"Compose & Produce",description:"Gather performances, music videos, lectures, interviews, and reference media.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html"},
+    {title:"Music 101 Workshop",category:"learn",group:"Learn",description:"Notation, rhythm, pitch, scales, chords, listening, and core music concepts.",href:"education/Music%20101%20Workshop_index.html"},
+    {title:"Music 201 Workshop",category:"learn",group:"Learn",description:"Theory, harmony, form, composition, analysis, and intermediate study.",href:"education/Music%20201%20Workshop_index.html"},
+    {title:"ARSHIF Music Hall of Resources",category:"research",group:"Research",description:"Composers, instruments, forms, cultures, history, and deeper study.",href:"apps/ARSHIF_Music_Hall_Resources_Updated_index.html"},
+    {title:"Evidence & Citation Studio",category:"research",group:"Research",description:"Organize sources, evidence, quotations, provenance, and citations.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Evidence_Citation_Studio/index.html"},
+    {title:"PLERA™ Search Gate",category:"research",group:"Research",description:"Prepare visible music-research queries and move into public sources.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/PLERA%E2%84%A2%20Search%20Gate_index.html"},
+    {title:"Little Composer Studio",category:"young",group:"Young Creators",description:"Melody, rhythm, instruments, patterns, imagination, and early composition.",href:"apps/Little_Composer_Studio_The_Refrain_index.html"},
+    {title:"Khaemenes Academy",category:"young",group:"Young Creators",description:"Broader learning pathways, classroom projects, and future music courses.",href:"https://vervenveda.github.io/khaemenesacademy.github.io/"},
+    {title:"PROSE™ Editorial Suite",category:"share",group:"Share & Publish",description:"Lyrics, biographies, liner notes, programs, press releases, and teaching materials.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html"},
+    {title:"Bazaar Art Live",category:"share",group:"Share & Publish",description:"Studio notes, music events, rehearsal updates, and community posts.",href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feedindex.html"},
+    {title:"Bazaar Art",category:"share",group:"Share & Publish",description:"Portfolios, opportunities, public work, creative business, and collaboration.",href:"https://vervenveda.github.io/bazaarart.github.io/"},
+    {title:"My Art Gallery",category:"share",group:"Share & Publish",description:"Album artwork, photography, visual identity, and portfolio presentation.",href:"https://vervenveda.github.io/myartgallery.github.io/"},
+    {title:"Aurora Sanctuary",category:"restore",group:"Reflect & Restore",description:"Intentional listening, reflection, creative renewal, and quiet practice.",href:"https://vervenveda.github.io/aurora.github.io/"},
+    {title:"Verve N Veda",category:"restore",group:"Reflect & Restore",description:"Return to the wider network of learning, research, and public resources.",href:"https://vervenveda.github.io/"}
+  ];
 
-  const planned = [{"title":"Ear Training Lab","category":"Learning","description":"Progressive pitch, intervals, chord quality, rhythm recognition, melodic memory, and listening assessments."},{"title":"Rhythm & Beat Laboratory","category":"Learning","description":"Tempo, subdivision, meters, polyrhythms, beat-building, clapping practice, and visual rhythm exercises."},{"title":"Score & Lead Sheet Builder","category":"Composition","description":"Create melody lines, chord symbols, lyrics, rehearsal marks, printable lead sheets, and simple ensemble scores."},{"title":"Songwriting Room","category":"Composition","description":"Develop song structure, rhyme, lyrical themes, melodic notes, drafts, revisions, and version history."},{"title":"Soundscape & Foley Studio","category":"Production","description":"Plan environmental sound, effects, scene cues, field recordings, layers, and narrative audio sequences."},{"title":"Podcast & Spoken Word Studio","category":"Production","description":"Organize episodes, scripts, narration, music beds, segment timing, credits, notes, and release packages."},{"title":"Choir & Vocal Practice Studio","category":"Performance","description":"Voice-part practice, warmups, pronunciation, breathing, rehearsal notes, blend, and performance preparation."},{"title":"Instrument Practice Journal","category":"Performance","description":"Track exercises, repertoire, tempo goals, practice time, teacher notes, recordings, and progress reflections."},{"title":"Performance & Setlist Planner","category":"Performance","description":"Build set lists, rehearsal plans, stage notes, equipment lists, transitions, timing, and run-of-show records."},{"title":"Concert Program Studio","category":"Publishing","description":"Prepare programs, performer biographies, repertoire notes, acknowledgments, sponsors, and print-ready event materials."},{"title":"Music Portfolio & Press Kit Builder","category":"Publishing","description":"Combine biographies, photographs, recordings, reviews, repertoire, credits, links, and booking materials."},{"title":"Music Rights & Credits Desk","category":"Rights","description":"Track writers, performers, splits, credits, permissions, registrations, release records, and rights education."},{"title":"Sample & Sound Library Organizer","category":"Production","description":"Catalog local samples, loops, instruments, licenses, keys, tempos, tags, projects, and provenance."},{"title":"Collaboration Session Room","category":"Collaboration","description":"Organize contributors, session goals, creative decisions, file handoffs, revisions, credits, and next actions."},{"title":"Accessible Music Toolkit","category":"Accessibility","description":"Large-note views, color-safe notation aids, keyboard controls, read-aloud guidance, and adaptable learning modes."},{"title":"VENUS™ Musician Community","category":"Community","description":"A future professional network for musician profiles, gigs, collaboration, events, portfolios, and opportunity."}];
+  const groupDescriptions = {
+    "Compose & Produce":"Studios and media tools for composition, arrangement, recording, and sound development.",
+    "Learn":"Foundational and intermediate music study with clear learning paths.",
+    "Research":"Music history, sources, archives, evidence, and cultural context.",
+    "Young Creators":"Child-friendly composition and broader educational pathways.",
+    "Share & Publish":"Writing, portfolios, community participation, and presentation.",
+    "Reflect & Restore":"Intentional listening, reflection, and creative renewal."
+  };
 
-  const root = document.getElementById("directoryRoot");
-  const plannedGrid = document.getElementById("plannedGrid");
-  const search = document.getElementById("hubSearch");
-  const clearSearch = document.getElementById("clearSearch");
-  const tabs = Array.from(document.querySelectorAll(".category-tab"));
-  const themeButton = document.getElementById("themeButton");
+  const directoryGroups = document.getElementById("directoryGroups");
+  const directorySearch = document.getElementById("directorySearch");
+  const resultCount = document.getElementById("resultCount");
+  const emptyState = document.getElementById("emptyState");
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  let activeFilter = "all";
+
+  function renderDirectory(){
+    const query = directorySearch.value.trim().toLowerCase();
+    const filtered = resources.filter(item=>{
+      const matchesCategory = activeFilter === "all" || item.category === activeFilter;
+      const haystack = `${item.title} ${item.group} ${item.description}`.toLowerCase();
+      return matchesCategory && (!query || haystack.includes(query));
+    });
+
+    resultCount.textContent = `${filtered.length} destination${filtered.length===1?"":"s"}`;
+    emptyState.style.display = filtered.length ? "none" : "block";
+
+    const order = ["Compose & Produce","Learn","Research","Young Creators","Share & Publish","Reflect & Restore"];
+    directoryGroups.innerHTML = order
+      .filter(group=>filtered.some(item=>item.group===group))
+      .map(group=>{
+        const items = filtered.filter(item=>item.group===group);
+        return `<section class="directory-group" id="${group.toLowerCase().replace(/[^a-z]+/g,"-")}">
+          <div class="directory-group-heading">
+            <h3>${group}</h3>
+            <p>${groupDescriptions[group]}</p>
+          </div>
+          <div class="directory-grid">
+            ${items.map(item=>`<a class="directory-card" href="${item.href}">
+              <div>
+                <strong>${item.title}</strong>
+                <span>${item.description}</span>
+              </div>
+              <span class="card-arrow">→</span>
+            </a>`).join("")}
+          </div>
+        </section>`;
+      }).join("");
+  }
+
+  chips.forEach(chip=>{
+    chip.addEventListener("click",()=>{
+      activeFilter = chip.dataset.filter;
+      chips.forEach(button=>button.classList.toggle("active",button===chip));
+      renderDirectory();
+    });
+  });
+  directorySearch.addEventListener("input",renderDirectory);
+
   const menuButton = document.getElementById("menuButton");
-  const topNavigation = document.getElementById("topNavigation");
-  let activeCategory = "all";
+  const drawerOverlay = document.getElementById("drawerOverlay");
+  const closeDrawer = document.getElementById("closeDrawer");
+  const drawerSearch = document.getElementById("drawerSearch");
+  const drawerTabs = Array.from(document.querySelectorAll(".drawer-tab"));
+  const drawerGroups = Array.from(document.querySelectorAll(".nav-group"));
+  let drawerFilter = "all";
 
-  function cardHTML(item){
-    const toneClass = item.tone === "teal" ? "teal-card" : item.tone === "violet" ? "violet-card" : item.tone === "rose" ? "rose-card" : "";
-    return `<article class="hub-card ${item.featured ? "featured" : ""} ${toneClass}" data-category="${item.category}">
-      <div class="card-top">
-        <div class="card-icon" aria-hidden="true">${item.icon}</div>
-        <span class="status live">Connected</span>
-      </div>
-      <h3>${item.title}</h3>
-      <div class="card-sub">${item.subtitle}</div>
-      <p>${item.description}</p>
-      ${item.features ? `<ul class="feature-list">${item.features.map(feature=>`<li>${feature}</li>`).join("")}</ul>` : ""}
-      <div class="card-actions">
-        <a class="button ${item.featured ? "primary" : ""}" href="${item.href}">${item.action}</a>
-      </div>
-    </article>`;
+  function openDrawer(){
+    drawerOverlay.classList.add("open");
+    menuButton.setAttribute("aria-expanded","true");
+    document.body.classList.add("menu-open");
+    setTimeout(()=>drawerSearch.focus(),80);
   }
 
-  function render(){
-    const query = search.value.trim().toLowerCase();
-    const filtered = destinations.filter(item=>{
-      const categoryMatch = activeCategory === "all" || item.category === activeCategory;
-      const haystack = [item.title,item.subtitle,item.description,item.section,...(item.features||[])].join(" ").toLowerCase();
-      return categoryMatch && (!query || haystack.includes(query));
+  function closeDrawerMenu(){
+    drawerOverlay.classList.remove("open");
+    menuButton.setAttribute("aria-expanded","false");
+    document.body.classList.remove("menu-open");
+    menuButton.focus();
+  }
+
+  function filterDrawer(){
+    const query = drawerSearch.value.trim().toLowerCase();
+    drawerGroups.forEach(group=>{
+      const categoryMatch = drawerFilter==="all" || group.dataset.category===drawerFilter;
+      let visibleLinks = 0;
+      group.querySelectorAll("a").forEach(link=>{
+        const visible = categoryMatch && (!query || link.textContent.toLowerCase().includes(query));
+        link.hidden = !visible;
+        if(visible) visibleLinks++;
+      });
+      group.hidden = visibleLinks===0;
     });
-
-    const sections = [
-      ["create","Create & Record","Studios and media tools for composition, arrangement, recording, practice, reference, and preservation."],
-      ["learn","Learn & Research","Music 101, Music 201, the ARSHIF Music Hall, source-based research, theory, history, and cultural context."],
-      ["young","Young Creators","Child-friendly composition, guided discovery, classroom pathways, and a welcoming first doorway into music."],
-      ["share","Share & Publish","Tools for lyrics, biographies, programs, portfolios, community participation, and creative opportunity."],
-      ["reflect","Reflect & Restore","Spaces for intentional listening, reflection, renewal, and returning to the work."]
-    ];
-
-    const visibleSections = sections.filter(([key])=>filtered.some(item=>item.category===key));
-    if(!visibleSections.length){
-      root.innerHTML = `<div class="empty-state">No music destinations match that search.</div>`;
-      return;
-    }
-
-    root.innerHTML = visibleSections.map(([key,title,description])=>{
-      const cards = filtered.filter(item=>item.category===key);
-      return `<section class="hub-section" id="${key}">
-        <div class="section-head">
-          <div><div class="section-kicker">${title}</div><h2>${title}</h2></div>
-          <p>${description}</p>
-        </div>
-        <div class="card-grid">${cards.map(cardHTML).join("")}</div>
-      </section>`;
-    }).join("");
   }
 
-  function renderPlanned(){
-    plannedGrid.innerHTML = planned.map(item=>`<article class="planned-item">
-      <span aria-hidden="true">⌁</span>
-      <div class="card-sub">${item.category}</div>
-      <h3>${item.title}</h3>
-      <p>${item.description}</p>
-    </article>`).join("");
-    document.getElementById("liveCount").textContent = destinations.length;
-    document.getElementById("plannedCount").textContent = planned.length;
-  }
-
-  tabs.forEach((tab,index)=>{
-    tab.addEventListener("click",()=>{
-      activeCategory = tab.dataset.category;
-      tabs.forEach(button=>button.setAttribute("aria-selected",String(button===tab)));
-      render();
-    });
-    tab.addEventListener("keydown",event=>{
-      if(!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;
-      event.preventDefault();
-      let next=index;
-      if(event.key==="ArrowRight") next=(index+1)%tabs.length;
-      if(event.key==="ArrowLeft") next=(index-1+tabs.length)%tabs.length;
-      if(event.key==="Home") next=0;
-      if(event.key==="End") next=tabs.length-1;
-      tabs[next].focus();
-      tabs[next].click();
-    });
+  menuButton.addEventListener("click",openDrawer);
+  closeDrawer.addEventListener("click",closeDrawerMenu);
+  drawerOverlay.addEventListener("click",event=>{
+    if(event.target===drawerOverlay) closeDrawerMenu();
   });
-
-  search.addEventListener("input",render);
-  clearSearch.addEventListener("click",()=>{
-    search.value="";
-    search.focus();
-    render();
-  });
-
-
-  function applyTheme(theme){
-    const next = theme === "light" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    const light = next === "light";
-    themeButton.textContent = light ? "Dark Theme" : "Light Theme";
-    themeButton.setAttribute("aria-pressed",String(light));
-    try{localStorage.setItem("the-refrain-theme-v1",next);}catch{}
-  }
-
-  themeButton.addEventListener("click",()=>{
-    applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
-  });
-
-  menuButton.addEventListener("click",()=>{
-    const open = topNavigation.classList.toggle("open");
-    menuButton.setAttribute("aria-expanded",String(open));
-  });
-
-  topNavigation.addEventListener("click",event=>{
-    if(event.target.closest("a")){
-      topNavigation.classList.remove("open");
-      menuButton.setAttribute("aria-expanded","false");
-    }
-  });
-
   document.addEventListener("keydown",event=>{
-    if(event.key==="Escape" && topNavigation.classList.contains("open")){
-      topNavigation.classList.remove("open");
-      menuButton.setAttribute("aria-expanded","false");
-      menuButton.focus();
-    }
+    if(event.key==="Escape" && drawerOverlay.classList.contains("open")) closeDrawerMenu();
+  });
+  drawerSearch.addEventListener("input",filterDrawer);
+  drawerTabs.forEach(tab=>{
+    tab.addEventListener("click",()=>{
+      drawerFilter=tab.dataset.drawerFilter;
+      drawerTabs.forEach(button=>button.classList.toggle("active",button===tab));
+      filterDrawer();
+    });
   });
 
-  applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
-  render();
-  renderPlanned();
+  renderDirectory();
 })();
 </script>
 </body>
