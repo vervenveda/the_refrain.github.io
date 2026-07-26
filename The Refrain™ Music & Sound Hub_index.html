@@ -3,16 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="The Refrain™ — a professional music and sound hub connecting creation, recording, learning, research, publishing, performance, and reflection across Verve N Veda.">
+  <meta name="description" content="The Refrain™ — the Verve N Veda music and sound gateway connecting composition, recording, young creators, Music 101 and 201, research, publishing, performance, and reflection.">
   <meta name="theme-color" content="#101426">
   <meta name="color-scheme" content="dark light">
-  <title>The Refrain™ — Music & Sound Hub</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
+  <title>The Refrain™ — Music, Composition & Learning Hall</title>
+<style>
     :root{
       --font-display:"Gaspacho","Cormorant Garamond",Georgia,serif;
       --font-brand:"Cinzel","Aboreto",Georgia,serif;
@@ -38,6 +33,7 @@
       --shadow:0 22px 70px rgba(0,0,0,.32);
       --radius:20px;
       --max:1240px;
+      --base-size:17px;
     }
 
     *{box-sizing:border-box}
@@ -52,6 +48,8 @@
         radial-gradient(circle at 52% 100%,rgba(157,141,216,.10),transparent 40rem),
         linear-gradient(145deg,var(--night),#090d19 72%);
       font-family:var(--font-ui);
+      font-size:var(--base-size);
+      font-synthesis:none;
       letter-spacing:.004em;
     }
 
@@ -122,7 +120,7 @@
         linear-gradient(145deg,rgba(213,181,111,.20),rgba(121,200,191,.10));
       color:var(--gold-2);
       font-family:var(--font-brand);
-      font-size:.72rem;
+      font-size:.84rem;
       font-weight:600;
       letter-spacing:.08em;
     }
@@ -130,7 +128,7 @@
     .brand-copy strong{
       display:block;
       font-family:var(--font-brand);
-      font-size:.78rem;
+      font-size:.90rem;
       font-weight:600;
       letter-spacing:.13em;
       text-transform:uppercase;
@@ -140,7 +138,7 @@
       display:block;
       margin-top:2px;
       color:var(--muted);
-      font-size:.67rem;
+      font-size:.91rem;
     }
 
     .topnav{
@@ -158,7 +156,7 @@
       padding:8px 10px;
       background:transparent;
       color:#d8dbea;
-      font-size:.68rem;
+      font-size:.80rem;
       font-weight:600;
     }
 
@@ -189,7 +187,7 @@
     .eyebrow,.section-kicker{
       color:var(--gold-2);
       font-family:var(--font-brand);
-      font-size:.62rem;
+      font-size:.87rem;
       font-weight:600;
       letter-spacing:.22em;
       text-transform:uppercase;
@@ -244,7 +242,7 @@
       gap:8px;
       background:rgba(255,255,255,.055);
       color:var(--ink);
-      font-size:.72rem;
+      font-size:.84rem;
       font-weight:650;
       transition:transform .16s ease,background .16s ease,border-color .16s ease;
     }
@@ -352,7 +350,7 @@
       display:block;
       margin-top:3px;
       color:var(--muted);
-      font-size:.62rem;
+      font-size:.87rem;
       line-height:1.45;
     }
 
@@ -392,7 +390,7 @@
       max-width:760px;
       margin:0;
       color:var(--muted);
-      font-size:.8rem;
+      font-size:.92rem;
       line-height:1.7;
     }
 
@@ -418,7 +416,7 @@
 
     .count-card span{
       color:var(--muted);
-      font-size:.61rem;
+      font-size:.86rem;
     }
 
     .directory-tools{
@@ -454,7 +452,7 @@
       padding:8px 10px;
       background:transparent;
       color:var(--ink);
-      font-size:.72rem;
+      font-size:.84rem;
     }
 
     .search button{
@@ -463,7 +461,7 @@
       padding:8px 10px;
       background:var(--night-3);
       color:var(--muted);
-      font-size:.68rem;
+      font-size:.80rem;
       font-weight:650;
     }
 
@@ -484,7 +482,7 @@
       padding:8px 11px;
       background:var(--panel);
       color:var(--muted);
-      font-size:.66rem;
+      font-size:.91rem;
       font-weight:600;
     }
 
@@ -518,7 +516,7 @@
       max-width:520px;
       margin:0;
       color:var(--muted);
-      font-size:.75rem;
+      font-size:.87rem;
       line-height:1.62;
     }
 
@@ -585,7 +583,7 @@
       color:var(--muted);
       background:rgba(255,255,255,.035);
       font-family:var(--font-brand);
-      font-size:.53rem;
+      font-size:.68rem;
       font-weight:600;
       letter-spacing:.11em;
       text-transform:uppercase;
@@ -614,7 +612,7 @@
     .card-sub{
       color:var(--gold-2);
       font-family:var(--font-brand);
-      font-size:.56rem;
+      font-size:.70rem;
       font-weight:600;
       letter-spacing:.15em;
       text-transform:uppercase;
@@ -623,7 +621,7 @@
     .hub-card p{
       margin:14px 0 0;
       color:var(--muted);
-      font-size:.74rem;
+      font-size:.86rem;
       line-height:1.67;
     }
 
@@ -634,7 +632,7 @@
       display:grid;
       gap:7px;
       color:#d8d9e2;
-      font-size:.68rem;
+      font-size:.80rem;
       line-height:1.45;
     }
 
@@ -692,7 +690,7 @@
     .planned-item p{
       margin:0;
       color:var(--muted);
-      font-size:.64rem;
+      font-size:.78rem;
       line-height:1.5;
     }
 
@@ -717,7 +715,7 @@
       max-width:760px;
       margin:0 auto;
       color:var(--muted);
-      font-size:.79rem;
+      font-size:.91rem;
       line-height:1.72;
     }
 
@@ -738,14 +736,14 @@
       gap:20px;
       flex-wrap:wrap;
       color:var(--muted);
-      font-size:.66rem;
+      font-size:.91rem;
       line-height:1.65;
     }
 
     .footer-inner strong{
       color:var(--gold-2);
       font-family:var(--font-brand);
-      font-size:.72rem;
+      font-size:.84rem;
       font-weight:600;
       letter-spacing:.1em;
       text-transform:uppercase;
@@ -759,6 +757,66 @@
       text-align:center;
       color:var(--muted);
     }
+
+
+    .theme-button{
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:8px 10px;
+      background:rgba(255,255,255,.045);
+      color:#d8dbea;
+      font-size:.80rem;
+      font-weight:650;
+    }
+
+    html[data-theme="light"]{
+      --night:#eef3f6;
+      --night-2:#e6edf2;
+      --night-3:#dce7ed;
+      --paper:#ffffff;
+      --paper-2:#edf2f5;
+      --ink:#172633;
+      --muted:#465b6a;
+      --faint:#667b88;
+      --gold:#9a6a1c;
+      --gold-2:#7d5412;
+      --teal:#167e76;
+      --violet:#6650a0;
+      --rose:#9d416e;
+      --line:rgba(34,74,96,.19);
+      --line-soft:rgba(34,74,96,.11);
+      --panel:rgba(255,255,255,.92);
+      --panel-2:rgba(238,244,247,.94);
+      --shadow:0 22px 60px rgba(46,67,82,.17);
+    }
+
+    html[data-theme="light"] body{
+      background:
+        radial-gradient(circle at 12% -4%,rgba(154,106,28,.10),transparent 33rem),
+        radial-gradient(circle at 92% 7%,rgba(22,126,118,.10),transparent 31rem),
+        radial-gradient(circle at 52% 100%,rgba(102,80,160,.08),transparent 40rem),
+        linear-gradient(145deg,#fafcfd,#edf3f6 72%);
+    }
+
+    html[data-theme="light"] body::before{opacity:.08}
+    html[data-theme="light"] .topbar{background:rgba(248,251,252,.92)}
+    html[data-theme="light"] .topnav a,
+    html[data-theme="light"] .menu-button,
+    html[data-theme="light"] .theme-button{color:var(--ink)}
+    html[data-theme="light"] .topnav{background:#f7fafb}
+    html[data-theme="light"] .hero-copy,
+    html[data-theme="light"] .feature-list{color:#344b5b}
+    html[data-theme="light"] .orbit-label{background:rgba(255,255,255,.91)}
+    html[data-theme="light"] .record{
+      background:
+        repeating-radial-gradient(circle,rgba(20,50,70,.05) 0 2px,transparent 3px 9px),
+        radial-gradient(circle at 38% 28%,#dce7ee,#9eb1bf 64%);
+    }
+    html[data-theme="light"] footer{background:#e8eff3}
+    html[data-theme="light"] .search input{color:var(--ink)}
+    html[data-theme="light"] .button{background:rgba(255,255,255,.72)}
+    html[data-theme="light"] .button.primary{color:#fff;background:linear-gradient(135deg,#9a6a1c,#bd8d35)}
+    html[data-theme="light"] .button.teal{color:#fff;background:linear-gradient(135deg,#167e76,#369b91)}
 
     @media(max-width:1040px){
       .hero-inner{
@@ -817,6 +875,16 @@
       *{scroll-behavior:auto!important;transition:none!important}
     }
   </style>
+<script>
+(function(){
+  try{
+    const saved=localStorage.getItem("the-refrain-theme-v1");
+    const theme=saved==="light"||saved==="dark" ? saved :
+      (window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.dataset.theme=theme;
+  }catch{document.documentElement.dataset.theme="dark";}
+})();
+</script>
 </head>
 <body>
 <a class="skip-link" href="#musicDirectory">Skip to the music directory</a>
@@ -831,11 +899,13 @@
       </span>
     </a>
 
+    <button class="theme-button" id="themeButton" type="button" aria-pressed="false">Light Theme</button>
     <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="topNavigation">Menu</button>
 
     <nav class="topnav" id="topNavigation" aria-label="Primary navigation">
       <a href="#create">Create</a>
       <a href="#learn">Learn</a>
+      <a href="#young">Young Creators</a>
       <a href="#share">Share</a>
       <a href="#reflect">Reflect</a>
       <a href="#future">Future Studios</a>
@@ -848,13 +918,13 @@
 <section class="hero" aria-labelledby="pageTitle">
   <div class="hero-inner">
     <div>
-      <div class="eyebrow">Professional Music · Sound · Learning · Community</div>
+      <div class="eyebrow">Composition · Recording · Music Education · Research · Community</div>
       <h1 id="pageTitle">The Refrain™<span>Where sound returns with purpose</span></h1>
-      <p class="hero-copy">A welcoming professional music hub for creating, recording, practicing, researching, publishing, sharing, teaching, and restoring through sound. The Refrain now has its own public home while connecting to music tools that remain in ProReSources, Verve N Veda, Khaemenes Academy, ARSHIF, Bazaar Art, and the Aurora Sanctuary.</p>
+      <p class="hero-copy">A welcoming music home for composers, young creators, families, students, teachers, artists, performers, researchers, and working musicians. Create in the studios, study through Music 101 and Music 201, enter the ARSHIF Music Hall, prepare music writing through PROSE, and preserve each project across the Verve N Veda ecosystem.</p>
       <div class="hero-actions">
-        <a class="button primary" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Open Harmony’s Haven Studio</a>
+        <a class="button primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Open Pro Composition Studio</a>
         <a class="button teal" href="#musicDirectory">Explore the Music Hub</a>
-        <a class="button" href="https://vervenveda.github.io/Arshif.github.io/">Enter ARSHIF Music Knowledge</a>
+        <a class="button" href="apps/ARSHIF_Music_Hall_Resources_Updated_index.html">Enter the ARSHIF Music Hall</a>
       </div>
     </div>
 
@@ -863,9 +933,9 @@
       <div class="orbit-ring two"></div>
       <div class="orbit-ring three"></div>
       <div class="record"><div class="record-core">THE<br>REFRAIN</div></div>
-      <div class="orbit-label a"><strong>Create</strong><span>Play, record, arrange, and compose.</span></div>
-      <div class="orbit-label b"><strong>Learn</strong><span>Theory, history, instruments, and research.</span></div>
-      <div class="orbit-label c"><strong>Share</strong><span>Publish, gather, perform, and collaborate.</span></div>
+      <div class="orbit-label a"><strong>Compose</strong><span>Write, arrange, score, record, and develop original music.</span></div>
+      <div class="orbit-label b"><strong>Learn</strong><span>Music 101, Music 201, theory, history, and research.</span></div>
+      <div class="orbit-label c"><strong>Grow</strong><span>Young creators, classrooms, practice, and guided discovery.</span></div>
       <div class="orbit-label d"><strong>Restore</strong><span>Reflection, sanctuary, and sound wellbeing.</span></div>
     </div>
   </div>
@@ -876,7 +946,7 @@
     <div>
       <div class="section-kicker">A connected creative home</div>
       <h2 id="refrainPurpose">Music does not live in only one room.</h2>
-      <p>The Refrain connects the studio to the archive, the classroom to the stage, the artist to the editor, and the finished work to the community. Each tool can remain in its proper repository while this independent hub gives the complete music ecosystem one recognizable doorway.</p>
+      <p>The Refrain connects composition studios to the archive, young creators to structured workshops, the classroom to the stage, the artist to the editor, and finished music to community presentation. Each application remains in its proper folder or repository while this landing page provides one dependable doorway.</p>
     </div>
     <div class="hub-count" aria-label="Hub status">
       <div class="count-card"><strong id="liveCount">0</strong><span>connected destinations</span></div>
@@ -900,6 +970,7 @@
     <button class="category-tab" role="tab" aria-selected="true" data-category="all">All</button>
     <button class="category-tab" role="tab" aria-selected="false" data-category="create">Create & Record</button>
     <button class="category-tab" role="tab" aria-selected="false" data-category="learn">Learn & Research</button>
+    <button class="category-tab" role="tab" aria-selected="false" data-category="young">Young Creators</button>
     <button class="category-tab" role="tab" aria-selected="false" data-category="share">Share & Publish</button>
     <button class="category-tab" role="tab" aria-selected="false" data-category="reflect">Reflect & Restore</button>
   </div>
@@ -922,7 +993,7 @@
     <h2>Creation, knowledge, community, and sanctuary—together.</h2>
     <p>The Refrain is not a single application. It is the professional music doorway that gives every sound-related project a recognizable home while allowing each studio, archive, classroom, and creative community to keep its own purpose.</p>
     <div class="hero-actions">
-      <a class="button primary" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Begin in Harmony’s Haven</a>
+      <a class="button primary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Begin in the Composition Studio</a>
       <a class="button" href="https://vervenveda.github.io/proresource_hub.github.io/">Return to ProReSources</a>
     </div>
   </section>
@@ -930,7 +1001,7 @@
 
 <footer>
   <div class="footer-inner">
-    <div><strong>The Refrain™</strong><br>Independent Music & Sound Gateway</div>
+    <div><strong>The Refrain™</strong><br>Music, Composition & Learning Gateway</div>
     <div>Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl · All Rights Reserved 2026</div>
   </div>
 </footer>
@@ -939,157 +1010,16 @@
 (()=>{
   "use strict";
 
-  const destinations = [
-    {
-      id:"harmony",
-      category:"create",
-      section:"Create & Record",
-      featured:true,
-      tone:"gold",
-      icon:"♬",
-      title:"Harmony’s Haven Studio™",
-      subtitle:"88-Key Multi-Track Music Studio · Hosted at ProReSources",
-      description:"Play a full piano keyboard, compare instruments, practice scales, record layered tracks, view notation, play arrangements, print staff work, and export project data.",
-      features:["88-key playable keyboard","Multi-track recorder and mix playback","Scale practice and staff notation"],
-      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html",
-      action:"Open Music Studio",
-      status:"live"
-    },
-    {
-      id:"fleapit",
-      category:"create",
-      section:"Create & Record",
-      tone:"teal",
-      icon:"▶",
-      title:"FleaPit™ Media Hub",
-      subtitle:"Music Video & Media Discovery · Hosted at ProReSources",
-      description:"Gather music videos, performances, public archives, lectures, and direct media into a private browser-based library.",
-      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html",
-      action:"Open Media Hub",
-      status:"live"
-    },
-    {
-      id:"arshif",
-      category:"learn",
-      section:"Learn & Research",
-      tone:"violet",
-      icon:"⌘",
-      title:"ARSHIF Music Knowledge",
-      subtitle:"History · Theory · Instruments · Archives",
-      description:"Enter the wider ARSHIF research environment for music history, cultural context, composers, instruments, scholarship, and source-based study.",
-      href:"https://vervenveda.github.io/Arshif.github.io/",
-      action:"Open ARSHIF",
-      status:"live"
-    },
-    {
-      id:"academy",
-      category:"learn",
-      section:"Learn & Research",
-      tone:"teal",
-      icon:"◇",
-      title:"Khaemenes Academy",
-      subtitle:"Music Learning Across Ages",
-      description:"Connect learners to age-appropriate music study, creative practice, classroom projects, and future Academy music courses.",
-      href:"https://vervenveda.github.io/khaemenesacademy.github.io/",
-      action:"Open the Academy",
-      status:"live"
-    },
-    {
-      id:"prose",
-      category:"share",
-      section:"Share & Publish",
-      tone:"violet",
-      icon:"¶",
-      title:"PROSE™ Editorial Suite",
-      subtitle:"Lyrics · Artist Bios · Liner Notes · Proposals",
-      description:"Write and refine lyrics, biographies, liner notes, press materials, grant applications, teaching notes, and publication-ready music writing.",
-      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html",
-      action:"Open PROSE",
-      status:"live"
-    },
-    {
-      id:"bazaar-live",
-      category:"share",
-      section:"Share & Publish",
-      tone:"rose",
-      icon:"✦",
-      title:"Bazaar Art Live",
-      subtitle:"333 Creative Community Feed · Hosted at ProReSources",
-      description:"Share music, studio notes, events, reels, collaborations, and creative announcements with an optional community feed.",
-      href:"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feed_index.html",
-      action:"Open Bazaar Art Live",
-      status:"live"
-    },
-    {
-      id:"bazaar-art",
-      category:"share",
-      section:"Share & Publish",
-      tone:"gold",
-      icon:"▧",
-      title:"Bazaar Art",
-      subtitle:"Creative Community & Opportunity Hub",
-      description:"Connect music-making to the broader Bazaar Art ecosystem of artists, opportunities, public work, portfolios, and creative enterprise.",
-      href:"https://vervenveda.github.io/bazaarart.github.io/",
-      action:"Open Bazaar Art",
-      status:"live"
-    },
-    {
-      id:"gallery",
-      category:"share",
-      section:"Share & Publish",
-      tone:"violet",
-      icon:"▣",
-      title:"My Art Gallery",
-      subtitle:"Portfolio & Creative Presentation",
-      description:"Present visual identity, album artwork, performance photography, project documentation, and interdisciplinary portfolios.",
-      href:"https://vervenveda.github.io/myartgallery.github.io/",
-      action:"Open Gallery",
-      status:"live"
-    },
-    {
-      id:"aurora",
-      category:"reflect",
-      section:"Reflect & Restore",
-      tone:"teal",
-      icon:"◌",
-      title:"The Aurora Sanctuary",
-      subtitle:"Reflection · Renewal · Creative Quiet",
-      description:"A restorative space for reflection, creative renewal, quiet practice, intentional listening, and returning to the work with clarity.",
-      href:"https://vervenveda.github.io/aurora.github.io/",
-      action:"Enter the Sanctuary",
-      status:"live"
-    },
-    {
-      id:"verve",
-      category:"reflect",
-      section:"Reflect & Restore",
-      tone:"gold",
-      icon:"V",
-      title:"Verve N Veda",
-      subtitle:"The Public Gateway",
-      description:"Return to the complete Verve N Veda matrix to explore connected learning, research, civic, health, creative, and professional spaces.",
-      href:"https://vervenveda.github.io/",
-      action:"Open Verve N Veda",
-      status:"live"
-    }
-  ];
+  const destinations = [{"id":"composition-pro","category":"create","section":"Create & Record","featured":true,"tone":"gold","icon":"♬","title":"Harmony’s Haven Pro Composition Studio","subtitle":"Advanced Composition · Arrangement · Creative Development","description":"Develop original pieces through a dedicated composition environment for themes, sections, instrumentation, arrangement decisions, and professional musical planning.","features":["Composition-centered project workspace","Arrangement and structural development","Direct home inside The Refrain repository"],"href":"apps/Harmonys_Haven_Pro_Composition_Studio_index.html","action":"Open Pro Composition Studio","status":"live"},{"id":"harmony-multitrack","category":"create","section":"Create & Record","tone":"teal","icon":"♫","title":"Harmony’s Haven Studio™ Multi-Track","subtitle":"88-Key Multi-Track Studio · Hosted at ProReSources","description":"Play a full keyboard, compare instruments, practice scales, record layered tracks, review notation, mix playback, and export project data.","features":["88-key playable keyboard","Layered recording and playback","Scale practice and staff notation"],"href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html","action":"Open Multi-Track Studio","status":"live"},{"id":"fleapit","category":"create","section":"Create & Record","tone":"violet","icon":"▶","title":"FleaPit™ Media Hub","subtitle":"Performance Video · Reference Media · Discovery","description":"Gather performances, public archives, music videos, lectures, interviews, and reference media into a focused browser-based collection.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html","action":"Open Media Hub","status":"live"},{"id":"arshif-music","category":"learn","section":"Learn & Research","featured":true,"tone":"violet","icon":"⌘","title":"ARSHIF Music Hall of Resources","subtitle":"Music History · Theory · Instruments · Research","description":"Enter the dedicated ARSHIF music resource hall for composers, cultures, instruments, musical forms, historical context, reference pathways, and deeper source-based study.","features":["Dedicated music-research directory","Historical and cultural context","Connected resource and study pathways"],"href":"apps/ARSHIF_Music_Hall_Resources_Updated_index.html","action":"Open the Music Hall","status":"live"},{"id":"music-101","category":"learn","section":"Learn & Research","tone":"teal","icon":"101","title":"Music 101 Workshop","subtitle":"Foundations of Music","description":"A structured introductory workshop covering notation, rhythm, pitch, the staff, scales, chords, listening, musical vocabulary, and foundational quizzes.","href":"education/Music%20101%20Workshop_index.html","action":"Begin Music 101","status":"live"},{"id":"music-201","category":"learn","section":"Learn & Research","tone":"gold","icon":"201","title":"Music 201 Workshop","subtitle":"Intermediate Music Study","description":"Continue into stronger theory, form, harmony, composition, analysis, listening, creative exercises, and intermediate knowledge checks.","href":"education/Music%20201%20Workshop_index.html","action":"Begin Music 201","status":"live"},{"id":"evidence","category":"learn","section":"Learn & Research","tone":"violet","icon":"ECS","title":"Evidence & Citation Studio","subtitle":"Music Research · Sources · Provenance","description":"Organize music-history claims, scholarly sources, quotations, evidence relationships, provenance hashes, citation drafts, and research exports.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Evidence_Citation_Studio/index.html","action":"Open Research Studio","status":"live"},{"id":"plera","category":"learn","section":"Learn & Research","tone":"teal","icon":"⌕","title":"PLERA™ Search Gate","subtitle":"Transparent Multi-Provider Research","description":"Prepare visible music-research queries, choose providers and source lanes, and move deliberately into public research resources.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PLERA%E2%84%A2%20Search%20Gate_index.html","action":"Open Search Gate","status":"live"},{"id":"little-composer","category":"young","section":"Young Creators","featured":true,"tone":"rose","icon":"♪","title":"Little Composer Studio","subtitle":"The Refrain for Young Music Makers","description":"A welcoming creative studio where children can explore melody, rhythm, instruments, patterns, imagination, and early composition through guided musical play.","features":["Child-friendly composition activities","Creative listening and pattern discovery","A direct pathway into Music 101"],"href":"apps/Little_Composer_Studio_The_Refrain_index.html","action":"Open Little Composer","status":"live"},{"id":"academy","category":"young","section":"Young Creators","tone":"teal","icon":"◇","title":"Khaemenes Academy","subtitle":"Music Learning Across Ages","description":"Connect young musicians to age-appropriate creative practice, classroom projects, broader academic work, and future Academy music courses.","href":"https://vervenveda.github.io/khaemenesacademy.github.io/","action":"Open the Academy","status":"live"},{"id":"prose","category":"share","section":"Share & Publish","featured":true,"tone":"violet","icon":"¶","title":"PROSE™ Editorial Suite","subtitle":"Lyrics · Artist Bios · Liner Notes · Proposals","description":"Write and refine lyrics, biographies, liner notes, press releases, program notes, grant applications, teaching materials, and publication-ready music writing.","features":["Long-form and short-form music writing","Versioning and editorial tools","Professional exports and preservation"],"href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html","action":"Open PROSE","status":"live"},{"id":"bazaar-live","category":"share","section":"Share & Publish","tone":"rose","icon":"✦","title":"Bazaar Art Live","subtitle":"333 Creative Community Feed","description":"Share studio notes, music events, rehearsal updates, performances, collaborations, creative announcements, and community posts.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feedindex.html","action":"Open Bazaar Art Live","status":"live"},{"id":"bazaar-art","category":"share","section":"Share & Publish","tone":"gold","icon":"▧","title":"Bazaar Art","subtitle":"Creative Community & Opportunity Hub","description":"Connect music to the broader Bazaar Art ecosystem of artists, portfolios, opportunities, public work, creative business, and interdisciplinary projects.","href":"https://vervenveda.github.io/bazaarart.github.io/","action":"Open Bazaar Art","status":"live"},{"id":"gallery","category":"share","section":"Share & Publish","tone":"teal","icon":"▣","title":"My Art Gallery","subtitle":"Visual Identity & Creative Presentation","description":"Present album artwork, performance photography, interdisciplinary projects, visual identity, and creative portfolio materials.","href":"https://vervenveda.github.io/myartgallery.github.io/","action":"Open Gallery","status":"live"},{"id":"aurora","category":"reflect","section":"Reflect & Restore","tone":"teal","icon":"◌","title":"The Aurora Sanctuary","subtitle":"Reflection · Renewal · Creative Quiet","description":"A restorative space for intentional listening, quiet practice, reflection, creative renewal, and returning to music with clarity.","href":"https://vervenveda.github.io/aurora.github.io/","action":"Enter the Sanctuary","status":"live"},{"id":"verve","category":"reflect","section":"Reflect & Restore","tone":"gold","icon":"V","title":"Verve N Veda","subtitle":"The Public Gateway","description":"Return to the wider Verve N Veda environment for connected learning, research, civic, health, creative, and professional resources.","href":"https://vervenveda.github.io/","action":"Open Verve N Veda","status":"live"}];
 
-  const planned = [
-    {title:"VENUS™",description:"A professional musicians’ social space for profiles, gigs, collaboration, and opportunity."},
-    {title:"GamutStudio™",description:"A synchronized music and video production studio for arranging multimedia work."},
-    {title:"Gamut Engine™",description:"A deeper audio-visual engine for timing, sequencing, rendering, and export."},
-    {title:"Song Embedder",description:"A focused tool for presenting songs, credits, lyrics, context, and shareable media."},
-    {title:"Ear Training Lab",description:"Intervals, pitch recognition, rhythm, chords, and progressive listening practice."},
-    {title:"Songwriting Room",description:"Structure, rhyme, melody notes, drafts, revisions, and version history."},
-    {title:"Performance Planner",description:"Rehearsal plans, set lists, stage notes, equipment, schedules, and run-of-show tools."},
-    {title:"Music Rights Desk",description:"Credits, splits, registrations, release records, permissions, and rights education."}
-  ];
+  const planned = [{"title":"Ear Training Lab","category":"Learning","description":"Progressive pitch, intervals, chord quality, rhythm recognition, melodic memory, and listening assessments."},{"title":"Rhythm & Beat Laboratory","category":"Learning","description":"Tempo, subdivision, meters, polyrhythms, beat-building, clapping practice, and visual rhythm exercises."},{"title":"Score & Lead Sheet Builder","category":"Composition","description":"Create melody lines, chord symbols, lyrics, rehearsal marks, printable lead sheets, and simple ensemble scores."},{"title":"Songwriting Room","category":"Composition","description":"Develop song structure, rhyme, lyrical themes, melodic notes, drafts, revisions, and version history."},{"title":"Soundscape & Foley Studio","category":"Production","description":"Plan environmental sound, effects, scene cues, field recordings, layers, and narrative audio sequences."},{"title":"Podcast & Spoken Word Studio","category":"Production","description":"Organize episodes, scripts, narration, music beds, segment timing, credits, notes, and release packages."},{"title":"Choir & Vocal Practice Studio","category":"Performance","description":"Voice-part practice, warmups, pronunciation, breathing, rehearsal notes, blend, and performance preparation."},{"title":"Instrument Practice Journal","category":"Performance","description":"Track exercises, repertoire, tempo goals, practice time, teacher notes, recordings, and progress reflections."},{"title":"Performance & Setlist Planner","category":"Performance","description":"Build set lists, rehearsal plans, stage notes, equipment lists, transitions, timing, and run-of-show records."},{"title":"Concert Program Studio","category":"Publishing","description":"Prepare programs, performer biographies, repertoire notes, acknowledgments, sponsors, and print-ready event materials."},{"title":"Music Portfolio & Press Kit Builder","category":"Publishing","description":"Combine biographies, photographs, recordings, reviews, repertoire, credits, links, and booking materials."},{"title":"Music Rights & Credits Desk","category":"Rights","description":"Track writers, performers, splits, credits, permissions, registrations, release records, and rights education."},{"title":"Sample & Sound Library Organizer","category":"Production","description":"Catalog local samples, loops, instruments, licenses, keys, tempos, tags, projects, and provenance."},{"title":"Collaboration Session Room","category":"Collaboration","description":"Organize contributors, session goals, creative decisions, file handoffs, revisions, credits, and next actions."},{"title":"Accessible Music Toolkit","category":"Accessibility","description":"Large-note views, color-safe notation aids, keyboard controls, read-aloud guidance, and adaptable learning modes."},{"title":"VENUS™ Musician Community","category":"Community","description":"A future professional network for musician profiles, gigs, collaboration, events, portfolios, and opportunity."}];
 
   const root = document.getElementById("directoryRoot");
   const plannedGrid = document.getElementById("plannedGrid");
   const search = document.getElementById("hubSearch");
   const clearSearch = document.getElementById("clearSearch");
   const tabs = Array.from(document.querySelectorAll(".category-tab"));
+  const themeButton = document.getElementById("themeButton");
   const menuButton = document.getElementById("menuButton");
   const topNavigation = document.getElementById("topNavigation");
   let activeCategory = "all";
@@ -1120,9 +1050,10 @@
     });
 
     const sections = [
-      ["create","Create & Record","Studios and media tools for playing, arranging, recording, practicing, and preserving sound."],
-      ["learn","Learn & Research","Music knowledge across scholarship, history, theory, classroom study, and cultural context."],
-      ["share","Share & Publish","Tools for writing, presentation, portfolios, community participation, and creative opportunity."],
+      ["create","Create & Record","Studios and media tools for composition, arrangement, recording, practice, reference, and preservation."],
+      ["learn","Learn & Research","Music 101, Music 201, the ARSHIF Music Hall, source-based research, theory, history, and cultural context."],
+      ["young","Young Creators","Child-friendly composition, guided discovery, classroom pathways, and a welcoming first doorway into music."],
+      ["share","Share & Publish","Tools for lyrics, biographies, programs, portfolios, community participation, and creative opportunity."],
       ["reflect","Reflect & Restore","Spaces for intentional listening, reflection, renewal, and returning to the work."]
     ];
 
@@ -1147,6 +1078,7 @@
   function renderPlanned(){
     plannedGrid.innerHTML = planned.map(item=>`<article class="planned-item">
       <span aria-hidden="true">⌁</span>
+      <div class="card-sub">${item.category}</div>
       <h3>${item.title}</h3>
       <p>${item.description}</p>
     </article>`).join("");
@@ -1180,6 +1112,20 @@
     render();
   });
 
+
+  function applyTheme(theme){
+    const next = theme === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    const light = next === "light";
+    themeButton.textContent = light ? "Dark Theme" : "Light Theme";
+    themeButton.setAttribute("aria-pressed",String(light));
+    try{localStorage.setItem("the-refrain-theme-v1",next);}catch{}
+  }
+
+  themeButton.addEventListener("click",()=>{
+    applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+  });
+
   menuButton.addEventListener("click",()=>{
     const open = topNavigation.classList.toggle("open");
     menuButton.setAttribute("aria-expanded",String(open));
@@ -1200,6 +1146,7 @@
     }
   });
 
+  applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   render();
   renderPlanned();
 })();
