@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Refrain Music 101 Workshop — a complete offline course in staff reading, rhythm, theory, harmony, composition, and sight-reading.">
+<title>The Refrain — Music 101 Workshop</title>
+<style>
+:root{
+  --paper:#fbf8f1;
+  --paper-2:#f2ecdf;
+  --surface:#fffdf8;
+  --surface-2:#f7f1e6;
+  --ink:#252536;
+  --muted:#646276;
+  --line:#d9cfbd;
+  --navy:#17233e;
+  --navy-2:#22345c;
+  --gold:#c99b43;
+  --gold-2:#efd99e;
+  --sage:#557d6a;
+  --rose:#a65f69;
+  --blue:#426f9f;
+  --good:#2f7a55;
+  --warn:#9a671e;
+  --bad:#a13f4d;
+  --shadow:0 24px 60px rgba(31,34,52,.13);
+  --radius:22px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-ui:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+html[data-theme="dark"]{
+  --paper:#101626;
+  --paper-2:#171f33;
+  --surface:#1b253b;
+  --surface-2:#222e48;
+  --ink:#f6f1e7;
+  --muted:#c9c4ba;
+  --line:#3a4864;
+  --navy:#0b1120;
+  --navy-2:#18243d;
+  --gold:#e2bb6d;
+  --gold-2:#6a552d;
+  --sage:#8bc4a8;
+  --rose:#e49aa5;
+  --blue:#8db7e1;
+  --good:#8bd2ad;
+  --warn:#f0c074;
+  --bad:#f0a0aa;
+  --shadow:0 24px 60px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(201,155,67,.13), transparent 35rem),
+    radial-gradient(circle at 92% 12%, rgba(66,111,159,.12), transparent 34rem),
+    linear-gradient(160deg,var(--paper),var(--paper-2));
+  font-family:var(--font-ui);
+  font-size:17px;
+  line-height:1.58;
+}
+button,input,select,textarea{font:inherit}
+button{touch-action:manipulation}
+a{color:inherit}
+.skip-link{
+  position:fixed;left:14px;top:-80px;z-index:9999;background:var(--navy);color:#fff;
+  padding:10px 14px;border-radius:10px
+}
+.skip-link:focus{top:14px}
+.shell{width:min(1440px,100%);margin:auto;padding:0 18px 50px}
+.appbar{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  min-height:72px;margin:0 -18px;padding:10px 18px;
+  color:#fff;background:rgba(17,29,52,.96);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(18px)
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:max-content}
+.brand-mark{
+  width:44px;height:44px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid rgba(239,217,158,.75);color:var(--gold-2);
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.03));
+  font-family:var(--font-display);font-size:1.4rem
+}
+.brand strong{display:block;font-family:var(--font-display);font-size:1.08rem;letter-spacing:.04em}
+.brand small{display:block;color:#d7dceb;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.nav-btn{
+  border:1px solid rgba(255,255,255,.14);background:transparent;color:#edf1fa;
+  border-radius:999px;padding:9px 12px;cursor:pointer;font-weight:750;font-size:.86rem
+}
+.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.12);border-color:rgba(239,217,158,.55)}
+.nav-btn.icon{min-width:42px;padding-inline:10px}
+main{min-height:70vh}
+.hero{
+  position:relative;overflow:hidden;margin:24px 0 20px;padding:clamp(28px,6vw,76px);
+  border-radius:32px;color:#fff;
+  background:
+    linear-gradient(110deg,rgba(11,17,32,.97),rgba(23,35,62,.91)),
+    repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.06) 31px 33px);
+  box-shadow:var(--shadow)
+}
+.hero::after{
+  content:"𝄞";position:absolute;right:clamp(20px,7vw,90px);top:50%;transform:translateY(-52%);
+  font-size:clamp(10rem,28vw,25rem);line-height:1;color:rgba(239,217,158,.09);
+  pointer-events:none
+}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:850;color:#efd99e}
+.hero h1{
+  position:relative;z-index:1;max-width:900px;margin:12px 0 14px;
+  font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);line-height:.91;font-weight:600;
+  letter-spacing:-.045em
+}
+.hero p{position:relative;z-index:1;max-width:760px;margin:0;color:#dce3f2;font-size:clamp(1.05rem,2vw,1.3rem)}
+.hero-actions,.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-actions{position:relative;z-index:1;margin-top:25px}
+.btn{
+  border:1px solid var(--line);border-radius:14px;padding:11px 15px;
+  background:var(--surface);color:var(--ink);font-weight:800;cursor:pointer;
+  box-shadow:0 8px 18px rgba(31,34,52,.08)
+}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--gold),#e8c77e);color:#211a0d;border-color:transparent}
+.btn.dark{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn.good{background:var(--good);color:#fff;border-color:transparent}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn.ghost{background:transparent}
+.btn.small{font-size:.86rem;padding:8px 11px}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.stats-grid,.feature-grid,.module-grid,.progress-grid{display:grid;gap:14px}
+.stats-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin:0 0 20px}
+.stat-card,.card,.module-card,.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.stat-card{padding:18px;text-align:center}
+.stat-card strong{display:block;font-family:var(--font-display);font-size:2rem;color:var(--navy-2)}
+html[data-theme="dark"] .stat-card strong{color:var(--gold)}
+.stat-card span{color:var(--muted);font-size:.9rem}
+.section{margin:28px 0}
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:14px}
+.section-head h2,.page-title{
+  margin:0;font-family:var(--font-display);font-weight:600;letter-spacing:-.025em
+}
+.section-head h2{font-size:clamp(2rem,4vw,3.2rem)}
+.section-head p{max-width:660px;margin:0;color:var(--muted)}
+.feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{padding:20px}
+.card h3{margin:0 0 7px;font-family:var(--font-display);font-size:1.35rem}
+.card p{margin:0;color:var(--muted)}
+.icon-badge{
+  display:grid;place-items:center;width:44px;height:44px;margin-bottom:12px;border-radius:14px;
+  background:var(--surface-2);border:1px solid var(--line);font-size:1.35rem
+}
+.module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.module-card{position:relative;padding:20px;overflow:hidden}
+.module-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold)}
+.module-card.done::before{background:var(--good)}
+.module-card h3{margin:5px 0 7px;font-family:var(--font-display);font-size:1.45rem}
+.module-card p{margin:0 0 12px;color:var(--muted)}
+.module-number{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:var(--blue)}
+.status{
+  display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;
+  border:1px solid var(--line);background:var(--surface-2);font-size:.78rem;font-weight:800
+}
+.status.done{color:var(--good)}
+.status.warn{color:var(--warn)}
+.course-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;margin-top:24px;align-items:start}
+.sidebar{position:sticky;top:92px;padding:15px;max-height:calc(100vh - 112px);overflow:auto}
+.sidebar h2{font-family:var(--font-display);margin:2px 4px 10px}
+.module-nav{display:flex;flex-direction:column;gap:7px}
+.module-link{
+  width:100%;text-align:left;border:1px solid transparent;border-radius:12px;padding:10px;
+  background:transparent;color:var(--ink);cursor:pointer
+}
+.module-link:hover,.module-link.active{background:var(--surface-2);border-color:var(--line)}
+.module-link strong{display:block;font-size:.9rem}
+.module-link small{color:var(--muted)}
+.content-panel{padding:clamp(20px,4vw,38px)}
+.page-title{font-size:clamp(2.4rem,6vw,4.8rem);line-height:1}
+.lead{font-size:1.1rem;color:var(--muted);max-width:850px}
+.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface-2);font-size:.8rem;font-weight:800
+}
+.lesson-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.lesson-block{padding:17px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line)}
+.lesson-block h3{font-family:var(--font-display);margin:0 0 8px}
+.lesson-block p{margin:0;color:var(--muted)}
+.list-card{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}
+.list-card h3{font-family:var(--font-display);margin:0 0 8px}
+.list-card ul{margin:0;padding-left:21px}
+.list-card li{margin:7px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.divider{height:1px;background:var(--line);margin:22px 0}
+.lab-shell{border:1px solid var(--line);border-radius:18px;background:var(--surface-2);padding:18px;overflow:hidden}
+.lab-menu{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.lab-menu .btn.active{background:var(--navy);color:#fff}
+.lab-stage{min-height:320px;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:18px}
+.staff-board{position:relative;max-width:900px;height:330px;margin:auto;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
+html[data-theme="dark"] .staff-board{background:#fdfcf8;color:#222}
+.staff-board svg{width:100%;height:100%;display:block}
+.staff-message{text-align:center;min-height:31px;margin:10px 0 0;font-weight:800;color:var(--blue)}
+.float-dot{
+  position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(66,111,159,.35);
+  animation:float 3.8s ease-in-out infinite;pointer-events:none
+}
+@keyframes float{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-32px);opacity:.9}}
+.answer-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.answer-btn{min-width:55px}
+.feedback{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-weight:800}
+.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}
+.scoreline{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;margin-bottom:12px}
+.rhythm-patterns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rhythm-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;text-align:center}
+.rhythm-card strong{font-size:1.4rem;display:block}
+.pulse{display:flex;gap:8px;justify-content:center;margin:18px 0}
+.pulse i{width:18px;height:18px;border-radius:50%;background:var(--line)}
+.pulse i.on{background:var(--gold);box-shadow:0 0 0 7px rgba(201,155,67,.18)}
+.quiz{margin-top:18px}
+.question{padding:17px;margin:12px 0;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}
+.question h4{margin:0 0 10px}
+.choice{
+  display:flex;gap:9px;align-items:flex-start;padding:9px 10px;margin:7px 0;
+  border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer
+}
+.choice:hover{border-color:var(--gold)}
+.choice input{margin-top:5px;transform:scale(1.15)}
+.explanation{margin-top:9px;padding:9px 11px;border-left:4px solid var(--gold);background:var(--surface);color:var(--muted)}
+textarea,input[type="text"],input[type="number"],select{
+  width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink)
+}
+textarea{min-height:120px;resize:vertical}
+.range-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+input[type="range"]{width:100%}
+.progress-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.progress-card{padding:18px}
+.progress-card strong{display:block;font-family:var(--font-display);font-size:2.2rem}
+.progress-track{height:14px;border-radius:999px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
+.progress-track span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--sage));width:0}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:680px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.final-banner{
+  padding:22px;border-radius:20px;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-2))
+}
+.final-banner h2{font-family:var(--font-display);margin:0 0 8px}
+.toast{
+  position:fixed;right:18px;bottom:18px;z-index:1000;max-width:360px;padding:12px 15px;
+  color:#fff;background:#20283a;border:1px solid rgba(255,255,255,.18);border-radius:13px;
+  box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.22s
+}
+.toast.show{transform:none;opacity:1}
+.footer{text-align:center;color:var(--muted);margin-top:38px;font-size:.86rem}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:1050px){
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .course-layout{grid-template-columns:1fr}
+  .sidebar{position:static;max-height:none}
+  .module-nav{display:grid;grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  body{font-size:16px}.shell{padding-inline:10px}.appbar{margin-inline:-10px;padding-inline:10px}
+  .brand small{display:none}.nav{gap:5px}.nav-btn{font-size:.76rem;padding:8px 9px}
+  .hero{border-radius:22px;padding:30px 22px}.stats-grid,.feature-grid,.module-grid,.lesson-grid,.two-col,.progress-grid{grid-template-columns:1fr}
+  .rhythm-patterns{grid-template-columns:1fr}.module-nav{grid-template-columns:1fr}
+  .staff-board{height:280px}
+}
+@media(max-width:480px){
+  .brand strong{font-size:.9rem}.brand-mark{width:38px;height:38px}.nav-btn span{display:none}
+  .hero h1{font-size:2.75rem}.content-panel{padding:17px}.range-row{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+@media print{
+  .appbar,.sidebar,.hero-actions,.btn,.lab-shell,.footer{display:none!important}
+  body{background:#fff;color:#111}.shell{width:100%;padding:0}.content-panel,.card,.panel{box-shadow:none;border-color:#bbb}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+<div class="shell">
+<header class="appbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">R</div>
+    <div><strong>The Refrain</strong><small>Music Learning Hall</small></div>
+  </div>
+  <nav class="nav" aria-label="Workshop navigation">
+    <button class="nav-btn" data-nav="home"><span>Home</span>⌂</button>
+    <button class="nav-btn" data-nav="curriculum"><span>Curriculum</span>▤</button>
+    <button class="nav-btn" data-nav="lab"><span>Practice Lab</span>♩</button>
+    <button class="nav-btn" data-nav="final"><span>Final</span>✓</button>
+    <button class="nav-btn" data-nav="progress"><span>Progress</span>◔</button>
+    <button class="nav-btn icon" id="themeBtn" aria-label="Switch appearance">☾</button>
+  </nav>
+</header>
+<main id="mainContent" tabindex="-1"></main>
+<footer class="footer">
+  <strong>The Refrain™ · Music 101 Workshop</strong><br>
+  Local, private, offline-first learning. Progress remains on this device unless exported by the learner.
+</footer>
+</div>
+<input type="file" id="importFile" accept="application/json" hidden>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const COURSE={"title":"The Refrain Music 101 Workshop","shortTitle":"Music 101 Workshop","tagline":"Reading · Rhythm · Theory · Harmony · Composition","modules":[{"title":"Sound, Pitch & the Five-Line Staff","subtitle":"Discover how visible height becomes musical pitch.","essential":"How can five simple lines represent an entire world of sound?","objectives":["Distinguish pitch from rhythm, volume, and tone color.","Identify the five lines and four spaces of a standard staff.","Count staff lines and spaces from the bottom upward.","Connect upward and downward movement on the staff with higher and lower pitch."],"vocab":["pitch","staff","line","space","ascending","descending","audiation"],"intention":"Take one quiet breath. Listen to the room, notice one high sound and one low sound, and begin with curiosity.","sections":[{"heading":"Sound becomes a visual language","body":"Music notation does not capture every detail of sound, but it gives musicians a shared map. Pitch describes how high or low a sound is. Rhythm describes when a sound begins and how long it lasts. Dynamics describe relative loudness, while timbre describes the character or color of a sound."},{"heading":"Five lines and four spaces","body":"A standard staff contains five horizontal lines and four spaces. Musicians count both lines and spaces from the bottom upward. A note placed higher on the page generally represents a higher pitch; a note placed lower represents a lower pitch."},{"heading":"Learning through sight, touch, and listening","body":"Tracing the staff, tapping lines, singing upward and downward patterns, and imagining a pitch before hearing it all strengthen musical reading. The inner hearing of written music is called audiation. It develops gradually through calm repetition."}],"workshop":["Trace all five lines from left to right while counting 1–5.","Tap each line and space in ascending order and listen for rising pitch.","Create a three-position pattern such as low–middle–high, then reverse it.","Close or soften your eyes and identify whether a tone moved upward or downward."],"lab":"staff","quiz":[{"prompt":"How many lines are on a standard musical staff?","options":["4","5","6","8"],"answer":1,"explain":"A standard staff has five horizontal lines."},{"prompt":"How many spaces are between the five staff lines?","options":["3","4","5","6"],"answer":1,"explain":"Five lines create four internal spaces."},{"prompt":"Staff lines and spaces are normally counted from which direction?","options":["Top downward","Bottom upward","Left to right","From the middle"],"answer":1,"explain":"Lines and spaces are counted from the bottom upward."},{"prompt":"A note written higher on the staff usually represents a…","options":["Louder sound","Longer sound","Higher pitch","Softer sound"],"answer":2,"explain":"Vertical position represents pitch height, not loudness or duration."},{"prompt":"Which word means the highness or lowness of a sound?","options":["Pitch","Rhythm","Timbre","Meter"],"answer":0,"explain":"Pitch describes how high or low a sound is."},{"prompt":"A staff by itself assigns exact letter names to its lines and spaces.","options":["True","False"],"answer":1,"explain":"A clef is needed to assign specific pitch names to staff positions."}]},{"title":"The Musical Alphabet, Clefs & Landmarks","subtitle":"Name notes with confidence in treble and bass clef.","essential":"How do clefs turn staff positions into specific note names?","objectives":["Use the repeating musical alphabet A through G.","Identify treble- and bass-clef landmark notes.","Read the line and space names in both clefs.","Recognize middle C and the purpose of ledger lines."],"vocab":["musical alphabet","clef","treble clef","bass clef","landmark note","middle C","ledger line"],"intention":"Say the musical alphabet A–G twice, then backward once. Accuracy matters more than speed.","sections":[{"heading":"The repeating alphabet","body":"Written pitch uses only seven letter names: A, B, C, D, E, F, and G. After G, the sequence returns to A. The same letters repeat in higher and lower octaves."},{"heading":"Treble and bass clefs","body":"A clef assigns pitch names to staff positions. The treble clef circles the second line, G4. Treble lines from bottom to top are E–G–B–D–F, and spaces spell F–A–C–E. The bass clef marks the fourth line, F3. Bass lines are G–B–D–F–A, and spaces are A–C–E–G."},{"heading":"Landmarks and ledger lines","body":"Landmark notes reduce memorization. Middle C sits between the treble and bass staves and is often written on a short ledger line. Ledger lines extend the staff temporarily for notes above or below its normal range."}],"workshop":["Point to the treble G line and bass F line before naming any other note.","Practice the treble line names E–G–B–D–F and spaces F–A–C–E.","Practice the bass line names G–B–D–F–A and spaces A–C–E–G.","Identify ten random notes using a landmark first, then count stepwise."],"lab":"notes","quiz":[{"prompt":"After G, the musical alphabet continues with…","options":["H","A","G again","C"],"answer":1,"explain":"The musical alphabet repeats A through G."},{"prompt":"The treble clef identifies the second line as which note?","options":["F","G","B","D"],"answer":1,"explain":"The treble clef curls around the G line."},{"prompt":"The bass clef dots surround the line for…","options":["D","E","F","G"],"answer":2,"explain":"The two bass-clef dots surround the F line."},{"prompt":"Which sequence gives the treble-clef spaces from bottom to top?","options":["F–A–C–E","E–G–B–D","A–C–E–G","G–B–D–F"],"answer":0,"explain":"Treble spaces spell FACE."},{"prompt":"What is the purpose of a ledger line?","options":["To change tempo","To extend the staff","To mark a rest","To divide measures"],"answer":1,"explain":"Ledger lines provide temporary staff positions above or below the five lines."},{"prompt":"Middle C helps connect treble and bass reading.","options":["True","False"],"answer":0,"explain":"Middle C is a central landmark between the two clefs."}]},{"title":"Pulse, Note Values & Rests","subtitle":"Build a steady beat and understand musical duration.","essential":"How do note and rest symbols organize sound and silence?","objectives":["Distinguish pulse from rhythm.","Recognize whole, half, quarter, eighth, and sixteenth notes.","Match common rests with their duration values.","Count and perform simple rhythm patterns accurately."],"vocab":["pulse","rhythm","duration","whole note","half note","quarter note","eighth note","sixteenth note","rest"],"intention":"Tap a slow, steady pulse for eight beats. Keep the pulse even before adding any rhythm.","sections":[{"heading":"Pulse and rhythm","body":"Pulse is the steady underlying beat. Rhythm is the pattern of long sounds, short sounds, and silences placed over that pulse. A performer can keep the pulse steady while the rhythm changes."},{"heading":"Relative note values","body":"In common quarter-note meter, a whole note lasts four beats, a half note two beats, a quarter note one beat, an eighth note half a beat, and a sixteenth note one quarter of a beat. These values are proportional: two halves equal one whole, and two eighths equal one quarter."},{"heading":"Silence has duration","body":"Rests are measured silences. Whole, half, quarter, eighth, and sixteenth rests occupy the same amount of musical time as their matching notes. A rest is active timing, not empty or lost time."}],"workshop":["Clap quarter notes while stepping a steady pulse.","Alternate one measure of sound with one measure of rests.","Count eighth notes aloud as 1-&-2-&-3-&-4-&.","Build and perform three different four-beat rhythm patterns."],"lab":"rhythm","quiz":[{"prompt":"Which term describes the steady underlying beat?","options":["Pulse","Pitch","Timbre","Clef"],"answer":0,"explain":"Pulse is the regular beat beneath a rhythm."},{"prompt":"In 4/4 time, a half note usually lasts…","options":["1 beat","2 beats","3 beats","4 beats"],"answer":1,"explain":"A half note lasts two quarter-note beats."},{"prompt":"Two eighth notes equal the duration of…","options":["One quarter note","One half note","One whole note","One sixteenth note"],"answer":0,"explain":"Each eighth note is half of a quarter note."},{"prompt":"A whole rest in 4/4 normally fills…","options":["Half a beat","One beat","Two beats","A full measure"],"answer":3,"explain":"A whole rest commonly indicates a full measure of silence in 4/4."},{"prompt":"Which counting syllables fit eighth notes in 4/4?","options":["1 2 3 4","1 & 2 & 3 & 4 &","1 la li 2 la li","A B C D"],"answer":1,"explain":"The ampersand marks the halfway point between quarter-note beats."},{"prompt":"A rest means the performer may stop counting.","options":["True","False"],"answer":1,"explain":"Rests must be counted as precisely as sounding notes."}]},{"title":"Measures, Meter & Time Signatures","subtitle":"Understand how beats are grouped and subdivided.","essential":"How does meter create recurring patterns of strong and weak beats?","objectives":["Explain the two numbers of a time signature.","Identify common simple meters including 2/4, 3/4, and 4/4.","Recognize the compound feel of 6/8.","Use bar lines, downbeats, and subdivisions when counting."],"vocab":["measure","bar line","meter","time signature","downbeat","subdivision","simple meter","compound meter"],"intention":"Count two measures of 4/4 aloud. Give beat one a gentle emphasis without rushing.","sections":[{"heading":"Measures and bar lines","body":"Bar lines divide music into measures. Each measure contains the number of beats established by the time signature. The first beat of a measure is the downbeat and often receives the strongest natural emphasis."},{"heading":"Reading a time signature","body":"The top number tells how many beat units are grouped in each measure. The bottom number indicates the written note value used as the counting unit. In 4/4, there are four quarter-note beats. In 3/4, there are three quarter-note beats."},{"heading":"Simple and compound subdivision","body":"Simple beats divide naturally into two equal parts. Compound beats divide into three. In 6/8, the six written eighth notes are commonly felt as two larger beats, each containing three eighth-note subdivisions."}],"workshop":["Conduct 2/4, 3/4, and 4/4 with clear downbeats.","Clap the same quarter-note rhythm in both 3/4 and 4/4.","Count 6/8 as two large beats: 1-la-li, 2-la-li.","Draw bar lines to divide an eight-beat rhythm into correct measures."],"lab":"rhythm","quiz":[{"prompt":"In 3/4 time, how many quarter-note beats are in each measure?","options":["2","3","4","6"],"answer":1,"explain":"The top number 3 indicates three beats per measure."},{"prompt":"What does the bottom number 4 usually indicate?","options":["Four measures","Quarter note as beat unit","Four sharps","Four rests"],"answer":1,"explain":"A bottom number of 4 refers to the quarter-note value."},{"prompt":"The first beat of a measure is called the…","options":["Pickup","Downbeat","Ledger","Cadence"],"answer":1,"explain":"Beat one is the downbeat."},{"prompt":"Which meter is commonly felt as two large beats divided into threes?","options":["2/4","3/4","4/4","6/8"],"answer":3,"explain":"6/8 is commonly grouped 3+3."},{"prompt":"A bar line primarily…","options":["Raises pitch","Divides measures","Changes dynamics","Adds a sharp"],"answer":1,"explain":"Bar lines show measure boundaries."},{"prompt":"Simple meter beats divide naturally into three equal parts.","options":["True","False"],"answer":1,"explain":"Simple beats divide into two; compound beats divide into three."}]},{"title":"Accidentals, Major Scales & Key Signatures","subtitle":"See the pattern behind sharps, flats, and major keys.","essential":"How do accidentals and key signatures organize the pitch collection of a piece?","objectives":["Explain sharps, flats, and naturals.","Apply the whole-step and half-step pattern of a major scale.","Recognize common major key signatures.","Recall the standard order of sharps and flats."],"vocab":["sharp","flat","natural","whole step","half step","scale","key signature","tonic","circle of fifths"],"intention":"Play or sing C–D–E–F–G slowly. Listen for the smaller step between E and F.","sections":[{"heading":"Accidentals change pitch","body":"A sharp raises a written pitch by one half step. A flat lowers it by one half step. A natural cancels a previous sharp or flat. Accidentals written beside notes normally apply through the remainder of that measure unless another accidental changes them."},{"heading":"The major-scale pattern","body":"Every major scale follows the interval pattern whole–whole–half–whole–whole–whole–half. Starting on different tonics requires different sharps or flats so the pattern remains consistent."},{"heading":"Key signatures and the circle","body":"A key signature places recurring sharps or flats at the beginning of each staff. Sharps appear in the order F–C–G–D–A–E–B. Flats appear in the reverse pattern B–E–A–D–G–C–F. The circle of fifths organizes keys by these accumulating accidentals."}],"workshop":["Build C, G, and F major scales using the major-scale step pattern.","Say the order of sharps and flats from memory.","Identify major keys with zero, one, two, and three accidentals.","Find the tonic note in three short written examples."],"lab":"keys","quiz":[{"prompt":"A sharp changes a note by…","options":["One half step higher","One whole step higher","One half step lower","Two octaves"],"answer":0,"explain":"A sharp raises a pitch by one semitone or half step."},{"prompt":"Which pattern creates a major scale?","options":["W–W–H–W–W–W–H","W–H–W–W–H–W–W","H–W–W–H–W–W–W","W–W–W–H–H–W–W"],"answer":0,"explain":"Major scales use W–W–H–W–W–W–H."},{"prompt":"Which major key has one sharp?","options":["C major","F major","G major","D major"],"answer":2,"explain":"G major contains F-sharp."},{"prompt":"Which major key has one flat?","options":["F major","G major","D major","A major"],"answer":0,"explain":"F major contains B-flat."},{"prompt":"What is the order of sharps?","options":["B E A D G C F","F C G D A E B","C D E F G A B","G D A E B F C"],"answer":1,"explain":"Sharps accumulate in the order F C G D A E B."},{"prompt":"A natural sign can cancel a sharp or flat.","options":["True","False"],"answer":0,"explain":"The natural restores the unaltered pitch."}]},{"title":"Intervals, Melodic Motion & Listening","subtitle":"Measure the distance and relationship between pitches.","essential":"How do intervals shape melody, harmony, and musical expectation?","objectives":["Count interval numbers inclusively.","Recognize steps, skips, and larger leaps.","Distinguish interval size from interval quality.","Use visual and listening clues to identify common intervals."],"vocab":["interval","unison","second","third","fourth","fifth","octave","step","skip","leap","quality"],"intention":"Sing two nearby notes, then two far-apart notes. Notice how distance changes the musical feeling.","sections":[{"heading":"Counting interval numbers","body":"An interval measures the distance between two pitches. Count both the starting and ending letter names: C to E is C–D–E, a third. C to G is a fifth. The same letter name eight notes apart forms an octave."},{"heading":"Staff geometry","body":"Adjacent line-to-space movement is usually a second, or step. Line-to-line and space-to-space movement forms odd-numbered intervals such as thirds and fifths. Larger visual distances suggest larger intervals."},{"heading":"Size and quality","body":"Interval size is the number: second, third, fourth, and so on. Quality describes the exact half-step content: major, minor, perfect, augmented, or diminished. Beginning readers should identify size first, then add quality."}],"workshop":["Name the size of intervals beginning on C.","Sort written examples into steps, skips, and leaps.","Sing a unison, third, fifth, and octave from a comfortable pitch.","Identify whether two displayed notes move upward, downward, or repeat."],"lab":"intervals","quiz":[{"prompt":"Counting letter names, C up to E is a…","options":["2nd","3rd","4th","5th"],"answer":1,"explain":"Count C–D–E, including both endpoints."},{"prompt":"Adjacent line-to-space movement usually forms a…","options":["2nd","3rd","5th","Octave"],"answer":0,"explain":"Adjacent staff positions are a step, or second."},{"prompt":"A line-to-line interval is always even-numbered.","options":["True","False"],"answer":1,"explain":"Line-to-line and space-to-space intervals are odd-numbered."},{"prompt":"Which interval repeats the same letter name at a higher or lower register?","options":["Second","Third","Fifth","Octave"],"answer":3,"explain":"An octave connects the same letter name eight scale degrees apart."},{"prompt":"Which term describes the exact type of a third, such as major or minor?","options":["Meter","Quality","Clef","Tempo"],"answer":1,"explain":"Major and minor are interval qualities."},{"prompt":"A melodic skip is commonly a third.","options":["True","False"],"answer":0,"explain":"A third skips over one letter or staff position."}]},{"title":"Triads, Chords & Harmonic Function","subtitle":"Build harmony by stacking and connecting intervals.","essential":"How do individual notes combine to create chords and harmonic direction?","objectives":["Identify the root, third, and fifth of a triad.","Construct major, minor, diminished, and augmented triads.","Recognize root position and basic inversions.","Understand the foundational roles of I, IV, and V chords."],"vocab":["chord","triad","root","third","fifth","major","minor","diminished","augmented","inversion","tonic","dominant"],"intention":"Play or imagine C–E–G together, then C–E-flat–G. Listen for the change in color.","sections":[{"heading":"Triads stack thirds","body":"A basic triad contains three chord members: root, third, and fifth. In root position they can be formed by stacking one third above another. C–E–G is a C triad."},{"heading":"Chord qualities","body":"A major triad contains a major third plus a minor third. A minor triad reverses that pattern. A diminished triad contains two minor thirds; an augmented triad contains two major thirds."},{"heading":"Function and inversion","body":"In tonal music, the tonic chord provides stability, the predominant often moves away from tonic, and the dominant creates tension that tends to resolve home. Inversions reorder chord tones while preserving the chord identity."}],"workshop":["Build major and minor triads on C, F, and G.","Identify root, third, and fifth in five written triads.","Compare root position, first inversion, and second inversion.","Play or sing a simple I–IV–V–I progression."],"lab":"chords","quiz":[{"prompt":"A basic triad contains…","options":["Two notes","Three chord members","Four measures","Five scales"],"answer":1,"explain":"Triads are built from root, third, and fifth."},{"prompt":"Which notes form a C-major triad?","options":["C–D–E","C–E–G","C–F–A","C–E-flat–G"],"answer":1,"explain":"C–E–G forms the C-major triad."},{"prompt":"A minor triad contains a minor third followed by a major third.","options":["True","False"],"answer":0,"explain":"That interval pattern creates a minor triad."},{"prompt":"Which scale-degree chord most strongly creates tension toward tonic?","options":["I","IV","V","vi"],"answer":2,"explain":"The dominant, V, strongly points toward I."},{"prompt":"What changes in a chord inversion?","options":["The chord identity always changes","The order of chord tones","The time signature","The key signature"],"answer":1,"explain":"An inversion changes which chord member is lowest."},{"prompt":"A diminished triad contains two minor thirds.","options":["True","False"],"answer":0,"explain":"Stacking two minor thirds creates a diminished triad."}]},{"title":"Dynamics, Articulation, Tempo & Expression","subtitle":"Read the instructions that shape musical character.","essential":"How does notation communicate not only what to play, but how to play it?","objectives":["Interpret common dynamic markings.","Distinguish staccato, legato, accent, and tenuto.","Recognize common tempo terms and metronome markings.","Differentiate ties, slurs, crescendo, and diminuendo."],"vocab":["dynamics","piano","forte","crescendo","diminuendo","articulation","staccato","legato","accent","tenuto","tempo"],"intention":"Speak one sentence softly, then loudly, then with a gentle crescendo. Notice how expression changes meaning.","sections":[{"heading":"Dynamic levels and change","body":"Dynamic markings indicate relative volume. Piano means soft and forte means loud. Mezzo means medium. Crescendo asks for a gradual increase, while diminuendo or decrescendo asks for a gradual decrease."},{"heading":"Articulation shapes each note","body":"Staccato means short and detached. Legato means smoothly connected. An accent emphasizes a note, while tenuto asks for full value or gentle stress. Articulation changes character without changing the written pitch."},{"heading":"Tempo and phrasing","body":"Tempo terms such as largo, andante, moderato, and allegro suggest speed and character. A metronome marking gives a measured pulse. Slurs group notes into a connected phrase; ties join identical pitches into one longer duration."}],"workshop":["Perform one rhythm using four different dynamic levels.","Play or speak the same pattern staccato and legato.","Match common Italian tempo words with approximate character.","Scan a short score and mark every expressive instruction before performing."],"lab":"symbols","quiz":[{"prompt":"Which marking means gradually louder?","options":["dim.","cresc.","rit.","pp"],"answer":1,"explain":"Crescendo means to increase volume gradually."},{"prompt":"Staccato means notes should be…","options":["Short and detached","Smoothly connected","Very slow","Always loud"],"answer":0,"explain":"Staccato shortens and separates note attacks."},{"prompt":"Which term means moderately walking in character?","options":["Andante","Presto","Grave","Fortissimo"],"answer":0,"explain":"Andante traditionally suggests a walking pace."},{"prompt":"A tie joins…","options":["Different pitches into a phrase","Identical pitches into one duration","Two measures into one page","Two dynamics"],"answer":1,"explain":"Ties extend the duration of the same pitch."},{"prompt":"A slur and a tie have exactly the same function.","options":["True","False"],"answer":1,"explain":"A slur shapes phrasing across different pitches; a tie extends identical pitches."},{"prompt":"Tenuto generally asks the performer to give a note its full value.","options":["True","False"],"answer":0,"explain":"Tenuto suggests sustaining or gently stressing the note."}]},{"title":"Melody, Phrases, Cadences & Form","subtitle":"Organize musical ideas into meaningful structures.","essential":"How do small musical ideas grow into phrases, sections, and complete pieces?","objectives":["Identify motifs and phrases.","Describe melodic contour and sequence.","Recognize basic cadential arrival.","Distinguish common forms such as AB, ABA, and verse–chorus."],"vocab":["motif","melody","contour","sequence","phrase","cadence","form","binary","ternary","verse","chorus"],"intention":"Hum a short four-note idea. Repeat it once, then change only the ending.","sections":[{"heading":"Motifs and melodic contour","body":"A motif is a short, recognizable musical idea. Melody develops through repetition, variation, sequence, contrast, and return. Contour describes whether the melody rises, falls, arches, waves, or remains mostly level."},{"heading":"Phrases and cadences","body":"A phrase is a musical thought, often compared with a sentence. Phrases commonly move toward cadences, which create degrees of pause, completion, or expectation. Breathing and articulation often reveal phrase boundaries."},{"heading":"Larger forms","body":"Binary form contains two main sections, AB. Ternary form returns to the opening material, ABA. Many songs use verse–chorus structure, while other pieces use rondo, theme and variations, or through-composed designs."}],"workshop":["Create a four-note motif and write three variations.","Draw the contour of a familiar melody as a line.","Compose two four-measure phrases: a question and an answer.","Label the sections of a familiar song as verse, chorus, bridge, or return."],"lab":"staff","quiz":[{"prompt":"A short recognizable musical idea is called a…","options":["Motif","Meter","Clef","Ledger"],"answer":0,"explain":"A motif is a compact musical idea that can be developed."},{"prompt":"Melodic contour describes…","options":["The instrument price","The shape of pitch movement","The number of measures only","The volume setting"],"answer":1,"explain":"Contour tracks the rising and falling shape of a melody."},{"prompt":"ABA is an example of…","options":["Binary form","Ternary form","One-part form","Twelve-bar meter"],"answer":1,"explain":"Ternary form has an opening, contrasting middle, and return."},{"prompt":"A cadence often creates a sense of…","options":["Arrival or pause","Instrument change only","Accidental cancellation","Staff extension"],"answer":0,"explain":"Cadences shape endings, pauses, and harmonic expectations."},{"prompt":"A sequence repeats an idea at a different pitch level.","options":["True","False"],"answer":0,"explain":"A sequence transposes a pattern successively."},{"prompt":"Verse–chorus form uses identical text and music in every section.","options":["True","False"],"answer":1,"explain":"Verses and choruses normally have different functions and often different text or music."}]},{"title":"Sight-Reading, Ensemble Skills & Final Workshop","subtitle":"Combine notation, listening, and steady performance habits.","essential":"How can a musician read ahead, keep the pulse, and recover calmly in real time?","objectives":["Use a reliable pre-reading scan.","Maintain pulse through small mistakes.","Read ahead by beats or measures.","Apply rehearsal, ensemble, and self-evaluation strategies."],"vocab":["sight-reading","scan","count-in","read ahead","rehearsal mark","cue","balance","blend","recovery"],"intention":"Choose a comfortable tempo. Silently count one full measure before beginning.","sections":[{"heading":"Scan before sounding","body":"Before sight-reading, check the clef, key signature, time signature, tempo, starting pitch, rhythm patterns, accidentals, dynamics, repeats, and ending. A brief scan prevents many avoidable errors."},{"heading":"Keep time and read ahead","body":"Sight-reading improves when the pulse continues even after a small mistake. Read slightly ahead of what the hands or voice are performing. Use landmarks and pattern recognition rather than naming every note in isolation."},{"heading":"Ensemble awareness and reflection","body":"In an ensemble, watch the leader, listen across the group, match articulation, balance your volume, and respond to rehearsal marks. After performing, identify one strength and one precise next step rather than judging the entire attempt."}],"workshop":["Complete a ten-second scan before each short example.","Clap a rhythm without stopping, even after an intentional mistake.","Read one beat ahead while tapping the current beat.","Prepare a four- to eight-measure final performance or composition."],"lab":"mixed","quiz":[{"prompt":"What should a musician inspect before sight-reading?","options":["Only the title","Clef, key, meter, tempo, and roadmap","Only the final note","Only dynamics"],"answer":1,"explain":"A complete scan includes pitch, rhythm, tempo, and structural information."},{"prompt":"During sight-reading, a small mistake should usually be followed by…","options":["Stopping immediately","Continuing with the pulse","Starting the course over","Ignoring the conductor"],"answer":1,"explain":"Continuity preserves meter and ensemble coordination."},{"prompt":"Reading ahead means…","options":["Skipping measures","Looking slightly beyond the note being performed","Playing faster than written","Reading only note names"],"answer":1,"explain":"Eyes should prepare upcoming information before it is sounded."},{"prompt":"A rehearsal mark helps musicians…","options":["Change instrument price","Find a shared location quickly","Raise every pitch","Remove the time signature"],"answer":1,"explain":"Rehearsal marks provide common navigation points."},{"prompt":"Good ensemble balance means always being the loudest player.","options":["True","False"],"answer":1,"explain":"Balance requires adjusting so important musical lines can be heard appropriately."},{"prompt":"A useful self-evaluation identifies one strength and one specific next step.","options":["True","False"],"answer":0,"explain":"Specific reflection supports continued improvement."}]}]};
+const FINAL_QUESTIONS=COURSE.modules.flatMap((m,mi)=>m.quiz.slice(0,2).map(q=>({...q,module:mi})));
+const STORE_KEY="the-refrain-music101-workshop-v1";
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function freshState(){
+  return{
+    view:"home",module:0,theme:"light",
+    completed:{},quizzes:{},reflections:{},
+    practice:{},labStats:{attempts:0,correct:0},
+    final:{answers:{},score:null,attempts:0,submittedAt:""},
+    profile:{name:""}
+  };
+}
+function normalize(raw){
+  const base=freshState(),x=raw&&typeof raw==="object"?raw:{};
+  return{
+    ...base,...x,
+    completed:x.completed||{},quizzes:x.quizzes||{},reflections:x.reflections||{},
+    practice:x.practice||{},labStats:{...base.labStats,...(x.labStats||{})},
+    final:{...base.final,...(x.final||{}),answers:(x.final&&x.final.answers)||{}},
+    profile:{...base.profile,...(x.profile||{})}
+  };
+}
+function loadState(){
+  try{return normalize(JSON.parse(localStorage.getItem(STORE_KEY)||"null"))}
+  catch{return freshState()}
+}
+let state=loadState();
+let toastTimer=null,audioCtx=null,activeNodes=new Set(),metroTimer=null,metroBeat=0,currentLab="staff",labSession={};
+
+function saveState(){
+  try{localStorage.setItem(STORE_KEY,JSON.stringify(state))}
+  catch{showToast("This browser could not save progress. Export a backup before leaving.")}
+}
+function showToast(msg){
+  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2800)
+}
+function today(){
+  const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`
+}
+function completedCount(){return COURSE.modules.filter((_,i)=>state.completed[i]).length}
+function coursePercent(){return Math.round(completedCount()/COURSE.modules.length*100)}
+function practiceLast(days){
+  let total=0;const now=new Date();
+  for(let i=0;i<days;i++){const d=new Date(now);d.setDate(d.getDate()-i);const k=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;total+=Number(state.practice[k]||0)}
+  return total
+}
+function streak(){
+  let count=0,d=new Date();
+  for(let i=0;i<366;i++){const k=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;if(Number(state.practice[k]||0)>0){count++;d.setDate(d.getDate()-1)}else if(i===0){d.setDate(d.getDate()-1)}else break}
+  return count
+}
+function qState(i){
+  if(!state.quizzes[i])state.quizzes[i]={answers:{},score:null,attempts:0,submittedAt:""};
+  return state.quizzes[i]
+}
+function setTheme(theme){
+  state.theme=theme;document.documentElement.dataset.theme=theme;
+  $("#themeBtn").textContent=theme==="dark"?"☀":"☾";
+  $("#themeBtn").setAttribute("aria-label",theme==="dark"?"Use light appearance":"Use dark appearance");
+  saveState()
+}
+function navigate(view,arg){
+  stopMetronome();stopAudio();
+  state.view=view;if(Number.isInteger(arg))state.module=arg;saveState();render();
+  requestAnimationFrame(()=>{window.scrollTo({top:0,behavior:"smooth"});$("#mainContent")?.focus({preventScroll:true})})
+}
+function updateNav(){
+  $$("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===state.view))
+}
+function render(){
+  updateNav();
+  const main=$("#mainContent");
+  if(state.view==="curriculum")main.innerHTML=curriculumHTML();
+  else if(state.view==="module")main.innerHTML=moduleHTML(state.module);
+  else if(state.view==="lab")main.innerHTML=labHTML();
+  else if(state.view==="final")main.innerHTML=finalHTML();
+  else if(state.view==="progress")main.innerHTML=progressHTML();
+  else main.innerHTML=homeHTML();
+  bindView()
+}
+
+function homeHTML(){
+  const done=completedCount(),pct=coursePercent();
+  return `
+  <section class="hero">
+    <div class="eyebrow">The Refrain · Foundational Musicianship</div>
+    <h1>Music 101 Workshop</h1>
+    <p>A complete beginning course in staff reading, rhythm, meter, scales, intervals, harmony, expression, composition, and confident sight-reading.</p>
+    <div class="hero-actions">
+      <button class="btn primary" data-action="continue">${done?"Continue Workshop":"Begin Module One"}</button>
+      <button class="btn" data-action="curriculum">Explore the Curriculum</button>
+      <button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.3)" data-action="lab">Open Practice Lab</button>
+    </div>
+  </section>
+  <section class="stats-grid" aria-label="Workshop summary">
+    <div class="stat-card"><strong>10</strong><span>comprehensive modules</span></div>
+    <div class="stat-card"><strong>60</strong><span>lesson quiz questions</span></div>
+    <div class="stat-card"><strong>20</strong><span>final assessment questions</span></div>
+    <div class="stat-card"><strong>${pct}%</strong><span>current completion</span></div>
+  </section>
+  <section class="section">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">One connected workshop</div><h2>Learn, hear, practice, and apply.</h2></div>
+    <p>The earlier staff explorations and Reading Music course now live inside one organized learning journey. Every concept leads into a practical lab and an auto-scored quiz.</p></div>
+    <div class="feature-grid">
+      ${[
+        ["♪","Read Music","Treble and bass clefs, landmark notes, ledger lines, rhythm, meter, and key signatures."],
+        ["◉","Train the Ear","Clickable staff positions, pitch direction, intervals, chords, and listening relationships."],
+        ["♩","Practice Actively","Native Web Audio labs, metronome activities, note drills, and mixed review."],
+        ["✓","Measure Progress","Module quizzes, retakes, final assessment, practice logs, backups, and a printable certificate."]
+      ].map(x=>`<article class="card"><div class="icon-badge">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></article>`).join("")}
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Course path</div><h2>From five lines to full musicianship.</h2></div>
+    <button class="btn" data-action="curriculum">View all modules</button></div>
+    <div class="module-grid">
+      ${COURSE.modules.slice(0,4).map((m,i)=>moduleCard(m,i)).join("")}
+    </div>
+  </section>
+  <section class="section">
+    <div class="final-banner">
+      <h2>Your work remains yours.</h2>
+      <p>This workshop uses no external fonts, scripts, analytics, or required web services. Lessons, quizzes, reflections, practice minutes, and progress are stored in your browser and can be exported as a private backup.</p>
+    </div>
+  </section>`
+}
+function moduleCard(m,i){
+  const q=qState(i),done=!!state.completed[i];
+  return `<article class="module-card ${done?"done":""}">
+    <div class="module-number">Module ${i+1}</div>
+    <h3>${esc(m.title)}</h3><p>${esc(m.subtitle)}</p>
+    <div class="row"><span class="status ${done?"done":"warn"}">${done?"✓ Completed":q.score!==null?`${q.score}% quiz`:"Ready"}</span>
+    <button class="btn small" data-open-module="${i}">Open module</button></div>
+  </article>`
+}
+function curriculumHTML(){
+  return `<section class="section">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Complete curriculum</div><h2>Ten modules, one coherent foundation.</h2></div>
+    <p>Modules remain open so families, adults, and classrooms can move at an appropriate pace. A score of 80% or higher completes a module.</p></div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="row" style="justify-content:space-between"><strong>${completedCount()} of 10 modules complete</strong><span>${coursePercent()}%</span></div>
+      <div class="progress-track" aria-label="Course progress"><span style="width:${coursePercent()}%"></span></div>
+    </div>
+    <div class="module-grid">${COURSE.modules.map((m,i)=>moduleCard(m,i)).join("")}</div>
+  </section>`
+}
+function sidebarHTML(active){
+  return `<aside class="panel sidebar"><h2>Workshop Modules</h2><div class="module-nav">
+  ${COURSE.modules.map((m,i)=>`<button class="module-link ${i===active?"active":""}" data-open-module="${i}">
+  <strong>${state.completed[i]?"✓ ":""}${i+1}. ${esc(m.title)}</strong><small>${qState(i).score===null?"Not assessed":qState(i).score+"% quiz score"}</small></button>`).join("")}
+  </div></aside>`
+}
+function moduleHTML(i){
+  const m=COURSE.modules[i],qs=qState(i),done=!!state.completed[i];
+  return `<div class="course-layout">
+    ${sidebarHTML(i)}
+    <article class="panel content-panel">
+      <div class="eyebrow" style="color:var(--blue)">Module ${i+1} of ${COURSE.modules.length}</div>
+      <h1 class="page-title">${esc(m.title)}</h1>
+      <p class="lead">${esc(m.subtitle)}</p>
+      <div class="meta-row">
+        <span class="chip">${done?"✓ Complete":"In progress"}</span>
+        <span class="chip">${qs.score===null?"Quiz not submitted":`Best score: ${qs.score}%`}</span>
+        <span class="chip">45–60 minute workshop</span>
+      </div>
+      <div class="list-card"><h3>Essential question</h3><p>${esc(m.essential)}</p></div>
+      <div class="two-col" style="margin-top:14px">
+        <div class="list-card"><h3>Learning objectives</h3><ul>${m.objectives.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="list-card"><h3>Vocabulary</h3><div class="meta-row">${m.vocab.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div></div>
+      </div>
+      <div class="card" style="margin-top:14px;box-shadow:none"><strong>Opening reflection:</strong> ${esc(m.intention)}</div>
+      <div class="lesson-grid">${m.sections.map(s=>`<section class="lesson-block"><h3>${esc(s.heading)}</h3><p>${esc(s.body)}</p></section>`).join("")}</div>
+      <div class="two-col">
+        <div class="list-card"><h3>Workshop practice</h3><ol>${m.workshop.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
+        <div class="list-card"><h3>Personal notes</h3><textarea id="reflectionBox" placeholder="Record discoveries, questions, or practice notes…">${esc(state.reflections[i]||"")}</textarea><button class="btn small" id="saveReflection" style="margin-top:8px">Save notes</button></div>
+      </div>
+      <div class="divider"></div>
+      <section>
+        <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Interactive practice</div><h2 style="font-size:2.2rem">Module lab</h2></div>
+        <button class="btn" data-go-lab="${m.lab}">Open full Practice Lab</button></div>
+        <div class="lab-shell" id="moduleLab"><div class="lab-stage" id="moduleLabStage"></div></div>
+      </section>
+      <div class="divider"></div>
+      ${quizHTML(i)}
+      <div class="divider"></div>
+      <div class="row" style="justify-content:space-between">
+        <button class="btn" data-module-nav="${i-1}" ${i===0?"disabled":""}>← Previous</button>
+        <button class="btn primary" data-module-nav="${i+1}" ${i===COURSE.modules.length-1?"disabled":""}>Next module →</button>
+      </div>
+    </article>
+  </div>`
+}
+function quizHTML(i){
+  const m=COURSE.modules[i],qs=qState(i);
+  return `<section class="quiz">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Knowledge check</div><h2 style="font-size:2.2rem">Module quiz</h2></div>
+    <p>Six auto-scored questions. Earn 80% or higher to complete the module. Retakes are welcome.</p></div>
+    ${qs.score!==null?`<div class="card" style="box-shadow:none"><strong>Latest score: ${qs.score}%</strong> · Attempts: ${qs.attempts}</div>`:""}
+    <div id="moduleQuiz">${m.quiz.map((q,qi)=>questionHTML(q,qi,`m${i}`,qs.answers[qi],qs.score!==null)).join("")}</div>
+    <div class="row"><button class="btn good" id="submitModuleQuiz">Submit quiz</button><button class="btn" id="clearModuleQuiz">Clear answers</button></div>
+  </section>`
+}
+function questionHTML(q,qi,prefix,saved,show){
+  return `<fieldset class="question"><legend><strong>${qi+1}. ${esc(q.prompt)}</strong></legend>
+  ${q.options.map((o,oi)=>`<label class="choice"><input type="radio" name="${prefix}q${qi}" value="${oi}" ${Number(saved)===oi?"checked":""}><span>${esc(o)}</span></label>`).join("")}
+  ${show?`<div class="explanation"><strong>Answer:</strong> ${esc(q.options[q.answer])}. ${esc(q.explain)}</div>`:""}
+  </fieldset>`
+}
+function labHTML(){
+  return `<section class="section">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Independent practice</div><h2>Music 101 Practice Lab</h2></div>
+    <p>Choose one drill or use Mixed Review. Every activity works locally with native browser audio.</p></div>
+    <div class="lab-shell">
+      <div class="scoreline"><span class="chip">Attempts: ${state.labStats.attempts}</span><span class="chip">Correct: ${state.labStats.correct}</span><span class="chip">Accuracy: ${state.labStats.attempts?Math.round(state.labStats.correct/state.labStats.attempts*100):0}%</span></div>
+      <div class="lab-menu">
+        ${[
+          ["staff","Five Lines"],["notes","Note Reading"],["rhythm","Rhythm"],["keys","Keys & Scales"],
+          ["intervals","Intervals"],["chords","Chords"],["symbols","Symbols"],["mixed","Mixed Review"]
+        ].map(x=>`<button class="btn small ${currentLab===x[0]?"active":""}" data-lab="${x[0]}">${x[1]}</button>`).join("")}
+      </div>
+      <div class="lab-stage" id="labStage"></div>
+    </div>
+  </section>`
+}
+function finalHTML(){
+  const f=state.final,ready=completedCount()===COURSE.modules.length;
+  return `<section class="section">
+    <div class="final-banner"><h2>Music 101 Final Workshop Assessment</h2>
+    <p>Twenty questions—two from each module—review the complete foundation. An 80% score and all ten completed modules unlock the workshop certificate.</p></div>
+    <div class="card" style="margin-top:16px">
+      <div class="row" style="justify-content:space-between"><span class="status ${ready?"done":"warn"}">${ready?"✓ All modules complete":`${completedCount()}/10 modules complete`}</span>
+      <span class="status">${f.score===null?"Final not submitted":`Latest final: ${f.score}%`}</span></div>
+    </div>
+    <div class="quiz" id="finalQuiz">${FINAL_QUESTIONS.map((q,qi)=>questionHTML(q,qi,"final",f.answers[qi],f.score!==null)).join("")}</div>
+    <div class="row">
+      <button class="btn good" id="submitFinal">Submit final assessment</button>
+      <button class="btn" id="clearFinal">Clear answers</button>
+      <button class="btn primary" id="certificateBtn" ${!(ready&&f.score>=80)?"disabled":""}>Print certificate</button>
+    </div>
+  </section>`
+}
+function progressHTML(){
+  const finalOK=state.final.score>=80,allDone=completedCount()===10;
+  return `<section class="section">
+    <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Private learner record</div><h2>Progress & Workshop Tools</h2></div>
+    <p>Save a name for the printable certificate, log practice time, and create a portable backup of this local record.</p></div>
+    <div class="progress-grid">
+      <div class="stat-card progress-card"><strong>${coursePercent()}%</strong><span>course completion</span></div>
+      <div class="stat-card progress-card"><strong>${practiceLast(7)}</strong><span>minutes in last 7 days</span></div>
+      <div class="stat-card progress-card"><strong>${streak()}</strong><span>day practice streak</span></div>
+    </div>
+    <div class="two-col" style="margin-top:16px">
+      <div class="card">
+        <h3>Learner profile</h3>
+        <label for="learnerName">Name for certificate</label>
+        <input id="learnerName" type="text" maxlength="80" value="${esc(state.profile.name)}" placeholder="Learner name">
+        <button class="btn small" id="saveName" style="margin-top:9px">Save name</button>
+        <div class="divider"></div>
+        <h3>Practice log</h3>
+        <label for="practiceMinutes">Minutes practiced today</label>
+        <input id="practiceMinutes" type="number" min="0" max="600" value="">
+        <button class="btn small good" id="logPractice" style="margin-top:9px">Add minutes</button>
+        <p style="color:var(--muted)">Today: ${Number(state.practice[today()]||0)} minutes · Last 30 days: ${practiceLast(30)} minutes</p>
+      </div>
+      <div class="card">
+        <h3>Workshop record</h3>
+        <div class="row"><span class="status ${allDone?"done":"warn"}">${completedCount()}/10 modules</span><span class="status ${finalOK?"done":"warn"}">${state.final.score===null?"Final pending":`Final ${state.final.score}%`}</span></div>
+        <div class="divider"></div>
+        <button class="btn" id="exportProgress">Export private backup</button>
+        <button class="btn" id="importProgress">Import backup</button>
+        <button class="btn" id="printProgress">Print progress</button>
+        <button class="btn danger" id="resetProgress">Reset workshop</button>
+        <div class="divider"></div>
+        <button class="btn primary" id="progressCertificate" ${!(allDone&&finalOK)?"disabled":""}>Print certificate</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>Module record</h3><div class="table-wrap"><table>
+      <thead><tr><th>Module</th><th>Quiz</th><th>Attempts</th><th>Status</th></tr></thead>
+      <tbody>${COURSE.modules.map((m,i)=>{const q=qState(i);return `<tr><td>${i+1}. ${esc(m.title)}</td><td>${q.score===null?"—":q.score+"%"}</td><td>${q.attempts}</td><td>${state.completed[i]?"Complete":"In progress"}</td></tr>`}).join("")}</tbody>
+    </table></div></div>
+  </section>`
+}
+
+function bindView(){
+  $$("[data-action]").forEach(b=>b.onclick=()=>{
+    const a=b.dataset.action;
+    if(a==="continue"){const next=COURSE.modules.findIndex((_,i)=>!state.completed[i]);navigate("module",next<0?0:next)}
+    else navigate(a)
+  });
+  $$("[data-open-module]").forEach(b=>b.onclick=()=>navigate("module",Number(b.dataset.openModule)));
+  $$("[data-module-nav]").forEach(b=>b.onclick=()=>{const i=Number(b.dataset.moduleNav);if(i>=0&&i<COURSE.modules.length)navigate("module",i)});
+  $$("[data-go-lab]").forEach(b=>b.onclick=()=>{currentLab=b.dataset.goLab;navigate("lab")});
+  $$("[data-lab]").forEach(b=>b.onclick=()=>{currentLab=b.dataset.lab;render()});
+
+  if(state.view==="module")bindModule(state.module);
+  if(state.view==="lab")renderLab(currentLab,"labStage");
+  if(state.view==="final")bindFinal();
+  if(state.view==="progress")bindProgress()
+}
+function bindModule(i){
+  const m=COURSE.modules[i],qs=qState(i);
+  $("#saveReflection").onclick=()=>{state.reflections[i]=$("#reflectionBox").value;saveState();showToast("Module notes saved.")};
+  $("#submitModuleQuiz").onclick=()=>{
+    let correct=0;
+    m.quiz.forEach((q,qi)=>{const el=$(`input[name="m${i}q${qi}"]:checked`);if(el){qs.answers[qi]=Number(el.value);if(Number(el.value)===q.answer)correct++}});
+    qs.score=Math.round(correct/m.quiz.length*100);qs.attempts++;qs.submittedAt=new Date().toISOString();
+    if(qs.score>=80){state.completed[i]=true;showToast(`Module complete — ${qs.score}%`)}else showToast(`Score: ${qs.score}%. Review and try again.`);
+    saveState();render()
+  };
+  $("#clearModuleQuiz").onclick=()=>{qs.answers={};qs.score=null;saveState();render()};
+  m.quiz.forEach((q,qi)=>$$(`input[name="m${i}q${qi}"]`).forEach(r=>r.onchange=()=>{qs.answers[qi]=Number(r.value);saveState()}));
+  renderLab(m.lab,"moduleLabStage")
+}
+function bindFinal(){
+  const f=state.final;
+  FINAL_QUESTIONS.forEach((q,qi)=>$$(`input[name="finalq${qi}"]`).forEach(r=>r.onchange=()=>{f.answers[qi]=Number(r.value);saveState()}));
+  $("#submitFinal").onclick=()=>{
+    let correct=0;FINAL_QUESTIONS.forEach((q,qi)=>{const el=$(`input[name="finalq${qi}"]:checked`);if(el){f.answers[qi]=Number(el.value);if(Number(el.value)===q.answer)correct++}});
+    f.score=Math.round(correct/FINAL_QUESTIONS.length*100);f.attempts++;f.submittedAt=new Date().toISOString();saveState();
+    showToast(`Final assessment: ${f.score}%`);render()
+  };
+  $("#clearFinal").onclick=()=>{f.answers={};f.score=null;saveState();render()};
+  $("#certificateBtn").onclick=printCertificate
+}
+function bindProgress(){
+  $("#saveName").onclick=()=>{state.profile.name=$("#learnerName").value.trim();saveState();showToast("Learner name saved.")};
+  $("#logPractice").onclick=()=>{const n=clamp(Number($("#practiceMinutes").value||0),0,600);if(!n)return showToast("Enter practice minutes first.");state.practice[today()]=Number(state.practice[today()]||0)+n;saveState();showToast("Practice time added.");render()};
+  $("#exportProgress").onclick=exportProgress;
+  $("#importProgress").onclick=()=>$("#importFile").click();
+  $("#printProgress").onclick=()=>window.print();
+  $("#resetProgress").onclick=()=>{if(confirm("Reset all Music 101 progress on this device? This cannot be undone unless you exported a backup.")){localStorage.removeItem(STORE_KEY);state=freshState();setTheme("light");navigate("home")}};
+  $("#progressCertificate").onclick=printCertificate
+}
+
+function renderLab(type,targetId){
+  stopMetronome();stopAudio();const target=document.getElementById(targetId);if(!target)return;
+  if(type==="notes")renderNoteLab(target);
+  else if(type==="rhythm")renderRhythmLab(target);
+  else if(type==="keys")renderKeyLab(target);
+  else if(type==="intervals")renderIntervalLab(target);
+  else if(type==="chords")renderChordLab(target);
+  else if(type==="symbols")renderSymbolLab(target);
+  else if(type==="mixed"){const next=pick(["notes","keys","intervals","chords","symbols"]);renderLab(next,targetId)}
+  else renderStaffLab(target)
+}
+function recordLab(ok){state.labStats.attempts++;if(ok)state.labStats.correct++;saveState()}
+function ensureAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx}
+function midiFreq(m){return 440*Math.pow(2,(m-69)/12)}
+function playMidi(midi,duration=.55,delay=0,kind="triangle",gain=.16){
+  const ctx=ensureAudio(),t=ctx.currentTime+delay,o=ctx.createOscillator(),g=ctx.createGain();
+  o.type=kind;o.frequency.setValueAtTime(midiFreq(midi),t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(gain,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+duration);
+  o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+duration+.03);activeNodes.add(o);o.onended=()=>activeNodes.delete(o)
+}
+function stopAudio(){activeNodes.forEach(n=>{try{n.stop()}catch{}});activeNodes.clear()}
+function stopMetronome(){if(metroTimer)clearInterval(metroTimer);metroTimer=null;metroBeat=0}
+const TREBLE=[
+  {name:"E4",letter:"E",midi:64,step:0},{name:"F4",letter:"F",midi:65,step:1},{name:"G4",letter:"G",midi:67,step:2},
+  {name:"A4",letter:"A",midi:69,step:3},{name:"B4",letter:"B",midi:71,step:4},{name:"C5",letter:"C",midi:72,step:5},
+  {name:"D5",letter:"D",midi:74,step:6},{name:"E5",letter:"E",midi:76,step:7},{name:"F5",letter:"F",midi:77,step:8},
+  {name:"G5",letter:"G",midi:79,step:9},{name:"A5",letter:"A",midi:81,step:10}
+];
+const BASS=[
+  {name:"G2",letter:"G",midi:43,step:0},{name:"A2",letter:"A",midi:45,step:1},{name:"B2",letter:"B",midi:47,step:2},
+  {name:"C3",letter:"C",midi:48,step:3},{name:"D3",letter:"D",midi:50,step:4},{name:"E3",letter:"E",midi:52,step:5},
+  {name:"F3",letter:"F",midi:53,step:6},{name:"G3",letter:"G",midi:55,step:7},{name:"A3",letter:"A",midi:57,step:8},
+  {name:"B3",letter:"B",midi:59,step:9},{name:"C4",letter:"C",midi:60,step:10}
+];
+function staffSVG(clef,note){
+  const W=760,H=260,left=85,right=725,top=80,gap=28,bottom=top+gap*4,y=bottom-note.step*(gap/2);
+  let ledgers="";for(let yy=top-gap;yy>=y;yy-=gap)ledgers+=`<line x1="520" x2="574" y1="${yy}" y2="${yy}" stroke="#272536" stroke-width="3"/>`;
+  for(let yy=bottom+gap;yy<=y;yy+=gap)ledgers+=`<line x1="520" x2="574" y1="${yy}" y2="${yy}" stroke="#272536" stroke-width="3"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${clef} clef note">
+    <rect width="${W}" height="${H}" rx="18" fill="#fffdf8"/>
+    ${[0,1,2,3,4].map(i=>`<line x1="${left}" x2="${right}" y1="${top+i*gap}" y2="${top+i*gap}" stroke="#272536" stroke-width="3"/>`).join("")}
+    <text x="100" y="${clef==="treble"?190:166}" font-size="${clef==="treble"?105:86}" fill="#272536">${clef==="treble"?"𝄞":"𝄢"}</text>
+    ${ledgers}<ellipse cx="548" cy="${y}" rx="15" ry="10" fill="#426f9f" transform="rotate(-14 548 ${y})"/>
+    <line x1="561" x2="561" y1="${y}" y2="${y-62}" stroke="#272536" stroke-width="4"/>
+  </svg>`
+}
+function renderStaffLab(target){
+  const lines=[
+    {type:"Line",number:1,note:"E4",midi:64,y:245},{type:"Line",number:2,note:"G4",midi:67,y:205},{type:"Line",number:3,note:"B4",midi:71,y:165},{type:"Line",number:4,note:"D5",midi:74,y:125},{type:"Line",number:5,note:"F5",midi:77,y:85}
+  ];
+  const spaces=[
+    {type:"Space",number:1,note:"F4",midi:65,y:225},{type:"Space",number:2,note:"A4",midi:69,y:185},{type:"Space",number:3,note:"C5",midi:72,y:145},{type:"Space",number:4,note:"E5",midi:76,y:105}
+  ];
+  target.innerHTML=`<div class="scoreline"><span class="chip">Five lines · four spaces</span><button class="btn small" id="listenMode">Hide labels</button><button class="btn small" id="playAscending">Play ascending</button></div>
+  <div class="staff-board" id="explorerBoard"><svg viewBox="0 0 800 330" aria-label="Interactive five-line staff">
+    <rect width="800" height="330" fill="#fff"/>
+    ${lines.map((n,i)=>`<line x1="70" x2="735" y1="${n.y}" y2="${n.y}" stroke="#252536" stroke-width="3"/><rect x="70" width="665" y="${n.y-10}" height="20" fill="transparent" data-staff-hit="${i}"/>`).join("")}
+    ${spaces.map((n,i)=>`<rect x="70" width="665" y="${n.y-10}" height="20" fill="transparent" data-space-hit="${i}"/>`).join("")}
+    <g id="staffLabels" font-family="system-ui" font-size="16" fill="#426f9f" font-weight="700">
+      ${lines.map(n=>`<text x="745" y="${n.y+5}">${n.note}</text>`).join("")}
+      ${spaces.map(n=>`<text x="28" y="${n.y+5}">${n.note}</text>`).join("")}
+    </g>
+  </svg></div><div class="staff-message" id="staffLabMessage">Tap a line or space to hear and name it.</div>`;
+  let hidden=false;
+  $("#listenMode").onclick=()=>{hidden=!hidden;$("#staffLabels").style.opacity=hidden?"0":"1";$("#listenMode").textContent=hidden?"Show labels":"Hide labels";const b=$("#explorerBoard");b.querySelectorAll(".float-dot").forEach(x=>x.remove());if(hidden){for(let i=0;i<18;i++){const d=document.createElement("i");d.className="float-dot";d.style.left=(5+Math.random()*90)+"%";d.style.top=(25+Math.random()*70)+"%";d.style.animationDelay=(Math.random()*3)+"s";b.appendChild(d)}}};
+  $$("[data-staff-hit]").forEach(el=>el.onclick=()=>{const n=lines[Number(el.dataset.staffHit)];playMidi(n.midi);$("#staffLabMessage").textContent=`${n.type} ${n.number} from the bottom — ${n.note}.`});
+  $$("[data-space-hit]").forEach(el=>el.onclick=()=>{const n=spaces[Number(el.dataset.spaceHit)];playMidi(n.midi);$("#staffLabMessage").textContent=`${n.type} ${n.number} from the bottom — ${n.note}.`});
+  $("#playAscending").onclick=()=>[64,65,67,69,71,72,74,76,77].forEach((m,i)=>playMidi(m,.35,i*.32))
+}
+function renderNoteLab(target){
+  const clef=labSession.noteClef||"treble",range=clef==="treble"?TREBLE:BASS,n=pick(range);labSession.noteClef=clef;labSession.note=n;
+  target.innerHTML=`<div class="scoreline"><span class="chip">Note Reading</span><select id="clefChoice" style="width:auto"><option value="treble" ${clef==="treble"?"selected":""}>Treble clef</option><option value="bass" ${clef==="bass"?"selected":""}>Bass clef</option></select><button class="btn small" id="hearNote">Hear note</button></div>
+  <div style="max-width:820px;margin:auto">${staffSVG(clef,n)}</div><p style="text-align:center">Which letter name is shown?</p>
+  <div class="answer-grid">${["A","B","C","D","E","F","G"].map(x=>`<button class="btn answer-btn" data-note-answer="${x}">${x}</button>`).join("")}</div><div id="labFeedback"></div>`;
+  $("#clefChoice").onchange=e=>{labSession.noteClef=e.target.value;renderNoteLab(target)};
+  $("#hearNote").onclick=()=>playMidi(n.midi);
+  $$("[data-note-answer]").forEach(b=>b.onclick=()=>{const ok=b.dataset.noteAnswer===n.letter;recordLab(ok);$("#labFeedback").innerHTML=`<div class="feedback ${ok?"good":"bad"}">${ok?`Correct — ${n.name}.`:`The note is ${n.name}. Use a landmark and count.`}</div><button class="btn small" id="nextNote" style="margin-top:8px">Next note</button>`;$("#nextNote").onclick=()=>renderNoteLab(target)})
+}
+const RHYTHMS=[
+  {name:"Four quarters",symbols:"♩ ♩ ♩ ♩",beats:[1,1,1,1]},
+  {name:"Two halves",symbols:"𝅗𝅥 𝅗𝅥",beats:[2,2]},
+  {name:"Half and two quarters",symbols:"𝅗𝅥 ♩ ♩",beats:[2,1,1]},
+  {name:"Eight eighths",symbols:"♪ ♪ ♪ ♪ ♪ ♪ ♪ ♪",beats:[.5,.5,.5,.5,.5,.5,.5,.5]},
+  {name:"Quarter, rest, two quarters",symbols:"♩ 𝄽 ♩ ♩",beats:[1,-1,1,1]},
+  {name:"Whole note",symbols:"𝅝",beats:[4]}
+];
+function renderRhythmLab(target){
+  const bpm=labSession.bpm||80;target.innerHTML=`<div class="scoreline"><span class="chip">Rhythm & Pulse</span><span class="chip">4/4 measure patterns</span></div>
+  <div class="range-row"><label for="bpmRange">Tempo</label><input id="bpmRange" type="range" min="40" max="180" value="${bpm}"><output id="bpmOut">${bpm} BPM</output></div>
+  <div class="row" style="justify-content:center;margin:12px 0"><button class="btn" id="metroBtn">Start metronome</button><button class="btn" id="stopRhythm">Stop audio</button></div>
+  <div class="pulse" id="pulseDots">${[0,1,2,3].map(()=>"<i></i>").join("")}</div>
+  <div class="rhythm-patterns">${RHYTHMS.map((r,i)=>`<button class="rhythm-card" data-rhythm="${i}"><strong>${r.symbols}</strong>${r.name}</button>`).join("")}</div>
+  <div class="feedback">Choose a pattern to hear it against the selected tempo. Rests keep their place in time.</div>`;
+  $("#bpmRange").oninput=e=>{labSession.bpm=Number(e.target.value);$("#bpmOut").textContent=e.target.value+" BPM"};
+  $("#metroBtn").onclick=()=>{if(metroTimer){stopMetronome();$("#metroBtn").textContent="Start metronome";return}const dots=$$("#pulseDots i");metroBeat=0;const tick=()=>{dots.forEach((d,i)=>d.classList.toggle("on",i===metroBeat%4));playMidi(metroBeat%4===0?84:77,.05,0,"square",.08);metroBeat++};tick();metroTimer=setInterval(tick,60000/Number($("#bpmRange").value));$("#metroBtn").textContent="Stop metronome"};
+  $("#stopRhythm").onclick=()=>{stopMetronome();stopAudio();$("#metroBtn").textContent="Start metronome"};
+  $$("[data-rhythm]").forEach(b=>b.onclick=()=>{stopAudio();const r=RHYTHMS[Number(b.dataset.rhythm)],sec=60/Number($("#bpmRange").value);let t=0;r.beats.forEach(v=>{const d=Math.abs(v);if(v>0)playMidi(60,Math.max(.08,d*sec*.45),t,"triangle",.14);t+=d*sec})})
+}
+const SHARP_KEYS=["C","G","D","A","E","B","F♯","C♯"],FLAT_KEYS=["C","F","B♭","E♭","A♭","D♭","G♭","C♭"];
+function renderKeyLab(target){
+  const kind=Math.random()<.5?"sharps":"flats",count=Math.floor(Math.random()*5),correct=kind==="sharps"?SHARP_KEYS[count]:FLAT_KEYS[count];
+  let opts=[correct];const pool=[...new Set([...SHARP_KEYS,...FLAT_KEYS])];while(opts.length<4){const x=pick(pool);if(!opts.includes(x))opts.push(x)}opts.sort(()=>Math.random()-.5);
+  target.innerHTML=`<div class="scoreline"><span class="chip">Keys & Scales</span><button class="btn small" id="newKey">New prompt</button></div>
+  <h3 style="text-align:center">Which major key has <strong>${count} ${kind}</strong>?</h3>
+  <div class="answer-grid">${opts.map(x=>`<button class="btn" data-key-answer="${x}">${x} major</button>`).join("")}</div><div id="labFeedback"></div>
+  <div class="list-card" style="margin-top:15px"><strong>Memory patterns:</strong> Sharps F–C–G–D–A–E–B · Flats B–E–A–D–G–C–F</div>`;
+  $("#newKey").onclick=()=>renderKeyLab(target);
+  $$("[data-key-answer]").forEach(b=>b.onclick=()=>{const ok=b.dataset.keyAnswer===correct;recordLab(ok);$("#labFeedback").innerHTML=`<div class="feedback ${ok?"good":"bad"}">${ok?`Correct — ${correct} major.`:`The answer is ${correct} major.`}</div>`})
+}
+const LETTERS=["C","D","E","F","G","A","B"];
+function renderIntervalLab(target){
+  const a=Math.floor(Math.random()*7),size=2+Math.floor(Math.random()*7),b=(a+size-1)%7,correct=size===8?"Octave":`${size}${size===2?"nd":size===3?"rd":"th"}`;
+  const pool=["2nd","3rd","4th","5th","6th","7th","Octave"];let opts=[correct];while(opts.length<4){const x=pick(pool);if(!opts.includes(x))opts.push(x)}opts.sort(()=>Math.random()-.5);
+  target.innerHTML=`<div class="scoreline"><span class="chip">Intervals</span><button class="btn small" id="newInterval">New prompt</button></div>
+  <h3 style="text-align:center">From ${LETTERS[a]} upward to ${LETTERS[b]} is which interval?</h3>
+  <p style="text-align:center;color:var(--muted)">Count both endpoints. For an octave, the ending letter repeats in the next register.</p>
+  <div class="answer-grid">${opts.map(x=>`<button class="btn" data-int-answer="${x}">${x}</button>`).join("")}</div><div id="labFeedback"></div>`;
+  $("#newInterval").onclick=()=>renderIntervalLab(target);
+  $$("[data-int-answer]").forEach(b=>b.onclick=()=>{const ok=b.dataset.intAnswer===correct;recordLab(ok);$("#labFeedback").innerHTML=`<div class="feedback ${ok?"good":"bad"}">${ok?`Correct — ${correct}.`:`The answer is ${correct}.`}</div>`})
+}
+const CHORDS=[
+  {notes:"C–E–G",answer:"C major"},{notes:"C–E♭–G",answer:"C minor"},{notes:"D–F–A",answer:"D minor"},
+  {notes:"G–B–D",answer:"G major"},{notes:"B–D–F",answer:"B diminished"},{notes:"F–A–C",answer:"F major"}
+];
+function renderChordLab(target){
+  const q=pick(CHORDS),pool=CHORDS.map(x=>x.answer);let opts=[q.answer];while(opts.length<4){const x=pick(pool);if(!opts.includes(x))opts.push(x)}opts.sort(()=>Math.random()-.5);
+  target.innerHTML=`<div class="scoreline"><span class="chip">Triads & Chords</span><button class="btn small" id="newChord">New chord</button></div>
+  <h3 style="text-align:center;font-size:2rem">${q.notes}</h3><p style="text-align:center">Identify the triad.</p>
+  <div class="answer-grid">${opts.map(x=>`<button class="btn" data-chord-answer="${x}">${x}</button>`).join("")}</div><div id="labFeedback"></div>`;
+  $("#newChord").onclick=()=>renderChordLab(target);
+  $$("[data-chord-answer]").forEach(b=>b.onclick=()=>{const ok=b.dataset.chordAnswer===q.answer;recordLab(ok);$("#labFeedback").innerHTML=`<div class="feedback ${ok?"good":"bad"}">${ok?`Correct — ${q.answer}.`:`The answer is ${q.answer}.`}</div>`})
+}
+const SYMBOLS=[
+  {mark:"p",name:"piano",meaning:"soft"},{mark:"f",name:"forte",meaning:"loud"},{mark:"cresc.",name:"crescendo",meaning:"gradually louder"},
+  {mark:"dim.",name:"diminuendo",meaning:"gradually softer"},{mark:"•",name:"staccato",meaning:"short and detached"},
+  {mark:">",name:"accent",meaning:"emphasize the note"},{mark:"—",name:"tenuto",meaning:"give the note full value"},{mark:"𝄐",name:"fermata",meaning:"hold longer than written"}
+];
+function renderSymbolLab(target){
+  const q=pick(SYMBOLS),pool=SYMBOLS.map(x=>x.meaning);let opts=[q.meaning];while(opts.length<4){const x=pick(pool);if(!opts.includes(x))opts.push(x)}opts.sort(()=>Math.random()-.5);
+  target.innerHTML=`<div class="scoreline"><span class="chip">Expression Symbols</span><button class="btn small" id="newSymbol">New symbol</button></div>
+  <div style="text-align:center;font-family:var(--font-display);font-size:4rem">${q.mark}</div><p style="text-align:center"><strong>${q.name}</strong> means…</p>
+  <div class="answer-grid">${opts.map(x=>`<button class="btn" data-symbol-answer="${x}">${x}</button>`).join("")}</div><div id="labFeedback"></div>`;
+  $("#newSymbol").onclick=()=>renderSymbolLab(target);
+  $$("[data-symbol-answer]").forEach(b=>b.onclick=()=>{const ok=b.dataset.symbolAnswer===q.meaning;recordLab(ok);$("#labFeedback").innerHTML=`<div class="feedback ${ok?"good":"bad"}">${ok?`Correct — ${q.meaning}.`:`The answer is ${q.meaning}.`}</div>`})
+}
+
+function exportProgress(){
+  const payload={type:"TheRefrainMusic101Backup",version:1,exportedAt:new Date().toISOString(),state};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="the-refrain-music-101-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),700);showToast("Private backup exported.")
+}
+$("#importFile").onchange=async e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  try{const x=JSON.parse(await f.text());if(x.type!=="TheRefrainMusic101Backup"||!x.state)throw new Error();state=normalize(x.state);setTheme(state.theme);saveState();showToast("Workshop backup restored.");render()}
+  catch{showToast("That file is not a valid Music 101 backup.")}
+  e.target.value=""
+};
+function printCertificate(){
+  const name=esc(state.profile.name||"Music 101 Learner"),date=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  const w=window.open("","_blank","width=1000,height=720");if(!w)return showToast("Allow pop-ups to print the certificate.");
+  w.document.write(`<!doctype html><html><head><title>Music 101 Certificate</title><style>
+  body{margin:0;padding:40px;background:#f4efe4;font-family:Georgia,serif;color:#202338}.certificate{min-height:620px;border:10px double #b68a3c;background:#fffdf7;padding:55px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  h1{font-size:54px;margin:10px}h2{font-size:34px;margin:18px;color:#24375c}p{font-size:20px;line-height:1.6}.seal{font-size:70px;color:#b68a3c}.small{font-size:15px;color:#666}@media print{body{padding:0;background:#fff}.certificate{min-height:90vh}}</style></head>
+  <body><div class="certificate"><div class="seal">R</div><div class="small">THE REFRAIN · MUSIC LEARNING HALL</div><h1>Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has completed the <strong>Music 101 Workshop</strong>, including foundational music reading, rhythm, theory, harmony, composition, and sight-reading, with a final assessment score of <strong>${state.final.score}%</strong>.</p><p>${date}</p><p class="small">Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl</p></div><script>setTimeout(()=>window.print(),250)<\/script></body></html>`);
+  w.document.close()
+}
+$$("[data-nav]").forEach(b=>b.onclick=()=>navigate(b.dataset.nav));
+$("#themeBtn").onclick=()=>setTheme(state.theme==="dark"?"light":"dark");
+setTheme(state.theme);
+render();
+</script>
+</body>
+</html>
