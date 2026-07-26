@@ -12,6 +12,7 @@
       --font-display:"Gaspacho","Cormorant Garamond",Georgia,serif;
       --font-brand:"Cinzel","Aboreto",Georgia,serif;
       --font-ui:"Brandon Grotesque","Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+      --font-title:"Weber Hand","Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
 
       --night:#0c1020;
       --night-2:#151b32;
@@ -200,9 +201,12 @@
 
     h1{
       margin:13px 0 18px;
+      font-family:var(--font-title);
       font-size:clamp(3.5rem,8vw,7.4rem);
-      line-height:.84;
-      letter-spacing:-.035em;
+      font-weight:700;
+      line-height:.88;
+      letter-spacing:.005em;
+      text-transform:none;
     }
 
     h1 span{
