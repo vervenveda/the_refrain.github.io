@@ -256,6 +256,97 @@ button{color:inherit}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{.site-header,.facility-strip,.hero-actions,.directory-tools,.filter-strip,.drawer-overlay{display:none!important}body{color:#111;background:#fff}body::before,body::after{display:none}.hero,.section,.closing{color:#111;background:#fff}.room-card,.flagship-main,.flagship-side,.level-card,.directory-shell,.directory-card,.future-card{color:#111;background:#fff;box-shadow:none}.hero-lead,.room-card p,.flagship-main p,.flagship-side p,.level-card p,.directory-card span,.future-card p{color:#444}}
 </style>
+
+<style id="refrain-music-network-and-type-spacing">
+/* Music-network expansion + relaxed typography.
+   Preserves The Refrain's console/conservatory identity. */
+:root{
+  --display:"Avenir Next","Segoe UI Variable Display","Segoe UI",Helvetica,Arial,sans-serif;
+}
+body{
+  letter-spacing:.008em;
+}
+h1,h2,h3,strong,.button,.filter,.header-link,.menu-button,.level-links a{
+  font-kerning:normal;
+}
+.hero h1{
+  line-height:.99;
+  letter-spacing:.018em;
+  text-wrap:balance;
+}
+.hero h1 span{
+  margin-top:.18em;
+  letter-spacing:.16em;
+  line-height:1.55;
+}
+.section-head h2{
+  line-height:1.13;
+  letter-spacing:.028em;
+  text-wrap:balance;
+}
+.room-card h3{
+  line-height:1.2;
+  letter-spacing:.032em;
+  text-wrap:balance;
+}
+.flagship-main h3,.flagship-side h3{
+  line-height:1.1;
+  letter-spacing:.024em;
+  text-wrap:balance;
+}
+.level-card h3,.future-card h3{
+  line-height:1.28;
+  letter-spacing:.018em;
+  text-wrap:balance;
+}
+.directory-card strong{
+  line-height:1.38;
+  letter-spacing:.014em;
+  text-wrap:balance;
+}
+.drawer-head h2{
+  line-height:1.2;
+  letter-spacing:.025em;
+}
+.eyebrow,.kicker,.room-code,.level-no,.directory-group h3{
+  line-height:1.65;
+}
+.button,.header-link,.menu-button,.filter,.level-links a{
+  line-height:1.45;
+  white-space:normal;
+  text-align:center;
+}
+.room-card,.level-card,.directory-card,.future-card,
+.flagship-main,.flagship-side,.button,.level-links a{
+  min-width:0;
+}
+.room-card p,.level-card p,.directory-card span,.future-card p,
+.flagship-main p,.flagship-side p{
+  line-height:1.78;
+}
+.room-card:nth-child(7)::before{background:#7892ad}
+.room-card:nth-child(8)::before{background:var(--signal-warm)}
+.room-card:nth-child(9)::before{background:#86627a}
+.directory-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.directory-card{
+  min-height:205px;
+}
+.directory-card em{
+  letter-spacing:.08em;
+}
+@media(max-width:820px){
+  .directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  .hero h1{font-size:clamp(46px,15vw,58px);letter-spacing:.012em}
+  .hero h1 span{letter-spacing:.11em}
+  .section-head h2{letter-spacing:.02em}
+  .directory-grid{grid-template-columns:1fr}
+}
+</style>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to music rooms</a>
@@ -283,7 +374,7 @@ button{color:inherit}
       <p class="hero-lead">A complete music environment for first notes, serious study, original composition, professional multi-track recording, music research, artist presentation, and lifelong creative development.</p>
       <div class="hero-actions">
         <a class="button button-primary" href="../proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Enter Multi-Track Studio</a>
-        <a class="button button-secondary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Open Composition Studio</a>
+        <a class="button button-secondary" href="https://vervenveda.github.io/bazaarart.github.io/apps/composition/vivoser-composer_index.html">Open Vivoser Composer</a>
         <a class="button button-secondary" href="#curriculum">View Music School</a>
       </div>
       <div class="hero-meta" aria-label="The Refrain facility summary">
@@ -312,7 +403,7 @@ button{color:inherit}
 
 <nav class="facility-strip" aria-label="The Refrain facility rooms">
   <div class="wrap facility-strip-inner">
-    <a href="#recording">Control Room</a><a href="#curriculum">Conservatory</a><a href="#composition">Composition Wing</a><a href="#young">Young Creators Lab</a><a href="#research">Research Library</a><a href="#publishing">Publishing Desk</a>
+    <a href="#recording">Control Room</a><a href="#directory">Instrument Lab</a><a href="#curriculum">Conservatory</a><a href="#composition">Composition Wing</a><a href="#young">Young Creators Lab</a><a href="#directory">Sound &amp; Tuning Lab</a><a href="#research">Research Library</a><a href="#publishing">Publishing Desk</a><a href="https://vervenveda.github.io/arcade.github.io/Trivia_music_index.html">Music Arcade</a>
   </div>
 </nav>
 
@@ -326,6 +417,9 @@ button{color:inherit}
       <a class="room-card" href="#young"><span class="room-code">ROOM D · YTH</span><h3>Young Creators Lab</h3><p>A welcoming first studio for rhythm, patterns, instruments, imagination, early composition, and musical play.</p><span class="room-footer"><span>Beginning</span><span>Enter →</span></span></a>
       <a class="room-card" href="#research"><span class="room-code">ROOM E · ARC</span><h3>Research Library</h3><p>Music history, composers, cultures, evidence, citations, research pathways, archives, and listening context.</p><span class="room-footer"><span>Scholarship</span><span>Enter →</span></span></a>
       <a class="room-card" href="#publishing"><span class="room-code">ROOM F · PUB</span><h3>Publishing Desk</h3><p>Lyrics, biographies, liner notes, press materials, community updates, artist portfolios, and presentation.</p><span class="room-footer"><span>Release</span><span>Enter →</span></span></a>
+      <a class="room-card" href="https://vervenveda.github.io/bazaarart.github.io/apps/instruments/pro-keyboard_index.html"><span class="room-code">ROOM G · INS</span><h3>Instrument Laboratory</h3><p>Professional and beginner keyboards, modern and vintage spinets, playable instruments, recording, and hands-on sound exploration.</p><span class="room-footer"><span>Instruments</span><span>Enter →</span></span></a>
+      <a class="room-card" href="https://vervenveda.github.io/bazaarart.github.io/apps/sound-labs/frequency-tuner_index.html"><span class="room-code">ROOM H · SND</span><h3>Sound &amp; Tuning Lab</h3><p>Frequency, pitch, tuning, dual-tone experiments, listening comparison, and practical sound-science tools.</p><span class="room-footer"><span>Sound Lab</span><span>Enter →</span></span></a>
+      <a class="room-card" href="https://vervenveda.github.io/arcade.github.io/Trivia_music_index.html"><span class="room-code">ROOM I · GAM</span><h3>Music Arcade</h3><p>Music knowledge, listening vocabulary, composers, instruments, theory, and playful review through trivia.</p><span class="room-footer"><span>Practice</span><span>Enter →</span></span></a>
     </div>
   </div>
 </section>
@@ -338,7 +432,7 @@ button{color:inherit}
         <div><p class="kicker">Harmony’s Haven Studio™</p><h3>Multi-Track Recording Suite</h3><p>Play, layer, review, arrange, and develop multi-track music projects inside a focused browser-based production environment.</p><div class="hero-actions"><a class="button button-primary" href="../proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html">Open Recording Suite</a><a class="button button-secondary" href="../proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html">Open Media Reference Room</a></div></div>
         <div class="flagship-badge" aria-hidden="true">24 / 48</div>
       </article>
-      <article class="flagship-side"><p class="kicker">Original writing room</p><h3>Pro Composition Studio</h3><p>Develop themes, form, arrangement, instrumentation, and complete original musical ideas.</p><a class="button button-secondary" href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html">Open Composition Studio</a></article>
+      <article class="flagship-side"><p class="kicker">Original writing room</p><h3>Vivoser Composer</h3><p>Shape melodies, patterns, structure, and original musical ideas inside a focused visual composition environment.</p><a class="button button-secondary" href="https://vervenveda.github.io/bazaarart.github.io/apps/composition/vivoser-composer_index.html">Open Vivoser Composer</a></article>
     </div>
   </div>
 </section>
@@ -347,10 +441,10 @@ button{color:inherit}
   <div class="wrap">
     <div class="section-head"><p class="kicker">Conservatory pathways</p><h2>Music education for every level.</h2><p>The school is organized by readiness rather than age alone, allowing children, students, and adults to enter at the right point.</p></div>
     <div class="level-grid">
-      <article class="level-card" id="young"><span class="level-no">LEVEL 01</span><h3>Young Creators</h3><p>Rhythm, melody, instruments, patterns, imagination, and the joy of making a first composition.</p><div class="level-links"><a href="apps/Little_Composer_Studio_The_Refrain_index.html"><span>Little Composer Studio</span><span>→</span></a><a href="../khaemenesacademy.github.io/"><span>Khaemenes Academy</span><span>→</span></a></div></article>
+      <article class="level-card" id="young"><span class="level-no">LEVEL 01</span><h3>Young Creators</h3><p>Rhythm, melody, instruments, patterns, imagination, and the joy of making a first composition.</p><div class="level-links"><a href="apps/Little_Composer_Studio_The_Refrain_index.html"><span>Little Composer Studio</span><span>→</span></a><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/"><span>Khaemenes Academy</span><span>→</span></a></div></article>
       <article class="level-card"><span class="level-no">LEVEL 02</span><h3>Foundations</h3><p>Notation, pitch, rhythm, listening, scales, chords, instruments, and core music literacy.</p><div class="level-links"><a href="education/Music%20101%20Workshop_index.html"><span>Music 101 Workshop</span><span>→</span></a></div></article>
       <article class="level-card"><span class="level-no">LEVEL 03</span><h3>Intermediate Study</h3><p>Harmony, form, composition, analysis, arrangement, deeper listening, and structured creative practice.</p><div class="level-links"><a href="education/Music%20201%20Workshop_index.html"><span>Music 201 Workshop</span><span>→</span></a></div></article>
-      <article class="level-card"><span class="level-no">LEVEL 04</span><h3>Independent Practice</h3><p>Original composition, multi-track production, research, portfolio preparation, publishing, and professional development.</p><div class="level-links"><a href="apps/Harmonys_Haven_Pro_Composition_Studio_index.html"><span>Composition Studio</span><span>→</span></a><a href="#directory"><span>Full Music Directory</span><span>→</span></a></div></article>
+      <article class="level-card"><span class="level-no">LEVEL 04</span><h3>Independent Practice</h3><p>Original composition, multi-track production, research, portfolio preparation, publishing, and professional development.</p><div class="level-links"><a href="https://vervenveda.github.io/bazaarart.github.io/apps/composition/vivoser-composer_index.html"><span>Composition Studio</span><span>→</span></a><a href="#directory"><span>Full Music Directory</span><span>→</span></a></div></article>
     </div>
   </div>
 </section>
@@ -407,40 +501,17 @@ button{color:inherit}
 <script>
 (()=>{
 "use strict";
-const resources=[
- {title:"Harmony’s Haven Multi-Track Studio",category:"recording",group:"Control Room",code:"REC",description:"Professional multi-track music creation, arrangement, playback, and session development.",href:"../proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html"},
- {title:"Harmony’s Haven Pro Composition Studio",category:"composition",group:"Composition Wing",code:"CMP",description:"Develop themes, structure, instrumentation, arrangement, and original music.",href:"apps/Harmonys_Haven_Pro_Composition_Studio_index.html"},
- {title:"FleaPit Media Hub",category:"recording",group:"Control Room",code:"MED",description:"Collect performances, music videos, lectures, interviews, and production references.",href:"../proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html"},
- {title:"Music 101 Workshop",category:"learning",group:"Conservatory",code:"101",description:"Notation, rhythm, pitch, scales, chords, listening, and foundational music literacy.",href:"education/Music%20101%20Workshop_index.html"},
- {title:"Music 201 Workshop",category:"learning",group:"Conservatory",code:"201",description:"Harmony, form, analysis, arrangement, composition, and intermediate study.",href:"education/Music%20201%20Workshop_index.html"},
- {title:"Little Composer Studio",category:"young",group:"Young Creators Lab",code:"YTH",description:"Melody, rhythm, instruments, patterns, imagination, and early composition.",href:"apps/Little_Composer_Studio_The_Refrain_index.html"},
- {title:"Khaemenes Academy",category:"young",group:"Young Creators Lab",code:"EDU",description:"Broader educational pathways, classroom projects, and lifelong learning.",href:"../khaemenesacademy.github.io/"},
- {title:"ARSHIF Music Hall of Resources",category:"research",group:"Research Library",code:"ARC",description:"Composers, instruments, forms, cultures, music history, and deeper study.",href:"apps/ARSHIF_Music_Hall_Resources_Updated_index.html"},
- {title:"Evidence & Citation Studio",category:"research",group:"Research Library",code:"ECS",description:"Organize claims, sources, quotations, provenance, citations, and bibliographies.",href:"../proresource_hub.github.io/Protools/Evidence_Citation_Studio/index.html"},
- {title:"PLERA Search Gate",category:"research",group:"Research Library",code:"SRC",description:"Prepare visible music-research queries and move into public information sources.",href:"../proresource_hub.github.io/Protools/PLERA%E2%84%A2%20Search%20Gate_index.html"},
- {title:"PROSE Editorial Suite",category:"publishing",group:"Publishing Desk",code:"TXT",description:"Lyrics, biographies, liner notes, programs, press materials, and teaching documents.",href:"../proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html"},
- {title:"Bazaar Art Live",category:"publishing",group:"Publishing Desk",code:"333",description:"Music events, rehearsal notes, studio updates, creative community, and public participation.",href:"../proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feedindex.html"},
- {title:"Bazaar Art",category:"publishing",group:"Publishing Desk",code:"ART",description:"Creative portfolios, opportunities, presentation, collaboration, and public work.",href:"../bazaarart.github.io/"},
- {title:"Aurora Sanctuary",category:"restore",group:"Listening Room",code:"RST",description:"Intentional listening, quiet practice, reflection, and creative renewal.",href:"../aurora.github.io/"},
- {title:"Verve N Veda",category:"network",group:"Network",code:"VNV",description:"Return to the wider network of learning, research, public resources, and creative work.",href:"../"}
-];
-const groupDescriptions={
- "Control Room":"Recording, production, playback, and media-reference tools.",
- "Composition Wing":"Original writing, form, arrangement, and instrumentation.",
- "Conservatory":"Structured foundational and intermediate music education.",
- "Young Creators Lab":"Accessible first experiences in rhythm, melody, and composition.",
- "Research Library":"History, evidence, sources, archives, and cultural context.",
- "Publishing Desk":"Writing, portfolios, community participation, and presentation.",
- "Listening Room":"Reflection, intentional listening, and creative renewal.",
- "Network":"Connected Verve N Veda destinations."
-};
-const filters=[["all","All Rooms"],["recording","Recording"],["composition","Composition"],["learning","Learning"],["young","Young Creators"],["research","Research"],["publishing","Publishing"],["restore","Restore"]];
-const groupOrder=["Control Room","Composition Wing","Conservatory","Young Creators Lab","Research Library","Publishing Desk","Listening Room","Network"];
+const resources=[{"title":"Harmony’s Haven Multi-Track Studio","category":"recording","group":"Control Room","code":"REC","description":"Professional 88-key performance, multi-track recording, arrangement, playback, and session development.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Harmony%27s%20Haven%20Studio%E2%84%A2%20Multi-Track_index.html","repo":"ProResource Hub"},{"title":"FleaPit Media Hub","category":"recording","group":"Control Room","code":"MED","description":"Organize performances, music videos, interviews, lectures, references, and production media.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/FleaPit%E2%84%A2_media_hub_Index.html","repo":"ProResource Hub"},{"title":"Harmony’s Haven Pro Keyboard","category":"instruments","group":"Instrument Laboratory","code":"KEY","description":"A full browser keyboard and multi-track music workspace from the Bazaar Art instrument collection.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/instruments/pro-keyboard_index.html","repo":"Bazaar Art"},{"title":"My Spinet™","category":"instruments","group":"Instrument Laboratory","code":"SPN","description":"A two-octave modern spinet with local recording, playback, and saved performance data.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/instruments/modern-spinet_index.html","repo":"Bazaar Art"},{"title":"Mini Keyboard","category":"instruments","group":"Instrument Laboratory","code":"MIN","description":"A compact playable keyboard for quick melody, pitch, and pattern exploration.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/instruments/mini-keyboard_index.html","repo":"Bazaar Art"},{"title":"Mini Spinet","category":"instruments","group":"Instrument Laboratory","code":"MSP","description":"A small, approachable spinet created for beginning musicians and playful practice.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/instruments/mini-spinet_index.html","repo":"Bazaar Art"},{"title":"Vintage Spinet","category":"instruments","group":"Instrument Laboratory","code":"VSP","description":"A vintage-styled instrument room with orchestral choices and child-friendly sound controls.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/instruments/vintage-spinet_index.html","repo":"Bazaar Art"},{"title":"Vivoser Composer","category":"composition","group":"Composition Wing","code":"VIV","description":"Build musical ideas through a visual composition canvas and structured creative controls.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/composition/vivoser-composer_index.html","repo":"Bazaar Art"},{"title":"Music Staff Studio","category":"composition","group":"Composition Wing","code":"STF","description":"Write, hear, edit, save, import, and export simple scores on an interactive music staff.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/composition/staff-studio_index.html","repo":"Bazaar Art"},{"title":"Music Hall Portal","category":"learning","group":"Conservatory","code":"HALL","description":"A broad music-learning hall connecting reading, theory, instruments, practice, and creative work.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/Class_music_hall_index.html","repo":"Bazaar Art"},{"title":"Music Reading 101","category":"learning","group":"Conservatory","code":"R101","description":"Learn the staff, clefs, note names, rhythm symbols, and foundational score reading.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/Class_music_reading_101_index.html","repo":"Bazaar Art"},{"title":"Music Theory 201","category":"learning","group":"Conservatory","code":"T201","description":"Continue into scales, intervals, chords, harmony, form, and intermediate music theory.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/Class_music_theory_201_index.html","repo":"Bazaar Art"},{"title":"Music 101 Workshop","category":"learning","group":"Conservatory","code":"101","description":"Notation, rhythm, pitch, scales, chords, listening, and foundational music literacy.","href":"https://vervenveda.github.io/the_refrain.github.io/education/Music%20101%20Workshop_index.html","repo":"The Refrain"},{"title":"Music 201 Workshop","category":"learning","group":"Conservatory","code":"201","description":"Harmony, form, analysis, arrangement, composition, and intermediate study.","href":"https://vervenveda.github.io/the_refrain.github.io/education/Music%20201%20Workshop_index.html","repo":"The Refrain"},{"title":"Little Composer Studio","category":"young","group":"Young Creators Lab","code":"YTH","description":"Melody, rhythm, instruments, patterns, imagination, and early composition.","href":"https://vervenveda.github.io/the_refrain.github.io/apps/Little_Composer_Studio_The_Refrain_index.html","repo":"The Refrain"},{"title":"Pre-K Piano Deluxe","category":"young","group":"Young Creators Lab","code":"PKP","description":"A bright first piano experience designed for preschool learners and family-guided play.","href":"https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/music_piano_index.html","repo":"Khaemenes Preschool"},{"title":"Harmony Haven Staff Studio","category":"young","group":"Young Creators Lab","code":"HHS","description":"A child-friendly notation studio for placing symbols, hearing melodies, and learning the five-line staff.","href":"https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/Music_staff_studio_index.html","repo":"Khaemenes Preschool"},{"title":"Khaemenes Academy","category":"young","group":"Young Creators Lab","code":"EDU","description":"Broader educational pathways, family learning, classroom projects, and lifelong study.","href":"https://vervenveda.github.io/Khaemenes_Academy.github.io/","repo":"Khaemenes Academy"},{"title":"Frequency Tuner","category":"sound","group":"Sound & Tuning Lab","code":"TUN","description":"Explore pitch, frequency, tuning references, and practical sound comparison.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/sound-labs/frequency-tuner_index.html","repo":"Bazaar Art"},{"title":"Dual Frequency Lab","category":"sound","group":"Sound & Tuning Lab","code":"DUO","description":"Compare and combine two frequencies for listening, experimentation, and sound study.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/sound-labs/dual-frequency_index.html","repo":"Bazaar Art"},{"title":"ARSHIF Music Hall of Resources","category":"research","group":"Research Library","code":"ARC","description":"Composers, instruments, forms, cultures, music history, source trails, and deeper study.","href":"https://vervenveda.github.io/the_refrain.github.io/apps/ARSHIF_Music_Hall_Resources_Updated_index.html","repo":"The Refrain"},{"title":"Evidence & Citation Studio","category":"research","group":"Research Library","code":"ECS","description":"Organize claims, sources, quotations, provenance, citations, and bibliographies.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Evidence_Citation_Studio/index.html","repo":"ProResource Hub"},{"title":"PLERA Search Gate","category":"research","group":"Research Library","code":"SRC","description":"Prepare visible music-research queries and move into public information sources.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PLERA%E2%84%A2%20Search%20Gate_index.html","repo":"ProResource Hub"},{"title":"Song Embedder","category":"publishing","group":"Publishing Desk","code":"SONG","description":"Save, organize, test, and revisit shareable song, album, playlist, and performance links.","href":"https://vervenveda.github.io/bazaarart.github.io/apps/publishing/song-embedder_index.html","repo":"Bazaar Art"},{"title":"PROSE Editorial Suite","category":"publishing","group":"Publishing Desk","code":"TXT","description":"Create lyrics, biographies, liner notes, programs, press materials, and teaching documents.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html","repo":"ProResource Hub"},{"title":"Bazaar Art Live","category":"publishing","group":"Publishing Desk","code":"333","description":"Share music events, rehearsal notes, studio updates, creative work, and community participation.","href":"https://vervenveda.github.io/proresource_hub.github.io/Protools/Bazaar%20Art%20Live%20333%20Social%20Feedindex.html","repo":"ProResource Hub"},{"title":"Bazaar Art","category":"publishing","group":"Publishing Desk","code":"ART","description":"Creative portfolios, opportunities, presentation, collaboration, and public work.","href":"https://vervenveda.github.io/bazaarart.github.io/","repo":"Bazaar Art"},{"title":"Music Trivia","category":"game","group":"Music Arcade","code":"QUIZ","description":"Review composers, instruments, notation, history, theory, and music vocabulary through play.","href":"https://vervenveda.github.io/arcade.github.io/Trivia_music_index.html","repo":"Arcade"},{"title":"Aurora Sanctuary","category":"restore","group":"Listening Room","code":"RST","description":"Intentional listening, quiet practice, reflection, sound-supported rest, and creative renewal.","href":"https://vervenveda.github.io/aurora.github.io/","repo":"Aurora"},{"title":"Verve N Veda","category":"network","group":"Network","code":"VNV","description":"Return to the wider network of learning, research, public resources, and creative work.","href":"https://vervenveda.github.io/","repo":"Verve N Veda"}];
+
+const groupDescriptions={"Control Room":"Recording, production, playback, arrangement, and media-reference tools.","Instrument Laboratory":"Playable keyboards, spinets, performance interfaces, and hands-on instrument exploration.","Composition Wing":"Original writing, score building, form, arrangement, notation, and musical structure.","Conservatory":"Structured music reading, theory, listening, and foundational-to-intermediate education.","Young Creators Lab":"Welcoming first experiences in piano, notation, rhythm, melody, and composition.","Sound & Tuning Lab":"Pitch, frequency, tuning, dual-tone comparison, and practical sound science.","Research Library":"Music history, evidence, sources, archives, composers, instruments, and cultural context.","Publishing Desk":"Lyrics, song links, portfolios, community participation, media, and presentation.","Music Arcade":"Knowledge practice, review, and music discovery through play.","Listening Room":"Reflection, intentional listening, and creative renewal.","Network":"Connected Verve N Veda destinations."};
+
+const filters=[["all","All Rooms"],["recording","Recording"],["instruments","Instruments"],["composition","Composition"],["learning","Learning"],["young","Young Creators"],["sound","Sound & Tuning"],["research","Research"],["publishing","Publishing"],["game","Music Arcade"],["restore","Restore"]];
+const groupOrder=["Control Room","Instrument Laboratory","Composition Wing","Conservatory","Young Creators Lab","Sound & Tuning Lab","Research Library","Publishing Desk","Music Arcade","Listening Room","Network"];
 const network=[
  {title:"The Refrain",group:"Music",code:"TR",description:"Conservatory and recording house.",href:"./"},
  {title:"Verve N Veda",group:"Network",code:"VNV",description:"Main public gateway.",href:"../"},
  {title:"ProReSources",group:"Professional",code:"PR",description:"Professional browser-based tools.",href:"../proresource_hub.github.io/"},
- {title:"Khaemenes Academy",group:"Learning",code:"KA",description:"Education and lifelong learning.",href:"../khaemenesacademy.github.io/"},
+ {title:"Khaemenes Academy",group:"Learning",code:"KA",description:"Education and lifelong learning.",href:"https://vervenveda.github.io/Khaemenes_Academy.github.io/"},
  {title:"ARSHIF Archives",group:"Research",code:"AR",description:"Research halls and cultural archives.",href:"../Arshif.github.io/"},
  {title:"The Verifier",group:"Research",code:"VR",description:"Information literacy and source comparison.",href:"../theverifier.github.io/"},
  {title:"Bazaar Art",group:"Creative",code:"BA",description:"Creative community and artist resources.",href:"../bazaarart.github.io/"},
@@ -461,12 +532,12 @@ function renderFilters(){
 }
 function renderDirectory(){
  const query=$("#directorySearch").value.trim().toLowerCase();
- const shown=resources.filter(item=>(activeFilter==="all"||item.category===activeFilter)&&(!query||`${item.title} ${item.group} ${item.description} ${item.code}`.toLowerCase().includes(query)));
+ const shown=resources.filter(item=>(activeFilter==="all"||item.category===activeFilter)&&(!query||`${item.title} ${item.group} ${item.description} ${item.code} ${item.repo}`.toLowerCase().includes(query)));
  $("#resultCount").textContent=`${shown.length} of ${resources.length} active destinations`;
  $("#emptyState").style.display=shown.length?"none":"block";
  $("#directoryGroups").innerHTML=groupOrder.filter(group=>shown.some(item=>item.group===group)).map(group=>{
    const items=shown.filter(item=>item.group===group);
-   return `<section class="directory-group"><div class="directory-group-head"><h3>${escapeHTML(group)}</h3><p>${escapeHTML(groupDescriptions[group])}</p></div><div class="directory-grid">${items.map(item=>`<a class="directory-card" href="${escapeHTML(item.href)}"><small>${escapeHTML(item.code)}</small><strong>${escapeHTML(item.title)}</strong><span>${escapeHTML(item.description)}</span><em>Open room →</em></a>`).join("")}</div></section>`;
+   return `<section class="directory-group"><div class="directory-group-head"><h3>${escapeHTML(group)}</h3><p>${escapeHTML(groupDescriptions[group])}</p></div><div class="directory-grid">${items.map(item=>`<a class="directory-card" href="${escapeHTML(item.href)}" aria-label="Open ${escapeHTML(item.title)} in ${escapeHTML(item.repo)}"><small>${escapeHTML(item.code)} · ${escapeHTML(item.repo)}</small><strong>${escapeHTML(item.title)}</strong><span>${escapeHTML(item.description)}</span><em>Open room →</em></a>`).join("")}</div></section>`;
  }).join("");
 }
 function renderDrawerTabs(){
