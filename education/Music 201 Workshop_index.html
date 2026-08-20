@@ -510,5 +510,6 @@ $("#themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save
 $("#importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(obj.type!=="TheRefrainMusicTheory201"||!obj.state)throw new Error();state=Object.assign(defaultState(),obj.state);save();render();toast("Backup restored")}catch{toast("That file is not a valid workshop backup")}e.target.value=""};
 render();
 </script>
+<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
