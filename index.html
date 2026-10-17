@@ -6,6 +6,7 @@
 <meta name="description" content="The Refrain — composition, lyrics, music education, creative practice, and mentor-guided musical exploration with Moirai.">
 <meta name="theme-color" content="#f5f0e6">
 <meta name="color-scheme" content="light">
+<link rel="canonical" href="https://vervenveda.com/the_refrain.github.io/">
 <title>The Refrain | Music House</title>
 <style>
 :root{
@@ -45,14 +46,17 @@ main{overflow:hidden}.hero{min-height:660px;display:grid;place-items:center;padd
 /* favorites */
 .favorites{display:none}.favorites.visible{display:block}.favgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}.fav{min-height:150px;padding:17px;border:1px solid var(--line);border-radius:7px;background:#fff;display:flex;flex-direction:column}.fav strong{font:500 18px/1.2 var(--display)}.fav small{color:var(--soft);margin:8px 0 15px}.fav-actions{margin-top:auto;display:flex;gap:6px}.fav-actions button{border:1px solid var(--line);background:transparent;border-radius:7px;padding:6px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
 
+/* Aurora · Bazaar Art · The Refrain */
+.continuum{background:linear-gradient(145deg,rgba(220,199,157,.18),rgba(252,250,245,.82) 45%,rgba(86,43,53,.05))}.continuum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.continuum-card{min-height:260px;display:flex;flex-direction:column;padding:25px;border:1px solid var(--line);border-radius:7px;background:var(--paper2);color:var(--ink);text-align:left;box-shadow:0 12px 35px rgba(48,35,28,.05);transition:transform .16s ease,border-color .16s ease}.continuum-card:not(.current):hover{transform:translateY(-2px);border-color:var(--wine)}.continuum-card.current{color:#f7efe2;background:var(--wine2);border-color:var(--wine2)}.continuum-mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid currentColor;border-radius:50%;font:500 18px var(--display);opacity:.88}.continuum-step{margin:19px 0 0;color:var(--brass);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.continuum-card.current .continuum-step{color:var(--brass2)}.continuum-card h3{margin:5px 0 0;font:400 30px/1.1 var(--display)}.continuum-card>p:not(.continuum-step){margin:11px 0 18px;color:var(--soft);font-size:13px}.continuum-card.current>p:not(.continuum-step){color:#ddd1c3}.continuum-action{margin-top:auto;color:var(--wine);font-size:11px;font-weight:700;letter-spacing:.05em}.continuum-card.current .continuum-action{color:var(--brass2)}
+
 /* Modal studio */
 .overlay{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;padding:22px;background:rgba(20,15,13,.68);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:.16s}.overlay.open{opacity:1;visibility:visible}.modal{width:min(920px,100%);max-height:calc(100svh - 44px);overflow:auto;background:var(--paper2);border-radius:11px;box-shadow:0 30px 90px rgba(0,0,0,.3);text-align:left}.modal-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 20px;background:rgba(252,250,245,.97);border-bottom:1px solid var(--line)}.crumb{font-size:11px;letter-spacing:.08em;color:var(--soft)}.close{width:38px;height:38px;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:22px}.modal-body{padding:34px}.modal-body h2{font:400 46px/1 var(--display);margin:0 0 10px}.modal-body>p{color:var(--soft);max-width:700px}.resource-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px}.resource{border:1px solid var(--line);border-radius:7px;background:#fff;padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px}.resource h3{font:500 20px/1.2 var(--display);margin:0 0 5px}.resource p{font-size:12px;color:var(--soft);margin:0}.resource-actions{display:flex;align-items:center;gap:5px}.resource-actions a,.resource-actions button{border:1px solid var(--line);border-radius:7px;background:transparent;padding:7px 9px;font-size:10px;text-transform:uppercase;letter-spacing:.06em}.resource-actions a:hover,.resource-actions button:hover{border-color:var(--wine);color:var(--wine)}.resource .disabled{opacity:.45;pointer-events:none}
 
 /* Escape drawer */
 .drawer-overlay{position:fixed;inset:0;z-index:3500;background:rgba(20,15,13,.62);opacity:0;visibility:hidden;transition:.16s}.drawer-overlay.open{opacity:1;visibility:visible}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,92vw);background:var(--paper2);padding:26px;transform:translateX(100%);transition:.2s;overflow:auto}.drawer-overlay.open .drawer{transform:none}.drawer-top{display:flex;justify-content:space-between;align-items:center}.drawer h2{font:400 38px var(--display);margin:18px 0 5px}.drawer p{color:var(--soft);font-size:13px}.escape-links{display:grid;gap:8px;margin-top:25px}.escape-links a{padding:13px;border:1px solid var(--line);border-radius:7px;background:#fff}.escape-links small{display:block;color:var(--soft)}
 
-footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--soft);font-size:12px}
-@media(max-width:900px){.primary{display:none}.header{grid-template-columns:1fr auto}.right{grid-column:2}.doors{grid-template-columns:1fr}.door{min-height:230px}.door h3{margin-top:28px}.moirai-grid{grid-template-columns:1fr;text-align:center}.moirai p{margin-inline:auto}.moirai-actions{justify-content:center}.favgrid{grid-template-columns:repeat(2,1fr)}}
+footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--soft);font-size:12px}.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 14px;margin-top:10px}.footer-links a{color:var(--wine);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.primary{display:none}.header{grid-template-columns:1fr auto}.right{grid-column:2}.doors,.continuum-grid{grid-template-columns:1fr}.door{min-height:230px}.door h3{margin-top:28px}.continuum-card{min-height:220px}.moirai-grid{grid-template-columns:1fr;text-align:center}.moirai p{margin-inline:auto}.moirai-actions{justify-content:center}.favgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){:root{--header:64px}.shell{width:min(calc(100% - 26px),var(--max))}.brand small{display:none}.brand strong{font-size:15px}.hero{min-height:570px;padding-top:65px}.hero h1{font-size:64px}.hero .lede{font-size:20px}.resource-list{grid-template-columns:1fr}.resource{grid-template-columns:1fr}.favgrid{grid-template-columns:1fr}.modal-body{padding:25px 18px}.mentor-btn{font-size:10px;padding:0 8px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.ticker-track{animation:none}}
 </style>
@@ -120,6 +124,17 @@ footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;co
  </div>
 </section>
 
+<section class="section continuum" id="continuum" aria-labelledby="continuumTitle">
+ <div class="shell">
+  <div class="section-head"><div class="eyebrow">One creative continuum</div><h2 id="continuumTitle">Settle. Make. Listen.</h2><p>Aurora, Bazaar Art, and The Refrain are neighboring Verve N Veda studios—three ways to carry one creative thread.</p></div>
+  <div class="continuum-grid" aria-label="Connected Verve N Veda creative studios">
+   <a class="continuum-card" href="https://vervenveda.com/aurora.github.io/"><span class="continuum-mark" aria-hidden="true">◌</span><p class="continuum-step">01 · Settle</p><h3>Aurora</h3><p>Make room for breath, reflection, rest, and the attention that lets a creative idea arrive.</p><span class="continuum-action">Enter the sanctuary →</span></a>
+   <a class="continuum-card" href="https://vervenveda.com/bazaarart.github.io/"><span class="continuum-mark" aria-hidden="true">✦</span><p class="continuum-step">02 · Make</p><h3>Bazaar Art</h3><p>Give the idea visual form through studios, creative education, artist resources, and exhibitions.</p><span class="continuum-action">Enter the art studio →</span></a>
+   <article class="continuum-card current" aria-current="page"><span class="continuum-mark" aria-hidden="true">♪</span><p class="continuum-step">03 · Listen</p><h3>The Refrain</h3><p>Shape the idea in sound through lyrics, composition, instruments, practice, and musical study.</p><span class="continuum-action">You are here</span></article>
+  </div>
+ </div>
+</section>
+
 <section class="section favorites" id="favorites">
  <div class="shell">
   <div class="section-head"><div class="eyebrow">Your favorites</div><h2>My Refrain</h2><p>Pin up to five favorite music resources on this device for quick access.</p></div>
@@ -135,7 +150,7 @@ footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;co
 </section>
 </main>
 
-<footer><div class="shell">The Refrain · Verve N Veda · Music composition, lyrics & education<br>Favorites remain local to this browser.</div></footer>
+<footer><div class="shell">The Refrain · Verve N Veda · Music composition, lyrics & education<br>Favorites remain local to this browser.<div class="footer-links"><a href="https://vervenveda.com/aurora.github.io/">Aurora</a><a href="https://vervenveda.com/bazaarart.github.io/">Bazaar Art</a><a href="https://vervenveda.com/">Verve N Veda</a></div><div>© <span id="year"></span> Jennifer Kay Pearl</div></div></footer>
 
 <div class="overlay" id="studioOverlay" aria-hidden="true">
  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -149,6 +164,8 @@ footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;co
   <div class="drawer-top"><span class="eyebrow">Beyond The Refrain</span><button class="close" id="drawerClose" aria-label="Close network menu">×</button></div>
   <h2>Verve N Veda</h2><p>This menu is the route out of the music house and back into the wider network.</p>
   <div class="escape-links">
+   <a href="https://vervenveda.com/aurora.github.io/"><strong>Aurora</strong><small>Breath, reflection, rest, and creative renewal</small></a>
+   <a href="https://vervenveda.com/bazaarart.github.io/"><strong>Bazaar Art</strong><small>Visual studios, art learning, and exhibition pathways</small></a>
    <a href="https://vervenveda.com/"><strong>Verve N Veda</strong><small>Return to the public gateway</small></a>
    <a href="https://vervenveda.com/Khaemenes_Academy.github.io/"><strong>Khaemenes Academy</strong><small>Education campus</small></a>
    <a href="https://vervenveda.com/proresource_hub.github.io/"><strong>ProResources</strong><small>Professional tools and resources</small></a>
@@ -231,9 +248,9 @@ function closeDrawer(){$("#drawerOverlay").classList.remove("open");$("#drawerOv
 $("#drawerClose").onclick=closeDrawer;$("#drawerOverlay").onclick=e=>{if(e.target===$("#drawerOverlay"))closeDrawer()};
 $("#tickerToggle").onclick=()=>{const p=$("#ticker").dataset.paused==="true";$("#ticker").dataset.paused=String(!p);$("#tickerToggle").textContent=p?"Ⅱ":"▶";$("#tickerToggle").setAttribute("aria-label",p?"Pause music ticker":"Play music ticker")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeStudio();closeDrawer();$$(".dropwrap").forEach(x=>x.classList.remove("open"))}});
-dropdowns();ticker();renderFavs();
+dropdowns();ticker();renderFavs();$("#year").textContent=String(new Date().getFullYear());
 })();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+<script src="./assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
