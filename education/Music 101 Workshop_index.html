@@ -848,6 +848,7 @@ function printCertificate(){
   body{margin:0;padding:40px;background:#f4efe4;font-family:Georgia,serif;color:#202338}.certificate{min-height:620px;border:10px double #b68a3c;background:#fffdf7;padding:55px;text-align:center;display:flex;flex-direction:column;justify-content:center}
   h1{font-size:54px;margin:10px}h2{font-size:34px;margin:18px;color:#24375c}p{font-size:20px;line-height:1.6}.seal{font-size:70px;color:#b68a3c}.small{font-size:15px;color:#666}@media print{body{padding:0;background:#fff}.certificate{min-height:90vh}}</style></head>
   <body><div class="certificate"><div class="seal">R</div><div class="small">THE REFRAIN · MUSIC LEARNING HALL</div><h1>Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has completed the <strong>Music 101 Workshop</strong>, including foundational music reading, rhythm, theory, harmony, composition, and sight-reading, with a final assessment score of <strong>${state.final.score}%</strong>.</p><p>${date}</p><p class="small">Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl</p></div><script>setTimeout(()=>window.print(),250)<\/script><script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
+<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js" defer data-vnv-ecosystem-toolbar="1"></script>
 </body></html>`);
   w.document.close()
 }
@@ -856,6 +857,5 @@ $("#themeBtn").onclick=()=>setTheme(state.theme==="dark"?"light":"dark");
 setTheme(state.theme);
 render();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
