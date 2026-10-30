@@ -1,0 +1,23 @@
+{
+  "schema": "vnv-toolbar-normalization-v1",
+  "counts": {
+    "html": 7,
+    "eligible": 7,
+    "already": 0,
+    "changed": 7,
+    "protected": 0,
+    "internal": 0,
+    "fragments": 0,
+    "legacyRemoved": 3,
+    "duplicatesCollapsed": 0
+  },
+  "changed": [
+    "apps/ARSHIF_Music_Hall_Resources_Updated_index.html",
+    "apps/composer_studio_index.html",
+    "apps/pro-keyboard_index.html",
+    "apps/the-staff_index.html",
+    "education/Music 101 Workshop_index.html",
+    "education/Music 201 Workshop_index.html",
+    "index.html"
+  ]
+}
