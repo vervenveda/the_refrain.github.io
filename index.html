@@ -92,19 +92,6 @@ footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;co
 </div>
 <a class="skip" href="#main">Skip to music</a>
 
-<header>
- <div class="shell header">
-  <a class="brand" href="#" aria-label="The Refrain home"><span class="monogram">TR</span><span><strong>The Refrain</strong><small>Music House · Verve N Veda</small></span></a>
-  <nav class="primary" aria-label="The Refrain">
-   <div class="dropwrap"><button class="navbtn" data-drop="compose">Compose ▾</button><div class="dropdown" id="drop-compose"></div></div>
-   <div class="dropwrap"><button class="navbtn" data-drop="lyrics">Lyrics ▾</button><div class="dropdown" id="drop-lyrics"></div></div>
-   <div class="dropwrap"><button class="navbtn" data-drop="learn">Learn ▾</button><div class="dropdown" id="drop-learn"></div></div>
-   <div class="dropwrap"><button class="navbtn" data-drop="explore">Explore ▾</button><div class="dropdown" id="drop-explore"></div></div>
-  </nav>
-  <div class="right"><button class="mentor-btn" id="moiraiButton">Moirai</button><button class="menu-btn" id="menuButton" aria-label="Leave The Refrain and explore Verve N Veda">☰</button></div>
- </div>
-</header>
-
 <main id="main">
 <section class="hero">
  <div class="shell hero-inner">
@@ -258,8 +245,14 @@ document.addEventListener("click",e=>{
  if(!e.target.closest(".dropwrap"))$$(".dropwrap").forEach(x=>x.classList.remove("open"));
 });
 $("#modalClose").onclick=closeStudio;$("#studioOverlay").onclick=e=>{if(e.target===$("#studioOverlay"))closeStudio()};
-$("#moiraiButton").onclick=()=>$("#moirai").scrollIntoView({behavior:"smooth"});
-$("#menuButton").onclick=()=>{$("#drawerOverlay").classList.add("open");$("#drawerOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock")};
+$("#moiraiButton")?.addEventListener("click",()=>$("#moirai").scrollIntoView({behavior:"smooth"}));
+document.addEventListener("click",e=>{
+  const moirai=e.target.closest?.('a[href="#moirai"]');
+  if(moirai){e.preventDefault();$("#moirai").scrollIntoView({behavior:"smooth"});return;}
+  const network=e.target.closest?.('a[href="#refrain-network"]');
+  if(network){e.preventDefault();$("#drawerOverlay").classList.add("open");$("#drawerOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock");}
+});
+$("#menuButton")?.addEventListener("click",()=>{$("#drawerOverlay").classList.add("open");$("#drawerOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock")});
 function closeDrawer(){$("#drawerOverlay").classList.remove("open");$("#drawerOverlay").setAttribute("aria-hidden","true");document.body.classList.remove("lock")}
 $("#drawerClose").onclick=closeDrawer;$("#drawerOverlay").onclick=e=>{if(e.target===$("#drawerOverlay"))closeDrawer()};
 
@@ -269,12 +262,12 @@ dropdowns();renderFavs();$("#year").textContent=String(new Date().getFullYear())
 </script>
 <script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
 
+<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
+<script>VNV_HEADER.mount({"title":"The Refrain","subtitle":"Music House · Verve N Veda","icon":"TR","home":"#top","actions":[{"label":"Compose","href":"#compose"},{"label":"Lyrics","href":"#lyrics"},{"label":"Learn","href":"#learn"},{"label":"Moirai","href":"#moirai"},{"label":"Network","href":"#refrain-network"}]});</script>
 <script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
 <script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
 <script>VNV_TICKER.autoPopulate({label:"The Refrain Quick Links",max:12});</script>
-
-<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
-<script>VNV_HEADER.mount({replaceLegacy:true});</script>
+<script>VNV_HEADER.mount({"title":"The Refrain","subtitle":"Music House · Verve N Veda","icon":"TR","home":"#top","actions":[{"label":"Compose","href":"#compose"},{"label":"Lyrics","href":"#lyrics"},{"label":"Learn","href":"#learn"},{"label":"Moirai","href":"#moirai"},{"label":"Network","href":"#refrain-network"}]});</script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body>
 </html>
