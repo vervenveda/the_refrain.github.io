@@ -27,5 +27,9 @@ const existing=()=>document.getElementById("vnvHeaderAutoPopulate");
 window.VNV333Ticker?.mount();window.VNV_HEADER?.mount({title:"The Refrain",subtitle:"",icon:"TR",home:home.href,actions:[],replaceLegacy:false});
 window.VNV_TICKER?.autoPopulate({before:"#vnvHeaderAutoPopulate",label:"The Refrain · Explore",links:routes.map(([label,p])=>({label,href:url(p)})),cleanLegacy:false});
 const header=existing(),auto=document.getElementById("vnvTickerAutoPopulate"),ticker=document.getElementById("vnv333NetworkTicker");if(ticker&&auto&&header){body.prepend(header);body.prepend(auto);body.prepend(ticker);header.after(crumb||document.createComment("Refrain breadcrumb"))}
-function positionLanguage(){const lang=document.getElementById("vnv-language-switch");if(lang&&crumb&&crumb.nextElementSibling!==lang)crumb.after(lang)}document.addEventListener("DOMContentLoaded",()=>{positionLanguage();requestAnimationFrame(positionLanguage)},{once:true});window.addEventListener("load",positionLanguage,{once:true});
+/* Compact header pilot: move the existing selector, never clone or rebuild it. */
+function positionLanguage(){const lang=document.getElementById("vnv-language-switch"),inner=document.querySelector("#vnvHeaderAutoPopulate .vnv-header-inner");if(!lang||!inner)return false;let slot=inner.querySelector(".rf-header-language");if(!slot){slot=document.createElement("div");slot.className="rf-header-language";slot.setAttribute("data-i18n-ignore","");inner.insertBefore(slot,inner.querySelector(".vnv-header-menu-button"))}if(lang.parentElement!==slot){const previous=lang.parentElement;slot.append(lang);if(previous?.id==="vnv-language-rail"&&!previous.children.length)previous.remove()}return true}
+const languageObserver=new MutationObserver(()=>{positionLanguage()});
+languageObserver.observe(document.body,{childList:true,subtree:true});
+document.addEventListener("DOMContentLoaded",positionLanguage,{once:true});window.addEventListener("load",positionLanguage,{once:true});positionLanguage();
 })();
