@@ -1,186 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>The Staff: 5 Lines of Sound</title>
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #f8f6f2, #e9e4df);
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  overflow: hidden;
-}
-h1 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 0.25em;
-}
-p {
-  max-width: 600px;
-  text-align: center;
-  font-size: 1rem;
-  color: #555;
-}
-#staff {
-  position: relative;
-  width: 90%;
-  max-width: 700px;
-  height: 300px;
-  margin-top: 2em;
-  cursor: pointer;
-}
-.line {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: #333;
-  left: 0;
-  transition: background 0.2s ease;
-}
-.ripple {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.1);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  animation: ripple 0.8s ease-out forwards;
-}
-@keyframes ripple {
-  from {transform: translate(-50%, -50%) scale(0.5); opacity: 0.7;}
-  to {transform: translate(-50%, -50%) scale(3); opacity: 0;}
-}
-#modeBtn {
-  margin-top: 2em;
-  padding: 0.7em 1.4em;
-  border: none;
-  border-radius: 10px;
-  background: #222;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-}
-#modeBtn.active {
-  background: #aaa;
-  color: #111;
-}
-.float {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(0,0,0,0.2);
-  border-radius: 50%;
-  animation: float 4s ease-in-out infinite;
-}
-@keyframes float {
-  0% {transform: translateY(0) scale(0.8); opacity: 0.8;}
-  50% {transform: translateY(-40px) scale(1.2); opacity: 0.6;}
-  100% {transform: translateY(0) scale(0.8); opacity: 0.8;}
-}
-</style>
-</head>
-<body>
-
-<h1>The Staff: 5 Lines of Sound</h1>
-<p>Tap each line — “This is where sound lives.” Then close your eyes and listen as the lines float in silence.</p>
-
-<div id="staff"></div>
-<button id="modeBtn">🌙 Close Eyes Mode</button>
-
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#292827"><title>The Staff · Five Lines of Sound | The Refrain</title><style>
+:root{--ink:#292827;--cream:#f8f0df;--gold:#d8b66b;--paper:#fffaf0;--line:#c9baa0}*{box-sizing:border-box}body{margin:0;background:#eee5d4;color:var(--ink);font:16px/1.5 Nunito,"Brandon Grotesque",system-ui,sans-serif}button,input,select{font:inherit}button,summary{cursor:pointer}button,a,select,input{border-radius:7px}button{min-height:42px;padding:8px 13px;border:1px solid #73654e;background:#292827;color:#f8f0df}button[aria-pressed=true],button.primary{background:#d8b66b;color:#292827;border-color:#8e7137}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ba872b;outline-offset:3px}a{color:inherit}input,select{min-height:40px;border:1px solid #a39272;background:var(--paper);color:var(--ink);padding:6px 8px;max-width:100%}.fallback{display:flex;justify-content:space-between;background:#c9ad76;padding:9px 16px}.shell{width:calc(100% - 32px);max-width:1800px;margin:auto}.crumb{padding:10px 0}.hero{text-align:center;background:#292827;color:var(--cream);padding:20px 12px;border-radius:7px}.hero h1{font:400 clamp(38px,5vw,66px)/1.15 Cinzel,Georgia,serif;margin:5px}.eyebrow{color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:14px}.hero p{margin:5px auto;max-width:750px}.tools,.panel,details{background:var(--paper);border:1px solid var(--line);border-radius:7px;margin:12px 0;padding:12px}.row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.tools .row+.row{margin-top:10px}.palette{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;margin:10px 0}.palette button{display:grid;justify-items:center;gap:3px;min-width:0;padding:6px}.palette .glyph{font:29px Georgia,serif}.palette .label{font-size:16px}.sheet{background:#fffdf7;border:1px solid var(--line);border-radius:7px;padding:10px}.sheet h2{text-align:center;font:400 24px Georgia,serif;margin:6px}.sheet svg{width:100%;height:auto;display:block;touch-action:manipulation;cursor:crosshair}.sheet svg:focus{outline:2px solid #b08436}.muted{color:#655948}.status{text-align:center;min-height:1.5em;margin:8px 0}.stats{text-align:center;margin:6px 0}.score-nav{justify-content:space-between}.tokenlist{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}.tokenlist button{background:#fff8e8;color:#292827;border:1px solid #b9aa8e;min-height:38px}.tokenlist button[aria-pressed=true]{background:#d8b66b}.tokenlist button.playing{background:#a5d5b7}.danger{background:#743b40}.settings label{display:inline-flex;align-items:center;gap:6px}.footer{margin-top:18px;padding:23px 12px 55px;background:#292827;color:var(--cream);text-align:center}.footer a{color:var(--gold)}summary{font-size:18px}details>div{padding-top:12px}[hidden]{display:none!important}.listen-mode .sheet svg,.listen-mode .tokenlist{visibility:hidden}.listen-mode .sheet{background:#eee5d4}.listen-mode .sheet h2{visibility:hidden}@media(max-width:800px){.palette{grid-template-columns:repeat(4,minmax(0,1fr))}.shell{width:calc(100% - 16px)}}@media(max-width:420px){.palette{grid-template-columns:repeat(2,minmax(0,1fr))}}@media print{.hero,.fallback,.crumb,.tools,.footer,details,.score-nav,.status,.stats,.tokenlist{display:none!important}.sheet{border:0}.shell{width:100%}body{background:white}}
+</style></head><body><header class="fallback"><a href="https://vervenveda.com/">Verve N Veda</a><a href="../">The Refrain</a></header><main class="shell"><div class="crumb"><a href="../">The Refrain</a> / The Staff</div><section class="hero"><div class="eyebrow">The Refrain · Composition Studio</div><h1>The Staff</h1><p>Five lines of sound. Write your own music, then hear your imagination come to life.</p></section>
+<section class="tools" aria-label="Composition tools"><div class="row settings"><label>Title <input id="title" maxlength="100" value="My composition"></label><label>Clef <select id="clef"><option value="treble">Treble</option><option value="bass">Bass</option></select></label><label>Tempo <input id="tempo" type="number" min="40" max="200" value="90" style="width:76px"> BPM</label><label>Volume <input id="volume" type="range" min="0" max="0.5" step=".01" value=".25"></label></div>
+<div class="palette" id="palette" aria-label="Musical symbols"></div><div class="row"><label>Accidental <select id="accidental"><option value="0">Natural / none</option><option value="1">Sharp ♯</option><option value="-1">Flat ♭</option></select></label><label><input type="checkbox" id="dotted"> Dotted note</label><button id="undo">Undo</button><button id="redo">Redo</button><button id="clear" class="danger">Clear score</button></div><div class="row"><button id="play" class="primary">▶ Play composition</button><button id="stop">■ Stop</button><button id="listen" aria-pressed="false">Close eyes mode</button><button id="example">Load example</button></div></section>
+<section class="panel" id="workspace"><div class="sheet"><h2 id="sheetTitle">My composition</h2><svg id="staff" viewBox="0 0 1120 280" role="img" aria-label="Interactive five-line staff. Click a line or space to insert a note. Keyboard entry available below."></svg><div class="row score-nav"><button id="prev">← Previous</button><span id="page"></span><button id="next">Next →</button></div></div><p class="status" id="status" role="status" aria-live="polite">Choose a note symbol and click a line or space.</p><div class="row settings"><label>Pitch <select id="pitch"></select></label><button id="insert">Insert selected symbol</button><button id="replace">Replace selected</button><button id="delete">Delete selected</button><button id="end">Insert at end</button></div><p class="stats" id="stats"></p><div class="tokenlist" id="tokens" aria-label="Score events"></div></section>
+<details><summary>My compositions · Save, import, export &amp; print</summary><div class="row"><button id="save">Save to this device</button><button id="export">Export score JSON</button><button id="import">Import score JSON</button><input type="file" id="file" accept=".json,application/json" hidden><button id="print">Print all pages</button></div><p>Local recovery stores your current composition in this browser. Export a backup for permanent safekeeping.</p></details>
+<details><summary>How to compose</summary><div><p>Choose a note length, then tap a staff line or space to insert its pitch. Use rests for silence and bar lines to separate phrases. Select an existing event below the staff to insert before it or replace it. Notes play from left to right in the order shown, using the selected tempo.</p><p>Treble and bass clefs change the display, not the actual pitches already written. Accidentals apply to the individual note; this beginner editor does not enforce key signatures or automatic measure rules. Playback is monophonic. Close eyes mode hides the score while you listen.</p></div></details></main><footer class="footer">The Staff · The Refrain · Verve N Veda<br><a href="../">Return to the Music House</a></footer>
 <script>
-const staff = document.getElementById('staff');
-const modeBtn = document.getElementById('modeBtn');
-const ctx = new (window.AudioContext || window.webkitAudioContext)();
-let closeEyesMode = false;
-
-// Draw 5 lines
-for(let i=0;i<5;i++){
-  const line = document.createElement('div');
-  line.className = 'line';
-  line.style.top = `${40 + i*40}px`;
-  line.dataset.index = i;
-  staff.appendChild(line);
-}
-
-// Tap sound
-staff.addEventListener('click', e=>{
-  if(closeEyesMode) return;
-  const y = e.offsetY;
-  const lines = [...staff.querySelectorAll('.line')];
-  let nearest = lines.reduce((a,b)=>{
-    return Math.abs(b.offsetTop - y) < Math.abs(a.offsetTop - y)? b : a;
-  });
-  playTone(nearest.dataset.index);
-  createRipple(e.pageX, nearest.offsetTop + staff.offsetTop);
-});
-
-// Audio tone generator
-function playTone(i){
-  const freqs = [440,494,523,587,659]; // simple scale
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.frequency.value = freqs[i];
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-  gain.gain.setValueAtTime(0.2, ctx.currentTime);
-  osc.start();
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
-  osc.stop(ctx.currentTime + 0.6);
-}
-
-// Ripple visual
-function createRipple(x,y){
-  const r = document.createElement('div');
-  r.className = 'ripple';
-  r.style.left = x+'px';
-  r.style.top = y+'px';
-  document.body.appendChild(r);
-  setTimeout(()=>r.remove(),800);
-}
-
-// Close Eyes Mode
-modeBtn.onclick=()=>{
-  closeEyesMode = !closeEyesMode;
-  modeBtn.classList.toggle('active');
-  if(closeEyesMode){
-    modeBtn.textContent = '☀️ Open Eyes Mode';
-    startFloaters();
-  } else {
-    modeBtn.textContent = '🌙 Close Eyes Mode';
-    stopFloaters();
-  }
-};
-
-let floaters = [];
-function startFloaters(){
-  const lines = staff.querySelectorAll('.line');
-  lines.forEach((line,idx)=>{
-    for(let i=0;i<5;i++){
-      const f = document.createElement('div');
-      f.className='float';
-      f.style.left = Math.random()*90 + '%';
-      f.style.top = (line.offsetTop-10) + 'px';
-      f.style.animationDelay = (Math.random()*4)+'s';
-      document.body.appendChild(f);
-      floaters.push(f);
-    }
-  });
-}
-function stopFloaters(){
-  floaters.forEach(f=>f.remove());
-  floaters=[];
-}
-</script>
-
-<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
-</body>
-</html>
+(()=>{"use strict";
+const $=id=>document.getElementById(id),ns="http://www.w3.org/2000/svg",KEY="refrain-staff-score-v1",MAX=256,PAGE=16;
+const symbols=[["whole","𝅝","Whole note",4],["half","𝅗𝅥","Half note",2],["quarter","♩","Quarter note",1],["eighth","♪","Eighth note",.5],["sixteenth","𝅘𝅥𝅯","Sixteenth",.25],["rest","𝄽","Rest",1],["bar","|","Bar line",0],["erase","⌫","Eraser",0]];
+const lengths=Object.fromEntries(symbols.filter(x=>x[0]!=="erase").map(x=>[x[0],x[3]]));
+let events=[],selected=-1,page=0,tool="quarter",undo=[],redo=[],playing=-1,timer=null,ctx=null,voices=new Set(),running=false;
+const letters="CDEFGAB",semitones=[0,2,4,5,7,9,11];
+function midi(p,a=0){return 12*(Math.floor(p/7)+1)+semitones[p%7]+a}
+function name(p,a=0){return letters[p%7]+(a===1?"♯":a===-1?"♭":"")+Math.floor(p/7)}
+function base(){return $("clef").value==="bass"?7*2+4:7*4+2}
+function yFor(p){return 186-(p-base())*10}
+function say(t){$("status").textContent=t}
+function valid(e){return e&&Object.hasOwn(lengths,e.kind)&&Number.isInteger(e.pitch)&&e.pitch>=7&&e.pitch<=55&&[-1,0,1].includes(e.acc)&&typeof e.dot==="boolean"}
+function snapshot(){return {version:1,title:$("title").value,clef:$("clef").value,tempo:Math.max(40,Math.min(200,Number($("tempo").value)||90)),events:events.map(e=>({...e}))}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(snapshot()));return true}catch{return false}}
+function restore(data){if(!data||data.version!==1||!Array.isArray(data.events)||data.events.length>MAX||!data.events.every(valid))throw Error("Invalid score");events=data.events.map(e=>({...e}));$("title").value=String(data.title||"My composition").slice(0,100);$("clef").value=data.clef==="bass"?"bass":"treble";$("tempo").value=Math.max(40,Math.min(200,Number(data.tempo)||90));selected=-1;page=0}
+try{const raw=localStorage.getItem(KEY);if(raw)restore(JSON.parse(raw))}catch{}
+function checkpoint(){undo.push(events.map(e=>({...e})));if(undo.length>80)undo.shift();redo=[]}
+function edit(fn){stop();checkpoint();fn();page=Math.min(page,Math.max(0,Math.ceil(events.length/PAGE)-1));persist();render()}
+function shape(root,tag,attrs,text){const el=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;root.append(el);return el}
+function draw(root,items,offset=0,interactive=true){root.replaceChildren();const bottom=186;for(let i=0;i<5;i++)shape(root,"line",{x1:24,x2:1090,y1:bottom-i*20,y2:bottom-i*20,stroke:"#514838","stroke-width":1.5});shape(root,"text",{x:30,y:$("clef").value==="bass"?160:178,"font-size":76,fill:"#292827","font-family":"serif"},$("clef").value==="bass"?"𝄢":"𝄞");items.forEach((e,i)=>{const index=offset+i,x=112+i*60,y=yFor(e.pitch);if(interactive&&(index===selected||index===playing))shape(root,"rect",{x:x-24,y:12,width:48,height:246,rx:7,fill:index===playing?"#b7dfbe":"#f0d88e",opacity:.7});if(e.kind==="bar"){shape(root,"line",{x1:x,x2:x,y1:106,y2:186,stroke:"#292827","stroke-width":2});return}if(e.kind==="rest"){shape(root,"text",{x,y:150,"font-size":35,"text-anchor":"middle",fill:"#292827"},"𝄽");if(e.dot)shape(root,"circle",{cx:x+14,cy:144,r:2.5,fill:"#292827"});return}for(let yy=206;yy<=y+.1;yy+=20)shape(root,"line",{x1:x-13,x2:x+13,y1:yy,y2:yy,stroke:"#292827","stroke-width":1.5});for(let yy=86;yy>=y-.1;yy-=20)shape(root,"line",{x1:x-13,x2:x+13,y1:yy,y2:yy,stroke:"#292827","stroke-width":1.5});if(e.acc)shape(root,"text",{x:x-19,y:y+5,"font-size":21,"text-anchor":"middle"},e.acc===1?"♯":"♭");shape(root,"ellipse",{cx:x,cy:y,rx:8,ry:5.6,fill:["whole","half"].includes(e.kind)?"#fffdf7":"#292827",stroke:"#292827","stroke-width":1.7,transform:"rotate(-15 "+x+" "+y+")"});if(e.kind!=="whole"){const up=y>=146,sx=x+(up?7:-7),sy=y+(up?-38:38);shape(root,"line",{x1:sx,x2:sx,y1:y,y2:sy,stroke:"#292827","stroke-width":1.6});if(["eighth","sixteenth"].includes(e.kind)){for(let f=0;f<(e.kind==="sixteenth"?2:1);f++){const yy=sy+(up?f*8:-f*8);shape(root,"path",{d:"M"+sx+" "+yy+" q16 "+(up?8:-8)+" 8 "+(up?20:-20),fill:"none",stroke:"#292827","stroke-width":2})}}}if(e.dot)shape(root,"circle",{cx:x+13,cy:y,r:2.5,fill:"#292827"});shape(root,"text",{x,y:268,"text-anchor":"middle","font-size":13,fill:"#655948"},name(e.pitch,e.acc))})}
+function pages(){return Math.max(1,Math.ceil(events.length/PAGE))}
+function refreshPitch(){const old=Number($("pitch").value);$("pitch").replaceChildren();for(let p=base()-6;p<=base()+14;p++)$("pitch").append(new Option(name(p),p));$("pitch").value=old>=base()-6&&old<=base()+14?old:base()}
+function render(){const root=$("staff");const part=events.slice(page*PAGE,page*PAGE+PAGE);const ys=part.filter(e=>e.kind!=="rest"&&e.kind!=="bar").map(e=>yFor(e.pitch));const top=Math.min(0,...ys.map(y=>y-50)),bottom=Math.max(280,...ys.map(y=>y+50));root.setAttribute("viewBox","0 "+top+" 1120 "+(bottom-top));draw(root,part,page*PAGE);$("sheetTitle").textContent=$("title").value||"My composition";$("page").textContent="Page "+(page+1)+" of "+pages();$("prev").disabled=page===0;$("next").disabled=page>=pages()-1;$("undo").disabled=!undo.length;$("redo").disabled=!redo.length;$("replace").disabled=selected<0;$("delete").disabled=selected<0;$("play").disabled=running;$("stop").disabled=!running;$("stats").textContent=events.length+" symbols · "+events.reduce((a,e)=>a+lengths[e.kind]*(e.dot?1.5:1),0)+" beats";$("tokens").replaceChildren();part.forEach((e,i)=>{const index=page*PAGE+i,b=document.createElement("button");b.type="button";b.textContent=(index+1)+". "+(e.kind==="bar"?"Bar":e.kind==="rest"?"Rest":name(e.pitch,e.acc))+" · "+lengths[e.kind]*(e.dot?1.5:1);b.setAttribute("aria-pressed",String(index===selected));b.classList.toggle("playing",index===playing);b.onclick=()=>{selected=index;$("pitch").value=String(e.pitch);render();say("Selected event "+(index+1)+". Insert before it, replace, or delete.")};$("tokens").append(b)})}
+function choose(kind){tool=kind;for(const b of $("palette").children)b.setAttribute("aria-pressed",String(b.dataset.kind===kind));say("Selected "+symbols.find(s=>s[0]===kind)[2]+".")}
+for(const [kind,glyph,label] of symbols){const b=document.createElement("button");b.type="button";b.dataset.kind=kind;const g=document.createElement("span");g.className="glyph";g.textContent=glyph;const l=document.createElement("span");l.className="label";l.textContent=label;b.append(g,l);b.onclick=()=>choose(kind);$("palette").append(b)}
+function eventFor(p){return {kind:tool,pitch:p,acc:Number($("accidental").value),dot:$("dotted").checked&&tool!=="bar"}}
+function insert(p,at=selected<0?events.length:selected){if(tool==="erase"){if(selected>=0)edit(()=>{events.splice(selected,1);selected=-1});return}if(events.length>=MAX){say("Score is full. Export before starting another.");return}const e=eventFor(p);edit(()=>{events.splice(at,0,e);selected=-1;page=Math.floor(at/PAGE)});if(e.kind!=="rest"&&e.kind!=="bar")tone(e,.3).catch(()=>{});say("Added "+(e.kind==="rest"?"rest":e.kind==="bar"?"bar line":name(p,e.acc))+".")}
+$("staff").addEventListener("pointerdown",e=>{const svg=$("staff"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const matrix=svg.getScreenCTM();if(!matrix)return;const loc=pt.matrixTransform(matrix.inverse());const index=page*PAGE+Math.max(0,Math.min(PAGE-1,Math.round((loc.x-112)/60)));if(tool==="erase"){if(index<events.length)edit(()=>{events.splice(index,1);selected=-1});return}const p=Math.max(base()-6,Math.min(base()+14,base()+Math.round((186-loc.y)/10)));$("pitch").value=String(p);insert(p,Math.min(index,events.length))});
+$("insert").onclick=()=>insert(Number($("pitch").value));$("replace").onclick=()=>{if(selected>=0&&tool!=="erase"){const e=eventFor(Number($("pitch").value));edit(()=>{events[selected]=e});say("Symbol replaced.")}};$("delete").onclick=()=>{if(selected>=0)edit(()=>{events.splice(selected,1);selected=-1})};$("end").onclick=()=>{selected=-1;page=pages()-1;render();say("Ready to append notes.")};
+$("prev").onclick=()=>{page--;render()};$("next").onclick=()=>{page++;render()};$("undo").onclick=()=>{if(!undo.length)return;stop();redo.push(events.map(e=>({...e})));events=undo.pop();selected=-1;page=Math.min(page,pages()-1);persist();render()};$("redo").onclick=()=>{if(!redo.length)return;stop();undo.push(events.map(e=>({...e})));events=redo.pop();selected=-1;page=Math.min(page,pages()-1);persist();render()};
+$("clear").onclick=()=>{if(confirm("Clear this composition? You can undo this action."))edit(()=>{events=[];selected=-1;page=0})};
+async function tone(e,seconds){const C=window.AudioContext||window.webkitAudioContext;if(!C)throw Error("Audio unavailable");if(!ctx)ctx=new C();if(ctx.state==="suspended")await ctx.resume();if(ctx.state!=="running")throw Error("Audio unavailable");const osc=ctx.createOscillator(),gain=ctx.createGain(),t=ctx.currentTime;osc.type="triangle";osc.frequency.value=440*2**((midi(e.pitch,e.acc)-69)/12);gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(Math.max(.0001,Number($("volume").value)),t+.012);gain.gain.exponentialRampToValueAtTime(.0001,t+Math.max(.05,seconds));osc.connect(gain).connect(ctx.destination);voices.add(osc);osc.onended=()=>{voices.delete(osc);osc.disconnect();gain.disconnect()};osc.start(t);osc.stop(t+Math.max(.06,seconds+.01))}
+function stop(){running=false;clearTimeout(timer);timer=null;voices.forEach(v=>{try{v.stop()}catch{}});voices.clear();playing=-1;render()}
+async function play(){stop();if(!events.some(e=>e.kind!=="bar")){say("Add notes or rests first.");return}running=true;render();const beat=60/Math.max(40,Math.min(200,Number($("tempo").value)||90));let i=0;async function next(){if(!running)return;while(i<events.length&&events[i].kind==="bar")i++;if(i>=events.length){stop();say("Composition complete.");return}const e=events[i];playing=i;page=Math.floor(i/PAGE);render();const duration=beat*lengths[e.kind]*(e.dot?1.5:1);if(e.kind!=="rest"){try{await tone(e,duration*.9)}catch{stop();say("Unable to start audio.");return}}if(!running)return;i++;timer=setTimeout(next,duration*1000)}say("Playing your composition…");next()}
+$("play").onclick=play;$("stop").onclick=()=>{stop();say("Playback stopped.")};$("listen").onclick=()=>{const on=$("listen").getAttribute("aria-pressed")!=="true";$("listen").setAttribute("aria-pressed",String(on));$("listen").textContent=on?"Open eyes mode":"Close eyes mode";$("workspace").classList.toggle("listen-mode",on);say(on?"Listen to your composition without looking at the notes.":"Score visible.")};
+$("example").onclick=()=>{if(events.length&&!confirm("Replace the current score with a sample? Undo is available."))return;edit(()=>{events=[28,29,30,32,30,29,28].map((pitch,i)=>({kind:i===6?"half":"quarter",pitch,acc:0,dot:false}));selected=-1;page=0});say("Original seven-note example ready.")};
+$("title").oninput=()=>{persist();render()};$("tempo").onchange=()=>{persist()};$("clef").onchange=()=>{refreshPitch();persist();render()};$("save").onclick=()=>say(persist()?"Composition saved on this device.":"Local storage unavailable. Export a backup.");$("export").onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(snapshot(),null,2)],{type:"application/json"})),a=document.createElement("a");a.href=url;a.download="refrain-composition.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};$("import").onclick=()=>$("file").click();$("file").onchange=async()=>{const f=$("file").files[0];$("file").value="";if(!f)return;try{if(f.size>1000000)throw Error("File too large");const data=JSON.parse(await f.text());if(!data||data.version!==1||!Array.isArray(data.events)||data.events.length>MAX||!data.events.every(valid))throw Error("Invalid score");if(!confirm("Replace the current composition with this file?"))return;stop();restore(data);undo=[];redo=[];refreshPitch();persist();render();say("Composition imported.")}catch{say("Unable to import this score.")}};
+$("print").onclick=()=>{const print=document.createElement("div");print.id="printScore";for(let i=0;i<pages();i++){const h=document.createElement("h2");h.textContent=($("title").value||"My composition")+" · "+(i+1);print.append(h);const svg=document.createElementNS(ns,"svg");const part=events.slice(i*PAGE,i*PAGE+PAGE),ys=part.filter(e=>e.kind!=="rest"&&e.kind!=="bar").map(e=>yFor(e.pitch)),top=Math.min(0,...ys.map(y=>y-50)),bottom=Math.max(280,...ys.map(y=>y+50));svg.setAttribute("viewBox","0 "+top+" 1120 "+(bottom-top));svg.style.width="100%";draw(svg,part,i*PAGE,false);print.append(svg)}const style=document.createElement("style");style.textContent="@media screen{#printScore{display:none}} @media print{body>*:not(#printScore){display:none!important}#printScore{display:block!important}#printScore svg{break-inside:avoid}}";document.head.append(style);document.body.append(print);window.print();print.remove();style.remove()};
+window.addEventListener("pagehide",()=>{running=false;clearTimeout(timer);voices.forEach(v=>{try{v.stop()}catch{}})});refreshPitch();choose("quarter");render();
+})();
+</script><script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script><script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script><script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script><script>if(window.VNV_HEADER&&typeof VNV_HEADER.mount==="function"){try{VNV_HEADER.mount({title:"The Staff",subtitle:"The Refrain · Music House",icon:"♪",home:"../",actions:[{label:"The Refrain",href:"../"},{label:"Verve N Veda",href:"https://vervenveda.com/"}]});document.querySelector(".fallback").hidden=true}catch{}}if(window.VNV_TICKER&&typeof VNV_TICKER.autoPopulate==="function")VNV_TICKER.autoPopulate({label:"The Staff",max:12});</script><script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script></body></html>
