@@ -6,7 +6,7 @@
 <meta name="description" content="Harmony’s Haven Studio™ — a professional 88-key browser keyboard with twenty-one instruments, scale practice, metronome, multi-track recording, grand-staff notation preview, local recovery, import, export, and printing.">
 <meta name="theme-color" content="#0b1020">
 <meta name="color-scheme" content="dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'unsafe-inline'; media-src 'self' data: blob: https://gleitz.github.io; connect-src 'self' https://gleitz.github.io; img-src 'self' data: blob:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://vervenveda.com; media-src 'self' data: blob: https://gleitz.github.io; connect-src 'self' https://gleitz.github.io; img-src 'self' data: blob:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Harmony’s Haven Studio™ — Professional Keyboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -761,67 +761,28 @@ input[type="range"]{
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;transition:none!important}
 }
+
+/* Harmony's Haven — performance-first workstation */
+:root{--night:#242625;--night-2:#303332;--panel:#303332;--panel-soft:#303332;--ink:#f8f0df;--muted:#ded5c5;--faint:#c8beae;--gold:#c9a867;--gold-2:#f0d99a;--teal:#80c5b3;--line:rgba(213,185,129,.35);--radius:7px;--radius-sm:7px;--font-display:Cinzel,Georgia,serif;--font-brand:Cinzel,Georgia,serif;--font-ui:"Brandon Grotesque",Nunito,system-ui,sans-serif}
+html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;line-height:1.5}body::before{display:none}.utility-bar{position:static;background:#c9ad76;color:#262626}.utility-inner{width:calc(100% - 32px);margin:auto;min-height:48px;gap:12px}.studio-brand{gap:10px}.studio-brand strong{font-size:16px;font-weight:400}.studio-mark{width:33px;height:33px;color:#262626;border-color:#65532f;font-size:16px;font-weight:400}.utility-links a{font-size:16px;font-weight:400;color:#262626;padding:5px 8px}.utility-links{gap:4px}.studio-shell{width:calc(100% - 32px);max-width:2444px;margin:0 auto;padding:12px 0 60px}.studio-hero{display:block;text-align:center;padding:16px 12px 12px;margin:0 0 12px;border-radius:7px;background:#292b2a;box-shadow:none}.eyebrow{font-size:14px;font-weight:400;letter-spacing:.12em}h1{font:400 clamp(33px,4vw,55px)/1.15 var(--font-display);letter-spacing:0;margin:5px 0}.hero-subtitle{font:400 16px/1.4 var(--font-ui);letter-spacing:.04em;margin:5px 0;color:var(--muted);text-transform:none}.hero-links{justify-content:center;margin:9px 0 0;gap:7px}.project-status{font-size:16px;min-height:0;margin-top:9px;padding:5px 10px;border:0;background:#203e35;border-radius:7px}.button,button,button.small{font-size:16px;font-weight:400;min-height:40px;border-radius:7px;padding:7px 12px}.button:hover,button:hover:not(:disabled){transform:none}.button.primary,button.primary,#recBtn,#playMixBtn,#playScaleBtn,#playStaffBtn{background:#d8b66b;color:#25231f}.studio-section{margin:0;border-radius:7px;background:#303332;box-shadow:none}.section-head{padding:9px 14px;gap:10px}.section-head h2{font-size:24px;line-height:1.25;margin:0}.section-head p{font-size:16px;line-height:1.4;margin:3px 0}.keyboard-body{padding:9px}.keyboard-help{margin:0 0 7px;font-size:16px;flex-wrap:wrap}.piano{padding:10px 10px 13px;border-radius:7px;touch-action:pan-x;overflow-x:auto;background:#111312}.keys-row{gap:0;width:100%;min-width:1560px;isolation:isolate}.key.white{flex:1 0 0;min-width:0;max-width:none;height:clamp(145px,17vw,220px);font-size:11px;font-weight:400;padding-bottom:7px;border-radius:0 0 4px 4px}.black-key{left:100%;width:64%;height:62%;font-size:9px;border-radius:0 0 4px 4px;z-index:3}.key.white.active{z-index:auto;transform:none;background:#f3d38c}.black-key.active{background:#b58a42;color:#171717}.keys-row.hh-fit{min-width:780px}.keys-row.hh-fit .note-label{font-size:9px}.hh-keynav{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:center;margin:8px 0 0}.hh-keynav button{min-height:36px;padding:5px 12px}.hh-keynav span{font-size:16px;color:var(--muted)}.control-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.control-card{min-width:0;min-height:0;padding:12px;border-radius:7px;background:#303332;box-shadow:none;border-top:3px solid var(--gold)}.control-card:nth-child(2){border-top-color:#80c5b3}.control-card:nth-child(3){border-top-color:#c98689}.control-card:nth-child(4){border-top-color:#a99acb}.control-card h2{font-size:24px;margin:2px 0 6px}.card-copy,.card-note{font-size:16px;line-height:1.4}.card-note{padding-top:8px}.control-row{grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:8px}.control-row>label,.control-row>.control-label{grid-column:1/-1;font-weight:400}.control-row>select{grid-column:1/-1}.control-row .val{min-width:0;font-size:16px;font-weight:400}.control-row:has(#instrumentSelect) .val{grid-column:1/-1;text-align:left}input[type=range]{min-width:0}select{background:#202322;border-radius:7px;font-size:16px}.control-row.actions{gap:6px}.rec-status,.scale-notes{font-size:16px;border-radius:7px}.hh-drawer{border:1px solid var(--line);border-radius:7px;background:#303332;margin:12px 0;overflow:hidden}.hh-drawer>summary{padding:12px 16px;font-size:18px;color:var(--gold-2);cursor:pointer}.hh-drawer[open]>summary{border-bottom:1px solid var(--line)}.arranger-grid{margin:10px;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.notation-section,.tracks-section{min-width:0;background:#292b2a;border-radius:7px;box-shadow:none}.staff-header h2,.tracks-header h2{font-size:24px}.staff-header,.tracks-header{flex-wrap:wrap}.track-row,.track-staff,#staffMain{border-radius:7px}.quick-guide{margin:12px 0;border-radius:7px;background:#303332}.quick-guide summary{font-size:16px;font-weight:400;color:var(--gold-2)}.guide-step{min-height:0}.guide-step strong{font-size:18px;font-weight:400}.guide-step span{font-size:16px}.studio-footer{font-size:16px}.local-note{font-size:16px}.hh-breadcrumb{margin-bottom:8px;color:var(--muted);font-size:16px}.hh-breadcrumb a{text-decoration:underline}.hh-octave{display:flex;gap:0;margin:0 10px 3px;min-width:0}.hh-octave span{font-size:12px;color:var(--gold-2)}@media(max-width:1250px){.control-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:850px){.arranger-grid{grid-template-columns:1fr}.utility-links a{font-size:16px}.studio-shell{width:calc(100% - 20px)}.quick-guide-content{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.control-grid{grid-template-columns:1fr}.studio-hero{padding:12px 8px}.utility-inner{width:calc(100% - 16px);flex-wrap:wrap}.utility-links{margin-left:0}.utility-links a{font-size:16px}.section-head{align-items:flex-start}.quick-guide-content{grid-template-columns:1fr}.keyboard-help{align-items:flex-start}.hh-keynav{justify-content:flex-start}.hero-links .button{padding:6px 9px}.key.white{height:160px}}
+
 </style>
 </head>
 <body>
 
 <a class="skip-link" href="#keyboardSection">Skip to the keyboard</a>
 
-<header class="utility-bar">
-  <div class="utility-inner">
-    <a class="studio-brand" href="https://vervenveda.github.io/the_refrain.github.io/" aria-label="The Refrain Music and Sound Hub">
-      <span class="studio-mark"> PR</span>
-      <span>
-        <br><strong>Harmony’s Haven Studio</strong>
-        <span>A professional studio inside The Refrain</span><br>
-      </span>
-    </a>
-    <nav class="utility-links" aria-label="Connected hubs">
-      <a href="https://vervenveda.github.io/the_refrain.github.io/">The Refrain</a><br>
-      <a href="https://vervenveda.github.io/proresource_hub.github.io/">ProReSources</a><br>
-      <a href="https://vervenveda.github.io/khaemenesacademy.github.io/">Khaemenes Academy</a>
-      <a href="https://vervenveda.github.io/">Verve N Veda</a>
-    </nav>
-  </div>
-</header>
+<header class="utility-bar"><div class="utility-inner"><a class="studio-brand" href="https://vervenveda.com/the_refrain.github.io/"><span class="studio-mark">♫</span><strong>The Refrain</strong></a><nav class="utility-links" aria-label="Studio navigation"><a href="https://vervenveda.com/">Verve N Veda</a><a href="https://vervenveda.com/the_refrain.github.io/">Music House</a></nav></div></header>
 
 <main class="studio-shell">
-  <section class="studio-hero" aria-labelledby="studioTitle">
-    <div>
-      <div class="eyebrow">The Refrain · Professional Music Studio</div><br>
-      <h1 id="studioTitle">Harmony’s Haven Studio™</h1><br>
-      <div class="hero-subtitle">Professional 88-Key Keyboard & Multi-Track Studio</div><br>
-      <p class="hero-copy">Play the complete piano range, compare twenty-one instruments, practice scales, record layered performances, replay every track with its original instrument, view a grand-staff pitch preview, print notation, and keep portable project backups. Your arrangement is saved locally in this browser.</p>
-      <div class="hero-links">
-        <a class="button primary" href="#keyboardSection">Begin Playing</a>
-        <a class="button teal" href="https://vervenveda.github.io/the_refrain.github.io/">Open The Refrain</a>
-        <a class="button" href="#recorderCard">Recording Studio</a>
-        <a class="button" href="#notationSection">Notation & Tracks</a>
-      </div>
-    </div>
-    <div class="hero-status" aria-label="Studio capabilities">
-      <div class="status-card"><strong>88 keys · 21 instruments</strong><br><span>Touch, mouse, glissando, and computer-keyboard performance.</span></div>
-      <div class="status-card"><strong>Local project recovery</strong><br><span>Tracks and studio settings return after an ordinary page reload.</span></div>
-      <div class="project-status" id="projectStatus" role="status" aria-live="polite">Preparing your local studio…</div>
-    </div>
-  </section>
+  <div class="hh-breadcrumb"><a href="https://vervenveda.com/the_refrain.github.io/">The Refrain</a> / Harmony’s Haven</div><section class="studio-hero" aria-labelledby="studioTitle"><div class="eyebrow">The Refrain</div><h1 id="studioTitle">Harmony’s Haven Studio™</h1><p class="hero-subtitle">88 keys · 21 instruments · Your own recording studio</p><nav class="hero-links" aria-label="Studio shortcuts"><a class="button primary" href="#keyboardSection">Play</a><a class="button" href="#recorderCard">Record</a><a class="button" href="#notationSection" data-open-arranger>Arrange</a><a class="button" href="#quickGuide" data-open-guide>Guide</a></nav><div class="project-status" id="projectStatus" role="status" aria-live="polite">Preparing your local studio…</div></section>
 
-  <details class="quick-guide">
-    <summary>Quick start and keyboard map</summary>
-    <div class="quick-guide-content">
-      <div class="guide-step"><strong>1. Choose a sound</strong><span>Select an instrument and adjust the master volume before playing.</span></div>
-      <div class="guide-step"><strong>2. Play</strong><span>Use the full on-screen keyboard or the computer keys A W S E D F T G Y H U J K O L P ;</span></div>
-      <div class="guide-step"><strong>3. Record layers</strong><span>Record Track 1, stop, create a new track, and change instruments between layers.</span></div>
-      <div class="guide-step"><strong>4. Save or move</strong><span>Your work auto-saves locally. Export a JSON project to move it to another browser.</span></div>
-    </div>
-  </details>
+  
 
   <section class="studio-section" id="keyboardSection" aria-labelledby="keyboardTitle">
     <div class="section-head">
       <div>
-        <div class="eyebrow">Performance surface</div><br>
-        <h2 id="keyboardTitle">88-Key Professional Keyboard</h2><br>
-        <p>Touch or click individual notes, drag across keys for a glissando, or use the mapped computer keyboard row.</p>
+        <h2 id="keyboardTitle">88-Key Professional Keyboard</h2>
       </div>
       <div class="section-actions">
         <button type="button" class="secondary" id="stopAllAudioBtn">■ Stop All Sound</button>
@@ -834,7 +795,7 @@ input[type="range"]{
       </div>
       <div class="piano" aria-label="Scrollable 88-key piano keyboard">
         <div class="keys-row" id="keysRow"></div>
-      </div>
+      </div><div class="hh-keynav" aria-label="Keyboard view"><button type="button" id="hhFit" aria-pressed="false">Fit all keys</button><button type="button" data-hh-note="A0">Bass</button><button type="button" data-hh-note="C4">Middle C</button><button type="button" data-hh-note="C7">Treble</button><button type="button" data-hh-step="-1" aria-label="Scroll keyboard left">←</button><button type="button" data-hh-step="1" aria-label="Scroll keyboard right">→</button><span id="hhViewStatus" role="status">Performance view</span></div>
     </div>
   </section>
 
@@ -949,7 +910,7 @@ input[type="range"]{
     </article>
   </section>
 
-  <section class="arranger-grid" aria-label="Notation and tracks">
+  <details class="hh-drawer" id="hhArranger" open><summary>Notation &amp; track layers</summary><section class="arranger-grid" aria-label="Notation and tracks">
     <section class="notation-section" id="notationSection" aria-labelledby="notationTitle">
       <div class="staff-header">
         <div>
@@ -984,6 +945,16 @@ input[type="range"]{
     </section>
   </section>
 
+</details>
+<details class="quick-guide" id="quickGuide">
+    <summary>Quick start and keyboard map</summary>
+    <div class="quick-guide-content">
+      <div class="guide-step"><strong>1. Choose a sound</strong><span>Select an instrument and adjust the master volume before playing.</span></div>
+      <div class="guide-step"><strong>2. Play</strong><span>Use the full on-screen keyboard or the computer keys A W S E D F T G Y H U J K O L P ;</span></div>
+      <div class="guide-step"><strong>3. Record layers</strong><span>Record Track 1, stop, create a new track, and change instruments between layers.</span></div>
+      <div class="guide-step"><strong>4. Save or move</strong><span>Your work auto-saves locally. Export a JSON project to move it to another browser.</span></div>
+    </div>
+  </details>
   <footer class="studio-footer">
     <strong>Harmony’s Haven Studio™ at ProReSources</strong><br>
     The Refrain · Verve N Veda · Khaemenes Academy · Jennifer Kay Pearl · All Rights Reserved 2026
@@ -1104,7 +1075,7 @@ WHITE_NOTES.forEach(note=>{
     key.appendChild(black);
   }
 });
-keysRow.style.minWidth = (WHITE_NOTES.length * 44) + "px";
+// Responsive keyboard width is controlled by the workstation stylesheet.
 
 /* Note label toggle */
 const showLabelsChk = document.getElementById("showLabels");
@@ -2217,7 +2188,9 @@ window.addEventListener("beforeunload",()=>saveLocalProject("Project saved local
 
 
 </script>
-
+<script>
+(()=>{const row=document.getElementById("keysRow"),piano=row.closest(".piano"),fit=document.getElementById("hhFit"),status=document.getElementById("hhViewStatus");fit.addEventListener("click",()=>{const on=row.classList.toggle("hh-fit");fit.setAttribute("aria-pressed",String(on));fit.textContent=on?"Performance view":"Fit all keys";status.textContent=on?"Compact view · scroll on small screens":"Performance view";piano.scrollLeft=0});document.querySelectorAll("[data-hh-note]").forEach(b=>b.addEventListener("click",()=>{const key=row.querySelector('[data-note="'+b.dataset.hhNote+'"]');if(key)piano.scrollLeft=Math.max(0,key.offsetLeft-piano.clientWidth/2)}));document.querySelectorAll("[data-hh-step]").forEach(b=>b.addEventListener("click",()=>piano.scrollBy({left:Number(b.dataset.hhStep)*piano.clientWidth*.7,behavior:"auto"})));document.querySelector("[data-open-arranger]").addEventListener("click",()=>document.getElementById("hhArranger").open=true);document.querySelector("[data-open-guide]").addEventListener("click",()=>document.getElementById("quickGuide").open=true)})();
+</script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body>
 </html>
