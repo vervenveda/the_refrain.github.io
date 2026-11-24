@@ -37,3 +37,36 @@ body[data-refrain-core] #vnvHeaderAutoPopulate .vnv-header-title{font-size:16px!
 body[data-refrain-core] #vnvHeaderAutoPopulate .vnv-header-logo{width:38px!important;height:38px!important;flex:0 0 38px!important;border-radius:7px!important}
 body[data-refrain-core] #vnvHeaderAutoPopulate .vnv-header-menu-button{grid-column:2!important;grid-row:1!important;justify-self:end!important;align-self:center!important;margin:0!important;width:44px!important;height:44px!important;border-radius:7px!important}
 @media(max-width:540px){body[data-refrain-core] #vnvHeaderAutoPopulate .vnv-header-inner{gap:8px!important;padding-inline:8px!important}}
+
+/* Refrain cream surfaces v1 — scoped to content, not instruments or ecosystem chrome. */
+body[data-refrain-core]{--rf-section-cream:#fffaf0;--rf-section-ink:#292827;--rf-section-border:#cdbfa8}
+body[data-refrain-core] :is(.rf-core-about,.rf-core-features,.rf-core-dialog,.rf-core-local-tools){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="The Refrain"] :is(.room,.room-body,.rf-pending,.rf-panel){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="The Refrain"] :is(.room-body .features,.rf-pending p,.rf-panel h2,.rf-panel p,.rf-panel .rf-status,.rf-favorites){color:var(--rf-section-ink)!important}
+body[data-refrain-title="The Refrain"] :is(.room>summary,.rf-pending>summary){background:#292827!important;color:#f8f0df!important}
+body[data-refrain-title="The Refrain"] .room>summary:hover{background:#3c3a36!important}
+body[data-refrain-title="My Music Cloud"] #music-private :is(.mc-panel,.mc-section,.mc-inside,.mc-card){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="My Song Project"] #privateWorkspace :is(.panel,details,.inside,.file-row,fieldset){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="My Song Project"]:not([data-print-ownership]) #ownershipPreview{background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="Recording Booth"] main>section:not(.rf-core-hero),
+body[data-refrain-title="Audio Editing Desk"] main :is(section,details,.card),
+body[data-refrain-title="Vocal Transcription Studio"] main :is(section,details,.comparison),
+body[data-refrain-title="The Staff"] main :is(.tools,.panel,details){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="Audio Editing Desk"] main .strip{background:#292827!important;color:#f8f0df!important}
+body[data-refrain-title="Little Composer Studio"] :is(.app-shell,.panel,.control,.lesson:not(.complete),.stat,.project-tools,.lc-records,.lc-songbook,.lc-sheet){background:var(--rf-section-cream)!important}
+body[data-refrain-title="Little Composer Studio"] .lc-songbook>summary{background:#292827!important;color:#f8f0df!important}
+/* Keep performance controls and staff surfaces dark; brighten explanatory and library cards. */
+body[data-refrain-title="Harmony’s Haven"] :is(.quick-guide,.hh-drawer){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="Harmony’s Haven"] :is(.quick-guide,.hh-drawer)>summary{background:#292827!important;color:#f8f0df!important;border-radius:7px}
+body[data-refrain-title="Harmony’s Haven"] .quick-guide .guide-step{background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important;border:1px solid var(--rf-section-border)}
+body[data-refrain-title="Harmony’s Haven"] .quick-guide .guide-step :is(strong,span){color:#292827!important}
+body[data-refrain-title="Harmony’s Haven"] :is(.hh-sheet,.hh-personal-viewer){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important}
+body[data-refrain-title="Harmony’s Haven"] .hh-drawer :is(.studio-section,.notation-section,.tracks-section,.control-card,.hh-musicstand,.hh-personal-stand){color:var(--ink)}
+/* Hall cards retain dark navigation and intentional quiz feedback. */
+body[data-refrain-title="ARSHIF Music Hall"] #arshif-music-hall :is(.amh-card,.amh-module,.amh-tool,.amh-source,.amh-time,.amh-term,.amh-quiz-card,.amh-report,.amh-launch-card,.amh-side-card,.amh-output){background:var(--rf-section-cream)!important;color:var(--rf-section-ink)!important;--amh-ink:#292827;--amh-muted:#514a40;--amh-parchment:#292827;--amh-gold:#765621;--amh-line:#cdbfa8;border-color:#cdbfa8;border-radius:7px}
+body[data-refrain-title="ARSHIF Music Hall"] #arshif-music-hall :is(.amh-card,.amh-module,.amh-tool,.amh-source,.amh-time,.amh-term,.amh-quiz-card,.amh-report,.amh-launch-card,.amh-side-card) :is(.amh-btn,.amh-quick-link,.amh-choice:not(.good):not(.bad)){background:#292827;color:#f8f0df}
+body[data-refrain-title="ARSHIF Music Hall"] #arshif-music-hall :is(.amh-card,.amh-module,.amh-tool,.amh-quiz-card,.amh-report) :is(input,select,textarea){background:#fffaf0;color:#292827;border-color:#cdbfa8}
+body[data-refrain-title="ARSHIF Music Hall"] #arshif-music-hall :is(.amh-card,.amh-module,.amh-tool,.amh-quiz-card,.amh-report) option{background:#fffaf0;color:#292827}
+/* Workshops retain their explicit dark-mode choices and print layouts. */
+html:not([data-theme="dark"]) body[data-refrain-title="Music 101 Workshop"]{--surface:#fffaf0;--surface-2:#fffaf0}
+html[data-theme="light"] body[data-refrain-title="Music Theory 201 Workshop"],html body[data-refrain-title="Music Theory 201 Workshop"][data-theme="light"]{--panel:#fffaf0;--panel2:#fffaf0}
