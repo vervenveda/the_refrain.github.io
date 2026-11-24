@@ -139,8 +139,8 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:24px 0;color:var
 .vnv-global-panel{position:absolute;right:0;top:36px;width:min(300px,calc(100vw - 20px));padding:10px;border:1px solid rgba(238,232,220,.22);border-radius:7px;background:#17201f;box-shadow:0 18px 40px rgba(0,0,0,.28)}.vnv-global-panel p{margin:3px 5px 8px;color:#aaa294;font-size:16px;letter-spacing:.1em;text-transform:uppercase}.vnv-global-panel a{display:block;padding:9px 10px;border-radius:5px;color:#eee8dc;font-size:16px}.vnv-global-panel a:hover,.vnv-global-panel a:focus-visible{background:#22302e}
 @media(max-width:760px){.vnv-global-strip{grid-template-columns:minmax(0,1fr) auto}.vnv-global-links{display:none}.vnv-global-copy small{display:none}}@media print{.vnv-global-strip{display:none!important}}
 </style>
-</head>
-<body>
+<link rel="stylesheet" href="../assets/refrain-core.css"></head>
+<body data-refrain-core="1" data-refrain-root="../" data-refrain-title="Music Theory 201 Workshop"><nav class="rf-core-crumb" aria-label="Breadcrumb"><a href="../">The Refrain</a> / Music Theory 201 Workshop</nav><section class="rf-core-hero" aria-label="Workspace introduction"><div class="rf-core-eyebrow">The Refrain</div><h1>Music Theory 201 Workshop</h1><p>Advance your musical knowledge and composition.</p><nav class="rf-core-actions" aria-label="Music workspaces"><a href="../apps/recording-booth.html">Record</a><a href="../apps/audio-editing-desk.html">Edit</a><a href="../apps/pro-keyboard_index.html">Arrange</a></nav></section><section class="rf-core-about"><h2>About</h2><p>Advance your musical knowledge and composition. No Refrain account or fee is required.</p></section><section class="rf-core-features"><h2>Workspace Features</h2><div class="rf-core-grid"></div></section><dialog class="rf-core-dialog"><h2></h2><p></p><a href="#">Open tool</a> <button type="button">Close</button></dialog>
 <div class="vnv-global-strip" data-vnv-global-strip>
   <a class="vnv-global-brand" href="https://vervenveda.com/" aria-label="Verve N Veda home">
     <span class="vnv-global-mark">VNV</span>
@@ -164,7 +164,7 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:24px 0;color:var
   </details>
 </div>
 <a class="skip" href="#mainContent">Skip to content</a>
-<header class="site-header">
+<div class="site-header rf-core-local-nav">
   <div class="header-inner">
     <div class="brand"><div class="brand-mark">𝄞</div><div><strong>The Refrain™</strong><span>Music Theory 201 Workshop</span></div></div>
     <nav class="nav no-print" aria-label="Workshop navigation">
@@ -176,9 +176,9 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:24px 0;color:var
     </nav>
     <div class="header-tools no-print"><button id="themeBtn" class="icon-btn" aria-label="Toggle appearance" title="Toggle appearance">◐</button></div>
   </div>
-</header>
+</div>
 
-<main id="mainContent" class="shell"></main>
+<main id="mainContent" class="shell" data-i18n-no-online data-vnv-no-dictionary></main>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <input id="importFile" type="file" accept="application/json" hidden>
 
@@ -540,7 +540,7 @@ $("#themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save
 $("#importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(obj.type!=="TheRefrainMusicTheory201"||!obj.state)throw new Error();state=Object.assign(defaultState(),obj.state);save();render();toast("Backup restored")}catch{toast("That file is not a valid workshop backup")}e.target.value=""};
 render();
 </script>
-<script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
-</body>
+
+
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script><script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js"></script><script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script><script src="../assets/refrain-core.js"></script><script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1"></script><script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script><script src="https://vervenveda.com/assets/khaemenes-campus-phrases.js" defer></script><script src="https://vervenveda.com/assets/khaemenes-interlingual-core.js" defer></script><script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script><script src="https://vervenveda.com/assets/vnv-language.js?v=20261121-half-height" defer></script></body>
 </html>
