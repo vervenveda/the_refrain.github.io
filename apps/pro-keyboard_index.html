@@ -899,7 +899,7 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
         <button id="playMixBtn" type="button">▶ Play Mix</button>
         <button id="stopMixBtn" type="button" class="secondary">■ Stop Timers</button>
         <button id="saveMixBtn" type="button" class="secondary">Export Project</button>
-        <button id="importMixBtn" type="button" class="secondary">Import Project</button>
+        <button id="importMixBtn" type="button" class="secondary">Import Project</button><button id="staffImportBtn" type="button" class="secondary">Import Staff Score</button><input id="staffImportInput" type="file" accept=".json,application/json" hidden>
         <input id="projectImportInput" type="file" accept="application/json,.json" hidden>
         <button id="clearAllTracksBtn" type="button" class="danger">Clear All</button>
       </div>
@@ -1258,7 +1258,7 @@ function fadeOutAndStop(audio,totalMs=320){
   },Math.max(20,totalMs/steps));
 }
 
-function playFallbackTone(note,velocity=0.9){
+function playFallbackTone(note,velocity=0.9,duration){
   const ctx = getAudioContext();
   if(!ctx) return;
   if(ctx.state==="suspended") ctx.resume().catch(()=>{});
@@ -1270,13 +1270,14 @@ function playFallbackTone(note,velocity=0.9){
   osc.frequency.value = frequency;
   const volume = Math.max(.001,Number(masterVol.value)*velocity*.18);
   gain.gain.setValueAtTime(volume,ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.7);
+  const seconds=Number.isFinite(duration)?Math.max(.04,duration/1000):.7;
+  gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+seconds);
   osc.connect(gain).connect(ctx.destination);
   osc.start();
-  osc.stop(ctx.currentTime+.72);
+  osc.stop(ctx.currentTime+seconds+.02);
 }
 
-function playSampleNote(note,velocity=0.9,instrumentKey=currentInstrument){
+function playSampleNote(note,velocity=0.9,instrumentKey=currentInstrument,duration){
   const file = toSampleName(note);
   const audio = new Audio(getBaseFolder(instrumentKey)+file+".mp3");
   audio.crossOrigin = "anonymous";
@@ -1289,9 +1290,9 @@ function playSampleNote(note,velocity=0.9,instrumentKey=currentInstrument){
 
   let fallbackUsed = false;
   const useFallback = ()=>{
-    if(fallbackUsed) return;
+    if(fallbackUsed || audio.__harmonyCleaned) return;
     fallbackUsed = true;
-    playFallbackTone(note,velocity);
+    playFallbackTone(note,velocity,duration);
   };
 
   audio.addEventListener("ended",()=>cleanupAudio(audio),{once:true});
@@ -1310,7 +1311,10 @@ function playSampleNote(note,velocity=0.9,instrumentKey=currentInstrument){
     });
   }
 
-  if(sustainOn){
+  if(Number.isFinite(duration)&&duration>0){
+    const release=()=>setTimeout(()=>{if(!audio.__harmonyCleaned)fadeOutAndStop(audio,Math.min(100,Math.max(20,duration*.1)))},Math.max(0,duration-Math.min(100,Math.max(20,duration*.1))));
+    if(audio.paused)audio.addEventListener("playing",release,{once:true});else release();
+  }else if(sustainOn){
     sustainedAudios.add(audio);
   }else{
     setTimeout(()=>{
@@ -1405,7 +1409,8 @@ function normalizeTracks(rawTracks){
         note,
         midi:Number.isFinite(Number(event.midi))?Number(event.midi):noteNameToMidi(note),
         velocity:Math.min(1,Math.max(.05,Number(event.velocity)||.9)),
-        instrument:INSTRUMENTS[event.instrument]?event.instrument:"grand"
+        instrument:INSTRUMENTS[event.instrument]?event.instrument:"grand",
+        ...(Number.isFinite(event.duration)&&event.duration>0&&event.duration<=12000?{duration:event.duration}:{})
       };
     }).filter(Boolean) : [];
     return {
@@ -1413,7 +1418,8 @@ function normalizeTracks(rawTracks){
       name:String(track?.name||`Track ${index+1}`).trim().slice(0,60)||`Track ${index+1}`,
       notes,
       muted:Boolean(track?.muted),
-      created:track?.created||new Date().toISOString()
+      created:track?.created||new Date().toISOString(),
+      ...(track?.source==="RefrainStaff"?{source:"RefrainStaff",sourceTempo:Number(track.sourceTempo)||90,totalDuration:Number(track.totalDuration)||0}:{})
     };
   });
 }
@@ -1548,7 +1554,7 @@ newTrackBtn.onclick = ()=>{
 
 function noteOn(note,velocity=0.9,options={}){
   const instrumentKey = options.instrument || currentInstrument;
-  playSampleNote(note,velocity,instrumentKey);
+  playSampleNote(note,velocity,instrumentKey,options.duration);
   let recorded = false;
 
   if(options.record!==false && isRecording && currentTrack){
@@ -1800,7 +1806,7 @@ playMixBtn.onclick = ()=>{
   playable.forEach(track=>{
     track.notes.slice().forEach(event=>{
       const timer = setTimeout(()=>{
-        noteOn(event.note,event.velocity||.9,{record:false,instrument:event.instrument});
+        noteOn(event.note,event.velocity||.9,{record:false,instrument:event.instrument,duration:event.duration});
       },event.time);
       mixTimers.push(timer);
     });
@@ -1821,12 +1827,55 @@ projectImportInput.addEventListener("change",async()=>{
   if(!file) return;
   try{
     const data = JSON.parse(await file.text());
+    if(!data||!Array.isArray(data.tracks)||!data.tracks.length)throw Error("Use Import Staff Score for a composition from The Staff.");
+    if(isRecording)throw Error("Stop recording before importing a project.");
+    if(!confirm("Replace the current project and its tracks? Export a backup first if needed."))return;
     applyProjectData(data);
     saveLocalProject("Imported project saved locally.");
   }catch(error){
     setProjectStatus(error?.message||"That project file could not be imported.");
   }
 });
+
+
+// Staff score bridge: validate before appending; never replace the current project.
+function staffScoreToNotes(data,instrument){
+  if(!data||data.version!==1||(data.suite!==undefined&&data.suite!=="RefrainStaff")||!Array.isArray(data.events)||data.events.length>256||typeof data.tempo!=="number"||!Number.isFinite(data.tempo)||data.tempo<40||data.tempo>200)throw Error("Invalid Staff score.");
+  const durations={whole:4,half:2,quarter:1,eighth:.5,sixteenth:.25,rest:1,bar:0},names=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"],semitones=[0,2,4,5,7,9,11],beat=60000/data.tempo;
+  let time=0;const notes=[];
+  for(const e of data.events){
+    if(!e||!Object.prototype.hasOwnProperty.call(durations,e.kind)||!Number.isInteger(e.pitch)||e.pitch<7||e.pitch>55||![-1,0,1].includes(e.acc)||typeof e.dot!=="boolean")throw Error("Invalid musical symbol in Staff score.");
+    const duration=durations[e.kind]*(e.dot?1.5:1)*beat;
+    if(e.kind!=="rest"&&e.kind!=="bar"){
+      const midi=12*(Math.floor(e.pitch/7)+1)+semitones[e.pitch%7]+e.acc;
+      if(midi<21||midi>108)throw Error("A note is outside the 88-key piano range.");
+      notes.push({time:Math.round(time),duration:Math.round(duration),note:names[midi%12]+(Math.floor(midi/12)-1),midi,velocity:.9,instrument});
+    }
+    time+=duration;
+  }
+  if(!notes.length)throw Error("The Staff score has no playable notes.");
+  return {notes,totalDuration:Math.round(time),name:String(data.title||"Staff composition").trim().slice(0,60)||"Staff composition"};
+}
+async function importStaffScore(file){
+  if(!file)return;
+  try{
+    if(isRecording)throw Error("Stop recording before importing a score.");
+    if(file.size>1000000)throw Error("Score file is too large.");
+    const data=JSON.parse(await file.text()),score=staffScoreToNotes(data,currentInstrument);
+    if(isRecording)throw Error("Stop recording before importing a score.");
+    if(tracks.length>=64)throw Error("Project already contains 64 tracks.");
+    if(!confirm("Add "+score.name+" as a new track using "+INSTRUMENTS[currentInstrument].label+"? Existing tracks will be kept."))return;
+    stopAllAudio();
+    const track=createTrack(score.name);track.notes=score.notes;track.source="RefrainStaff";track.sourceTempo=data.tempo;track.totalDuration=score.totalDuration;
+    tracks.push(track);currentTrack=track;expandedTrackId=track.id;setRecUI();renderTracksList();renderStaffForCurrent();
+    const saved=saveLocalProject("Staff composition added as a new track.");
+    recStatus.textContent=score.name+" · "+track.notes.length+" notes imported. "+(saved?"Saved locally.":"Export your project to retain it.");
+    document.getElementById("hhArranger").open=true;
+  }catch(error){setProjectStatus(error.message||"Unable to import Staff score.");recStatus.textContent=error.message||"Unable to import Staff score."}
+}
+const staffImportInput=document.getElementById("staffImportInput");
+document.getElementById("staffImportBtn").onclick=()=>staffImportInput.click();
+staffImportInput.addEventListener("change",()=>{const file=staffImportInput.files?.[0];staffImportInput.value="";importStaffScore(file)});
 
 stopAllAudioBtn.onclick = stopAllAudio;
 
@@ -2057,7 +2106,7 @@ playStaffBtn.onclick = ()=>{
   notes.forEach(ev=>{
     const delay = ev.time / factor;
     const id = setTimeout(()=>{
-      noteOn(ev.note,ev.velocity||.9,{record:false,instrument:ev.instrument});
+      noteOn(ev.note,ev.velocity||.9,{record:false,instrument:ev.instrument,duration:Number.isFinite(ev.duration)?ev.duration/factor:undefined});
     }, delay);
     staffTimers.push(id);
   });
