@@ -780,6 +780,7 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
 @container (max-width:520px){.key.white>.note-label{display:none}.key.white[data-note="C4"]>.note-label{display:block}}
 .hh-keynav{margin-top:6px;font-size:16px}
 @media(max-width:560px){.studio-shell{width:calc(100% - 12px)}.keyboard-body{padding:5px}.piano{padding:5px 4px 7px}.key.white{height:100px;border-radius:0 0 2px 2px}.black-key{border-radius:0 0 2px 2px}}
+.hh-map-body{padding:14px}.hh-map-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hh-map-actions select{width:100px}.hh-shortcut{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:clamp(5px,.8vw,12px);color:#653f08;pointer-events:none;overflow:hidden}.black-key>.hh-shortcut{bottom:15px;color:#f4d58d;font-size:clamp(5px,.65vw,10px)}#hhMapJump{text-decoration:underline;color:var(--gold-2)}
 </style>
 </head>
 <body>
@@ -804,7 +805,7 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
     </div>
     <div class="keyboard-body">
       <div class="keyboard-help">
-        <div><strong>Computer keys:</strong> A W S E D F T G Y H U J K O L P ; · Notes begin at C4.</div>
+        <div><strong>Computer keyboard:</strong> <span id="hhMapHint">17 keys assigned</span> · <a href="#hhKeymap" id="hhMapJump">Program keys</a></div>
         <label class="note-toggle" for="showLabels"><input type="checkbox" id="showLabels" checked> Show note labels</label>
       </div>
       <div class="piano" aria-label="Full-width 88-key piano keyboard">
@@ -813,7 +814,8 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
     </div>
   </section>
 
-  <section class="control-grid" aria-label="Studio controls">
+  <details class="hh-drawer" id="hhKeymap"><summary>Program your computer keyboard</summary><div class="hh-map-body"><p>Choose any of the 88 notes, then press the computer key you want to play it with. Assign several keys to play chords. Select an assignment below to remove it.</p><div class="hh-map-actions"><label for="hhMapNote">Piano note</label><select id="hhMapNote"></select><button type="button" id="hhCapture" aria-pressed="false">Assign key</button><button type="button" id="hhMapReset" class="secondary">Restore default</button><button type="button" id="hhMapClear" class="secondary">Clear mappings</button><button type="button" id="hhMapExport" class="secondary">Export layout</button><button type="button" id="hhMapImportBtn" class="secondary">Import layout</button><input type="file" id="hhMapImport" accept=".json,application/json" hidden></div><p id="hhMapStatus" role="status" aria-live="polite"></p><div id="hhMapList" class="hh-map-actions" aria-label="Current key assignments"></div><p>Layouts are saved in this browser separately from music projects. Click outside the controls before playing.</p></div></details>
+<section class="control-grid" aria-label="Studio controls">
     <article class="control-card">
       <div class="eyebrow">Tone</div>
       <h2>Sound & Feel</h2>
@@ -1607,8 +1609,8 @@ window.addEventListener("pointerup", handlePointerUp, {passive:false});
 window.addEventListener("pointercancel", handlePointerUp, {passive:false});
 window.addEventListener("pointerleave", handlePointerUp, {passive:false});
 
-/* Computer keyboard mapping (A row) */
-const KEYBOARD_MAP = {
+/* User-programmable computer keyboard mapping. Separate from project data. */
+const DEFAULT_KEYBOARD_MAP = {
   a:"C4",  w:"C#4",
   s:"D4",  e:"D#4",
   d:"E4",
@@ -1620,16 +1622,30 @@ const KEYBOARD_MAP = {
   l:"D5",  p:"D#5",
   ";":"E5"
 };
-document.addEventListener("keydown",e=>{
-  if(e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-  const target = e.target;
-  if(target && /^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(target.tagName)) return;
-  const n = KEYBOARD_MAP[String(e.key).toLowerCase()];
-  if(n){
-    e.preventDefault();
-    noteOn(n,0.9);
-  }
-});
+
+const KEYMAP_STORAGE="harmony_haven_keymap_v1";
+const validNotes=new Set([...keysRow.querySelectorAll("[data-note]")].map(el=>el.dataset.note));
+const allowedKey=k=>typeof k==="string"&&/^[a-z0-9\x21-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]$/.test(k);
+function cleanKeymap(raw){const result=Object.create(null);if(raw&&typeof raw==="object"&&!Array.isArray(raw)){for(const [key,note] of Object.entries(raw)){if(allowedKey(key)&&validNotes.has(note))result[key]=note}}return result}
+let keymap=cleanKeymap(DEFAULT_KEYBOARD_MAP);
+try{const raw=localStorage.getItem(KEYMAP_STORAGE);if(raw!==null)keymap=cleanKeymap(JSON.parse(raw))}catch{}
+const mapPanel=document.getElementById("hhKeymap"),mapNote=document.getElementById("hhMapNote"),mapCapture=document.getElementById("hhCapture"),mapStatus=document.getElementById("hhMapStatus"),mapList=document.getElementById("hhMapList"),mapHint=document.getElementById("hhMapHint");
+let capturing=false;
+for(const note of [...validNotes].sort((a,b)=>noteNameToMidi(a)-noteNameToMidi(b))){const opt=document.createElement("option");opt.value=note;opt.textContent=note;mapNote.append(opt)}
+mapNote.value="C4";
+function cancelCapture(){capturing=false;mapCapture.textContent="Assign key";mapCapture.setAttribute("aria-pressed","false")}
+function renderKeymap(){mapList.replaceChildren();for(const [key,note] of Object.entries(keymap).sort((a,b)=>noteNameToMidi(a[1])-noteNameToMidi(b[1]))){const item=document.createElement("button");item.type="button";item.className="secondary";item.textContent=key.toUpperCase()+" → "+note+" ×";item.setAttribute("aria-label","Remove "+key+" mapping to "+note);item.addEventListener("click",()=>{delete keymap[key];saveKeymap("Assignment removed.")});mapList.append(item)}mapHint.textContent=Object.keys(keymap).length+" computer keys assigned · Customize below";for(const el of keysRow.querySelectorAll("[data-note]")){const keys=Object.keys(keymap).filter(k=>keymap[k]===el.dataset.note);el.title=el.dataset.note+(keys.length?" · "+keys.map(k=>k.toUpperCase()).join(", "):"");let tag=el.querySelector(":scope > .hh-shortcut");if(!tag){tag=document.createElement("span");tag.className="hh-shortcut";el.append(tag)}tag.textContent=keys.map(k=>k.toUpperCase()).join("/");tag.hidden=!keys.length}}
+function saveKeymap(message){try{localStorage.setItem(KEYMAP_STORAGE,JSON.stringify(keymap));mapStatus.textContent=message+" Saved on this device."}catch{mapStatus.textContent=message+" Available for this visit only."}renderKeymap()}
+mapCapture.addEventListener("click",()=>{if(capturing){cancelCapture();mapStatus.textContent="Assignment cancelled.";return}capturing=true;mapCapture.textContent="Press a computer key…";mapCapture.setAttribute("aria-pressed","true");mapStatus.textContent="Assigning "+mapNote.value+". Press a letter, number or punctuation key. Escape cancels."});
+mapPanel.addEventListener("toggle",()=>{if(!mapPanel.open)cancelCapture()});
+mapNote.addEventListener("change",cancelCapture);
+document.getElementById("hhMapReset").addEventListener("click",()=>{cancelCapture();keymap=cleanKeymap(DEFAULT_KEYBOARD_MAP);saveKeymap("Original layout restored.")});
+document.getElementById("hhMapClear").addEventListener("click",()=>{if(!confirm("Clear all computer-key assignments?"))return;cancelCapture();keymap=Object.create(null);saveKeymap("All assignments cleared.")});
+document.getElementById("hhMapExport").addEventListener("click",()=>downloadJSON("harmony-haven-keymap.json",{version:1,mapping:keymap}));
+const mapImport=document.getElementById("hhMapImport");document.getElementById("hhMapImportBtn").addEventListener("click",()=>mapImport.click());
+mapImport.addEventListener("change",async()=>{const file=mapImport.files?.[0];mapImport.value="";if(!file)return;try{if(file.size>16384)throw Error("File too large");const data=JSON.parse(await file.text());if(data.version!==1||!data.mapping||typeof data.mapping!=="object"||Array.isArray(data.mapping))throw Error("Invalid layout");const next=cleanKeymap(data.mapping);if(Object.keys(next).length!==Object.keys(data.mapping).length)throw Error("Invalid assignment");if(!confirm("Replace your current computer-key layout?"))return;cancelCapture();keymap=next;saveKeymap("Layout imported.")}catch{mapStatus.textContent="Unable to import that keyboard layout."}});
+document.addEventListener("keydown",e=>{if(e.repeat||e.isComposing||e.metaKey||e.ctrlKey||e.altKey)return;const key=String(e.key).toLowerCase();if(capturing){if(key==="escape"){e.preventDefault();cancelCapture();mapStatus.textContent="Assignment cancelled.";return}if(!allowedKey(key))return;e.preventDefault();const note=mapNote.value;if(keymap[key]&&keymap[key]!==note&&!confirm("Reassign "+key.toUpperCase()+" from "+keymap[key]+" to "+note+"?")){cancelCapture();return}keymap[key]=note;cancelCapture();saveKeymap(key.toUpperCase()+" assigned to "+note+".");return}if(e.target?.closest?.("input,select,textarea,button,[contenteditable],summary,a"))return;const note=keymap[key];if(note){e.preventDefault();noteOn(note,0.9)}});
+renderKeymap();
 
 /* ===============================
    METRONOME
@@ -2203,7 +2219,7 @@ window.addEventListener("beforeunload",()=>saveLocalProject("Project saved local
 
 </script>
 <script>
-(()=>{document.querySelector("[data-open-arranger]").addEventListener("click",()=>document.getElementById("hhArranger").open=true);document.querySelector("[data-open-guide]").addEventListener("click",()=>document.getElementById("quickGuide").open=true)})();
+(()=>{document.getElementById("hhMapJump").addEventListener("click",()=>document.getElementById("hhKeymap").open=true);document.querySelector("[data-open-arranger]").addEventListener("click",()=>document.getElementById("hhArranger").open=true);document.querySelector("[data-open-guide]").addEventListener("click",()=>document.getElementById("quickGuide").open=true)})();
 </script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body>
