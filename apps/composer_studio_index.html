@@ -539,15 +539,15 @@ main{width:100%;min-width:0}.page-shell,.footer-inner{width:calc(100% - 32px);ma
 @media(max-width:950px){.utility-bar{grid-template-columns:repeat(3,minmax(0,1fr))}.composer-grid,.rhythm-layout{grid-template-columns:1fr}}@media(max-width:620px){.page-shell,.footer-inner{width:calc(100% - 16px)}.hero{padding:15px 8px}.hero h1{font-size:33px}.utility-bar,.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tab{font-size:16px}.app-shell,.panel{padding:8px}.piano{grid-template-columns:repeat(8,minmax(0,1fr));gap:2px}.key{min-height:105px;font-size:18px;border-width:1px}.key .shortcut,.key .small{font-size:16px}.key .shortcut{padding:0 2px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.studio-heading{display:block}.panel-head{display:block}.privacy-strip{align-items:flex-start}.project-tools{align-items:flex-start}.footer-inner{align-items:center}}
 </style><style>
 .lc-songbook{margin:10px 0;border:1px solid var(--line);border-radius:7px;background:var(--surface-soft)}.lc-songbook summary{cursor:pointer;padding:10px 14px;background:#354b61;color:#fff5df;border-radius:7px;font-size:19px}.lc-songbody{padding:10px}.lc-songtoolbar,.lc-songnav{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.lc-songtoolbar select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:8px;max-width:100%}.lc-sheet{margin:10px auto 0;max-width:1100px;padding:12px;background:#fff8e8;color:#30291f;border:1px solid #c5a56a;border-radius:7px;text-align:center}.lc-sheet h3{font:400 24px Georgia,serif;margin:0}.lc-sheet p{margin:5px 0;font-size:16px}.lc-songnotes{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin:10px 0}.lc-songmeasure{display:flex;justify-content:center;flex-wrap:wrap;border-right:1px solid #a28d6b;gap:4px;padding:4px 7px}.lc-songnote{display:flex;flex-direction:column;align-items:center;border:2px solid transparent;border-radius:7px;padding:3px;min-width:42px;color:#30291f}.lc-songnote svg{width:42px;height:68px}.lc-songnote small{font-size:16px}.lc-songnote.current{border-color:#292827;box-shadow:0 0 0 2px #e1b749}.lc-songnote.done{opacity:.55}.lc-songtip{text-align:center;font-size:16px;margin:8px 0 0}.piano .key.lc-next{outline:3px solid #252525;outline-offset:1px;box-shadow:0 0 0 5px #e1b749,inset 0 -8px 0 #00000018}.lc-songnav .button{background:#fff8e8;color:#30291f;border-color:#c5a56a}@media(max-width:620px){.lc-songbody{padding:6px}.lc-songnote{min-width:33px}.lc-songnote svg{width:32px}.lc-songmeasure{padding:3px}}
-</style></head>
-<body>
+</style><link rel="stylesheet" href="../assets/refrain-core.css"></head>
+<body data-refrain-core="1" data-refrain-root="../" data-refrain-title="Little Composer Studio"><nav class="rf-core-crumb" aria-label="Breadcrumb"><a href="../">The Refrain</a> / Little Composer Studio</nav><section class="rf-core-hero" aria-label="Workspace introduction"><div class="rf-core-eyebrow">The Refrain</div><h1>Little Composer Studio</h1><p>Discover melody, rhythm and musical imagination.</p><nav class="rf-core-actions" aria-label="Music workspaces"><a href="../apps/recording-booth.html">Record</a><a href="../apps/audio-editing-desk.html">Edit</a><a href="../apps/pro-keyboard_index.html">Arrange</a></nav></section><section class="rf-core-about"><h2>About</h2><p>Discover melody, rhythm and musical imagination. No Refrain account or fee is required.</p></section><section class="rf-core-features"><h2>Workspace Features</h2><div class="rf-core-grid"></div></section><dialog class="rf-core-dialog"><h2></h2><p></p><a href="#">Open tool</a> <button type="button">Close</button></dialog>
 
 <a class="skip-link" href="#studio">Skip to the studio</a>
 
-<header class="lc-fallback"><a href="https://vervenveda.com/">Verve N Veda</a><a href="../">The Refrain</a></header>
 
-<main>
-  <div class="lc-breadcrumb page-shell"><a href="../">The Refrain</a> / Little Composer Studio</div><section class="page-shell hero" aria-labelledby="pageTitle"><div class="lc-notes" aria-hidden="true">♪ ♫ ♩</div><div class="eyebrow">The Refrain · Young Musicians</div><h1 id="pageTitle">Little Composer Studio</h1><p class="hero-copy">Play a rainbow of notes, make a melody, write music and discover rhythm. Your first music-making room!</p><div class="hero-actions"><a class="button primary" href="#studio">Start playing</a><button class="button sunny" id="sampleMelodyBtn" type="button">Sample melody</button><button class="button" id="soundCheckBtn" type="button">Sound check</button></div></section>
+
+<main data-i18n-no-online data-vnv-no-dictionary data-i18n-ignore>
+  <section class="page-shell hero" aria-labelledby="pageTitle"><div class="lc-notes" aria-hidden="true">♪ ♫ ♩</div><div class="eyebrow">The Refrain · Young Musicians</div><h1 id="pageTitle">Little Composer Studio</h1><p class="hero-copy">Play a rainbow of notes, make a melody, write music and discover rhythm. Your first music-making room!</p><div class="hero-actions"><a class="button primary" href="#studio">Start playing</a><button class="button sunny" id="sampleMelodyBtn" type="button">Sample melody</button><button class="button" id="soundCheckBtn" type="button">Sound check</button></div></section>
 
   <section class="page-shell studio-section" id="studio" aria-labelledby="studioTitle">
     <div class="studio-heading"><div><h2 id="studioTitle">Your music room</h2></div><p>Choose an instrument, then play, write, build or learn.</p></div>
@@ -1558,11 +1558,11 @@ main{width:100%;min-width:0}.page-shell,.footer-inner{width:calc(100% - 32px);ma
   showScreen(activeScreen);
 })();
 </script>
-<script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
-<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
-<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
-<script>if(window.VNV_HEADER&&typeof VNV_HEADER.mount==="function"){try{VNV_HEADER.mount({title:"Little Composer",subtitle:"The Refrain · Music House",icon:"♪",home:"../",actions:[{label:"The Refrain",href:"../"},{label:"Studio",href:"#studio"},{label:"Verve N Veda",href:"https://vervenveda.com/"}]});document.querySelector(".lc-fallback").hidden=true}catch(e){console.warn("Ecosystem header unavailable",e)}}if(window.VNV_TICKER&&typeof VNV_TICKER.autoPopulate==="function")VNV_TICKER.autoPopulate({label:"Little Composer",max:12});</script>
-<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
-</body>
+
+
+
+
+
+
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script><script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js"></script><script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script><script src="../assets/refrain-core.js"></script><script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1"></script><script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script><script src="https://vervenveda.com/assets/khaemenes-campus-phrases.js" defer></script><script src="https://vervenveda.com/assets/khaemenes-interlingual-core.js" defer></script><script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script><script src="https://vervenveda.com/assets/vnv-language.js?v=20261121-half-height" defer></script></body>
 </html>
