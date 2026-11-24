@@ -14,16 +14,24 @@ function audible(ch,settings){return !ch.mute&&(!settings.some(x=>x.solo)||ch.so
 function laneGain(ch,settings){return audible(ch,settings)?ch.volume:0}
 function panSample(l,r,p){if(p<=0){const a=(p+1)*Math.PI/2;return [l+r*Math.cos(a),r*Math.sin(a)]}const a=p*Math.PI/2;return [l*Math.cos(a),r+l*Math.sin(a)]}
 
-// Local granular overlap-add pitch shift. Grain centers follow the original timeline;
-// the resampling ratio controls pitch independently of duration. No source mutation.
+// Phase-vocoder time stretch followed by resampling: duration-preserving pitch shift.
+// All transforms operate on a new buffer, never on the original recording.
+function fft(re,im,inverse=false){
+ const n=re.length;
+ for(let i=1,j=0;i<n;i++){let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;if(i<j){let t=re[i];re[i]=re[j];re[j]=t;t=im[i];im[i]=im[j];im[j]=t}}
+ for(let len=2;len<=n;len<<=1){const ang=(inverse?2:-2)*Math.PI/len,cr=Math.cos(ang),ci=Math.sin(ang);for(let i=0;i<n;i+=len){let wr=1,wi=0;for(let j=0;j<len/2;j++){const u=i+j,v=u+len/2,tr=wr*re[v]-wi*im[v],ti=wr*im[v]+wi*re[v];re[v]=re[u]-tr;im[v]=im[u]-ti;re[u]+=tr;im[u]+=ti;const nr=wr*cr-wi*ci;wi=wr*ci+wi*cr;wr=nr}}}
+ if(inverse)for(let i=0;i<n;i++){re[i]/=n;im[i]/=n}
+}
 function pitchChannel(input,start,length,ratio,rate){
- const output=new Float32Array(length),grain=Math.max(32,Math.round(rate*.04)),hop=Math.max(8,Math.round(grain/4)),half=grain/2;
- for(let i=0;i<length;i++){let sum=0,weight=0;const first=Math.ceil((i-half)/hop),last=Math.floor((i+half)/hop);
-  for(let k=first;k<=last;k++){const center=k*hop,d=i-center,w=.5+.5*Math.cos(2*Math.PI*d/grain);if(w<=0)continue;
-   const p=Math.max(start,Math.min(start+length-1,start+center+d*ratio)),j=Math.floor(p),f=p-j;
-   sum+=((input[j]||0)+((input[Math.min(j+1,input.length-1)]||0)-(input[j]||0))*f)*w;weight+=w;
-  }output[i]=weight?sum/weight:0;
- }return output;
+ const N=2048,hop=256,half=N/2,bins=half+1,out=new Float32Array(Math.ceil(length*ratio)+N),weights=new Float32Array(out.length),win=Float64Array.from({length:N},(_,i)=>.5-.5*Math.cos(2*Math.PI*i/N)),re=new Float64Array(N),im=new Float64Array(N),last=new Float64Array(bins),phase=new Float64Array(bins);let prev=0,first=true;
+ for(let center=0;center<length+half;center+=hop){const dest=Math.round(center*ratio),delta=dest-prev;prev=dest;
+  for(let i=0;i<N;i++){const at=center+i-half;re[i]=at>=0&&at<length?input[start+at]*win[i]:0;im[i]=0}fft(re,im);
+  for(let k=0;k<bins;k++){const mag=Math.hypot(re[k],im[k]),p=Math.atan2(im[k],re[k]),omega=2*Math.PI*k/N;
+   let drift=p-last[k]-omega*hop;drift-=2*Math.PI*Math.round(drift/(2*Math.PI));phase[k]=first?p:phase[k]+(omega+drift/hop)*delta;last[k]=p;re[k]=mag*Math.cos(phase[k]);im[k]=mag*Math.sin(phase[k]);if(k>0&&k<half){re[N-k]=re[k];im[N-k]=-im[k]}}
+  im[0]=im[half]=0;first=false;fft(re,im,true);
+  for(let i=0;i<N;i++){const j=dest+i;if(j>=out.length)break;out[j]+=re[i]*win[i];weights[j]+=win[i]*win[i]}
+ }
+ const result=new Float32Array(length);for(let i=0;i<length;i++){const p=half+i*ratio,j=Math.floor(p),f=p-j,a=weights[j]>1e-8?out[j]/weights[j]:0,b=weights[j+1]>1e-8?out[j+1]/weights[j+1]:0;result[i]=a+(b-a)*f}return result
 }
 const pitchCache=new Map();let pitchBytes=0;const PITCH_BUDGET=96*1024*1024;
 function clipAudio(c){
