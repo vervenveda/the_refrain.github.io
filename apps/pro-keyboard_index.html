@@ -899,7 +899,7 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
         <button id="playMixBtn" type="button">▶ Play Mix</button>
         <button id="stopMixBtn" type="button" class="secondary">■ Stop Timers</button>
         <button id="saveMixBtn" type="button" class="secondary">Export Project</button>
-        <button id="importMixBtn" type="button" class="secondary">Import Project</button><button id="staffImportBtn" type="button" class="secondary">Import Staff Score</button><input id="staffImportInput" type="file" accept=".json,application/json" hidden>
+        <button id="importMixBtn" type="button" class="secondary">Import Project</button><button id="staffImportBtn" type="button" class="secondary">Import Staff / Vocal Melody</button><input id="staffImportInput" type="file" accept=".json,application/json" hidden>
         <input id="projectImportInput" type="file" accept="application/json,.json" hidden>
         <button id="clearAllTracksBtn" type="button" class="danger">Clear All</button>
       </div>
@@ -1410,7 +1410,7 @@ function normalizeTracks(rawTracks){
         midi:Number.isFinite(Number(event.midi))?Number(event.midi):noteNameToMidi(note),
         velocity:Math.min(1,Math.max(.05,Number(event.velocity)||.9)),
         instrument:INSTRUMENTS[event.instrument]?event.instrument:"grand",
-        ...(Number.isFinite(event.duration)&&event.duration>0&&event.duration<=12000?{duration:event.duration}:{})
+        ...(Number.isFinite(event.duration)&&event.duration>0&&event.duration<=600000?{duration:event.duration}:{})
       };
     }).filter(Boolean) : [];
     return {
@@ -1419,7 +1419,7 @@ function normalizeTracks(rawTracks){
       notes,
       muted:Boolean(track?.muted),
       created:track?.created||new Date().toISOString(),
-      ...(track?.source==="RefrainStaff"?{source:"RefrainStaff",sourceTempo:Number(track.sourceTempo)||90,totalDuration:Number(track.totalDuration)||0}:{})
+      ...(["RefrainStaff","RefrainVocalMelody"].includes(track?.source)?{source:track.source,...(track.source==="RefrainStaff"?{sourceTempo:Number(track.sourceTempo)||90}:{}),totalDuration:Number(track.totalDuration)||0}:{})
     };
   });
 }
@@ -1827,7 +1827,7 @@ projectImportInput.addEventListener("change",async()=>{
   if(!file) return;
   try{
     const data = JSON.parse(await file.text());
-    if(!data||!Array.isArray(data.tracks)||!data.tracks.length)throw Error("Use Import Staff Score for a composition from The Staff.");
+    if(!data||!Array.isArray(data.tracks)||!data.tracks.length)throw Error("Use Import Staff / Vocal Melody for a portable melody.");
     if(isRecording)throw Error("Stop recording before importing a project.");
     if(!confirm("Replace the current project and its tracks? Export a backup first if needed."))return;
     applyProjectData(data);
@@ -1856,19 +1856,30 @@ function staffScoreToNotes(data,instrument){
   if(!notes.length)throw Error("The Staff score has no playable notes.");
   return {notes,totalDuration:Math.round(time),name:String(data.title||"Staff composition").trim().slice(0,60)||"Staff composition"};
 }
+
+function vocalScoreToNotes(data,instrument){
+  if(!data||data.suite!=="RefrainVocalMelody"||data.version!==1||!Array.isArray(data.notes)||!data.notes.length||data.notes.length>3000)throw Error("Invalid timed vocal melody.");
+  const names=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+  const notes=data.notes.map(n=>{
+    if(!n||!Number.isFinite(n.start)||n.start<0||n.start>600||!Number.isFinite(n.duration)||n.duration<.01||n.start+n.duration>600.01||!Number.isInteger(n.midi)||n.midi<21||n.midi>108)throw Error("Invalid vocal note timing or pitch.");
+    return {time:Math.round(n.start*1000),duration:Math.round(n.duration*1000),note:names[n.midi%12]+(Math.floor(n.midi/12)-1),midi:n.midi,velocity:.9,instrument};
+  }).sort((a,b)=>a.time-b.time);
+  return {notes,name:String(data.title||"Vocal melody").trim().slice(0,60)||"Vocal melody",totalDuration:Math.max(...notes.map(n=>n.time+n.duration))};
+}
+
 async function importStaffScore(file){
   if(!file)return;
   try{
     if(isRecording)throw Error("Stop recording before importing a score.");
     if(file.size>1000000)throw Error("Score file is too large.");
-    const data=JSON.parse(await file.text()),score=staffScoreToNotes(data,currentInstrument);
+    const data=JSON.parse(await file.text()),vocal=data?.suite==="RefrainVocalMelody",score=vocal?vocalScoreToNotes(data,currentInstrument):staffScoreToNotes(data,currentInstrument);
     if(isRecording)throw Error("Stop recording before importing a score.");
     if(tracks.length>=64)throw Error("Project already contains 64 tracks.");
     if(!confirm("Add "+score.name+" as a new track using "+INSTRUMENTS[currentInstrument].label+"? Existing tracks will be kept."))return;
     stopAllAudio();
-    const track=createTrack(score.name);track.notes=score.notes;track.source="RefrainStaff";track.sourceTempo=data.tempo;track.totalDuration=score.totalDuration;
+    const track=createTrack(score.name);track.notes=score.notes;track.source=vocal?"RefrainVocalMelody":"RefrainStaff";if(!vocal)track.sourceTempo=data.tempo;track.totalDuration=score.totalDuration;
     tracks.push(track);currentTrack=track;expandedTrackId=track.id;setRecUI();renderTracksList();renderStaffForCurrent();
-    const saved=saveLocalProject("Staff composition added as a new track.");
+    const saved=saveLocalProject(vocal?"Vocal melody added as a new track.":"Staff composition added as a new track.");
     recStatus.textContent=score.name+" · "+track.notes.length+" notes imported. "+(saved?"Saved locally.":"Export your project to retain it.");
     document.getElementById("hhArranger").open=true;
   }catch(error){setProjectStatus(error.message||"Unable to import Staff score.");recStatus.textContent=error.message||"Unable to import Staff score."}
