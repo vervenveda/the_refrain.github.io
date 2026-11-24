@@ -1,273 +1,31 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="The Refrain — composition, lyrics, music education, creative practice, and mentor-guided musical exploration with Moirai.">
-<meta name="theme-color" content="#f5f0e6">
-<meta name="color-scheme" content="light">
-<link rel="canonical" href="https://vervenveda.com/the_refrain.github.io/">
-<title>The Refrain | Music House</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="The Refrain — a house of music, composition, practice and education."><meta name="theme-color" content="#292827"><link rel="canonical" href="https://vervenveda.com/the_refrain.github.io/"><title>The Refrain | Music House</title>
 <style>
-:root{
- --paper:#f5f0e6;--paper2:#fcfaf5;--ink:#171310;--soft:#665e55;--wine:#562b35;--wine2:#321a21;
- --brass:#a67d3d;--brass2:#dcc79d;--line:rgba(55,39,30,.16);--white:#fff;--shadow:0 24px 70px rgba(48,35,28,.10);
- --max:1240px;--r:7px;--ticker:var(--vnv-autopopulate-ticker-height,33px);--header:72px;
- --display:"Baskerville","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
- --body:"Avenir Next","Brandon Grotesque",Avenir,"Segoe UI",Arial,sans-serif;
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;min-width:300px;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}body.lock{overflow:hidden}
-a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.shell{width:min(calc(100% - 42px),var(--max));margin:auto}
-:focus-visible{outline:3px solid var(--brass);outline-offset:3px}.skip{position:fixed;z-index:9999;top:8px;left:8px;transform:translateY(-160%);background:var(--ink);color:#fff;padding:8px 12px;border-radius:7px}.skip:focus{transform:none}
-
-
-/* Header */
-header{position:sticky;top:var(--ticker);z-index:1400;height:var(--header);background:rgba(245,240,230,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.header{height:100%;display:grid;grid-template-columns:minmax(210px,1fr) auto minmax(150px,1fr);align-items:center;gap:22px}.brand{justify-self:start;display:flex;align-items:center;gap:12px}.monogram{width:44px;height:36px;border:1px solid var(--ink);border-radius:7px;display:grid;place-items:center;font:500 17px/1 var(--display);letter-spacing:.08em}.brand strong{font:500 18px/1 var(--display);letter-spacing:.12em;text-transform:uppercase}.brand small{display:block;color:var(--soft);font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin-top:5px}
-.primary{display:flex;align-items:center;gap:6px}.navbtn,.mentor-btn,.menu-btn{border:0;background:transparent;color:var(--ink);min-height:42px;padding:0 12px;border-radius:7px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.navbtn:hover,.mentor-btn:hover,.menu-btn:hover{background:rgba(86,43,53,.07)}.right{justify-self:end;display:flex;align-items:center;gap:5px}.mentor-btn{border:1px solid rgba(86,43,53,.25);color:var(--wine);background:#fff}.menu-btn{font-size:22px;padding:0 10px}
-
-/* Dropdown */
-.dropwrap{position:relative}.dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-8px);width:min(360px,88vw);padding:12px;background:var(--paper2);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.16s;text-align:left}.dropwrap.open .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}.dropdown button{width:100%;display:grid;gap:2px;text-align:left;border:0;background:transparent;padding:11px;border-radius:7px}.dropdown button:hover{background:#fff}.dropdown strong{font:500 17px/1.15 var(--display)}.dropdown small{color:var(--soft);font-size:12px}
-
-/* Hero */
-main{overflow:hidden}.hero{min-height:660px;display:grid;place-items:center;padding:90px 0 70px;position:relative}.hero:before{content:"";position:absolute;inset:13% -10% auto;height:320px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,rgba(86,43,53,.08) 32px,transparent 33px);transform:rotate(-2deg);pointer-events:none}.hero-inner{position:relative;text-align:center;max-width:920px}.eyebrow{color:var(--wine);font-size:11px;letter-spacing:.25em;text-transform:uppercase}.hero h1{margin:18px 0 8px;font:400 clamp(64px,10vw,132px)/.84 var(--display);letter-spacing:-.045em}.hero .lede{max-width:670px;margin:24px auto;color:#504941;font:400 clamp(20px,2.5vw,28px)/1.45 var(--display)}.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:32px}.pill{border:1px solid var(--line);border-radius:999px;background:rgba(252,250,245,.86);padding:12px 19px;color:var(--ink)}.pill:hover{border-color:var(--wine);color:var(--wine)}
-
-/* Sections */
-.section{padding:78px 0;border-top:1px solid var(--line)}.section-head{max-width:760px;margin:0 auto 34px;text-align:center}.section-head h2{font:400 clamp(38px,5vw,66px)/1 var(--display);margin:8px 0 15px}.section-head p{color:var(--soft);margin:0}.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.door{min-height:300px;padding:30px;border:1px solid var(--line);border-radius:11px;background:var(--paper2);box-shadow:0 12px 35px rgba(48,35,28,.05);display:flex;flex-direction:column;text-align:left}.door .num{color:var(--brass);font:500 12px var(--body);letter-spacing:.15em}.door h3{font:400 37px/1.05 var(--display);margin:52px 0 12px}.door p{color:var(--soft);margin:0 0 24px}.door button{margin-top:auto;align-self:flex-start;border:0;border-bottom:1px solid var(--wine);background:transparent;color:var(--wine);padding:5px 0}
-
-/* Moirai */
-.moirai{background:var(--wine2);color:#f7efe2}.moirai-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}.moirai-mark{aspect-ratio:1;max-width:330px;margin:auto;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:grid;place-items:center;position:relative}.moirai-mark:before,.moirai-mark:after{content:"";position:absolute;width:72%;height:1px;background:rgba(220,199,157,.4);transform:rotate(16deg)}.moirai-mark:after{transform:rotate(-16deg)}.moirai-mark span{font:400 88px var(--display);color:var(--brass2)}.moirai h2{font:400 clamp(44px,6vw,76px)/1 var(--display);margin:8px 0 18px}.moirai p{color:#ddd1c3;max-width:650px}.moirai-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.moirai .pill{color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.05)}.moirai .pill:hover{background:rgba(255,255,255,.1)}
-
-/* favorites */
-.favorites{display:none}.favorites.visible{display:block}.favgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}.fav{min-height:150px;padding:17px;border:1px solid var(--line);border-radius:7px;background:#fff;display:flex;flex-direction:column}.fav strong{font:500 18px/1.2 var(--display)}.fav small{color:var(--soft);margin:8px 0 15px}.fav-actions{margin-top:auto;display:flex;gap:6px}.fav-actions button{border:1px solid var(--line);background:transparent;border-radius:7px;padding:6px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
-
-/* Aurora · Bazaar Art · The Refrain */
-.continuum{background:linear-gradient(145deg,rgba(220,199,157,.18),rgba(252,250,245,.82) 45%,rgba(86,43,53,.05))}.continuum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.continuum-card{min-height:260px;display:flex;flex-direction:column;padding:25px;border:1px solid var(--line);border-radius:7px;background:var(--paper2);color:var(--ink);text-align:left;box-shadow:0 12px 35px rgba(48,35,28,.05);transition:transform .16s ease,border-color .16s ease}.continuum-card:not(.current):hover{transform:translateY(-2px);border-color:var(--wine)}.continuum-card.current{color:#f7efe2;background:var(--wine2);border-color:var(--wine2)}.continuum-mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid currentColor;border-radius:50%;font:500 18px var(--display);opacity:.88}.continuum-step{margin:19px 0 0;color:var(--brass);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.continuum-card.current .continuum-step{color:var(--brass2)}.continuum-card h3{margin:5px 0 0;font:400 30px/1.1 var(--display)}.continuum-card>p:not(.continuum-step){margin:11px 0 18px;color:var(--soft);font-size:13px}.continuum-card.current>p:not(.continuum-step){color:#ddd1c3}.continuum-action{margin-top:auto;color:var(--wine);font-size:11px;font-weight:700;letter-spacing:.05em}.continuum-card.current .continuum-action{color:var(--brass2)}
-
-/* Modal studio */
-.overlay{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;padding:22px;background:rgba(20,15,13,.68);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:.16s}.overlay.open{opacity:1;visibility:visible}.modal{width:min(920px,100%);max-height:calc(100svh - 44px);overflow:auto;background:var(--paper2);border-radius:11px;box-shadow:0 30px 90px rgba(0,0,0,.3);text-align:left}.modal-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 20px;background:rgba(252,250,245,.97);border-bottom:1px solid var(--line)}.crumb{font-size:11px;letter-spacing:.08em;color:var(--soft)}.close{width:38px;height:38px;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:22px}.modal-body{padding:34px}.modal-body h2{font:400 46px/1 var(--display);margin:0 0 10px}.modal-body>p{color:var(--soft);max-width:700px}.resource-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px}.resource{border:1px solid var(--line);border-radius:7px;background:#fff;padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px}.resource h3{font:500 20px/1.2 var(--display);margin:0 0 5px}.resource p{font-size:12px;color:var(--soft);margin:0}.resource-actions{display:flex;align-items:center;gap:5px}.resource-actions a,.resource-actions button{border:1px solid var(--line);border-radius:7px;background:transparent;padding:7px 9px;font-size:10px;text-transform:uppercase;letter-spacing:.06em}.resource-actions a:hover,.resource-actions button:hover{border-color:var(--wine);color:var(--wine)}.resource .disabled{opacity:.45;pointer-events:none}
-
-/* Escape drawer */
-.drawer-overlay{position:fixed;inset:0;z-index:3500;background:rgba(20,15,13,.62);opacity:0;visibility:hidden;transition:.16s}.drawer-overlay.open{opacity:1;visibility:visible}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,92vw);background:var(--paper2);padding:26px;transform:translateX(100%);transition:.2s;overflow:auto}.drawer-overlay.open .drawer{transform:none}.drawer-top{display:flex;justify-content:space-between;align-items:center}.drawer h2{font:400 38px var(--display);margin:18px 0 5px}.drawer p{color:var(--soft);font-size:13px}.escape-links{display:grid;gap:8px;margin-top:25px}.escape-links a{padding:13px;border:1px solid var(--line);border-radius:7px;background:#fff}.escape-links small{display:block;color:var(--soft)}
-
-footer{padding:40px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--soft);font-size:12px}.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 14px;margin-top:10px}.footer-links a{color:var(--wine);text-decoration:underline;text-underline-offset:3px}
-@media(max-width:900px){.primary{display:none}.header{grid-template-columns:1fr auto}.right{grid-column:2}.doors,.continuum-grid{grid-template-columns:1fr}.door{min-height:230px}.door h3{margin-top:28px}.continuum-card{min-height:220px}.moirai-grid{grid-template-columns:1fr;text-align:center}.moirai p{margin-inline:auto}.moirai-actions{justify-content:center}.favgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){:root{--header:64px}.shell{width:min(calc(100% - 26px),var(--max))}.brand small{display:none}.brand strong{font-size:15px}.hero{min-height:570px;padding-top:65px}.hero h1{font-size:64px}.hero .lede{font-size:20px}.resource-list{grid-template-columns:1fr}.resource{grid-template-columns:1fr}.favgrid{grid-template-columns:1fr}.modal-body{padding:25px 18px}.mentor-btn{font-size:10px;padding:0 8px}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.ticker-track{animation:none}}
-</style>
-<style id="vnv-global-ecosystem-shell">
-.vnv-global-strip{position:relative;z-index:2147482000;min-height:38px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:5px 12px;border-bottom:1px solid rgba(160,140,100,.28);background:#121918;color:#eee8dc;font:400 12px/1.2 "Avenir Next",Avenir,"Segoe UI",Arial,sans-serif}
-.vnv-global-strip a{color:inherit;text-decoration:none}.vnv-global-brand{display:flex;align-items:center;gap:8px;white-space:nowrap}.vnv-global-mark{width:26px;height:26px;display:grid;place-items:center;border:1px solid rgba(238,232,220,.38);border-radius:7px;font:500 10px Georgia,serif}.vnv-global-copy{display:grid}.vnv-global-copy strong{font:500 11px Georgia,serif;letter-spacing:.08em;text-transform:uppercase}.vnv-global-copy small{margin-top:1px;color:#bdb5a6;font-size:9px;letter-spacing:.06em;text-transform:uppercase}
-.vnv-global-links{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;overflow:hidden;white-space:nowrap}.vnv-global-links a{color:#d8d1c5;font-size:10px;letter-spacing:.04em}.vnv-global-links a:hover,.vnv-global-links a:focus-visible{color:#fff}
-.vnv-global-menu{position:relative;justify-self:end}.vnv-global-menu summary{list-style:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(238,232,220,.28);border-radius:7px;cursor:pointer}.vnv-global-menu summary::-webkit-details-marker{display:none}.vnv-global-lines,.vnv-global-lines:before,.vnv-global-lines:after{content:"";display:block;width:14px;height:1.5px;background:#eee8dc}.vnv-global-lines{position:relative}.vnv-global-lines:before,.vnv-global-lines:after{position:absolute;left:0}.vnv-global-lines:before{top:-5px}.vnv-global-lines:after{top:5px}
-.vnv-global-panel{position:absolute;right:0;top:36px;width:min(300px,calc(100vw - 20px));padding:10px;border:1px solid rgba(238,232,220,.22);border-radius:7px;background:#17201f;box-shadow:0 18px 40px rgba(0,0,0,.28)}.vnv-global-panel p{margin:3px 5px 8px;color:#aaa294;font-size:9px;letter-spacing:.1em;text-transform:uppercase}.vnv-global-panel a{display:block;padding:9px 10px;border-radius:5px;color:#eee8dc;font-size:11px}.vnv-global-panel a:hover,.vnv-global-panel a:focus-visible{background:#22302e}
-@media(max-width:760px){.vnv-global-strip{grid-template-columns:minmax(0,1fr) auto}.vnv-global-links{display:none}.vnv-global-copy small{display:none}}@media print{.vnv-global-strip{display:none!important}}
-</style>
-</head>
-<body>
-<div class="vnv-global-strip" data-vnv-global-strip>
-  <a class="vnv-global-brand" href="https://vervenveda.com/" aria-label="Verve N Veda home">
-    <span class="vnv-global-mark">VNV</span>
-    <span class="vnv-global-copy"><strong>Verve N Veda</strong><small>Music</small></span>
-  </a>
-  <nav class="vnv-global-links" aria-label="Verve N Veda network links">
-    <a href="https://vervenveda.com/the_refrain.github.io/">This Hub</a>
-    <a href="https://vervenveda.com/#directory">Ecosystem Directory</a>
-    <a href="https://vervenveda.com/core/directory-agi/">Directory AGI</a>
-    <a href="https://vervenveda.com/cloud/">Public Cloud</a>
-  </nav>
-  <details class="vnv-global-menu">
-    <summary aria-label="Open Verve N Veda ecosystem menu"><span class="vnv-global-lines" aria-hidden="true"></span></summary>
-    <div class="vnv-global-panel">
-      <p>Ecosystem</p>
-      <a href="https://vervenveda.com/">Verve N Veda Gateway</a>
-      <a href="https://vervenveda.com/#directory">Complete Ecosystem Directory</a>
-      <a href="https://vervenveda.com/333.github.io/">333 Network</a>
-      <a href="https://vervenveda.com/PLERASearch.github.io/">PLERA Search</a>
-      <a href="https://vervenveda.com/theverifier.github.io/">The Verifier</a>
-      <a href="https://vervenveda.com/proresource_hub.github.io/">Professional Resources</a>
-      <a href="https://vervenveda.com/Arshif.github.io/">ARSHIF</a>
-    </div>
-  </details>
-</div>
-<a class="skip" href="#main">Skip to music</a>
-
-<main id="main">
-<section class="hero">
- <div class="shell hero-inner">
-  <div class="eyebrow">Composition · Lyrics · Music Education</div>
-  <h1>The Refrain</h1>
-  <p class="lede">A living house of music—where ideas become songs, words find rhythm, and musicians keep learning.</p>
-  <div class="hero-actions">
-   <button class="pill" data-studio="compose">Compose Music</button>
-   <button class="pill" data-studio="lyrics">Write Lyrics</button>
-   <button class="pill" data-studio="learn">Learn Music</button>
-  </div>
- </div>
+:root{--cream:#f8f0df;--paper:#f4eddf;--charcoal:#292827;--gold:#c7a76a;--ink:#292522;--line:#cdbfa8;--display:Cinzel,Georgia,serif;--body:"Brandon Grotesque",Nunito,Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body)}html{scroll-padding-top:145px}a{color:inherit}button,summary{font:inherit}button,summary{cursor:pointer}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #b28536;outline-offset:4px}.rf-shell{width:min(1100px,calc(100% - 32px));margin:auto}.rf-skip{position:absolute;left:12px;top:-100px;z-index:9999;background:#fff;padding:10px}.rf-skip:focus{top:10px}.rf-hero{background:var(--charcoal);color:var(--cream);text-align:center;padding:54px 16px 44px;position:relative;overflow:hidden}.rf-hero:before,.rf-hero:after{content:"";position:absolute;width:30%;height:100px;top:42%;opacity:.15;background:repeating-linear-gradient(to bottom,transparent 0 17px,var(--gold) 17px 18px);pointer-events:none}.rf-hero:before{left:-8%}.rf-hero:after{right:-8%}.rf-hero>*{position:relative}.rf-eyebrow{font:400 14px/1.5 var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}.rf-hero h1{font:400 clamp(44px,8vw,88px)/1.15 var(--display);margin:12px 0}.rf-hero p{max-width:650px;margin:12px auto 24px;font-size:18px}.rf-emblem{font-size:55px;color:var(--gold);line-height:1}.rf-nav,.room-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}.rf-nav a,.launch,.pin{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 22px;border:1px solid var(--gold);border-radius:7px;text-decoration:none;font-size:16px;font-weight:400}.rf-nav a{color:var(--cream)}.launch,.pin{background:var(--charcoal);color:var(--cream)}.pin{background:transparent;color:var(--ink);border-color:#8b7961}.rf-section{padding:34px 0}.rf-intro{text-align:center;max-width:740px;margin:0 auto 24px}.rf-intro h2,.rf-panel h2{font:400 clamp(24px,4vw,33px)/1.3 var(--display);margin:8px 0}.rf-intro p{margin:8px 0}.rf-group{font:400 14px/1.5 var(--display);letter-spacing:.14em;text-transform:uppercase;margin:27px 0 9px;color:#655039}.room{--room:#56303a;margin:0 0 12px;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#fffaf0}.room-keyboard{--room:#344b60}.room-staff{--room:#405848}.room-music101{--room:#72552a}.room-music201{--room:#493d60}.room-arshif-music{--room:#315753}.room summary{display:grid;grid-template-columns:30px 48px 1fr 20px;align-items:center;gap:14px;min-height:88px;padding:14px 22px;background:var(--room);color:var(--cream);list-style:none}.room summary::-webkit-details-marker{display:none}.room-number{font-size:14px;color:#eee0bd}.room-symbol{font:400 33px/1 Georgia,serif;text-align:center}.room-heading{display:grid;gap:2px}.room-kind{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:#f2dfb3}.room-name{font:400 clamp(20px,3vw,27px)/1.25 var(--display)}.chevron{width:12px;height:12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);justify-self:center}.room[open] .chevron{transform:rotate(225deg)}.room-body{text-align:center;padding:22px 24px 26px}.room-body p{margin:0 auto 12px;max-width:700px}.features{color:#655039;font-size:16px}.room-actions{margin-top:19px}.rf-panel{border:1px solid var(--line);border-radius:7px;padding:25px;text-align:center;background:#fffaf0}.rf-mentor{background:#303530;color:var(--cream);border-color:#303530}.rf-mentor .launch{border-color:var(--gold)}.rf-mentor p{max-width:640px;margin:10px auto 20px}.rf-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.rf-links a{border:1px solid var(--line);padding:14px;border-radius:7px;text-decoration:none;background:#fffaf0}.rf-favorites{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.rf-favorites a{padding:8px 14px;border:1px solid var(--line);border-radius:7px}.rf-footer{text-align:center;background:var(--charcoal);color:var(--cream);padding:28px 16px 65px}.rf-footer a{margin:0 7px}.rf-breadcrumb{padding:14px 0;font-size:16px}.rf-pending{margin-top:20px;border:1px solid var(--line);border-radius:7px;background:#fffaf0}.rf-pending summary{padding:15px 20px}.rf-pending p{padding:0 20px 15px;margin:0}.rf-status{min-height:1.5em;text-align:center}.rf-footer p{margin:5px 0}@media(max-width:540px){.room summary{grid-template-columns:24px 32px 1fr 14px;gap:9px;padding:12px;min-height:80px}.room-symbol{font-size:27px}.room-body{padding:18px 14px}.rf-hero{padding:36px 12px}.rf-links{grid-template-columns:1fr}.rf-nav a{padding:9px 12px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body id="top">
+<a class="rf-skip" href="#main">Skip to music</a>
+<main id="main"><div class="rf-shell rf-breadcrumb"><a href="https://vervenveda.com/">Verve N Veda</a> / The Refrain</div>
+<section class="rf-hero"><div class="rf-emblem" aria-hidden="true">𝄞</div><div class="rf-eyebrow">Verve N Veda · Music House</div><h1>The Refrain</h1><p>Where imagination becomes melody, silence becomes rhythm, and every musician finds a place to begin.</p><nav class="rf-nav" aria-label="Music house sections"><a href="#compose">Create</a><a href="#learn">Learn</a><a href="#explore">Explore</a><a href="#moirai">Moirai</a></nav></section>
+<section class="rf-section rf-shell" aria-labelledby="rooms-title"><div class="rf-intro"><div class="rf-eyebrow" style="color:#755928">The music house</div><h2 id="rooms-title">Find your rhythm</h2><p>Six rooms for creating, performing, learning and discovering music. Open any bar to explore its tools and enter the application.</p></div>
+<h3 class="rf-group" id="compose">01 · Composition &amp; performance</h3><details class="room room-composer" id="composer"><summary><span class="room-number">01</span><span class="room-symbol" aria-hidden="true">♪</span><span class="room-heading"><span class="room-kind">Create</span><span class="room-name">Little Composer Studio</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Make melodies, explore musical symbols and build four-beat rhythms in a welcoming beginner studio.</p><p class="features">Rainbow piano · Melody recording · Rhythm builder · Mini lessons</p><div class="room-actions"><a class="launch" href="apps/composer_studio_index.html">Open Composer</a><button type="button" class="pin" data-pin="composer" aria-pressed="false">Pin</button></div></div></details>
+<details class="room room-keyboard" id="keyboard"><summary><span class="room-number">02</span><span class="room-symbol" aria-hidden="true">♬</span><span class="room-heading"><span class="room-kind">Perform</span><span class="room-name">Harmony’s Haven</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Explore the professional 88-key keyboard, record performances and develop arrangements with track layers.</p><p class="features">Keyboard · Metronome · Scale studio · Grand staff</p><div class="room-actions"><a class="launch" href="apps/pro-keyboard_index.html">Open Keyboard</a><button type="button" class="pin" data-pin="keyboard" aria-pressed="false">Pin</button></div></div></details>
+<details class="room room-staff" id="staff"><summary><span class="room-number">03</span><span class="room-symbol" aria-hidden="true">𝄞</span><span class="room-heading"><span class="room-kind">Discover</span><span class="room-name">The Staff</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Explore the relationship between sound and the five lines of a musical staff.</p><p class="features">Interactive sound exploration · Listening activity</p><div class="room-actions"><a class="launch" href="apps/the-staff_index.html">Open Staff</a><button type="button" class="pin" data-pin="staff" aria-pressed="false">Pin</button></div></div></details>
+<h3 class="rf-group" id="learn">02 · The conservatory</h3><details class="room room-music101" id="music101"><summary><span class="room-number">04</span><span class="room-symbol" aria-hidden="true">Ⅰ</span><span class="room-heading"><span class="room-kind">Learn</span><span class="room-name">Music 101 Workshop</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Build a foundation in reading, rhythm, melody, harmony and musical expression.</p><p class="features">10 modules · Practice labs · Quizzes · Final assessment</p><div class="room-actions"><a class="launch" href="education/Music%20101%20Workshop_index.html">Open Music 101</a><button type="button" class="pin" data-pin="music101" aria-pressed="false">Pin</button></div></div></details>
+<details class="room room-music201" id="music201"><summary><span class="room-number">05</span><span class="room-symbol" aria-hidden="true">Ⅱ</span><span class="room-heading"><span class="room-kind">Advance</span><span class="room-name">Music Theory 201</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Develop harmonic fluency through chords, cadences, modes, modulation and composition.</p><p class="features">12 modules · Theory laboratories · Capstone · Final assessment</p><div class="room-actions"><a class="launch" href="education/Music%20201%20Workshop_index.html">Open Music 201</a><button type="button" class="pin" data-pin="music201" aria-pressed="false">Pin</button></div></div></details>
+<h3 class="rf-group" id="explore">03 · Research &amp; discovery</h3><details class="room room-arshif-music" id="arshif-music"><summary><span class="room-number">06</span><span class="room-symbol" aria-hidden="true">♫</span><span class="room-heading"><span class="room-kind">Explore</span><span class="room-name">ARSHIF Music Hall</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="room-body"><p>Discover musical traditions, historical context, research resources and independent practice.</p><p class="features">Music atlas · Source vault · Timeline · Glossary · Practice studio</p><div class="room-actions"><a class="launch" href="apps/ARSHIF_Music_Hall_Resources_Updated_index.html">Open Music Hall</a><button type="button" class="pin" data-pin="arshif-music" aria-pressed="false">Pin</button></div></div></details>
+<details class="rf-pending" id="lyrics"><summary>Future rooms · Lyrics &amp; early music learning</summary><p>Lyric Studio, Preschool Piano, Preschool Music Staff Studio and ABC Story Sing-Along are planned connections. Their destinations are not yet registered here; no inactive launch buttons are shown.</p></details>
 </section>
-
-<section class="section">
- <div class="shell">
-  <div class="section-head"><div class="eyebrow">Enter the house</div><h2>Three ways into music.</h2><p>Choose a studio. The tools stay organized behind the doors, so the music—not the directory—remains the focus.</p></div>
-  <div class="doors">
-   <article class="door"><span class="num">01 · COMPOSE</span><h3>Composition Studio</h3><p>Melody, harmony, notation, arrangement, songwriting and the craft of turning musical ideas into form.</p><button data-studio="compose">Enter Composition</button></article>
-   <article class="door"><span class="num">02 · WRITE</span><h3>Lyric Studio</h3><p>Words for music: lyric writing, song structure, rhyme, meter, prosody, revision and voice.</p><button data-studio="lyrics">Enter Lyrics</button></article>
-   <article class="door"><span class="num">03 · LEARN</span><h3>The Conservatory</h3><p>Music education from early learning through Khaemenes electives, workshops, instruments and independent study.</p><button data-studio="learn">Enter Conservatory</button></article>
-  </div>
- </div>
-</section>
-
-<section class="section moirai" id="moirai">
- <div class="shell moirai-grid">
-  <div class="moirai-mark" aria-hidden="true"><span>M</span></div>
-  <div>
-   <div class="eyebrow" style="color:var(--brass2)">Music Mentor of The Refrain</div>
-   <h2>Meet Moirai.</h2>
-   <p>Not sure which room you need? Moirai can help you find the right path for composition, songwriting, theory, practice, performance, production or music research.</p>
-   <div class="moirai-actions">
-    <a class="pill" href="https://artist1970.github.io/Moirai.github.io/">Meet Moirai</a>
-    <button class="pill" data-studio="compose">I want to compose</button>
-    <button class="pill" data-studio="lyrics">I want to write</button>
-    <button class="pill" data-studio="learn">I want to learn</button>
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="section continuum" id="continuum" aria-labelledby="continuumTitle">
- <div class="shell">
-  <div class="section-head"><div class="eyebrow">One creative continuum</div><h2 id="continuumTitle">Settle. Make. Listen.</h2><p>Aurora, Bazaar Art, and The Refrain are neighboring Verve N Veda studios—three ways to carry one creative thread.</p></div>
-  <div class="continuum-grid" aria-label="Connected Verve N Veda creative studios">
-   <a class="continuum-card" href="https://vervenveda.com/aurora.github.io/"><span class="continuum-mark" aria-hidden="true">◌</span><p class="continuum-step">01 · Settle</p><h3>Aurora</h3><p>Make room for breath, reflection, rest, and the attention that lets a creative idea arrive.</p><span class="continuum-action">Enter the sanctuary →</span></a>
-   <a class="continuum-card" href="https://vervenveda.com/bazaarart.github.io/"><span class="continuum-mark" aria-hidden="true">✦</span><p class="continuum-step">02 · Make</p><h3>Bazaar Art</h3><p>Give the idea visual form through studios, creative education, artist resources, and exhibitions.</p><span class="continuum-action">Enter the art studio →</span></a>
-   <article class="continuum-card current" aria-current="page"><span class="continuum-mark" aria-hidden="true">♪</span><p class="continuum-step">03 · Listen</p><h3>The Refrain</h3><p>Shape the idea in sound through lyrics, composition, instruments, practice, and musical study.</p><span class="continuum-action">You are here</span></article>
-  </div>
- </div>
-</section>
-
-<section class="section favorites" id="favorites">
- <div class="shell">
-  <div class="section-head"><div class="eyebrow">Your favorites</div><h2>My Refrain</h2><p>Pin up to five favorite music resources on this device for quick access.</p></div>
-  <div class="favgrid" id="favGrid"></div>
- </div>
-</section>
-
-<section class="section">
- <div class="shell">
-  <div class="section-head"><div class="eyebrow">Research · Practice · Discovery</div><h2>Explore the music library.</h2><p>Research and supporting tools live here without crowding the front door.</p></div>
-  <div style="text-align:center"><button class="pill" data-studio="explore">Open Explore</button></div>
- </div>
-</section>
-</main>
-
-<footer><div class="shell">The Refrain · Verve N Veda · Music composition, lyrics & education<br>Favorites remain local to this browser.<div class="footer-links"><a href="https://vervenveda.com/aurora.github.io/">Aurora</a><a href="https://vervenveda.com/bazaarart.github.io/">Bazaar Art</a><a href="https://vervenveda.com/">Verve N Veda</a></div><div>© <span id="year"></span> Jennifer Kay Pearl</div></div></footer>
-
-<div class="overlay" id="studioOverlay" aria-hidden="true">
- <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-top"><div class="crumb" id="crumb">The Refrain / Studio</div><button class="close" id="modalClose" aria-label="Return to The Refrain">×</button></div>
-  <div class="modal-body"><div class="eyebrow" id="modalEyebrow"></div><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="resource-list" id="resourceList"></div></div>
- </section>
-</div>
-
-<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true">
- <aside class="drawer" aria-label="Verve N Veda network">
-  <div class="drawer-top"><span class="eyebrow">Beyond The Refrain</span><button class="close" id="drawerClose" aria-label="Close network menu">×</button></div>
-  <h2>Verve N Veda</h2><p>This menu is the route out of the music house and back into the wider network.</p>
-  <div class="escape-links">
-   <a href="https://vervenveda.com/aurora.github.io/"><strong>Aurora</strong><small>Breath, reflection, rest, and creative renewal</small></a>
-   <a href="https://vervenveda.com/bazaarart.github.io/"><strong>Bazaar Art</strong><small>Visual studios, art learning, and exhibition pathways</small></a>
-   <a href="https://vervenveda.com/"><strong>Verve N Veda</strong><small>Return to the public gateway</small></a>
-   <a href="https://vervenveda.com/Khaemenes_Academy.github.io/"><strong>Khaemenes Academy</strong><small>Education campus</small></a>
-   <a href="https://vervenveda.com/proresource_hub.github.io/"><strong>ProResources</strong><small>Professional tools and resources</small></a>
-   <a href="https://artist1970.github.io/Arshif.github.io/"><strong>ARSHIF</strong><small>Research and archives</small></a>
-  </div>
- </aside>
-</div>
-
+<section class="rf-shell rf-section" id="favorites" aria-labelledby="favorite-title"><div class="rf-panel"><h2 id="favorite-title">My Refrain</h2><p>Pin up to five rooms for quick access on this device.</p><div id="favGrid" class="rf-favorites"></div><p id="favStatus" class="rf-status" role="status"></p></div></section>
+<section class="rf-shell rf-section" id="moirai"><div class="rf-panel rf-mentor"><div class="rf-eyebrow">Music mentor</div><h2>Meet Moirai</h2><p>Find guidance for composition, songwriting, theory, practice, performance and musical discovery.</p><a class="launch" href="https://artist1970.github.io/Moirai.github.io/">Meet Moirai</a></div></section>
+<section class="rf-shell rf-section" id="refrain-network"><div class="rf-intro"><div class="rf-eyebrow" style="color:#755928">One creative continuum</div><h2>Beyond The Refrain</h2><p>Explore the neighboring studios and educational resources of Verve N Veda.</p></div><div class="rf-links"><a href="https://vervenveda.com/aurora.github.io/">Aurora · Reflect</a><a href="https://vervenveda.com/bazaarart.github.io/">Bazaar Art · Create</a><a href="https://vervenveda.com/Khaemenes_Academy.github.io/">Khaemenes Academy · Learn</a><a href="https://vervenveda.com/Arshif.github.io/">ARSHIF · Discover</a><a href="https://vervenveda.com/proresource_hub.github.io/">ProResources · Develop</a><a href="https://vervenveda.com/#directory">Ecosystem Directory · Explore</a></div></section></main>
+<footer class="rf-footer"><p>The Refrain · Verve N Veda</p><p>Music, creativity and learning for all.</p><p><a href="https://vervenveda.com/">Gateway</a> · <a href="#top">Back to top</a></p><p>© Jennifer Kay Pearl</p></footer>
 <script>
-(()=>{
-"use strict";
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const RESOURCES=[
- {id:"composer",title:"Composer Studio",cat:"compose",desc:"Composition workspace for developing musical ideas.",href:"composer_studio_index.html"},
- {id:"staff",title:"The Staff",cat:"compose",desc:"Staff notation and written-music workspace.",href:"the-staff_index.html"},
- {id:"lyrics",title:"Lyric Studio",cat:"lyrics",desc:"Songwriting and lyric craft. More dedicated tools can be added here as they are completed.",href:null},
- {id:"keyboard",title:"Pro Keyboard",cat:"learn",desc:"Keyboard learning, practice and musical exploration.",href:"pro-keyboard_index.html"},
- {id:"music101",title:"Music 101 Workshop",cat:"learn",desc:"Foundational music education workshop.",href:"education/Music 101 Workshop_index.html"},
- {id:"music201",title:"Music 201 Workshop",cat:"learn",desc:"Intermediate music education workshop.",href:"education/Music 201 Workshop_index.html"},
- {id:"preschool-piano",title:"Preschool Piano",cat:"learn",desc:"Early-learning piano application. Link will activate when its school repository URL is registered.",href:null,level:"Preschool"},
- {id:"preschool-staff",title:"Preschool Music Staff Studio",cat:"learn",desc:"Early-learning staff studio. Link will activate when its school repository URL is registered.",href:null,level:"Preschool"},
- {id:"kinder-sing",title:"ABC Story Sing-Along",cat:"learn",desc:"Kinder Garden story and sing-along application. Link will activate when its school repository URL is registered.",href:null,level:"Kinder Garden"},
- {id:"arshif-music",title:"ARSHIF Music Hall",cat:"explore",desc:"Music research, reference and archival resources.",href:"ARSHIF_Music_Hall_Resources_Updated_index.html"}
-];
-const STUDIOS={
- compose:{label:"Compose",title:"Composition Studio",desc:"Composition, notation, arrangement and the tools for shaping musical ideas."},
- lyrics:{label:"Lyrics",title:"Lyric Studio",desc:"A growing room for songwriting, lyric craft, structure, rhyme, meter and revision."},
- learn:{label:"Learn",title:"The Conservatory",desc:"Music education, instruments and Khaemenes pathways from early learning through electives and higher study."},
- explore:{label:"Explore",title:"Music Library",desc:"Research, archives and supporting musical resources."}
-};
-const FAVORITE_KEY="refrain.favorites.v1",MAX_FAV=5;
-function items(cat){return RESOURCES.filter(r=>r.cat===cat)}
-function dropdowns(){
- ["compose","lyrics","learn","explore"].forEach(cat=>{
-  const box=$("#drop-"+cat); if(!box)return;
-  box.innerHTML=items(cat).slice(0,6).map(r=>`<button data-open-resource="${r.id}"><strong>${r.title}</strong><small>${r.level?`${r.level} · `:""}${r.desc}</small></button>`).join("")+`<button data-studio="${cat}"><strong>View all</strong><small>Open ${STUDIOS[cat].title}</small></button>`;
- });
-}
-function openStudio(cat){
- const s=STUDIOS[cat];if(!s)return;
- $("#crumb").textContent=`The Refrain / ${s.label} / ${s.title}`;
- $("#modalEyebrow").textContent=s.label;$("#modalTitle").textContent=s.title;$("#modalDesc").textContent=s.desc;
- $("#resourceList").innerHTML=items(cat).map(resourceCard).join("");
- $("#studioOverlay").classList.add("open");$("#studioOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock");$("#modalClose").focus();
-}
-function resourceCard(r){
- const fav=getFavs().includes(r.id);
- return `<article class="resource"><div><h3>${r.title}</h3><p>${r.level?`<strong>${r.level}</strong> · `:""}${r.desc}</p></div><div class="resource-actions">${r.href?`<a href="${encodeURI(r.href)}">Open</a>`:`<span class="disabled" title="Destination URL pending">Soon</span>`}<button data-pin="${r.id}">${fav?"★":"☆"} Pin</button></div></article>`;
-}
-function closeStudio(){$("#studioOverlay").classList.remove("open");$("#studioOverlay").setAttribute("aria-hidden","true");document.body.classList.remove("lock")}
-function getFavs(){try{return JSON.parse(localStorage.getItem(FAVORITE_KEY)||"[]").filter(id=>RESOURCES.some(r=>r.id===id)).slice(0,MAX_FAV)}catch{return[]}}
-function saveFavs(v){localStorage.setItem(FAVORITE_KEY,JSON.stringify(v.slice(0,MAX_FAV)));renderFavs()}
-function toggleFav(id){
- let f=getFavs();if(f.includes(id))f=f.filter(x=>x!==id);else{if(f.length>=MAX_FAV){alert("My Refrain holds five favorites. Remove one to add another.");return}f.push(id)}
- saveFavs(f);
- const open=$("#studioOverlay").classList.contains("open");if(open){const cat=RESOURCES.find(r=>r.id===id)?.cat;if(cat)openStudio(cat)}
-}
-function renderFavs(){
- const f=getFavs(), section=$("#favorites"), grid=$("#favGrid");section.classList.toggle("visible",f.length>0);
- grid.innerHTML=f.map(id=>{const r=RESOURCES.find(x=>x.id===id);return `<article class="fav"><strong>${r.title}</strong><small>${r.level||STUDIOS[r.cat].label}</small><div class="fav-actions">${r.href?`<a href="${encodeURI(r.href)}">Open</a>`:""}<button data-pin="${r.id}">Unpin</button></div></article>`}).join("");
-}
-document.addEventListener("click",e=>{
- const studio=e.target.closest("[data-studio]");if(studio){e.preventDefault();$$(".dropwrap").forEach(x=>x.classList.remove("open"));openStudio(studio.dataset.studio);return}
- const pin=e.target.closest("[data-pin]");if(pin){toggleFav(pin.dataset.pin);return}
- const open=e.target.closest("[data-open-resource],[data-ticker]");if(open){e.preventDefault();const id=open.dataset.openResource||open.dataset.ticker,r=RESOURCES.find(x=>x.id===id);if(r)openStudio(r.cat);return}
- const drop=e.target.closest("[data-drop]");if(drop){const w=drop.closest(".dropwrap"),was=w.classList.contains("open");$$(".dropwrap").forEach(x=>x.classList.remove("open"));if(!was)w.classList.add("open");return}
- if(!e.target.closest(".dropwrap"))$$(".dropwrap").forEach(x=>x.classList.remove("open"));
-});
-$("#modalClose").onclick=closeStudio;$("#studioOverlay").onclick=e=>{if(e.target===$("#studioOverlay"))closeStudio()};
-$("#moiraiButton")?.addEventListener("click",()=>$("#moirai").scrollIntoView({behavior:"smooth"}));
-document.addEventListener("click",e=>{
-  const moirai=e.target.closest?.('a[href="#moirai"]');
-  if(moirai){e.preventDefault();$("#moirai").scrollIntoView({behavior:"smooth"});return;}
-  const network=e.target.closest?.('a[href="#refrain-network"]');
-  if(network){e.preventDefault();$("#drawerOverlay").classList.add("open");$("#drawerOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock");}
-});
-$("#menuButton")?.addEventListener("click",()=>{$("#drawerOverlay").classList.add("open");$("#drawerOverlay").setAttribute("aria-hidden","false");document.body.classList.add("lock")});
-function closeDrawer(){$("#drawerOverlay").classList.remove("open");$("#drawerOverlay").setAttribute("aria-hidden","true");document.body.classList.remove("lock")}
-$("#drawerClose").onclick=closeDrawer;$("#drawerOverlay").onclick=e=>{if(e.target===$("#drawerOverlay"))closeDrawer()};
-
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeStudio();closeDrawer();$$(".dropwrap").forEach(x=>x.classList.remove("open"))}});
-dropdowns();renderFavs();$("#year").textContent=String(new Date().getFullYear());
-})();
+(()=>{const key="refrain.favorites.v1",buttons=[...document.querySelectorAll("button[data-pin]")],grid=document.getElementById("favGrid"),status=document.getElementById("favStatus");let saved=[];try{const raw=JSON.parse(localStorage.getItem(key)||"[]");if(Array.isArray(raw))saved=[...new Set(raw.filter(x=>typeof x==="string"))].slice(0,5)}catch{}const available=new Map(buttons.map(b=>[b.dataset.pin,b.closest("details")]));function render(){grid.replaceChildren();for(const b of buttons){const on=saved.includes(b.dataset.pin);b.setAttribute("aria-pressed",String(on));b.textContent=on?"Unpin":"Pin"}for(const id of saved){const d=available.get(id);if(!d)continue;const a=document.createElement("a");a.href=d.querySelector("a.launch").getAttribute("href");a.textContent=d.querySelector(".room-name").textContent;grid.append(a)}if(!grid.children.length)grid.textContent="No rooms pinned yet."}for(const b of buttons)b.addEventListener("click",()=>{const id=b.dataset.pin;if(saved.includes(id))saved=saved.filter(x=>x!==id);else{if(saved.filter(x=>available.has(x)).length>=5){status.textContent="Unpin a room before adding another.";return}saved=saved.filter(x=>available.has(x));saved.push(id)}try{localStorage.setItem(key,JSON.stringify(saved));status.textContent="Favorites updated."}catch{status.textContent="Favorites updated for this visit only."}render()});render();function openHash(){const id=location.hash.slice(1);const d=document.getElementById(id);if(d&&d.tagName==="DETAILS")d.open=true}window.addEventListener("hashchange",openHash);openHash()})();
 </script>
 <script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
-
-<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
-<script>VNV_HEADER.mount({"title":"The Refrain","subtitle":"Music House · Verve N Veda","icon":"TR","home":"#top","actions":[{"label":"Compose","href":"#compose"},{"label":"Lyrics","href":"#lyrics"},{"label":"Learn","href":"#learn"},{"label":"Moirai","href":"#moirai"},{"label":"Network","href":"#refrain-network"}]});</script>
 <script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
 <script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
-<script>VNV_TICKER.autoPopulate({label:"The Refrain Quick Links",max:12});</script>
-<script>VNV_HEADER.mount({"title":"The Refrain","subtitle":"Music House · Verve N Veda","icon":"TR","home":"#top","actions":[{"label":"Compose","href":"#compose"},{"label":"Lyrics","href":"#lyrics"},{"label":"Learn","href":"#learn"},{"label":"Moirai","href":"#moirai"},{"label":"Network","href":"#refrain-network"}]});</script>
+<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
+<script>if(window.VNV_HEADER&&typeof VNV_HEADER.mount==="function")VNV_HEADER.mount({title:"The Refrain",subtitle:"Music House · Verve N Veda",icon:"TR",home:"#top",actions:[{label:"Create",href:"#compose"},{label:"Learn",href:"#learn"},{label:"Explore",href:"#explore"},{label:"Moirai",href:"#moirai"},{label:"Network",href:"#refrain-network"}]});if(window.VNV_TICKER&&typeof VNV_TICKER.autoPopulate==="function")VNV_TICKER.autoPopulate({label:"The Refrain Quick Links",max:12});</script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
-</body>
-</html>
+</body></html>
