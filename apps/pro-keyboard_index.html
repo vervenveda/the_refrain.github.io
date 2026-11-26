@@ -2421,10 +2421,15 @@ window.addEventListener("pagehide",()=>{if(objectURL)URL.revokeObjectURL(objectU
       }
       if(transfer.file.size>maxBytes||transfer.file.size===0)throw Error("Mix is outside supported file limits.");
       const identity=String(transfer.createdAt||"")+"-"+String(transfer.revision);
-      if(lastEditorTransfer===identity){message("Editor mix is already loaded.");return true;}
-      if(lanes.length>=maxFiles)throw Error("Eight audio lanes are already loaded.");
+      if(lastEditorTransfer===identity&&lanes.some(l=>l.fromEditor)){message("Editor mix is already loaded.");return true;}
+      // Only replace the prior editor-generated reference; never touch manually imported takes.
+      const old=lanes.find(l=>l.fromEditor);
+      if(!old&&lanes.length>=maxFiles)throw Error("Eight audio lanes are already loaded.");
       const file=new File([transfer.file],transfer.name||"Refrain Editor Mix.wav",{type:"audio/wav"});
+      if(old){old.audio.pause();URL.revokeObjectURL(old.url);lanes.splice(lanes.indexOf(old),1);}
       addFiles([file]);
+      const added=lanes[lanes.length-1];
+      if(added)added.fromEditor=true;
       lastEditorTransfer=identity;
       message("Latest edited mix loaded into an audio lane. Press Play Mix or Record to arrange against it.");
       return true;
