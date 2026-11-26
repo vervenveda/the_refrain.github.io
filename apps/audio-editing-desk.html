@@ -249,6 +249,7 @@ async function sendMixToArrange(){
 }
 $("highwaySendArrange").onclick=()=>sendMixToArrange();
 window.RefrainEditorSendMix=sendMixToArrange;
+window.RefrainEditorHasAudio=()=>clips.length>0;
 window.addEventListener("resize",draw);
 window.addEventListener("beforeunload",e=>{if(highwayDirty||busy){e.preventDefault();e.returnValue="";}});
 window.addEventListener("pagehide",stop);
