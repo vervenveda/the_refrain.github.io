@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Highway · The Refrain</title><link rel="stylesheet" href="../assets/refrain-core.css">
+<style>
+:root{--charcoal:#292827;--cream:#f8f0df;--paper:#f4eddf}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--charcoal);font:400 16px/1.5 Nunito,Arial,sans-serif}
+header{padding:16px;background:var(--charcoal);color:var(--cream);text-align:center}
+h1{font:400 clamp(33px,5vw,55px)/1.2 Cinzel,Georgia,serif;margin:8px 0}
+nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+button,a.action{font:400 16px/1.4 Nunito,Arial,sans-serif;min-height:44px;padding:10px 16px;border:1px solid #bfa774;border-radius:7px;background:var(--charcoal);color:var(--cream);cursor:pointer;text-decoration:none}
+button[aria-selected=true]{outline:3px solid #bfa774;outline-offset:2px}
+button:focus-visible,a:focus-visible{outline:3px solid #bfa774;outline-offset:3px}
+main{padding:8px 14px 24px;max-width:1800px;margin:auto}
+#studioState{background:var(--cream);border:1px solid #cdbfa8;border-radius:7px;padding:12px;margin:12px auto;text-align:center}
+.framebox{display:none}.framebox.active{display:block}
+iframe{display:block;border:1px solid #a99470;border-radius:7px;width:100%;height:75vh;min-height:540px;background:var(--paper)}
+.note{max-width:1050px;margin:auto;text-align:center}
+footer{background:var(--charcoal);color:var(--cream);padding:20px;text-align:center}
+@media(max-width:700px){iframe{height:80vh}main{padding:6px}}
+</style></head>
+<body><header><div>The Refrain · Music House</div><h1>Studio Highway</h1><p>One working session · Multiple music tools</p>
+<nav aria-label="Switch music workspaces" role="tablist">
+<button type="button" role="tab" id="tab-edit" aria-controls="panel-edit" aria-selected="true" data-room="edit">Audio Editing Desk</button>
+<button type="button" role="tab" id="tab-arrange" aria-controls="panel-arrange" aria-selected="false" data-room="arrange">Harmony's Haven</button>
+</nav></header>
+<main><p id="studioState" role="status" aria-live="polite">Opening the Audio Editing Desk. Local recovery is checked inside the editor.</p>
+<p class="note">Switching tabs keeps both tools loaded. The editor saves original audio and its timeline locally. Harmony's Haven retains its existing keyboard-note recovery. They do not yet share a unified timeline or automatically import edited audio into the keyboard.</p>
+<section class="framebox active" id="panel-edit" role="tabpanel" aria-labelledby="tab-edit"><iframe id="frame-edit" title="Audio Editing Desk" src="audio-editing-desk.html" allow="microphone"></iframe></section>
+<section class="framebox" id="panel-arrange" role="tabpanel" aria-labelledby="tab-arrange"><iframe id="frame-arrange" title="Harmony's Haven" src="pro-keyboard_index.html" loading="lazy" allow="microphone"></iframe></section>
+<p class="note"><a href="song-project.html">My Song Project</a> · <a href="music-cloud.html">Encrypted Music Cloud</a>. Browser-local recovery is not an independent backup. Export protected song packages for long-term preservation.</p>
+</main><footer>The Refrain · Verve N Veda</footer>
+<script>
+(()=>{
+"use strict";
+const tabs=[...document.querySelectorAll('[role="tab"]')],status=document.getElementById("studioState");
+let active="edit",switching=false;
+function frame(room){return document.getElementById("frame-"+room)}
+async function switchRoom(room){
+ if(switching||room===active)return;
+ switching=true;
+ try{
+  if(active==="edit"){
+   status.textContent="Saving Audio Editing Desk checkpoint before switching…";
+   const child=frame("edit").contentWindow;
+   if(!child||typeof child.RefrainEditorCheckpoint!=="function")throw Error("Editor is still loading or its recovery bridge is missing.");
+   const ok=await child.RefrainEditorCheckpoint();
+   if(!ok)throw Error("Editor checkpoint could not be verified. Stay in Edit and export a backup.");
+  }
+  for(const tab of tabs){const selected=tab.dataset.room===room;tab.setAttribute("aria-selected",String(selected));document.getElementById("panel-"+tab.dataset.room).classList.toggle("active",selected);tab.tabIndex=selected?0:-1;}
+  active=room;status.textContent="Opened "+(room==="edit"?"Audio Editing Desk":"Harmony's Haven")+". Both workspaces remain loaded in this tab.";
+ }catch(e){status.textContent="Switch blocked: "+(e.message||"Unable to save current edits");}
+ finally{switching=false;}
+}
+for(const t of tabs){t.addEventListener("click",()=>switchRoom(t.dataset.room));}
+document.getElementById("frame-edit").addEventListener("load",()=>{status.textContent="Editor opened. Review its recovery status before you begin editing.";});
+window.addEventListener("beforeunload",e=>{e.preventDefault();e.returnValue="";});
+})();
+</script></body></html>
