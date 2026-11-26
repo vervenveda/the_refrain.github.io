@@ -134,7 +134,7 @@ function changePitch(pitch){const c=current();if(!Number.isInteger(pitch)||Math.
 $("applyPitch").onclick=()=>command(()=>{const semi=Number($("pitchSemi").value),cents=Number($("pitchCents").value);if(!Number.isInteger(semi)||!Number.isInteger(cents)||Math.abs(semi)>12||Math.abs(cents)>99)throw Error("Enter whole semitones and cents within the displayed limits");changePitch(semi*100+cents)});
 $("resetPitch").onclick=()=>command(()=>changePitch(0));
 $("fades").onclick=()=>command(()=>{const c=current(),fadeIn=Number($("fadeIn").value),fadeOut=Number($("fadeOut").value);edit(clips.map(x=>x===c?{...c,fadeIn,fadeOut}:x),"Fades applied")});
-$("undo").onclick=()=>command(()=>{if(undo.length){stop();redo.push(clone(clips));clips=undo.pop();if(!clips.some(c=>c.id===selected))selected=clips[0]?.id;render();say("Undo")}});$("redo").onclick=()=>command(()=>{if(redo.length){stop();undo.push(clone(clips));clips=redo.pop();if(!clips.some(c=>c.id===selected))selected=clips[0]?.id;render();say("Redo")}});
+$("undo").onclick=()=>command(()=>{if(undo.length){stop();redo.push(clone(clips));clips=undo.pop();if(!clips.some(c=>c.id===selected))selected=clips[0]?.id;render();scheduleHighwaySave();say("Undo")}});$("redo").onclick=()=>command(()=>{if(redo.length){stop();undo.push(clone(clips));clips=redo.pop();if(!clips.some(c=>c.id===selected))selected=clips[0]?.id;render();scheduleHighwaySave();say("Redo")}});
 
 function setMode(next){mode=next;drag=null;ghost=null;selection=null;$("modeMove").setAttribute("aria-pressed",String(mode==="move"));$("modeRange").setAttribute("aria-pressed",String(mode==="range"));$("wave").style.cursor=mode==="move"?"grab":"crosshair";$("modeHint").textContent=mode==="move"?"Drag left or right to close gaps, up or down to layer voices. Snap aligns clip edges.":"Click to position the playhead, or drag to select a passage for trim, crop or silence.";draw()}
 $("modeMove").onclick=()=>setMode("move");$("modeRange").onclick=()=>setMode("range");
@@ -151,9 +151,9 @@ $("seekBack").onclick=()=>seekTo(cursor-.1);$("seekForward").onclick=()=>seekTo(
 document.addEventListener("keydown",e=>{if(busy||e.defaultPrevented||e.metaKey||e.ctrlKey||!["ArrowLeft","ArrowRight"].includes(e.key)||e.target.closest?.("input,textarea,select,button,a,[contenteditable],dialog,[role=dialog],#vnvEnrichedMenuOverlay")&&e.target!==$("wave"))return;if(!clips.length)return;e.preventDefault();seekTo(cursor+(e.key==="ArrowLeft"?-1:1)*(e.altKey?.01:e.shiftKey?1:.1))});$("zoom").onchange=draw;$("prev").onclick=()=>{viewStart-=bounds().span;draw()};$("next").onclick=()=>{viewStart+=bounds().span;draw()};$("home").onclick=()=>{stop();cursor=0;viewStart=0;draw()};
 
 const strips=[];
-function buildMixer(){const root=$("mixer");root.replaceChildren();strips.length=0;settings.forEach((ch,i)=>{const box=document.createElement("div");box.className="strip";box.innerHTML='<input type="text" maxlength="40" aria-label="Voice name"><label>Volume <output></output><input type="range" min="0" max="1.5" step=".01" aria-label="Voice volume"></label><label>Pan <output></output><input type="range" min="-1" max="1" step=".01" aria-label="Stereo pan"></label><div class="row"><button type="button">Mute</button><button type="button">Solo</button></div><div class="meter" aria-hidden="true"><span></span></div>';const [name,vol,pan]=box.querySelectorAll("input"),[volOut,panOut]=box.querySelectorAll("output"),[mute,solo]=box.querySelectorAll("button"),meter=box.querySelector(".meter span");strips.push({name,vol,pan,volOut,panOut,mute,solo,meter});name.onchange=()=>{settings[i].name=name.value.trim().slice(0,40)||"Voice "+(i+1);syncMixer();draw()};vol.oninput=()=>{settings[i].volume=Number(vol.value);applyMixer()};pan.oninput=()=>{settings[i].pan=Number(pan.value);applyMixer()};mute.onclick=()=>{settings[i].mute=!settings[i].mute;applyMixer()};solo.onclick=()=>{settings[i].solo=!settings[i].solo;applyMixer()};root.append(box)});syncMixer()}
+function buildMixer(){const root=$("mixer");root.replaceChildren();strips.length=0;settings.forEach((ch,i)=>{const box=document.createElement("div");box.className="strip";box.innerHTML='<input type="text" maxlength="40" aria-label="Voice name"><label>Volume <output></output><input type="range" min="0" max="1.5" step=".01" aria-label="Voice volume"></label><label>Pan <output></output><input type="range" min="-1" max="1" step=".01" aria-label="Stereo pan"></label><div class="row"><button type="button">Mute</button><button type="button">Solo</button></div><div class="meter" aria-hidden="true"><span></span></div>';const [name,vol,pan]=box.querySelectorAll("input"),[volOut,panOut]=box.querySelectorAll("output"),[mute,solo]=box.querySelectorAll("button"),meter=box.querySelector(".meter span");strips.push({name,vol,pan,volOut,panOut,mute,solo,meter});name.onchange=()=>{settings[i].name=name.value.trim().slice(0,40)||"Voice "+(i+1);syncMixer();draw();scheduleHighwaySave()};vol.oninput=()=>{settings[i].volume=Number(vol.value);applyMixer()};pan.oninput=()=>{settings[i].pan=Number(pan.value);applyMixer()};mute.onclick=()=>{settings[i].mute=!settings[i].mute;applyMixer()};solo.onclick=()=>{settings[i].solo=!settings[i].solo;applyMixer()};root.append(box)});syncMixer()}
 function syncMixer(){strips.forEach((s,i)=>{const ch=settings[i];s.name.value=ch.name;s.vol.value=ch.volume;s.pan.value=ch.pan;s.volOut.textContent=Math.round(ch.volume*100)+"%";s.panOut.textContent=ch.pan===0?"Center":Math.round(Math.abs(ch.pan)*100)+"% "+(ch.pan<0?"L":"R");s.mute.setAttribute("aria-pressed",String(ch.mute));s.solo.setAttribute("aria-pressed",String(ch.solo));if(!audible(ch,settings))s.meter.style.width="0%"})}
-function applyMixer(){if(playing)playing.buses.forEach((b,i)=>{b.gain.gain.setTargetAtTime(laneGain(settings[i],settings),ctx.currentTime,.012);b.pan.pan.setTargetAtTime(settings[i].pan,ctx.currentTime,.012)});syncMixer();draw()}
+function applyMixer(){scheduleHighwaySave();if(playing)playing.buses.forEach((b,i)=>{b.gain.gain.setTargetAtTime(laneGain(settings[i],settings),ctx.currentTime,.012);b.pan.pan.setTargetAtTime(settings[i].pan,ctx.currentTime,.012)});syncMixer();draw()}
 $("resetMix").onclick=()=>{if(!confirm("Reset all voice names, levels, pan, mute and solo?"))return;settings=defaultMixer();applyMixer()};
 function updateMeters(){if(!playing){strips.forEach(s=>s.meter.style.width="0%");$("mixMeter").textContent="Output ready";return}let peak=0;playing.buses.forEach((b,i)=>{b.analyser.getFloatTimeDomainData(b.samples);let p=0;for(const x of b.samples)p=Math.max(p,Math.abs(x));strips[i].meter.style.width=Math.min(100,p*100)+"%"});playing.master.getFloatTimeDomainData(playing.samples);for(const x of playing.samples)peak=Math.max(peak,Math.abs(x));$("mixMeter").textContent=peak>=.99?"Output near clipping — lower voice levels":"Output peak "+(peak?Math.round(20*Math.log10(peak))+" dBFS":"−∞ dBFS")}
 
@@ -166,10 +166,10 @@ $("wav").onclick=()=>command(()=>{stop();const ch=mix(clips,sources,44100,0,dura
 $("save").onclick=()=>command(()=>{download(JSON.stringify({suite:"RefrainAudioEdit",version:3,mixer:settings,sources:[...sources].map(([id,s])=>({id,name:s.name,duration:s.duration})),clips},null,2),"application/json","refrain-edit-project.json");say("Edit decisions exported. Keep original audio files alongside this project.")});
 $("restore").onclick=()=>$("project").click();$("project").onchange=async()=>{const f=$("project").files[0];$("project").value="";if(!f||busy)return;try{if(f.size>1000000)throw Error("Project file too large");const p=JSON.parse(await f.text());if(p.suite!=="RefrainAudioEdit"||![1,2,3].includes(p.version)||!Array.isArray(p.sources))throw Error("Invalid edit project");const missing=p.sources.filter(s=>!sources.has(s.id));if(missing.length)throw Error("Load matching original take(s) first: "+missing.map(s=>s.name).join(", "));const clean=validate(p.clips,sources),nextMixer=validateMixer(p.version===1?undefined:p.mixer);if(clips.length&&!confirm("Replace current edit arrangement? Undo remains available."))return;edit(clean,"Project restored from matching original takes");settings=nextMixer;syncMixer();draw();scheduleHighwaySave()}catch(e){say(e.message)}};
 /* Highway save includes the ORIGINAL File blobs, not merely edit JSON metadata. */
-let highwayTimer=null,highwaySaving=Promise.resolve(),highwayDirty=false,highwayRecovered=false;
+let highwayTimer=null,highwaySaving=Promise.resolve(),highwayDirty=false,highwayRecovered=false,highwayRevision=0;
 function highwayNote(t){$("highwayStatus").textContent=t;}
 function scheduleHighwaySave(){
- highwayDirty=true;clearTimeout(highwayTimer);
+ highwayDirty=true;highwayRevision++;clearTimeout(highwayTimer);
  highwayNote("Unsaved changes · preparing local checkpoint.");
  highwayTimer=setTimeout(()=>{saveHighway().catch(()=>{});},450);
 }
@@ -177,6 +177,7 @@ function saveHighway(){
  clearTimeout(highwayTimer);
  if(!window.RefrainHighway){highwayNote("Local vault unavailable. Export WAV and JSON before leaving.");return Promise.reject(Error("Highway vault not loaded"));}
  if(busy){scheduleHighwaySave();return Promise.resolve(false);}
+ const revision=highwayRevision;
  const payload={
   suite:"RefrainAudioEdit",version:3,mixer:settings,clips:clone(clips),
   originals:[...sourceFiles].map(([id,file])=>({id,file})),
@@ -184,8 +185,8 @@ function saveHighway(){
  };
  highwaySaving=highwaySaving.catch(()=>{}).then(async()=>{
   await window.RefrainHighway.save("default-song","audio-edit",payload);
-  highwayDirty=false;
-  highwayNote("Saved locally · "+new Date().toLocaleTimeString()+". Keep an exported backup as well.");
+  highwayDirty=revision!==highwayRevision;
+  highwayNote(highwayDirty?"Newer edits await saving · ":"Saved locally · "+new Date().toLocaleTimeString()+". Keep an exported backup as well.");
   return true;
  }).catch(err=>{highwayDirty=true;highwayNote("Save FAILED: "+(err.message||"Storage unavailable")+". Export your project and source audio.");throw err;});
  return highwaySaving;
@@ -222,6 +223,7 @@ async function recoverHighway(manual=false){
 }
 $("highwaySave").onclick=()=>saveHighway().catch(()=>{});
 $("highwayRecover").onclick=()=>recoverHighway(true);
+window.RefrainEditorCheckpoint=async()=>{if(busy)return false;try{return await saveHighway()===true&&!highwayDirty;}catch{return false;}};
 window.addEventListener("resize",draw);
 window.addEventListener("beforeunload",e=>{if(highwayDirty||busy){e.preventDefault();e.returnValue="";}});
 window.addEventListener("pagehide",stop);
