@@ -908,7 +908,7 @@ html{scroll-padding-top:70px}body{margin:0;background:#242625;font-size:16px;lin
         <h3 style="font:400 24px Cinzel,serif;margin:0 0 8px">Imported Audio Tracks</h3>
         <p class="card-note">Play your own vocal or instrumental recording alongside keyboard tracks. Files stay on this device and are never uploaded. Import again after refreshing; JSON exports do not contain audio.</p>
         <label for="hhAudioImport" style="display:block;margin:8px 0">Add audio to track (WAV, MP3, M4A or browser-supported audio)</label>
-        <input id="hhAudioImport" type="file" accept="audio/*,.m4a,.wav,.mp3,.ogg" multiple style="max-width:100%;font-size:16px">
+        <input id="hhAudioImport" type="file" accept="audio/*,.m4a,.wav,.mp3,.ogg" multiple style="max-width:100%;font-size:16px"><div style="margin-top:10px"><button type="button" id="hhLoadEditorMix">Load latest Audio Editing Desk mix</button></div>
         <div id="hhAudioList" style="display:grid;gap:10px;margin-top:12px"></div>
         <p id="hhAudioStatus" role="status" aria-live="polite" style="font-size:16px">No reference audio loaded.</p>
       </section>
@@ -2338,6 +2338,7 @@ window.addEventListener("pagehide",()=>{if(objectURL)URL.revokeObjectURL(objectU
 </script>
 
 
+<script src="../assets/refrain-studio-highway.js"></script>
 <script>
 /* Reference audio lanes: additive to the legacy note-track JSON engine.
    No remote storage, no implicit persistence, no alteration of original files. */
@@ -2391,8 +2392,8 @@ window.addEventListener("pagehide",()=>{if(objectURL)URL.revokeObjectURL(objectU
     }
     message(lanes.length?lanes.length+" imported audio track(s) ready. Use Play Mix or Record to hear them together.":"No reference audio loaded.");
   }
-  picker.addEventListener("change",()=>{
-    for(const file of Array.from(picker.files||[])){
+  function addFiles(files){
+    for(const file of files){
       if(lanes.length>=maxFiles){message("Maximum of eight audio tracks.");break;}
       if(file.size>maxBytes||file.size===0){message("Each audio file must be between 1 byte and 100 MB.");continue;}
       if(!(/^audio\//.test(file.type)||/\.(m4a|wav|mp3|ogg|aac|flac)$/i.test(file.name))){message("Choose an audio file.");continue;}
@@ -2406,8 +2407,36 @@ window.addEventListener("pagehide",()=>{if(objectURL)URL.revokeObjectURL(objectU
       offset.setAttribute("aria-label",file.name+" start position in seconds");
       lanes.push({file,url,audio,volume,offset,muted:false});
     }
-    picker.value="";render();
-  });
+    render();
+  }
+  picker.addEventListener("change",()=>{addFiles(Array.from(picker.files||[]));picker.value="";});
+  let lastEditorTransfer=null;
+  async function loadEditorMix(){
+    if(!window.RefrainHighway){message("Studio Highway local vault unavailable.");return false;}
+    try{
+      const result=await window.RefrainHighway.load("default-song","audio-transfer");
+      const transfer=result?.payload;
+      if(!transfer||transfer.suite!=="RefrainAudioTransfer"||transfer.version!==1||!(transfer.file instanceof Blob)){
+        message("No editor mix found. Open Edit and select Send current mix to Arrange.");return false;
+      }
+      if(transfer.file.size>maxBytes||transfer.file.size===0)throw Error("Mix is outside supported file limits.");
+      const identity=String(transfer.createdAt||"")+"-"+String(transfer.revision);
+      if(lastEditorTransfer===identity&&lanes.some(l=>l.fromEditor)){message("Editor mix is already loaded.");return true;}
+      // Only replace the prior editor-generated reference; never touch manually imported takes.
+      const old=lanes.find(l=>l.fromEditor);
+      if(!old&&lanes.length>=maxFiles)throw Error("Eight audio lanes are already loaded.");
+      const file=new File([transfer.file],transfer.name||"Refrain Editor Mix.wav",{type:"audio/wav"});
+      if(old){old.audio.pause();URL.revokeObjectURL(old.url);lanes.splice(lanes.indexOf(old),1);}
+      addFiles([file]);
+      const added=lanes[lanes.length-1];
+      if(added)added.fromEditor=true;
+      lastEditorTransfer=identity;
+      message("Latest edited mix loaded into an audio lane. Press Play Mix or Record to arrange against it.");
+      return true;
+    }catch(e){message("Editor mix could not be loaded: "+(e.message||"unknown error"));return false;}
+  }
+  document.getElementById("hhLoadEditorMix").onclick=loadEditorMix;
+  window.RefrainArrangeLoadEditorMix=loadEditorMix;
   const previousPlay=playMixBtn.onclick;
   playMixBtn.onclick=function(event){
     stopReferences();

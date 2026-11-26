@@ -24,9 +24,9 @@ footer{background:var(--charcoal);color:var(--cream);padding:20px;text-align:cen
 <button type="button" role="tab" id="tab-arrange" aria-controls="panel-arrange" aria-selected="false" data-room="arrange">Harmony's Haven</button>
 </nav></header>
 <main><p id="studioState" role="status" aria-live="polite">Opening the Audio Editing Desk. Local recovery is checked inside the editor.</p>
-<p class="note">Switching tabs keeps both tools loaded. The editor saves original audio and its timeline locally. Harmony's Haven retains its existing keyboard-note recovery. They do not yet share a unified timeline or automatically import edited audio into the keyboard.</p>
+<p class="note">Switching tabs keeps both tools loaded. The editor saves original audio and its timeline locally. Harmony's Haven retains its existing keyboard-note recovery. Switching from Edit to Arrange renders your vocal arrangement as one playable reference track. Original clips remain editable in the Audio Editing Desk.</p>
 <section class="framebox active" id="panel-edit" role="tabpanel" aria-labelledby="tab-edit"><iframe id="frame-edit" title="Audio Editing Desk" src="audio-editing-desk.html" allow="microphone"></iframe></section>
-<section class="framebox" id="panel-arrange" role="tabpanel" aria-labelledby="tab-arrange"><iframe id="frame-arrange" title="Harmony's Haven" src="pro-keyboard_index.html" loading="lazy" allow="microphone"></iframe></section>
+<section class="framebox" id="panel-arrange" role="tabpanel" aria-labelledby="tab-arrange"><iframe id="frame-arrange" title="Harmony's Haven" src="pro-keyboard_index.html" allow="microphone"></iframe></section>
 <p class="note"><a href="song-project.html">My Song Project</a> · <a href="music-cloud.html">Encrypted Music Cloud</a>. Browser-local recovery is not an independent backup. Export protected song packages for long-term preservation.</p>
 </main><footer>The Refrain · Verve N Veda</footer>
 <script>
@@ -45,6 +45,22 @@ async function switchRoom(room){
    if(!child||typeof child.RefrainEditorCheckpoint!=="function")throw Error("Editor is still loading or its recovery bridge is missing.");
    const ok=await child.RefrainEditorCheckpoint();
    if(!ok)throw Error("Editor checkpoint could not be verified. Stay in Edit and export a backup.");
+  }
+  if(active==="edit"&&room==="arrange"&&frame("edit").contentWindow?.RefrainEditorHasAudio?.()){
+   status.textContent="Rendering current audio arrangement for Harmony's Haven…";
+   const editor=frame("edit").contentWindow;
+   const ok=await editor.RefrainEditorSendMix();
+   if(!ok)throw Error("Audio handoff failed or no clips were available. Review the editor's status.");
+   const target=frame("arrange");
+   if(!target.contentWindow?.RefrainArrangeLoadEditorMix){
+    await new Promise((resolve,reject)=>{
+     const ready=()=>{clearTimeout(wait);resolve();};
+     const wait=setTimeout(()=>{target.removeEventListener("load",ready);reject(Error("Harmony's Haven did not finish loading."));},15000);
+     target.addEventListener("load",ready,{once:true});
+    });
+   }
+   if(typeof target.contentWindow?.RefrainArrangeLoadEditorMix!=="function")throw Error("Harmony's Haven audio bridge is missing.");
+   if(!await target.contentWindow.RefrainArrangeLoadEditorMix())throw Error("Audio saved, but Harmony's Haven could not load it.");
   }
   for(const tab of tabs){const selected=tab.dataset.room===room;tab.setAttribute("aria-selected",String(selected));document.getElementById("panel-"+tab.dataset.room).classList.toggle("active",selected);tab.tabIndex=selected?0:-1;}
   active=room;status.textContent="Opened "+(room==="edit"?"Audio Editing Desk":"Harmony's Haven")+". Both workspaces remain loaded in this tab.";
