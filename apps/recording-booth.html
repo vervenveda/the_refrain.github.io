@@ -25,7 +25,83 @@ body[data-refrain-title="Recording Booth"] main :is(#meter,#review){display:bloc
 body[data-refrain-title="Recording Booth"] main a{color:var(--booth-ink);text-underline-offset:3px}
 body[data-refrain-title="Recording Booth"] :is(button,a,input,select):focus-visible{outline:3px solid #9f752d;outline-offset:3px}
 @media(max-width:600px){body[data-refrain-title="Recording Booth"] main>section{padding:14px}body[data-refrain-title="Recording Booth"] .rf-core-hero .rf-core-actions a{flex:1 1 80px}body[data-refrain-title="Recording Booth"] main .transport button{flex:1 1 115px}body[data-refrain-title="Recording Booth"] main .row label{justify-content:center;max-width:100%}}
-</style></head><body data-refrain-core="1" data-refrain-root="../" data-refrain-title="Recording Booth"><nav class="rf-core-crumb" aria-label="Breadcrumb"><a href="../">The Refrain</a> / Recording Booth</nav><section class="rf-core-hero" aria-label="Workspace introduction"><div class="rf-core-eyebrow">The Refrain</div><h1>Recording Booth</h1><p>Capture, review and preserve your original music.</p><nav class="rf-core-actions" aria-label="Music workspaces"><a href="../apps/recording-booth.html">Record</a><a href="../apps/audio-editing-desk.html">Edit</a><a href="../apps/pro-keyboard_index.html">Arrange</a></nav></section><section class="rf-core-about"><h2>About</h2><p>Capture, review and preserve your original music. No Refrain account or fee is required.</p></section><section class="rf-core-features"><h2>Workspace Features</h2><div class="rf-core-grid"></div></section><dialog class="rf-core-dialog"><h2></h2><p></p><a href="#">Open tool</a> <button type="button">Close</button></dialog><main data-i18n-no-online data-vnv-no-dictionary data-i18n-ignore><section><h2>Audio input &amp; accessories</h2><div class="row"><label>Microphone / audio interface <select id="device"><option value="">System default microphone</option></select></label><button id="refresh">Refresh inputs</button></div><p>Connect your USB microphone or audio interface before recording. Device names may appear only after permission. Use headphones for monitoring through your hardware; software monitoring is optional and off by default. Use headphones before enabling it to avoid feedback.</p><div class="row"><button id="testInput">Test input</button><button id="endTest">Release input</button><label><input id="monitor" type="checkbox"> Headphone monitoring</label><label>Monitor level <input id="monitorLevel" type="range" min="0" max=".35" step=".01" value=".08"></label></div><p id="inputInfo" class="status">No active input. Connect headphones before monitoring.</p><label>Input signal</label><meter id="meter" min="0" max="1" low=".05" high=".9" optimum=".5" value="0"></meter><p id="peak" class="status">Input meter active during recording</p></section><section><h2>Record a take</h2><div class="row"><label>Take name <input id="takeName" maxlength="80" placeholder="Lead vocal — take 1"></label></div><div class="row"><label>Tempo <input id="tempo" type="number" min="40" max="240" value="90"></label><label>Count-in <select id="count"><option value="0">Off</option><option value="4">4 beats</option><option value="8">8 beats</option></select></label><label><input id="metronome" type="checkbox"> Recording click</label><label>Click level <input id="clickLevel" type="range" min="0" max=".25" step=".01" value=".08"></label></div><p class="status">The click is sent to your audio output, not mixed digitally into the recording. Use headphones to avoid acoustic bleed.</p><div class="transport"><div id="clock" class="clock">00:00</div><div id="state" class="gold" role="status">Ready</div><div class="row"><button id="record" class="primary">● Record</button><button id="pause">Pause</button><button id="resume">Resume</button><button id="stop">■ Stop</button><button id="cancelCount">Cancel count-in</button></div></div><p id="status" role="status" class="status">Select your input and record.</p></section><section><h2>Local recovery</h2><div class="row"><label><input id="recovery" type="checkbox"> Keep a local recovery copy of new recordings</label><button id="restoreRecovery">Find recovery takes</button><button id="clearRecovery">Clear recovery copies</button></div><p id="recoveryStatus" role="status" class="status">Recovery is off. Save recordings to your drive after every take.</p><p>Optional recovery uses browser storage on this computer, not cloud storage. Storage can be cleared by the browser or device. Interrupted recording fragments may not play; save completed takes to your drive.</p></section><section><h2>Review &amp; save takes</h2><div id="takes" class="row"></div><audio id="review" controls></audio><div class="row"><button id="save" class="primary">Save recording</button><button id="delete">Delete take</button></div><p>Recordings stay in session memory unless optional local recovery is enabled. Save to your drive for a permanent copy. Save after every take. Browser recording format varies by device; the file extension matches the actual container. Reloading or a crash can lose unsaved takes.</p><p><a href="audio-editing-desk.html">Open Audio Editing Desk</a> · <a href="vocal-transcription.html">Open Vocal Transcription Studio</a></p></section></main><footer>The Refrain · No ads · No fees · No account</footer><script>
+</style><style id="refrain-booth-console-v2">
+body[data-refrain-title="Recording Booth"] .rf-core-about{display:none}
+body[data-refrain-title="Recording Booth"] main{width:calc(100% - 24px);max-width:1300px;margin:auto}
+body[data-refrain-title="Recording Booth"] main .booth-console{padding:20px;background:#f4eddf}
+body[data-refrain-title="Recording Booth"] main :is(p,label,button,input,select,summary,a,output){font-size:16px;line-height:1.5}
+body[data-refrain-title="Recording Booth"] main .booth-console-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:14px}
+body[data-refrain-title="Recording Booth"] main .booth-module{min-width:0;background:#292827;color:#f8f0df;border:1px solid #a99470;border-radius:7px;padding:18px;text-align:left}
+body[data-refrain-title="Recording Booth"] main .booth-module h3,body[data-refrain-title="Recording Booth"] main .booth-transport-panel h3{font:400 24px Cinzel,Georgia,serif;text-align:center;margin:0 0 16px}
+body[data-refrain-title="Recording Booth"] main .booth-module .booth-field{display:flex;align-items:stretch;flex-direction:column;gap:8px;margin:12px 0}
+body[data-refrain-title="Recording Booth"] main .booth-module :is(select,input[type=text],input[type=number]){width:100%;background:#fffaf0;color:#292827}
+body[data-refrain-title="Recording Booth"] main .booth-settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body[data-refrain-title="Recording Booth"] main .booth-monitor-controls{display:grid;gap:12px;padding:14px;margin:14px 0;border:1px solid #a99470;border-radius:7px;background:#35322f}
+body[data-refrain-title="Recording Booth"] main .booth-monitor-controls label{color:#f8f0df}
+body[data-refrain-title="Recording Booth"] main .booth-button-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;margin:12px 0}
+body[data-refrain-title="Recording Booth"] main .booth-button-row button{flex:1 1 130px;min-height:48px}
+body[data-refrain-title="Recording Booth"] main .booth-module .booth-button-row button{border:1px solid #cdbfa8}
+body[data-refrain-title="Recording Booth"] main .booth-module meter{height:26px;display:block;width:100%;accent-color:#bfa774;margin:12px 0}
+body[data-refrain-title="Recording Booth"] main .booth-module .status{color:#f8f0df;overflow-wrap:anywhere}
+body[data-refrain-title="Recording Booth"] main .booth-safety{color:#f8f0df;border-top:1px solid #a99470;padding-top:10px}
+body[data-refrain-title="Recording Booth"] main .booth-transport-panel{margin-top:16px;padding:18px;border:1px solid #cdbfa8;border-radius:7px;background:#fffaf0}
+body[data-refrain-title="Recording Booth"] main .booth-transport-panel .transport{max-width:100%;padding:22px 16px;border:1px solid #a99470}
+body[data-refrain-title="Recording Booth"] main .transport .clock{font-size:55px;letter-spacing:.05em}
+body[data-refrain-title="Recording Booth"] main .transport #state{font-size:20px;color:#f8f0df}
+body[data-refrain-title="Recording Booth"] main .transport button{background:#292827;color:#f8f0df;border:1px solid #a99470}
+body[data-refrain-title="Recording Booth"] main .transport button#record{background:#fffaf0;color:#292827}
+body[data-refrain-title="Recording Booth"] main .booth-review{text-align:center}
+body[data-refrain-title="Recording Booth"] main .booth-recovery{border:1px solid #292827;border-radius:7px;margin:12px 0;background:#f4eddf;color:#292827}
+body[data-refrain-title="Recording Booth"] main .booth-recovery>summary{cursor:pointer;background:#292827;color:#f8f0df;padding:14px 18px;min-height:48px}
+body[data-refrain-title="Recording Booth"] main .booth-recovery-inside{padding:16px}
+body[data-refrain-title="Recording Booth"] main #review{width:100%;margin:12px auto}
+@media(max-width:800px){body[data-refrain-title="Recording Booth"] main .booth-console-grid{grid-template-columns:1fr}}
+@media(max-width:500px){body[data-refrain-title="Recording Booth"] main .booth-settings-grid{grid-template-columns:1fr}}
+</style></head><body data-refrain-core="1" data-refrain-root="../" data-refrain-title="Recording Booth"><nav class="rf-core-crumb" aria-label="Breadcrumb"><a href="../">The Refrain</a> / Recording Booth</nav><section class="rf-core-hero" aria-label="Workspace introduction"><div class="rf-core-eyebrow">The Refrain</div><h1>Recording Booth</h1><p>Capture, review and preserve your original music.</p><nav class="rf-core-actions" aria-label="Music workspaces"><a href="../apps/recording-booth.html">Record</a><a href="../apps/audio-editing-desk.html">Edit</a><a href="../apps/pro-keyboard_index.html">Arrange</a></nav></section><section class="rf-core-about"><h2>About</h2><p>Capture, review and preserve your original music. No Refrain account or fee is required.</p></section><section class="rf-core-features"><h2>Workspace Features</h2><div class="rf-core-grid"></div></section><dialog class="rf-core-dialog"><h2></h2><p></p><a href="#">Open tool</a> <button type="button">Close</button></dialog><main data-i18n-no-online data-vnv-no-dictionary data-i18n-ignore>
+<section class="booth-console" aria-label="Recording console">
+<h2>Recording Console</h2>
+<p class="booth-lead">Set your input, prepare the tempo, and capture an original take.</p>
+<div class="booth-console-grid">
+<div class="booth-module" id="boothInput">
+<h3>01 · Input Channel</h3>
+<label class="booth-field">Microphone / audio interface <select id="device"><option value="">System default microphone</option></select></label>
+<div class="booth-button-row"><button id="refresh">Refresh inputs</button><button id="testInput">Test input</button><button id="endTest">Release input</button></div>
+<div class="booth-monitor-controls"><label><input id="monitor" type="checkbox"> Headphone monitoring</label><label class="booth-field">Monitor level <input id="monitorLevel" type="range" min="0" max=".35" step=".01" value=".08"></label></div>
+<label for="meter">Input signal</label><meter id="meter" min="0" max="1" low=".05" high=".9" optimum=".5" value="0"></meter>
+<p id="peak" class="status">Input meter active during recording</p>
+<p id="inputInfo" class="status">No active input. Connect headphones before monitoring.</p>
+<p class="booth-safety">Use headphones before enabling monitoring to prevent feedback.</p>
+</div>
+<div class="booth-module" id="boothSession">
+<h3>02 · Session Controls</h3>
+<label class="booth-field">Take name <input id="takeName" maxlength="80" placeholder="Lead vocal — take 1"></label>
+<div class="booth-settings-grid">
+<label class="booth-field">Tempo (BPM) <input id="tempo" type="number" min="40" max="240" value="90"></label>
+<label class="booth-field">Count-in <select id="count"><option value="0">Off</option><option value="4">4 beats</option><option value="8">8 beats</option></select></label>
+</div>
+<div class="booth-monitor-controls"><label><input id="metronome" type="checkbox"> Recording click</label><label class="booth-field">Click level <input id="clickLevel" type="range" min="0" max=".25" step=".01" value=".08"></label></div>
+<p class="booth-safety">Click plays through your audio output; use headphones to avoid bleed into the microphone.</p>
+</div>
+</div>
+<div class="booth-transport-panel">
+<h3>03 · Recording Transport</h3>
+<div class="transport"><div id="clock" class="clock">00:00</div><div id="state" class="gold" role="status">Ready</div>
+<div class="booth-button-row"><button id="record" class="primary">● Record</button><button id="pause">Pause</button><button id="resume">Resume</button><button id="stop">■ Stop</button><button id="cancelCount">Cancel count-in</button></div></div>
+<p id="status" role="status" class="status">Select your input and record.</p>
+</div>
+</section>
+<section class="booth-review" aria-label="Review recordings"><h2>Review &amp; Save Takes</h2>
+<div id="takes" class="row"></div><audio id="review" controls></audio>
+<div class="booth-button-row"><button id="save" class="primary">Save recording</button><button id="delete">Delete take</button></div>
+<p>Export each completed take to your device. Unsaved recordings may be lost if the session closes.</p>
+<p><a href="audio-editing-desk.html">Open Audio Editing Desk</a> · <a href="vocal-transcription.html">Open Vocal Transcription Studio</a></p>
+</section>
+<details class="booth-recovery"><summary>Local Recovery · Optional</summary><div class="booth-recovery-inside">
+<div class="booth-button-row"><label><input id="recovery" type="checkbox"> Keep a local recovery copy of new recordings</label><button id="restoreRecovery">Find recovery takes</button><button id="clearRecovery">Clear recovery copies</button></div>
+<p id="recoveryStatus" role="status" class="status">Recovery is off. Save recordings to your drive after every take.</p>
+<p>Local recovery uses browser storage and is not a cloud backup. Interrupted fragments may not play; export completed takes.</p>
+</div></details>
+</main><footer>The Refrain · No ads · No fees · No account</footer><script>
 (()=>{"use strict";
 const $=id=>document.getElementById(id),say=t=>$("status").textContent=t;
 let stream=null,rec=null,ctx=null,analyser=null,inputNode=null,raf=0,parts=[],takes=[],selected=null,busy=false,activeMs=0,started=0,failed=false,testing=false,preparing=false,generation=0,monitorGain=null,clickTimer=0,clickNodes=new Set(),nextBeat=0,beatIndex=0;
