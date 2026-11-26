@@ -366,7 +366,7 @@ const message=document.createElement("p");const dismiss=document.createElement("
 dialog.append(message,dismiss);main.append(dialog);
 function inform(text){message.textContent=text;if(typeof dialog.showModal==="function")dialog.showModal();else alert(text);}
 function selectedVoice(){
- const item=document.querySelector("#clips button[aria-pressed='true']"),match=item?.textContent.match(/^Voice\\s+(\\d+)/);
+ const item=document.querySelector("#clips button[aria-pressed='true']"),match=item?.textContent.match(/^Voice\s+(\d+)/);
  return match?Math.min(3,Math.max(0,Number(match[1])-1)):null;
 }
 function relocate(){
@@ -420,7 +420,7 @@ for(const g of groups){
  for(const id of g.actions){
   const target=$(id);if(!target)continue;
   // Keep the original engine button as the sole action owner.
-  if(target.parentElement===g.content){target.remove();commandDeck.append(target);}
+  target.remove();commandDeck.append(target);
   const button=document.createElement("button");button.type="button";
   button.textContent=({trim:"Apply Trim",crop:"Apply Crop",move:"Apply Move",fades:"Apply Fades",applyPitch:"Apply Pitch",resetPitch:"Reset Pitch"})[id]||id;
   button.onclick=()=>native(id);actions.append(button);
