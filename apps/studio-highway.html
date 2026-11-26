@@ -46,7 +46,7 @@ async function switchRoom(room){
    const ok=await child.RefrainEditorCheckpoint();
    if(!ok)throw Error("Editor checkpoint could not be verified. Stay in Edit and export a backup.");
   }
-  if(active==="edit"&&room==="arrange"){
+  if(active==="edit"&&room==="arrange"&&frame("edit").contentWindow?.RefrainEditorHasAudio?.()){
    status.textContent="Rendering current audio arrangement for Harmony's Haven…";
    const editor=frame("edit").contentWindow;
    const ok=await editor.RefrainEditorSendMix();
